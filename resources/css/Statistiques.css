@@ -1,0 +1,109 @@
+.content {
+    width: 100%;
+    padding: 15px;
+}
+
+.content .website-infos {
+    width: 100%;
+    height: 150px;
+    /* background: #fff; */
+    margin: 15px 0;
+    padding: 15px;
+    border-radius: 10px;
+    display: grid;
+    grid-template-columns: repeat(4, 250px);
+    gap: 15px;
+    justify-content: space-evenly;
+}
+
+.content .website-infos .infos-bloc {
+    width: 100%;
+    height: 100%;
+    padding: 15px;
+    background: #ffffff68;
+    border-radius: 10px;
+    color: #333;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    backdrop-filter: blur(100px);
+    box-shadow: 4px 4px 20px 2px rgba(196,202,255,0.5);
+    -webkit-box-shadow: 4px 4px 20px 2px rgba(196,202,255,0.5);
+    -moz-box-shadow: 4px 4px 20px 2px rgba(196,202,255,0.5);
+}
+
+.content .website-infos .infos-bloc .infos {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.content .website-infos .infos-bloc .infos h6 {
+    font-size: 0.8em;
+    font-weight: 400;
+}
+
+.content .website-infos .infos-bloc .gauge {
+    width: 110px;
+    height: 90px;
+    overflow: hidden;
+}
+
+.content .statistics-chart {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
+
+
+
+.content .statistics-chart .member-connected-per-month {
+    width: 700px;
+    height: 350px;
+    background: #ffffff;
+    border-radius: 10px;
+    color: #4187f6;
+    color: #0062ff;
+    color: #7faffc;
+
+    box-shadow: 4px 4px 20px 2px rgba(196,202,255,0.5);
+    -webkit-box-shadow: 4px 4px 20px 2px rgba(196,202,255,0.5);
+    -moz-box-shadow: 4px 4px 20px 2px rgba(196,202,255,0.5);
+}
+
+.content .statistics-chart .donut-graph {
+    width: 500px;
+    height: 300px;
+    display: flex;
+    border-radius: 10px;
+
+    box-shadow: 4px 4px 20px 2px rgba(196,202,255,0.5);
+    -webkit-box-shadow: 4px 4px 20px 2px rgba(196,202,255,0.5);
+    -moz-box-shadow: 4px 4px 20px 2px rgba(196,202,255,0.5);
+}
+
+.content .statistics-chart .donut-graph canvas {
+    height: 300px;
+}
+
+.content .statistics-chart .donut-graph .descript {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.content .statistics-chart .donut-graph .descript h5 {
+    font-weight: 400;
+    font-size: medium;
+    text-align: center;
+}
+
+.content .statistics-chart .donut-graph .descript p {
+    font-weight: 200;
+    font-size: medium;
+    text-align: center;
+}

@@ -1,0 +1,40 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;500;400;600;700;900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: #f3fbfb;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-x: hidden;
+    padding: 0 7.5%;
+}
+
+.bg_ball_style {
+    width: 550px;
+    height: 550px;
+    margin: 10px;
+    border-radius: 50%;
+    filter: blur(45px);
+    position: absolute;
+    z-index: -1;
+    opacity: 0.4;
+}
+
+.bg_ball_style.ball1 {
+    background: #C6FCFF;
+    right: -350px;
+    top: 300px;
+}
+
+.bg_ball_style.ball2 {
+    background: #dee6fb;
+    left: 100px;
+    top: -390px;
+}

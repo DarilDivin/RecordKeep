@@ -1,0 +1,840 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;500;400;600;700;900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body { 
+    font-family: 'Poppins', sans-serif;
+    background: #EEEAEA;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-x: hidden;
+    padding: 0 7.5%;
+}
+
+.bg_ball_style {
+    width: 550px;
+    height: 550px;
+    margin: 10px;
+    border-radius: 50%;
+    filter: blur(45px);
+    position: absolute;
+    z-index: -1;
+    opacity: 0.4;
+}
+
+.bg_ball_style.ball1 {
+    background: #C6FCFF;
+    right: -350px;
+    top: 300px;
+}
+
+.bg_ball_style.ball2 {
+    background: #F4CBFF;
+    left: 100px;
+    top: -390px;
+}
+
+.bg_ball_style.ball3 {
+    background: #C6FCFF;
+    left: -149px;
+    bottom: -1730px;
+}
+
+
+/*================ NavBar ================*/
+
+nav {
+    width: 100%;
+    /* background: #fff; */
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 0;
+    z-index: 1;
+    position: relative;
+}
+
+nav .logo {
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+
+/* nav .logo span:nth-child(1) {
+    color: aqua;
+}
+
+nav .logo span:nth-child(2) {
+    color: #F4CBFF;
+}
+
+nav .logo span:nth-child(3) {
+    color: green;
+} */
+
+nav .nav_menu {
+    display: flex;
+    justify-content: space-evenly;
+    width: 65%;
+    /* background: #00F; */
+}
+
+nav .nav_menu ul {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+nav .nav_menu ul li {
+    list-style: none;
+}
+
+nav .nav_menu ul li a {
+    text-decoration: none;
+    color: #333;
+}
+
+nav .menuHamburger {
+    padding: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    transition: .2s ease;
+    display: none;
+}
+
+nav .menuHamburger:hover {
+    background: #ffffff80;
+}
+
+nav .menuHamburger ion-icon {
+    font-size: 1.8rem;
+}
+
+/*================ Description Section ================*/
+
+.description-container {
+    width: 100%;
+    height: calc(100vh - 68px);
+    /* background: #C6FCFF; */
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.description-container .description_msg {
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.description-container .description_msg h2 {
+    font-size: 3rem;
+    font-weight: 900;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.description-container .description_msg p {
+    font-size: 20px;
+    font-weight: 100;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.description-container .description_msg .btn-signin {
+    width: 255px;
+    height: 58px;
+    font-size: 30px;
+    font-weight: 500;
+    color: #FFF;
+    border-radius: 50px;
+    outline: none;
+    border: 0;
+    background: #9A9CE0;
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
+
+.description-container .description_msg .btn-signin:hover {
+    background: #9A9CE0;
+    opacity: 0.9;
+}
+
+.description-container .description_msg .btn-signin a {
+    text-decoration: none;
+    color: #fff;
+    width: 100%;
+    height: 100%;
+}
+
+.description-container .description_img {
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+/*================ Preview Section ================*/
+
+.image img {
+    width: 1292px;
+    height: 100%;
+    object-fit: cover;
+}
+
+.carousel {
+    width: 100%;
+    height: 95vh;
+    overflow: hidden;
+    margin: 10px 0;
+    position: relative;
+    border-radius: 20px;
+}
+
+.carousel .image-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    transform: translateX(0);
+    transition: transform 0.5s ease-in-out;
+}
+
+.carousel .image-container .image {
+    width: 100%;
+    height: 100%;
+}
+
+/* .carousel .image-container .image img {
+    width: 100%;
+    object-fit: cover;
+    height: 100%;
+} */
+
+.carousel .image-container .image p {
+    position: absolute;
+    width: 100%;
+    bottom: 15px;
+    text-align: center;
+    padding: 15px 150px;
+    color: #FFF;
+    backdrop-filter: blur(50px);
+    font-size: 20px;
+}
+
+.buttons-container {
+    display: flex;
+    justify-content: space-between;
+    position: absolute;
+    top: 50%;
+    width: 100%;
+}
+
+.btn {
+    background: #ffffff61;
+    color: #fff;
+    border: none;
+    padding: 0.5em;
+    cursor: pointer;
+    width: 40px;
+    height: 100px;
+    transform: translateY(-50px);
+    font-size: 1.8rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#left {
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+#right {
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+
+.btn ion-icon {
+    font-size: 1.8rem;
+    font-weight: 600;
+}
+
+.btn:hover {
+    opacity: 0.9;
+}
+
+.btn:focus {
+    outline: none;
+}
+
+.carousel-text {
+    width: 100%;
+    color: #333;
+    margin: 10px 0 45px;
+}
+
+.carousel-text h3 {
+    text-align: center;
+    font-size: 40px;
+    font-weight: 700;
+    margin: 0 0 15px;
+}
+
+.carousel-text p {
+    text-align: center;
+    font-size: 20px;
+}
+
+/*================ Advantage Section ================*/
+
+.advantage {
+    width: 100%;
+    height: 90vh;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.advantage .advantage-img {
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.advantage .advantage-text {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.advantage .advantage-text h2 {
+    font-size: 48px;
+    font-weight: 900;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.advantage .advantage-text p {
+    font-size: 20px;
+    font-weight: 100;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+/*================ Footer ================*/
+
+footer {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+footer hr {
+    width: 75%;
+}
+
+footer .footer-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+}
+
+footer .footer-content h2 {
+    font-size: 40px;
+    font-weight: 500;
+    color: #333;
+    letter-spacing: 10px;
+    margin: 10px 0 25px;
+}
+
+footer .footer-content ul {
+    width: 60%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    margin: 0 0 35px;
+}
+
+footer .footer-content ul li {
+    list-style: none;
+}
+
+footer .footer-content ul li a{
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+}
+
+footer .footer-content .socials {
+    width: 20%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 45px;
+}
+
+footer .footer-content .socials ion-icon {
+    font-size: 1.5rem;
+    color: #333;
+}
+
+footer .footer-content .copyright {
+    color: #333;
+    margin: 0 0 15px;
+}
+
+
+/*================ Media Queries ================*/
+
+/*================ MEDIA QUERIES (MEDIUM DEVICES) ================*/
+@media screen and (max-width: 1024px) {
+
+    .bg_ball_style.ball3 {
+        background: #C6FCFF;
+        left: -149px;
+        bottom: -1400px;
+    }
+
+    /*================ Description Section ================*/
+    .description-container .description_msg h2 {
+        font-size: 2rem;
+    }
+
+    .description-container .description_msg p {
+        font-size: 16px;
+    }
+
+    .description-container .description_msg .btn-signin {
+        width: 150px;
+        height: 38px;
+        font-size: 20px;
+        font-weight: 400;
+    }
+
+    /*================ Preview Section ================*/
+
+    .carousel {
+        height: 75vh;
+    }
+
+    .carousel .image-container .image p {
+        font-size: 15px;
+    }
+
+    .carousel-text h3 {
+        font-size: 30px;
+    }
+
+    .carousel-text p {
+        font-size: 16px;
+    }
+
+    /*================ Advantage Section ================*/
+
+    .advantage .advantage-text h2 {
+        font-size: 2rem;
+    }
+
+    .advantage .advantage-text p {
+        font-size: 16px;
+    }
+}
+
+/*================ MEDIA QUERIES (SMALL DEVICES) ================*/
+@media screen and (max-width: 750px) {
+
+    .bg_ball_style.ball3 {
+        background: #C6FCFF;
+        left: -149px;
+        bottom: -1400px;
+        display: none;
+    }
+
+    /*================ Description Section ================*/
+
+    .description-container {
+        height: calc(70vh - 68px);
+    }
+
+    .description-container .description_msg h2 {
+        font-size: 1.3rem;
+    }
+
+    .description-container .description_msg p {
+        font-size: 13px;
+    }
+
+    .description-container .description_msg .btn-signin {
+        width: 100px;
+        height: 35px;
+        font-size: 13px;
+        font-weight: 400;
+    }
+
+    /*================ Preview Section ================*/
+    .image img {
+        width: 553px;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .carousel {
+        height: 50vh;
+    }
+
+    .carousel .image-container .image p {
+        font-size: 12px;
+        padding: 15px 50px;
+    }
+
+    .carousel-text h3 {
+        font-size: 25px;
+    }
+
+    .carousel-text p {
+        font-size: 13px;
+    }
+
+    /*================ Advantage Section ================*/
+
+    .advantage .advantage-text h2 {
+        font-size: 1.3rem;
+    }
+
+    .advantage .advantage-text p {
+        font-size: 13px;
+    }
+
+    footer .footer-content h2 {
+        font-size: 25px;
+    }
+
+    footer .footer-content ul li a{
+        font-size: 12px;
+    }
+
+    footer .footer-content .socials ion-icon {
+        font-size: 1rem;
+    }
+
+    footer .footer-content .copyright {
+        font-size: 12px;
+    }
+}
+@media screen and (max-width: 550px) {
+
+    nav {
+        width: 100%;
+        /* background: #fff; */
+        display: flex;
+        justify-content: space-between;
+        padding: 20px 0;
+        z-index: 1;
+    }
+
+    nav .nav_menu {
+        display: flex;
+        justify-content: space-evenly;
+        width: 100%;
+        height: 50px;
+        background: #ffffff80;
+        position: absolute;
+        border-radius: 8px;
+        top: 70px;
+        transform: translateY(-120px);
+        transition: .4s ease-in-out;
+        z-index: -1;
+    }
+
+    nav .nav_menu.displayMenu {
+        transform: translateY(0);
+    }
+
+    nav .nav_menu ul li a {
+        font-size: 12px;
+    }
+
+    nav .menuHamburger {
+        display: block;
+    }
+
+    .bg_ball_style.ball3 {
+        background: #C6FCFF;
+        left: -149px;
+        bottom: -1400px;
+        display: none;
+    }
+
+    /*================ Description Section ================*/
+
+    .description-container {
+        height: calc(70vh - 68px);
+        display: flex;
+        /* grid-template-columns: repeat(2, 1fr); */
+        justify-content: center;
+        align-items: center;
+    }
+
+    .description-container .description_img {
+        padding: 15px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        display: none;
+    }
+
+    .description-container .description_msg h2 {
+        font-size: 1.3rem;
+    }
+
+    .description-container .description_msg p {
+        font-size: 13px;
+    }
+
+    .description-container .description_msg .btn-signin {
+        width: 100px;
+        height: 35px;
+        font-size: 13px;
+        font-weight: 400;
+    }
+
+    /*================ Preview Section ================*/
+    .image img {
+        width: 467px;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .carousel {
+        height: 35vh;
+    }
+
+    .carousel .image-container .image p {
+        font-size: 8px;
+        padding: 15px 35px;
+    }
+
+    .carousel-text h3 {
+        font-size: 20px;
+    }
+
+    .carousel-text p {
+        font-size: 11px;
+    }
+
+    /*================ Advantage Section ================*/
+
+    .advantage {
+        width: 100%;
+        height: 30vh;
+        display: flex;
+        /* grid-template-columns: repeat(2, 1fr); */
+        justify-content: center;
+        align-items: center;
+    }
+
+    .advantage .advantage-img {
+        display: none;
+    }
+
+    .advantage .advantage-text h2 {
+        font-size: 1.3rem;
+        text-align: center;
+    }
+
+    .advantage .advantage-text p {
+        text-align: center;
+        font-size: 11px;
+    }
+
+    /*================ Footer ================*/
+
+    footer .footer-content h2 {
+        font-size: 20px;
+        margin: 10px 0;
+    }
+
+    footer .footer-content ul {
+        margin: 0 0 15px;
+    }
+
+    footer .footer-content ul li a{
+        font-size: 10px;
+    }
+
+    footer .footer-content .socials {
+        margin-bottom: 20px;
+    }
+
+    footer .footer-content .socials ion-icon {
+        font-size: .7rem;
+    }
+
+    footer .footer-content .copyright {
+        font-size: 10px;
+    }
+}
+@media screen and (max-width: 455px) {
+
+    nav {
+        width: 100%;
+        /* background: #fff; */
+        display: flex;
+        justify-content: space-between;
+        padding: 20px 0;
+        z-index: 1;
+    }
+
+    nav .nav_menu {
+        display: flex;
+        justify-content: space-evenly;
+        /* width: 85%; */
+        height: 50px;
+        background: #ffffff80;
+        position: absolute;
+        border-radius: 8px;
+        top: 70px;
+        transform: translateY(-120px);
+        transition: .4s ease-in-out;
+        z-index: -1;
+    }
+
+    nav .nav_menu ul li a {
+        font-size: 12px;
+    }
+
+    .bg_ball_style.ball3 {
+        background: #C6FCFF;
+        left: -149px;
+        bottom: -1400px;
+        display: none;
+    }
+
+    /*================ Description Section ================*/
+
+    .description-container {
+        height: calc(70vh - 68px);
+        display: flex;
+        /* grid-template-columns: repeat(2, 1fr); */
+        justify-content: center;
+        align-items: center;
+    }
+
+    .description-container .description_img {
+        padding: 15px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        display: none;
+    }
+
+    .description-container .description_msg h2 {
+        font-size: 1.3rem;
+    }
+
+    .description-container .description_msg p {
+        font-size: 13px;
+    }
+
+    .description-container .description_msg .btn-signin {
+        width: 100px;
+        height: 35px;
+        font-size: 13px;
+        font-weight: 400;
+    }
+
+    /*================ Preview Section ================*/
+    .image img {
+        width: 352px;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .carousel {
+        height: 25vh;
+    }
+
+    .carousel .image-container .image p {
+        font-size: 6px;
+        padding: 15px 15px;
+    }
+
+    .carousel-text h3 {
+        font-size: 20px;
+    }
+
+    .carousel-text p {
+        font-size: 11px;
+    }
+
+    /*================ Advantage Section ================*/
+
+    .advantage {
+        width: 100%;
+        height: 30vh;
+        display: flex;
+        /* grid-template-columns: repeat(2, 1fr); */
+        justify-content: center;
+        align-items: center;
+    }
+
+    .advantage .advantage-img {
+        display: none;
+    }
+
+    .advantage .advantage-text h2 {
+        font-size: 1.3rem;
+        text-align: center;
+    }
+
+    .advantage .advantage-text p {
+        text-align: center;
+        font-size: 11px;
+    }
+
+    /*================ Footer ================*/
+
+    footer .footer-content h2 {
+        font-size: 20px;
+        margin: 10px 0;
+    }
+
+    footer .footer-content ul {
+        margin: 0 0 15px;
+        width: 100%;
+    }
+
+    footer .footer-content ul li a{
+        font-size: 10px;
+    }
+
+    footer .footer-content .socials {
+        margin-bottom: 20px;
+        width: 40%;
+    }
+
+    footer .footer-content .socials ion-icon {
+        font-size: .7rem;
+    }
+
+    footer .footer-content .copyright {
+        font-size: 10px;
+    }
+}

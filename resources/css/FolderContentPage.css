@@ -1,0 +1,825 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;500;400;600;700;900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body { 
+    font-family: 'Poppins', sans-serif;
+    background: #EEEAEA;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-x: hidden;
+    padding: 0 7.5%;
+}
+
+section {
+    width: 100%;
+}
+
+.bg_ball_style {
+    width: 550px;
+    height: 550px;
+    margin: 10px;
+    border-radius: 50%;
+    filter: blur(45px);
+    position: absolute;
+    z-index: -1;
+    opacity: 0.4;
+}
+
+.bg_ball_style.ball1 {
+    background: #C6FCFF;
+    right: -350px;
+    top: 300px;
+}
+
+.bg_ball_style.ball2 {
+    background: #F4CBFF;
+    left: 100px;
+    top: -390px;
+}
+
+.bg_ball_style.ball3 {
+    background: #C6FCFF;
+    left: -150px;
+    bottom: -870px;
+}
+.bg_ball_style.ball4 {
+    background: #F4CBFF;
+    right: -150px;
+    bottom: -870px;
+}
+
+button {
+    cursor: pointer;
+}
+
+/*================ NavBar ================*/
+
+nav {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 0;
+}
+
+nav .logo {
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+
+nav .nav_menu {
+    display: flex;
+    justify-content: space-evenly;
+    width: 65%;
+}
+
+nav .nav_menu ul {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+nav .nav_menu ul li {
+    list-style: none;
+}
+
+nav .nav_menu ul li a {
+    text-decoration: none;
+    color: #333;
+}
+
+nav .nav_menu ul li a:hover {
+    text-decoration: none;
+    color: #c700fe;
+}
+
+/*================ Document List ================*/
+
+.documentList {
+    width: 100%;
+    min-height: 80vh;
+}
+
+.documentList .sectionIndication {
+    width: 100%;
+    height: 90px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: #333;
+    padding: 10px 25px;
+}
+
+.documentList .sectionIndication h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.documentList .sectionIndication .searchBar {
+    width: 35%;
+    height: 100%;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.documentList .sectionIndication .searchBar form {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.documentList .sectionIndication .searchBar form input[type='search'] {
+    width: 100%;
+    height: 35px;
+    padding: 0 10px 0 35px;
+    border: 1px solid #F4CBFF;
+    outline: none;
+    border-radius: 15px;
+    font-size: 1.1rem;
+    background: #ffffff40;
+}
+
+.documentList .sectionIndication .searchBar form ion-icon {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.2rem;
+    color: #333;
+}
+
+.documentList .sectionIndication .listOption {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 100%;
+    min-width: 100px;
+    font-size: 1.5rem;
+}
+
+.documentList .sectionIndication .listOption ion-icon {
+    width: 30px;
+    height: 30px;
+    border-radius: 50px;
+    padding: 5px;
+    transition: .2s ease;
+    cursor: pointer;
+}
+
+.documentList .sectionIndication .listOption ion-icon:hover {
+    background: #0000001e;
+}
+
+/*================ List ================*/
+
+.documentList.list {
+    width: 100%;
+    min-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.documentList.list .documents {
+    width: 100%;
+    min-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    margin-bottom: 35px;
+    /* background: #fff; */
+}
+
+.documentList.list .document {
+    width: 100%;
+    height: 60px;
+    /* background: #33333315; */
+    /* margin: 5px; */
+    /* border-radius: 10px; */
+    border-bottom: 1px solid #bbb;
+    padding: 5px 10px;
+    transition: .4s ease;
+}
+
+.documentList.list .document:hover {
+    background: #33333315;
+}
+
+/* .documentList.list .document  {
+    text-decoration: none;
+    color: #333;
+    margin-bottom: 5px;
+} */
+
+.documentList.list .document  .documentLine {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 10px;
+}
+
+.documentList.list .document  .documentLine .documentIcon {
+    height: 100%;
+    width: 75px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.documentList.list .document  .documentLine .documentIcon ion-icon[name='folder'] {
+    font-size: 3.5rem;
+    border-radius: 10px;
+    color: #fee503;
+}
+
+.documentList.list .document  .documentLine .documentIcon ion-icon[name='document-text-outline'] {
+    font-size: 3.5rem;
+    border-radius: 10px;
+    color: #333;
+    background: #fff;
+}
+
+.documentList.list .document  .documentLine .documentName {
+    width: 400px;
+    overflow: hidden;
+}
+
+.documentList.list .document  .documentLine .documentOptions {
+    width: 345px;
+    height: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+}
+
+.documentList.list .document  .documentLine .documentOptions button {
+    height: 35px;
+    border: none;
+    border-radius: 8px;
+    color: #fff;
+    font-weight: 400;
+    font-size: 1rem;
+    padding: 0 10px;
+    background: #3c8ffd;
+    transition: 0.2s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+
+.documentList.list .document  .documentLine .documentOptions button a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    color: #fff;
+    gap: 10px;
+}
+
+.documentList.list .document  .documentLine .documentOptions button:hover {
+    background: #006eff;
+}
+
+/*================ Grid ================*/
+
+.documentList.grid {
+    width: 100%;
+    min-height: 80vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.documentList.grid .documents {
+    width: 100%;
+    min-height: 80vh;
+    display: grid;
+    grid-template-columns: repeat(6, 200px);
+    /* gap: 15px; */
+    justify-content: center;
+    margin-bottom: 35px;
+    /* background: #fff; */
+}
+
+.documentList.grid .documents .document {
+    width: 150px;
+    height: 160px;
+    background: #33333315;
+    margin: 5px;
+    border-radius: 10px;
+    border-bottom: 1px solid #bbb;
+    padding: 5px 10px;
+    transition: .4s ease;
+}
+
+/* .documentList.grid .documents .document  {
+    text-decoration: none;
+    color: #333;
+    margin-bottom: 5px;
+} */
+
+.documentList.grid .document  .documentLine {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 5px 10px;
+}
+
+.documentList.grid .document  .documentLine .documentIcon {
+    height: 75px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.documentList.grid .document  .documentLine .documentIcon ion-icon[name='folder'] {
+    width: 60%;
+    height: 90%;
+    border-radius: 10px;
+    color: #fee503;
+}
+.documentList.grid .document  .documentLine .documentIcon ion-icon[name='document-text-outline'] {
+    width: 60%;
+    height: 90%;
+    border-radius: 10px;
+    color: #333;
+    background: #fff;
+}
+
+.documentList.grid .document  .documentLine .documentmodificationDate,
+.documentList.grid .document  .documentLine .documentCreationDate,
+.documentList.grid .document  .documentLine .documentSize {
+    display: none;
+}
+
+.documentList.grid .document  .documentLine .documentName {
+    font-size: .8rem;
+    text-align: center;
+}
+
+.documentList.grid .document  .documentLine .documentOptions {
+    display: flex;
+    gap: 5px;
+}
+
+.documentList.grid .document  .documentLine .documentOptions button {
+    height: 25px;
+    border: none;
+    border-radius: 8px;
+    color: #fff;
+    font-weight: 400;
+    font-size: 1rem;
+    padding: 0 5px;
+    background: #3c8ffd;
+    transition: 0.2s ease;
+    min-width: 45px;
+}
+
+.documentList.grid .document  .documentLine .documentOptions button a {
+    text-decoration: none;
+    color: #fff;
+}
+
+.documentList.grid .document  .documentLine .documentOptions button p {
+    display: none;
+}
+.documentList.grid .document  .documentLine .documentOptions button ion-icon {
+    font-size: 1.5rem;
+}
+
+.documentList.grid .document  .documentLine .documentOptions button:hover {
+    background: #006eff;
+}
+
+/*================ DocumentView ================*/
+
+.documentView {
+    visibility: hidden;
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    transition: visibility 0.4s;
+}
+
+.documentView.show {
+    visibility: visible;
+    transition: visibility 0s;
+}
+
+.overlay {
+    opacity: 0;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #33333333;
+    transition: opacity 0.4s 0.2s ease-out;
+}
+
+.documentView.show .overlay {
+    opacity: 1;
+    transition: opacity 0.4s ease-out;
+}
+
+.view {
+    opacity: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, calc(-50% - 50px));
+    width: 75%;
+    height: 98vh;
+    background: #eee;
+    border-radius: 15px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.4s ease-out, transform 0.4s ease-out;
+}
+
+.documentView.show .view {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+    transition: opacity 0.4s 0.2s ease-out, transform 0.4s 0.2s ease-out;   
+}
+
+.view embed {
+    width: 100%;
+    height: 100%;
+}
+
+.view button {
+    position: absolute;
+    right: 20px;
+    bottom: 10px;
+    height: 35px;
+    font-size: 1.5rem;
+    background-color: #eee;
+    color: #333;
+    padding: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+    border: 1px solid #eee;
+    transition: all .4s ease;
+}
+
+.view button:hover {
+    color: #eee;
+    background: #f97878;
+    border: 1px solid #f97878;
+}
+
+/*================ Footer ================*/
+
+footer {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+footer hr {
+    width: 75%;
+}
+
+footer .footer-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+}
+
+footer .footer-content h2 {
+    font-size: 40px;
+    font-weight: 500;
+    color: #333;
+    letter-spacing: 10px;
+    margin: 10px 0 25px;
+}
+
+footer .footer-content ul {
+    width: 60%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    margin: 0 0 35px;
+}
+
+footer .footer-content ul li {
+    list-style: none;
+}
+
+footer .footer-content ul li a{
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+}
+
+footer .footer-content .socials {
+    width: 20%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 45px;
+}
+
+footer .footer-content .socials ion-icon {
+    font-size: 1.5rem;
+    color: #333;
+}
+
+footer .footer-content .copyright {
+    color: #333;
+    margin: 0 0 15px;
+}
+
+/*================ Media Queries ================*/
+
+@media screen and (max-width: 1300px) {
+    .documentList.grid .documents {
+        grid-template-columns: repeat(4, 200px);
+    }
+}
+
+
+@media screen and (max-width: 1024px) {
+
+    .bg_ball_style.ball3 {
+        background: #C6FCFF;
+        left: -149px;
+        bottom: -1400px;
+    }
+
+    .documentList.list .document  .documentLine .documentCreationDate,
+    .documentList.list .document  .documentLine .documentSize{
+        display: none;
+    }
+
+    .documentList.grid .documents {
+        grid-template-columns: repeat(3, 200px);
+    }
+}
+
+@media screen and (max-width: 750px) {
+
+    body {
+        padding: 0 3.5%;
+    }
+
+    .bg_ball_style.ball3 {
+        background: #C6FCFF;
+        left: -149px;
+        bottom: -1400px;
+        display: none;
+    }
+
+    .documentList.list .document  .documentLine .documentOptions button p {
+        display: none;
+    }
+    .documentList.list .document  .documentLine .documentOptions button ion-icon {
+        font-size: 1.5rem;
+    }
+
+    .documentList.list .document .documentLine .documentName {
+        font-size: 13px;
+        font-weight: 100;
+    }
+
+    .documentList .sectionIndication h3 {
+        font-size: .8rem;
+        font-weight: 600;
+    }
+
+    .documentList .sectionIndication {
+        padding: 5px;
+    }
+
+    .documentList .sectionIndication .listOption {
+        min-width: 10px;
+        font-size: .8rem;
+    }
+
+    .documentList .sectionIndication .searchBar {
+        width: 75%;
+        font-size: 12px;
+    }
+
+
+
+    .documentList .sectionIndication .searchBar form input[type="search"] {
+        font-size: .8rem;
+    }
+
+    .documentList.grid .documents {
+        grid-template-columns: repeat(2, 200px);
+    }
+
+
+   /*================ Footer ================*/
+
+    footer .footer-content h2 {
+        font-size: 25px;
+    }
+
+    footer .footer-content ul li a{
+        font-size: 12px;
+    }
+
+    footer .footer-content .socials ion-icon {
+        font-size: 1rem;
+    }
+
+    footer .footer-content .copyright {
+        font-size: 12px;
+    }
+}
+@media screen and (max-width: 550px) {
+
+    body {
+        padding: 0 3.5%;
+    }
+
+    nav {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        padding: 20px 0;
+        z-index: 1;
+    }
+
+    nav .nav_menu {
+        display: flex;
+        justify-content: space-evenly;
+        width: 85%;
+        height: 50px;
+        background: #ffffff80;
+        position: absolute;
+        border-radius: 8px;
+        top: 70px;
+        transform: translateY(-120px);
+        transition: .4s ease-in-out;
+        z-index: -1;
+    }
+
+    nav .nav_menu.displayMenu {
+        transform: translateY(0);
+    }
+
+    nav .nav_menu ul li a {
+        font-size: 12px;
+    }
+
+    nav .menuHamburger {
+        display: block;
+    }
+
+    .bg_ball_style.ball3 {
+        background: #C6FCFF;
+        left: -149px;
+        bottom: -1400px;
+        display: none;
+    }
+
+    .documentList.grid .documents {
+        grid-template-columns: repeat(2, 200px);
+    }
+
+    /*================ Footer ================*/
+
+    footer .footer-content h2 {
+        font-size: 20px;
+        margin: 10px 0;
+    }
+
+    footer .footer-content ul {
+        margin: 0 0 15px;
+    }
+
+    footer .footer-content ul li a{
+        font-size: 10px;
+    }
+
+    footer .footer-content .socials {
+        margin-bottom: 20px;
+    }
+
+    footer .footer-content .socials ion-icon {
+        font-size: .7rem;
+    }
+
+    footer .footer-content .copyright {
+        font-size: 10px;
+    }
+}
+
+@media screen and (max-width: 455px) {
+
+    nav {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        padding: 20px 0;
+        z-index: 1;
+    }
+
+    nav .nav_menu {
+        display: flex;
+        justify-content: space-evenly;
+        height: 50px;
+        background: #ffffff80;
+        position: absolute;
+        border-radius: 8px;
+        top: 70px;
+        transform: translateY(-120px);
+        transition: .4s ease-in-out;
+        z-index: -1;
+    }
+
+    nav .nav_menu ul li a {
+        font-size: 12px;
+    }
+
+    .bg_ball_style.ball3 {
+        background: #C6FCFF;
+        left: -149px;
+        bottom: -1400px;
+        display: none;
+    }
+
+    .documentList.grid .documents {
+        grid-template-columns: repeat(1, 200px);
+        gap: 5px;
+    }
+
+    .documentList.list .document  .documentLine .documentmodificationDate {
+        display: none;
+    }
+
+    .documentList.list .document  .documentLine .documentName {
+        text-align: center;
+    }
+
+    /*================ Footer ================*/
+
+    footer .footer-content h2 {
+        font-size: 20px;
+        margin: 10px 0;
+    }
+
+    footer .footer-content ul {
+        margin: 0 0 15px;
+        width: 100%;
+    }
+
+    footer .footer-content ul li a{
+        font-size: 10px;
+    }
+
+    footer .footer-content .socials {
+        margin-bottom: 20px;
+        width: 40%;
+    }
+
+    footer .footer-content .socials ion-icon {
+        font-size: .7rem;
+    }
+
+    footer .footer-content .copyright {
+        font-size: 10px;
+    }
+}
+
+@media screen and (max-width: 399px) {
+
+    .documentList.grid .documents {
+        grid-template-columns: repeat(1, 200px);
+        gap: 15px;
+    }
+
+}
