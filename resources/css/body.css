@@ -1,19 +1,40 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;500;400;600;700;900&display=swap');
 
+:root {
+    --color-primary: #6363ff;
+    --color-primary-light: #7ebbf810;
+    --color-primary-light-2: #6363ff20;
+    --box-shadow: 0 4px 8px #3c9afe33,
+                  0 -4px 8px #85c0ff33;
+}
+
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-body {
+body { 
     font-family: 'Poppins', sans-serif;
-    background: #f3fbfb;
+    background: #fff;
     display: flex;
     flex-direction: column;
     align-items: center;
     overflow-x: hidden;
+}
+
+body.user {
     padding: 0 7.5%;
+}
+
+body.dash {
+    height: 100vh;
+    overflow-y: hidden;
+}
+
+section {
+    width: 100%;
 }
 
 .bg_ball_style {
@@ -28,13 +49,28 @@ body {
 }
 
 .bg_ball_style.ball1 {
-    background: #C6FCFF;
+    background: #c6ffe0;
     right: -350px;
     top: 300px;
 }
 
 .bg_ball_style.ball2 {
-    background: #dee6fb;
+    background: #cbfffa;
     left: 100px;
     top: -390px;
+}
+
+.bg_ball_style.ball3 {
+    background: #C6FCFF;
+    left: -150px;
+    bottom: -870px;
+}
+.bg_ball_style.ball4 {
+    background: #F4CBFF;
+    right: -150px;
+    bottom: -870px;
+}
+
+button {
+    cursor: pointer;
 }

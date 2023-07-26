@@ -1,0 +1,58 @@
+/*================ NavBar ================*/
+
+nav {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 0;
+}
+
+nav .logo {
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+
+nav .nav_menu {
+    display: flex;
+    justify-content: space-evenly;
+    width: 65%;
+}
+
+nav .nav_menu ul {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+nav .nav_menu ul li {
+    list-style: none;
+}
+
+nav .nav_menu ul li a {
+    text-decoration: none;
+    color: #333;
+}
+
+nav .nav_menu ul li a:hover {
+    text-decoration: none;
+    color: #6363ff;
+}
+
+nav .menuHamburger {
+    padding: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    transition: .2s ease;
+    display: none;
+}
+
+nav .menuHamburger:hover {
+    background: #ffffff80;
+}
+
+nav .menuHamburger ion-icon {
+    font-size: 1.8rem;
+}

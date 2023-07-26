@@ -1,122 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;500;400;600;700;900&display=swap');
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body { 
-    font-family: 'Poppins', sans-serif;
-    background: #EEEAEA;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    overflow-x: hidden;
-    padding: 0 7.5%;
-}
-
-section {
-    width: 100%;
-}
-
-.bg_ball_style {
-    width: 550px;
-    height: 550px;
-    margin: 10px;
-    border-radius: 50%;
-    filter: blur(45px);
-    position: absolute;
-    z-index: -1;
-    opacity: 0.4;
-}
-
-.bg_ball_style.ball1 {
-    background: #C6FCFF;
-    right: -350px;
-    top: 300px;
-}
-
-.bg_ball_style.ball2 {
-    background: #F4CBFF;
-    left: 100px;
-    top: -390px;
-}
-
-.bg_ball_style.ball3 {
-    background: #C6FCFF;
-    left: -150px;
-    bottom: -870px;
-}
-.bg_ball_style.ball4 {
-    background: #F4CBFF;
-    right: -150px;
-    bottom: -870px;
-}
-
-button {
-    cursor: pointer;
-}
-
-/*================ NavBar ================*/
-
-nav {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    padding: 20px 0;
-}
-
-nav .logo {
-    font-size: 1.5rem;
-    font-weight: 500;
-}
-
-nav .nav_menu {
-    display: flex;
-    justify-content: space-evenly;
-    width: 65%;
-}
-
-nav .nav_menu ul {
-    width: 100%;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-}
-
-nav .nav_menu ul li {
-    list-style: none;
-}
-
-nav .nav_menu ul li a {
-    text-decoration: none;
-    color: #333;
-}
-
-nav .nav_menu ul li a:hover {
-    text-decoration: none;
-    color: #c700fe;
-}
-
-nav .menuHamburger {
-    padding: 5px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 50%;
-    transition: .2s ease;
-    display: none;
-}
-
-nav .menuHamburger:hover {
-    background: #ffffff80;
-}
-
-nav .menuHamburger ion-icon {
-    font-size: 1.8rem;
-}
-
 /*================ Document List ================*/
 
 .documentList {
@@ -126,7 +7,7 @@ nav .menuHamburger ion-icon {
 }
 
 .documentList.marge {
-    margin-top: 20px; 
+    margin-top: 20px;
 }
 
 .documentList .sectionIndication {
@@ -166,7 +47,7 @@ nav .menuHamburger ion-icon {
     width: 100%;
     height: 35px;
     padding: 0 10px 0 35px;
-    border: 1px solid #F4CBFF;
+    border: 1px solid var(--color-primary);
     outline: none;
     border-radius: 15px;
     font-size: 1.1rem;
@@ -179,7 +60,7 @@ nav .menuHamburger ion-icon {
     top: 50%;
     transform: translateY(-50%);
     font-size: 1.2rem;
-    color: #333;
+    color: var(--color-primary);
 }
 
 .documentList .sectionIndication .listOption {
@@ -199,6 +80,7 @@ nav .menuHamburger ion-icon {
     padding: 5px;
     transition: .2s ease;
     cursor: pointer;
+    color: var(--color-primary);
 }
 
 .documentList .sectionIndication .listOption ion-icon:hover {
@@ -234,7 +116,7 @@ nav .menuHamburger ion-icon {
 }
 
 .documentList.list .document:hover {
-    background: #33333315;
+    background: var(--color-primary-light);
 }
 
 .documentList.list .document  .documentLine {
@@ -260,11 +142,25 @@ nav .menuHamburger ion-icon {
     border-radius: 10px;
 }
 
+.documentList.list .document  .documentLine .documentIcon ion-icon[name='folder'] {
+    font-size: 3.5rem;
+    border-radius: 10px;
+    color: #fee503;
+}
+
+.documentList.list .document  .documentLine .documentIcon ion-icon[name='document-text-outline'] {
+    font-size: 3.5rem;
+    border-radius: 10px;
+    color: var(--color-primary);
+    background: #fff;
+}
+
 .documentList.list .document  .documentLine .documentName {
     width: 400px;
     overflow: hidden;
     text-align: center;
 }
+
 
 .documentList.list .document  .documentLine .documentCreationDate {
     margin-right: 10px;
@@ -283,11 +179,11 @@ nav .menuHamburger ion-icon {
     height: 35px;
     border: none;
     border-radius: 8px;
-    color: #fff;
+    color: var(--color-primary);
     font-weight: 400;
     font-size: 1rem;
     padding: 0 10px;
-    background: #3c8ffd;
+    background: transparent;
     transition: 0.2s ease;
     display: flex;
     justify-content: center;
@@ -296,7 +192,16 @@ nav .menuHamburger ion-icon {
 }
 
 .documentList.list .document  .documentLine .documentOptions button:hover {
-    background: #006eff;
+    background: var(--color-primary-light-2);
+}
+
+.documentList.list .document  .documentLine .documentOptions button a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    color: var(--color-primary);
+    gap: 10px;
 }
 
 /*================ Grid ================*/
@@ -321,10 +226,10 @@ nav .menuHamburger ion-icon {
 .documentList.grid .documents .document {
     width: 190px;
     height: 260px;
-    background: #33333315;
+    background: var(--color-primary-light);
     margin: 5px;
     border-radius: 10px;
-    border-bottom: 1px solid #bbb;
+    /* border-bottom: 1px solid #bbb; */
     padding: 5px 10px;
     transition: .4s ease;
 }
@@ -360,6 +265,19 @@ nav .menuHamburger ion-icon {
     border-radius: 10px;
 }
 
+.documentList.grid .document  .documentLine .documentIcon ion-icon[name='folder'] {
+    font-size: 3.5rem;
+    border-radius: 10px;
+    color: #fee503;
+}
+
+.documentList.grid .document  .documentLine .documentIcon ion-icon[name='document-text-outline'] {
+    font-size: 3.5rem;
+    border-radius: 10px;
+    color: var(--color-primary);
+    background: #fff;
+}
+
 .documentList.grid .document  .documentLine .documentCreationDate,
 .documentList.grid .document  .documentLine .documentSize {
     display: none;
@@ -379,11 +297,12 @@ nav .menuHamburger ion-icon {
     height: 40px;
     border: none;
     border-radius: 8px;
-    color: #fff;
+    color: var(--color-primary);
     font-weight: 400;
     font-size: 1rem;
     padding: 0 5px;
-    background: #3c8ffd;
+    /* background: #3c8ffd; */
+    background: transparent;
     transition: 0.2s ease;
     min-width: 75px;
 }
@@ -396,7 +315,7 @@ nav .menuHamburger ion-icon {
 }
 
 .documentList.grid .document  .documentLine .documentOptions button:hover {
-    background: #006eff;
+    background: var(--color-primary-light-2);
 }
 
 /*================ DocumentView ================*/
@@ -450,7 +369,7 @@ nav .menuHamburger ion-icon {
     opacity: 1;
     height: 98vh;
     transform: translate(-50%, -50%);
-    transition: opacity 0.4s 0.2s ease-out, transform 0.4s 0.2s ease-out, height .6s;   
+    transition: opacity 0.4s 0.2s ease-out, transform 0.4s 0.2s ease-out, height .6s;
 }
 
 .view embed {
@@ -481,124 +400,27 @@ nav .menuHamburger ion-icon {
     border: 1px solid #f97878;
 }
 
-
-.loanRequest {
-    min-height: 90vh;
-    width: 100%;
-    background: #3c8ffd;
-    padding: 10px 20%;
-}
-
-.loanRequest .formContainer {
-    display: grid;
-    grid-template-columns: repeat(12, 1fr);
-    /* grid-template-rows: 50px; */
-    gap: 10px;
-}
-
-.loanRequest .formContainer h1 {
-    grid-column: 1 / 13;
-    background: #f97878;
+.table tbody td button {
+    height: 30px;
+    margin-right: 35px;
+    background: #4187f6;
+    color: #fff;
+    font-size: .8rem;
     font-weight: 400;
-    font-size: 1.2rem;
-    text-align: center;
-    line-height: 50px;
+    border: none;
+    border-radius: 5px;
+    padding: 0 10px;
+    transition: all 0.3s ease;
 }
 
-.loanRequest .formContainer .loanForm {
-    grid-column: 1 / 13;
-    display: grid;
-    grid-template-columns: repeat(12, 1fr);
-    /* grid-template-rows: 50px; */
-    gap: 10px;
-}
-
-.loanRequest .formContainer .docNum {
-    height: 35px;
-    grid-column: 1 / 5;
-    width: 100%;
-}
-
-.loanRequest .formContainer .docName {
-    height: 35px;
-    grid-column: 5 / 9;
-    width: 100%;
-}
-
-.loanRequest .formContainer .docCode {
-    height: 35px;
-    grid-column: 9 / 13;
-    width: 100%;
+.table tbody th,
+.table tbody td {
+    border-top: 1px solid #0000004d;
 }
 
 
 
 
-/*================ Footer ================*/
-
-footer {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-footer hr {
-    width: 75%;
-}
-
-footer .footer-content {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 80%;
-}
-
-footer .footer-content h2 {
-    font-size: 40px;
-    font-weight: 500;
-    color: #333;
-    letter-spacing: 10px;
-    margin: 10px 0 25px;
-}
-
-footer .footer-content ul {
-    width: 60%;
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    margin: 0 0 35px;
-}
-
-footer .footer-content ul li {
-    list-style: none;
-}
-
-footer .footer-content ul li a{
-    text-decoration: none;
-    color: #333;
-    font-weight: 500;
-}
-
-footer .footer-content .socials {
-    width: 20%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 45px;
-}
-
-footer .footer-content .socials ion-icon {
-    font-size: 1.5rem;
-    color: #333;
-}
-
-footer .footer-content .copyright {
-    color: #333;
-    margin: 0 0 15px;
-}
 
 
 /*================ Media Queries ================*/

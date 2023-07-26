@@ -1,50 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;500;400;600;700;900&display=swap');
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body { 
-    font-family: 'Poppins', sans-serif;
-    background: #f3fbfb;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    overflow-x: hidden;
-    padding: 0 7.5%;
-}
-
-.bg_ball_style {
-    width: 550px;
-    height: 550px;
-    margin: 10px;
-    border-radius: 50%;
-    filter: blur(45px);
-    position: absolute;
-    z-index: -1;
-    opacity: 0.4;
-}
-
-.bg_ball_style.ball1 {
-    background: #C6FCFF;
-    right: -350px;
-    top: 300px;
-}
-
-.bg_ball_style.ball2 {
-    background: #dee6fb;
-    left: 100px;
-    top: -390px;
-}
-
-/* .bg_ball_style.ball3 {
-    background: #C6FCFF;
-    left: -149px;
-    bottom: -1730px;
-} */
-
 /* ===================== Connexion =================== */
 
 .container {
@@ -58,7 +11,7 @@ body {
 
 .container h3 {
     font-size: 2rem;
-    color: #333;
+    color: var(--color-primary);
     text-align: center;
 }
 
@@ -80,10 +33,11 @@ body {
     height: 45px;
     padding: 5px 10px;
     outline: none;
-    border: none;
+    border: .5px solid var(--color-primary);
+    box-shadow: var(--box-shadow);
     border-radius: 8px;
     margin: 10px 0 25px;
-    background: #33333333;
+    background: #fff;
     font-size: 1rem;
     color: #333;
     font-weight: 400;
@@ -98,6 +52,7 @@ body {
     align-items: center;
     padding: 15px;
     margin: 5px;
+    color: var(--color-primary);
 }
 
 .container .connexion-form .checkbox {
@@ -108,8 +63,8 @@ body {
 .container .connexion-form button {
     height: 45px;
     padding: 5px 10px;
-    background: #96b8f7;
-    color: #fff;
+    background: var(--color-primary-light);
+    color: var(--color-primary);
     font-weight: 600;
     align-self: flex-end;
     border: none;
@@ -119,7 +74,7 @@ body {
 }
 
 .container .connexion-form button:hover {
-    background: #689cfc;
+    background: var(--color-primary-light-2);
 }
 
 .container .connexion-option {
@@ -127,13 +82,22 @@ body {
     justify-content: center;
     align-items: self-start;
     gap: 15px;
-    padding: 10px;
+    padding:  0 10px;
     margin: 0;
 }
 
 .container .connexion-option a {
     text-decoration: none;
-    color: #cecece;
+    color: var(--color-primary-light-3);
+}
+
+.container .connexion-option a:hover {
+    color: var(--color-primary);
+}
+
+.container .connexion-option p {
+    text-decoration: none;
+    color: var(--color-primary);
 }
 
 .container .message {
@@ -151,70 +115,4 @@ body {
 
 .container .success {
     background: #04ff0020;
-}
-
-/*================ Footer ================*/
-
-footer {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-footer hr {
-    width: 75%;
-}
-
-footer .footer-content {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 80%;
-}
-
-footer .footer-content h2 {
-    font-size: 40px;
-    font-weight: 500;
-    color: #333;
-    letter-spacing: 10px;
-    margin: 10px 0 25px;
-}
-
-footer .footer-content ul {
-    width: 60%;
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    margin: 0 0 35px;
-}
-
-footer .footer-content ul li {
-    list-style: none;
-}
-
-footer .footer-content ul li a{
-    text-decoration: none;
-    color: #333;
-    font-weight: 500;
-}
-
-footer .footer-content .socials {
-    width: 20%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 45px;
-}
-
-footer .footer-content .socials ion-icon {
-    font-size: 1.5rem;
-    color: #333;
-}
-
-footer .footer-content .copyright {
-    color: #333;
-    margin: 0 0 15px;
 }

@@ -1,0 +1,117 @@
+.table {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 1rem;
+    background-color: transparent;
+    background-color: #95d8ec1c;
+    backdrop-filter: blur(100);
+    border-collapse: collapse;
+    border-radius: 5px;
+}
+
+.table th,
+.table td {
+    padding: 0.75rem;
+    vertical-align: middle;
+    cursor: default;
+}
+
+.table td.action {
+    min-width: 350px;
+}
+
+.table thead {
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    background: #4186f650;
+    overflow: hidden;
+}
+
+.table thead td {
+    vertical-align: bottom;
+    border-bottom: 1px solid #949698;
+    color: #fff;
+}
+
+.table tbody + tbody {
+    border-top: 2px solid #dee2e6;
+}
+
+.table-sm th,
+.table-sm td {
+    padding: 0.3rem;
+}
+
+.table-bordered {
+    border: 1px solid #dee2e6;
+}
+
+.table-bordered th,
+.table-bordered td {
+    border: 1px solid #dee2e6;
+}
+
+.table tbody tr:hover {
+    background-color: #5f5f5f10;
+}
+
+.table tbody tr {
+    border-bottom: 1px solid #666666;
+}
+
+.table-primary,
+.table-primary > th,
+.table-primary > td {
+    background-color: #b8daff;
+}
+
+.table-primary th,
+.table-primary td,
+.table-primary thead th,
+.table-primary tbody + tbody {
+    border-color: #7abaff;
+}
+
+
+
+.table tbody {overflow-y: scroll;}
+
+.text-cut {
+    width: 150px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.tableau .table tbody td button {
+    padding: 7px;
+    font-weight: 400;
+    color: #6363ff;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    background: transparent;
+    transition: all 0.2s ease;
+}
+
+.tableau .table tbody td button:hover {
+    background: #6363ff20;
+}
+
+.tableau .table tbody td .edit {
+    color: #ffa500;
+    background: transparent;
+}
+.tableau .table tbody td .edit:hover {
+    color: #ffa500;
+    background: #ffa50020;
+}
+
+.tableau .table tbody td .delete {
+    color: #ff0000;
+    background: transparent;
+}
+.tableau .table tbody td .delete:hover {
+    color: #ff0000;
+    background: #ff000020;
+}

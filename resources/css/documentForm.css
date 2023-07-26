@@ -1,0 +1,242 @@
+.addUserFormContainer,
+.addDocumentFormContainer {
+    visibility: hidden;
+    position: fixed;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    transition: visibility 0.4s;
+}
+
+.addUserFormContainer.showForm,
+.addDocumentFormContainer.showForm {
+    visibility: visible;
+    transition: visibility 0s;
+}
+
+.overlay {
+    opacity: 0;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #333333d3;
+    transition: opacity 0.4s 0.2s ease-out;
+}
+
+.addUserFormContainer.showForm .overlay,
+.addDocumentFormContainer.showForm .overlay {
+    opacity: 1;
+    transition: opacity 0.4s ease-out;
+}
+
+.addUserForm,
+.addDocumentForm {
+    opacity: 0;
+    position: relative;
+    width: 90%;
+    padding: 20px 30px;
+    height: 0;
+    background: #fff;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: opacity 0.4s ease-out, transform 0.4s ease-out, height .4s;
+    overflow: scroll;
+}
+
+.addUserFormContainer.showForm .addUserForm,
+.addDocumentFormContainer.showForm .addDocumentForm {
+    opacity: 1;
+    height: 650px;
+    transform: translate(-50%, -50%);
+    transition: opacity 0.4s 0.2s ease-out, transform 0.4s 0.2s ease-out, height .4s;
+}
+
+.addUserForm form,
+.addDocumentForm form {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: 70px;
+    gap: 10px;
+    padding: 10px;
+    align-items: center;
+    justify-content: center;
+}
+
+label {
+    color: var(--color-primary);
+}
+
+.addUserForm form .inputContainer,
+.addDocumentForm form .inputContainer {
+    padding: 5px;
+    /* background: #ccc; */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+}
+
+.addUserForm form .inputContainer input,
+.addUserForm form .inputContainer select,
+.addDocumentForm form .inputContainer input,
+.addDocumentForm form .inputContainer select,
+.addDocumentForm form .inputContainer textarea {
+    width: 100%;
+    height: 35px;
+    padding: 5px;
+    outline: none;
+    border: .5px solid var(--color-primary);
+    border-radius: 5px;
+    background: var(--color-primary-light);
+    font-size: 1rem;
+    color: #555;
+}
+
+.addDocumentForm form .inputContainer textarea {
+    height: 100%;
+    resize: none;
+    overflow-y: scroll;
+    scrollbar-width: thin; /* Permet de définir l'épaisseur de la scrollbar (auto, thin, none) */
+    scrollbar-color: var(--color-primary) #f2f2f2; 
+}
+
+textarea::-webkit-scrollbar-track {
+    background: transparent;
+    width: 5px;
+}
+
+textarea::-webkit-scrollbar-thumb {
+    background: var(--color-primary);
+    width: 3px;
+}
+
+.readonly {
+    grid-column: 3 / 3;
+    grid-row: 1 / 4;
+}
+
+.objet {
+    grid-column: 1 / 3;
+}
+
+.motClé {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2%;
+}
+
+.motClé .inputs {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2%;
+}
+
+.addDocumentForm form .inputContainer input[name='motClé'] {
+    width: 75%;
+}
+
+.addDocumentForm form .inputContainer input[name='motCléSubmit'] {
+    width: 24%;
+    background: var(--color-primary);
+    color: #eee;
+    cursor: pointer;
+    max-width: 75px;
+}
+
+.addDocumentForm form .inputContainer.autorisation {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-column: 1 / 3;
+    justify-content: flex-start;
+    align-items: flex-start;
+    border: .5px solid var(--color-primary);
+    border-radius: 5px;
+    margin-top: 15px;
+    background: var(--color-primary-light);
+}
+
+.addDocumentForm form .inputContainer.autorisation h4 {
+    position: absolute;
+    top: -15px;
+    left: 10px;
+    color: var(--color-primary);
+    font-weight: 400;
+    background: #fff;
+    padding: 1px 5px;
+
+}
+
+.addDocumentForm form .inputContainer.autorisation .checkboxContainer {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+    align-items: center;
+    /* background: #555; */
+    gap: 15px;
+    padding: 5px 10px;
+}
+
+.addDocumentForm form .inputContainer.autorisation .checkboxContainer input[type='checkbox'] {
+    width: 15px;
+    height: 15px;
+    border: none;
+    border: .5px solid var(--color-primary);
+}
+
+
+button {
+    padding: 10px 15px;
+    border: none;
+    background-color: var(--color-primary-light-2);
+    border-radius: 5px;
+    color: var(--color-primary);
+    font-weight: 400;
+    border: .5px solid var(--color-primary);
+}
+
+.button {
+    grid-column: 1 / 4;
+    justify-self: flex-end;
+}
+
+h1 {
+    align-self: flex-start;
+    color: var(--color-primary);
+}
+
+.addUserForm .closeUserForm,
+.addDocumentForm .closeDocumentForm {
+    position: absolute;
+    right: 18px;
+    top: 8px;
+    background: var(--color-primary);
+    color: #fff;
+    font-size: 1.4rem;
+    padding: 8px 8px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all .2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.addUserForm .closeUserForm:hover,
+.addDocumentForm .closeDocumentForm:hover {
+    background: #fff;
+    color: var(--color-primary);
+    border: 1px solid var(--color-primary);
+}

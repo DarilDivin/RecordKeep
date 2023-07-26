@@ -5,9 +5,9 @@
     Documents
 @endsection
 
-@section('style')
-@vite(['resources/css/DocumentPage.css', 'resources/js/DocumentPage.js'])
-@endsection
+{{-- @section('style')
+    @vite(['resources/css/DocumentPage.css', 'resources/js/DocumentPage.js'])
+@endsection --}}
 
 @include('user.layouts.partials.navbar')
 

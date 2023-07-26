@@ -26,6 +26,10 @@ Route::get('/dashboard/documents', function () {
     return view('admin.Dashboard-Document-Management');
 })->name('dashboard.documents');
 
+Route::get('/login', function () {
+    return view('auth.login');
+})->name('login');
+
 Route::get('/dashboard/users', function () {
     return view('admin.Dashboard-User-Management');
 })->name('dashboard.users');
@@ -33,6 +37,14 @@ Route::get('/dashboard/users', function () {
 Route::get('/dashboard/statistiques', function () {
     return view('admin.Dashboard-Statistiques');
 })->name('dashboard.statistiques');
+
+Route::get('/manager/document-management', function () {
+    return view('manager.Document-management');
+})->name('manager.document');
+
+Route::get('/manager/folder-management', function () {
+    return view('manager.folder-management');
+})->name('manager.folder');
 
 Route::get('/demande-de-pret', function () {
     return view('user.DemandePrêt');

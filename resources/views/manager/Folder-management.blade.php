@@ -1,21 +1,18 @@
-@extends('admin.layouts.template')
+@extends('manager.layouts.template')
 
 @section('title')
-    Dashboard-Document-Management
+    Manager-Document-Management
 @endsection
 
-{{-- @section('style')
-    @vite(['resources/css/Dashboard-User-Document-Management.css', 'resources/js/Dashboard-Document-Management.js'])
-@endsection --}}
-
-
 @section('content')
+
     <div class="container">
-        @include('admin.layouts.partials.sidebar')
+        @include('manager.layouts.partials.sidebar')
+
         <div class="main">
             <div class="title">
-                <p>Manage Document</p>
-                <ion-icon name="document-text"></ion-icon>
+                <p>Manage Folders</p>
+                <ion-icon name="folder"></ion-icon>
             </div>
 
             <div class="optional">
@@ -26,103 +23,41 @@
                     </button>
                     <button class="add">
                         <ion-icon name="add"></ion-icon>
-                        Add Document
+                        Add Folder
                     </button>
                 </div>
-                <form action="">
-                    <div class="search-box">
-                        <input type="text" name="search">
-                        <ion-icon name="search"></ion-icon>
-                    </div>
-                </form>
+                <div class="check-categorie-documents">
+                    <select name="" id="">
+                        <option value="service informatique">Service Informatique</option>
+                        <option value="service informatique">Secrétariat</option>
+                        <option value="service informatique">Service Informatique et quelque chose</option>
+                        <option value="service informatique">Service Informatique</option>
+                    </select>
+                </div>
+                <div class="search-box">
+                    <input type="text">
+                    <ion-icon name="search"></ion-icon>
+                </div>
             </div>
 
             <div class="tableau">
                 <table class="table">
                     <thead>
                         <tr>
-                            <td>Code</td>
-                            <td>Libellé</td>
-                            <td>Date de création</td>
-                            <td>Taille</td>
+                            <td>N°</td>
+                            <td>Nom</td>
+                            <td>Dernière modification</td>
                             <td>Actions</td>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td>
-                                <div class="text-cut">
-                                    N°23-221/MISP/DGNSP/REG
-                                </div>
-                            </td>
-                            <td title="Demande d'autorisation">
-                                <div class="text-cut">
-                                Demande d'Autorisationbalalalal
-                                </div>
-                            </td>
+                            <td>1</td>
+                            <td>Nom du Dossier</td>
                             <td>15 Mai 2023</td>
-                            <td>25ko</td>
                             <td>
-                                <button class="edit">Editer</button>
+                                <button class="edit">Modifier</button>
                                 <button class="delete">Supprimer</button>
-                                <button class="info">Infos</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div class="text-cut">
-                                    N°23-221/MISP/DGNSP/REG
-                                </div>
-                            </td>
-                            <td>
-                                <div class="text-cut">
-                                Demande d'Autorisationbalalalal
-                                </div>
-                            </td>
-                            <td>15 Mai 2023</td>
-                            <td>25ko</td>
-                            <td>
-                                <button class="edit">Editer</button>
-                                <button class="delete">Supprimer</button>
-                                <button class="info">Infos</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div class="text-cut">
-                                    N°23-221/MISP/DGNSP/REG
-                                </div>
-                            </td>
-                            <td>
-                                <div class="text-cut">
-                                Demande d'Autorisationbalalalal
-                                </div>
-                            </td>
-                            <td>15 Mai 2023</td>
-                            <td>25ko</td>
-                            <td>
-                                <button class="edit">Editer</button>
-                                <button class="delete">Supprimer</button>
-                                <button class="info">Infos</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div class="text-cut">
-                                    N°23-221/MISP/DGNSP/REG
-                                </div>
-                            </td>
-                            <td>
-                                <div class="text-cut">
-                                Demande d'Autorisationbalalalal
-                                </div>
-                            </td>
-                            <td>15 Mai 2023</td>
-                            <td>25ko</td>
-                            <td>
-                                <button class="edit">Editer</button>
-                                <button class="delete">Supprimer</button>
-                                <button class="info">Infos</button>
                             </td>
                         </tr>
                     </tbody>
@@ -246,4 +181,5 @@
             </form>
         </div>
     </div>
+
 @endsection

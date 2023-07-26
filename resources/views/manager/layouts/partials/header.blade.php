@@ -3,8 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {{-- <link rel="stylesheet" href="../css/Dashboard-User-Document-Management.css">
+    <link rel="stylesheet" href="../css/body.css">
+    <link rel="stylesheet" href="../css/documentForm.css">
+    <link rel="stylesheet" href="../css/Utilité.css"> --}}
     <title>@yield('title')</title>
-    {{-- @yield('style') --}}
+
     @vite([
         'resources/css/app.css',
         'resources/css/body.css',
@@ -30,11 +34,9 @@
         'resources/js/Dashboard-User-Management.js',
         'resources/js/Dashboard-Statistiques.js',
         'resources/js/DocumentPage.js',
-])
+    ])
 
 </head>
 <body class="dash">
     <div class="bg_ball_style ball1"></div>
     <div class="bg_ball_style ball2"></div>
-    <div class="bg_ball_style ball3"></div>
-

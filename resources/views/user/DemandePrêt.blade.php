@@ -4,20 +4,74 @@
     Demande de prêt
 @endsection
 
-@section('style')
+{{-- @section('style')
     @vite(['resources/css/DocumentPage.css'])
-@endsection
+@endsection --}}
 
 @include('user.layouts.partials.navbar')
 
 @section('content')
+    <section class="voirInfosDoc">
+        <div class="voirDoc">
+            <div class="doc">
+            <a href="#"><ion-icon name="document-text"></ion-icon></a>
+            <div class="badge disponibilite">
+                    <p>Disponible au prêt</p>
+            </div>
+            </div>
+        </div>
+        <div class="infosDoc">
+            <table class="table">
+                <tr>
+                    <td>Libellé</td>
+                    <td>Lorem ipsum dolor sit amet.</td>
+                </tr>
+                <tr>
+                    <td>Objet</td>
+                    <td>Demande de quelque chose</td>
+                </tr>
+                <tr>
+                    <td>Source</td>
+                    <td>DPAF</td>
+                </tr>
+                <tr>
+                    <td>Date du courier</td>
+                    <td>25/05/2023</td>
+                </tr>
+                <tr>
+                    <td>Nature</td>
+                    <td>Lettre</td>
+                </tr>
+            </table>
+        </div>
+    </section>
+
+
     <section class="loanRequest">
         <div class="formContainer">
             <h1>Demander un document</h1>
             <form action="" class="loanForm">
-                <input type="text" class="docNum" placeholder="Numéro du document">
-                <input type="text" class="docName" placeholder="Numéro du document">
-                <input type="text" class="docCode" placeholder="Numéro du document">
+                <div class="inputs firstname">
+                    <input type="text" name="" id="" placeholder="Firstname">
+                </div>
+                <div class="inputs lastname">
+                    <input type="text" name="" id="" placeholder="Lastname">
+                </div>
+                <div class="inputs motif">
+                    <textarea name="" id="" cols="30" rows="5" placeholder="Motif du prêt"></textarea>
+                </div>
+                <div class="inputs ">
+                    <input type="text" name="" id="" placeholder="Durée du prêt">
+                </div>
+                <div class="inputs ">
+                    <input type="text" name="" id="" placeholder=".....">
+                </div>
+                <div class="inputs ">
+                    <input type="text" name="" id="" placeholder=".....">
+                </div>
+                <div class="inputs ">
+                    <input type="text" name="" id="" placeholder=".....">
+                </div>
             </form>
         </div>
     </section>

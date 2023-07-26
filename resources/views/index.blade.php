@@ -4,9 +4,9 @@
     Présentation
 @endsection
 
-@section('style')
+{{-- @section('style')
     @vite(['resources/css/style.css', 'resources/js/script.js'])
-@endsection
+@endsection --}}
 
 @include('user.layouts.partials.navbar')
 
@@ -22,7 +22,7 @@
             </button>
         </div>
         <div class="description_img">
-            <img src="/images/Documents-rafiki.svg" alt="document-image">
+            <img src="/images/Documents-rafiki.svg" alt="">
         </div>
     </div>
 

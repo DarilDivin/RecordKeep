@@ -4,13 +4,6 @@
     Dashboard-Document-Management
 @endsection
 
-@section('style')
-    @vite(['resources/css/Dashboard-User-Document-Management.css', 'resources/css/Statistiques.css', 'resources/js/Dashboard-Statistiques.js'])
-@endsection
-
-
-
-
 @section('content')
     <div class="container">
         @include('admin.layouts.partials.sidebar')
