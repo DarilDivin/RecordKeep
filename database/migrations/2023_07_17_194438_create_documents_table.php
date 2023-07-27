@@ -24,10 +24,10 @@ return new class extends Migration
             $table->string('emetteur');
             $table->string('recepteur');
             $table->string('motclefs');
+            $table->string('dua');
             $table->date('datecreation');
-            $table->date('dateEnregistrement');
-            $table->boolean('disponibilite');
-            $table->boolean('status');
+            $table->boolean('disponibilite')->default(0);
+            $table->boolean('archive')->default(0);
             $table->timestamps();
             $table->softDeletes();
         });

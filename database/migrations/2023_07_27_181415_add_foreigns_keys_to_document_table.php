@@ -18,7 +18,7 @@ return new class extends Migration
     {
         Schema::table('documents', function (Blueprint $table) {
             $table->foreignIdFor(NatureDocument::class);
-            $table->foreignIdFor(ChemiseDossier::class);
+            $table->foreignIdFor(ChemiseDossier::class)->nullable();
             $table->foreignIdFor(Division::class);
             $table->foreignIdFor(Service::class);
             $table->foreignIdFor(Direction::class);

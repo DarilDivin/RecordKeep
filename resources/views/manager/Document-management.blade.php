@@ -136,81 +136,37 @@
         </span>
         <h1>Add Document</h1>
         <form action="">
-            <div class="inputContainer">
-                <label for="signature">Signature</label>
-                <input type="text" name="signature" placeholder="Signature">
-            </div>
-            <div class="inputContainer">
-                <label for="nom">Nom du document</label>
-                <input type="text" name="nom" placeholder="Nom">
-            </div>
-            <div class="inputContainer objet">
-                <label for="signature">Objet</label>
-            <input type="text" name="objet" placeholder="Objet">
-            </div>
-            <div class="inputContainer">
-                <label for="signature">Emetteur</label>
-                <input type="text" name="emetteur" placeholder="Emetteur">
-            </div>
-            <div class="inputContainer">
-                <label for="signature">Recepteur</label>
-                <input type="text" name="recepteur" placeholder="Recepteur">
-            </div>
-            <div class="inputContainer">
-                <label for="signature">Direction</label>
-                <select name="direction" id="">
-                    <option value="DSI">DSI</option>
-                    <option value="DSI">DPAF</option>
-                    <option value="DSI">DGSP</option>
-                    <option value="DSI">DAIC</option>
-                    <option value="DSI">DPPAE</option>
-                    <option value="DSI">DSI</option>
-                </select>
-            </div>
-            <div class="inputContainer">
-                <label for="signature">Service</label>
-                <select name="service" id="">
-                    <option value="DSI">DSI</option>
-                    <option value="DSI">DPAF</option>
-                    <option value="DSI">DGSP</option>
-                    <option value="DSI">DAIC</option>
-                    <option value="DSI">DPPAE</option>
-                    <option value="DSI">DSI</option>
-                </select>
-            </div>
-            <div class="inputContainer">
-                <label for="signature">Division</label>
-                <select name="division" id="">
-                    <option value="DSI">DSI</option>
-                    <option value="DSI">DPAF</option>
-                    <option value="DSI">DGSP</option>
-                    <option value="DSI">DAIC</option>
-                    <option value="DSI">DPPAE</option>
-                    <option value="DSI">DSI</option>
-                </select>
-            </div>
-            <div class="inputContainer">
-                <label for="signature">Nature</label>
-                <select name="nature" id="">
-                    <option value="DSI">Bordereaux d'envoi</option>
-                    <option value="DSI">Arrêté</option>
-                    <option value="DSI">Lettre</option>
-                    <option value="DSI">Note</option>
-                    <option value="DSI">Note de service</option>
-                    <option value="DSI">Message porté</option>
-                </select>
-            </div>
+            @csrf
+            <x-input class="inputContainer" id="signature" label="Signature" type="text" name="signature" placeholder="Signature"  readonly="" value="" />
+
+            <x-input class="inputContainer" id="nom" label="Nom du Document" type="text" name="nom" placeholder="Nom du Document" readonly="" value="" />
+
+            <x-input class="inputContainer objet" id="objet" label="Objet" type="text" name="objet" placeholder="Objet du Document" readonly="" value="" />
+
+            <x-input class="inputContainer" id="emetteur" label="Émetteur" type="text" name="emetteur" placeholder="Émetteur"  readonly="" value="" />
+
+            <x-input class="inputContainer" id="recepteur" label="Récepteur" type="text" name="recepteur" placeholder="Émetteur"  readonly="" value="" />
+
+            <x-select class="inputContainer" id="direction" label="Direction" name="diretcion_id" value="DSI"/>
+
+            <x-select class="inputContainer" id="service" label="Service" name="service_id" value="DSI"/>
+
+            <x-select class="inputContainer" id="division" label="Division" name="division_id" value="DSI"/>
+
+            <x-input class="inputContainer" id="dua" label="DUA" type="number" name="dua" placeholder="DUA"  readonly="" value="" />
+
+            <x-select class="inputContainer" id="nature" label="Nature du Document" name="nature" value="Note de Service"/>
+
             <div class="inputContainer motClé">
                 <label for="signature">Mots-Clefs</label>
                 <div class="inputs">
-                    <input type="text" name="motClé" placeholder="Mots-Clefs">
-                    <input type="submit" name="motCléSubmit" value="Ajouter">
+                    <input type="text" name="motclefs" placeholder="Mots-Clefs">
+                    {{-- <input type="submit" name="motCléSubmit" value="Ajouter"> --}}
+                    <button type="button">Ajouter</button>
                 </div>
             </div>
-            <div class="inputContainer">
-                <label for="année">Année</label>
-                <input type="text" name="année" placeholder="2023">
-            </div>
+
+            <x-input class="inputContainer" id="datecreation" label="Date de Création" type="number" name="datecreation" placeholder="2023"  readonly="" value="" />
 
             <div class="inputContainer readonly">
                 <label for="année">Mots-Clefs</label>
