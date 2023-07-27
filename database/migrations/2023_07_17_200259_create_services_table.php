@@ -15,10 +15,10 @@ return new class extends Migration
         Schema::create('services', function (Blueprint $table) {
             $table->id();
             $table->string('nom');
-            $table->string('code');
-            $table->timestamps();
-
+            $table->string('sigle');
             $table->foreignIdFor(Direction::class)->constrained()->cascadeOnDelete();
+            $table->timestamps();
+            $table->softDeletes();
         });
     }
 

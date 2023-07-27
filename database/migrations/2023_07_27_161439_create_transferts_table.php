@@ -11,10 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('mot_clefs', function (Blueprint $table) {
+        Schema::create('transferts', function (Blueprint $table) {
             $table->id();
-            $table->string('mot_clef');
+            $table->string('source');
+            $table->date('date');
+            $table->string('destination');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
@@ -23,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('mot_clefs');
+        Schema::dropIfExists('transferts');
     }
 };

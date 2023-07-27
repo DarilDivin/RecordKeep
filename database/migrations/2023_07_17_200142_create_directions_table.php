@@ -14,8 +14,9 @@ return new class extends Migration
         Schema::create('directions', function (Blueprint $table) {
             $table->id();
             $table->string('nom');
-            $table->string('code');
+            $table->string('sigle');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

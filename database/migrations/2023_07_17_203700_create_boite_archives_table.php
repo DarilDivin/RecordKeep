@@ -14,11 +14,11 @@ return new class extends Migration
     {
         Schema::create('boite_archives', function (Blueprint $table) {
             $table->id();
-            $table->string('nom');
+            $table->string('libelle');
             $table->string('code');
-            $table->timestamps();
-
             $table->foreignIdFor(RayonRangement::class)->constrained()->cascadeOnDelete();
+            $table->timestamps();
+            $table->softDeletes();
         });
     }
 

@@ -8,4 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class FonctionDocument extends Model
 {
     use HasFactory;
+
 }

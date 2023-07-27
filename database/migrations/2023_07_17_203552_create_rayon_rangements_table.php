@@ -13,9 +13,10 @@ return new class extends Migration
     {
         Schema::create('rayon_rangements', function (Blueprint $table) {
             $table->id();
-            $table->string('nom');
+            $table->string('libelle');
             $table->string('code');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

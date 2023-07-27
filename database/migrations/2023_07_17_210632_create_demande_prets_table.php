@@ -14,7 +14,8 @@ return new class extends Migration
         Schema::create('demande_prets', function (Blueprint $table) {
             $table->id();
             $table->string('motif');
-            $table->dateTime('duree');
+            $table->integer('duree');
+            $table->string('etat');
             $table->timestamps();
         });
     }

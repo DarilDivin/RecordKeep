@@ -1,7 +1,7 @@
 <?php
 
-use App\Models\DemandePret;
 use App\Models\Document;
+use App\Models\Transfert;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -13,11 +13,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('document_pret', function (Blueprint $table) {
+        Schema::create('details_transferts', function (Blueprint $table) {
             $table->foreignIdFor(Document::class)->constrained()->cascadeOnDelete();
-            $table->foreignIdFor(DemandePret::class)->constrained()->cascadeOnDelete();
-
-            $table->primary(['document_id', 'demandepret_id']);
+            $table->foreignIdFor(Transfert::class)->constrained()->cascadeOnDelete();
+            $table->primary(['document_id', 'transfert_id']);
         });
     }
 
@@ -26,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('document_prets');
+        Schema::dropIfExists('details_transferts');
     }
 };
