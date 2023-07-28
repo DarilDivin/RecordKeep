@@ -94,6 +94,11 @@
     transition: all 0.2s ease;
 }
 
+.tableau .table tbody td button a {
+    text-decoration: none;
+    color: inherit;
+}
+
 .tableau .table tbody td button:hover {
     background: #6363ff20;
 }

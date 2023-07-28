@@ -3,6 +3,7 @@
 
 
 {{-- <script src="../js/Dashboard-Document-Management.js"></script> --}}
+{{-- <script src="../js/secretary-Dashboard.js"></script> --}}
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <!-- Raphael must be included before justgage -->

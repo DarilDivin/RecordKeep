@@ -26,9 +26,10 @@
         'resources/js/app.js',
         'resources/js/script.js',
         'resources/js/home.js',
-        'resources/js/Dashboard-Document-Management.js',
+        'resources/js/secretary-Dashboard.js',
+/*         'resources/js/Dashboard-Document-Management.js',
         'resources/js/Dashboard-User-Management.js',
-        'resources/js/Dashboard-Statistiques.js',
+        'resources/js/Dashboard-Statistiques.js', */
         'resources/js/DocumentPage.js',
 ])
 

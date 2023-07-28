@@ -8,19 +8,19 @@
     </div>
     <ul>
         <li @class(['list', 'active' => str_contains($route_name, 'statistiques')])>
-            <a href="{{ route('dashboard.statistiques') }}">
+            <a href="{{-- {{ route('dashboard.statistiques') }} --}}">
                 <span class="icon"><ion-icon name="stats-chart-outline"></ion-icon></span>
                 <span class="title">DashBoard</span>
             </a>
         </li>
         <li @class(['list', 'active' => str_contains($route_name, 'users')])>
-            <a href="{{ route('dashboard.users') }}">
+            <a href="{{ route('admin.user.index') }}">
                 <span class="icon"><ion-icon name="person-outline"></ion-icon></span>
                 <span class="title">Manage Users</span>
             </a>
         </li>
         <li @class(['list', 'active' => str_contains($route_name, 'documents')])>
-            <a href="{{ route('dashboard.documents') }}">
+            <a href="{{ route('admin.document.index') }}">
                 <span class="icon"><ion-icon name="document-text-outline"></ion-icon></span>
                 <span class="title">Manage Document</span>
             </a>

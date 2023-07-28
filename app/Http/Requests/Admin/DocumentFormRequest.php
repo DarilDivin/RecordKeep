@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\Manager;
+namespace App\Http\Requests\Admin;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
@@ -24,21 +24,22 @@ class DocumentFormRequest extends FormRequest
     {
         return [
             'signature' => ['required', 'string', Rule::unique('documents')->ignore($this->route()->parameter('document'))],
-            'code' => ['required', 'string', Rule::unique('documents')->ignore($this->route()->parameter('document'))],
+            'code' => ['nullable', 'string', Rule::unique('documents')->ignore($this->route()->parameter('document'))],
             'objet' => ['required', 'string'],
             'source' => ['nullable', 'string'],
-            'dua' => ['required', 'date'],
+            'dua' => ['required', 'integer'],
             'emetteur' => ['required', 'string'],
             'recepteur' => ['required', 'string'],
-            'motclefs' => ['required', 'string'],
+            'motclefs' => ['nullable', 'string'],
             'datecreation' => ['required', 'date'],
-            'disponibilite' => ['required', 'boolean'],
-            'archive' => ['required', 'boolean'],
-            'nature_document_id' => ['integer', 'nullable', 'exists:nature,id'],
-            'chemise_dossier_id' => ['integer', 'nullable', 'exists:nature,id'],
-            'division_id' => ['integer', 'nullable', 'exists:nature,id'],
-            'service_id' => ['integer', 'nullable', 'exists:nature,id'],
-            'direction_id' => ['integer', 'nullable', 'exists:nature,id'],
+            'disponibilite' => ['nullable', 'boolean'],
+            'archive' => ['nullable', 'boolean'],
+            'nature_document_id' => ['nullable', 'exists:nature,id'],
+            'chemise_dossier_id' => ['nullable', 'exists:chemise_dossiers,id'],
+           /*  'division_id' => ['nullable', 'exists:divisions,id'],
+            'service_id' => ['nullable', 'exists:services,id'],
+            'direction_id' => ['nullable', 'exists:directions,id'], */
+            'document' => ['required',  'mimes:pdf',  'max:500000'],
         ];
     }
 }

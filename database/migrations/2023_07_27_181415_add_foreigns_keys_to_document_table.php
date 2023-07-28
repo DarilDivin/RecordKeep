@@ -17,11 +17,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('documents', function (Blueprint $table) {
-            $table->foreignIdFor(NatureDocument::class);
+            $table->foreignIdFor(NatureDocument::class)->nullable();
             $table->foreignIdFor(ChemiseDossier::class)->nullable();
-            $table->foreignIdFor(Division::class);
-            $table->foreignIdFor(Service::class);
-            $table->foreignIdFor(Direction::class);
+            $table->foreignIdFor(Division::class)->nullable();
+            $table->foreignIdFor(Service::class)->nullable();
+            $table->foreignIdFor(Direction::class)->nullable();
         });
     }
 

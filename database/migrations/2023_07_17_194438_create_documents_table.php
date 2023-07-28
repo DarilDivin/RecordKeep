@@ -17,17 +17,18 @@ return new class extends Migration
     {
         Schema::create('documents', function (Blueprint $table) {
             $table->id();
-            $table->string('signature');
-            $table->string('code');
-            $table->string('objet');
+            $table->string('signature')->nullable();
+            $table->string('code')->nullable();
+            $table->string('objet')->nullable();
             $table->string('source')->nullable();
-            $table->string('emetteur');
-            $table->string('recepteur');
-            $table->string('motclefs');
-            $table->string('dua');
-            $table->date('datecreation');
+            $table->string('emetteur')->nullable();
+            $table->string('recepteur')->nullable();
+            $table->string('motclefs')->nullable();
+            $table->string('dua')->nullable();
+            $table->date('datecreation')->nullable();
             $table->boolean('disponibilite')->default(0);
             $table->boolean('archive')->default(0);
+            $table->string('document')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

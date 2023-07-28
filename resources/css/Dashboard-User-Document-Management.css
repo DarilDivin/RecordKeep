@@ -265,6 +265,11 @@
     transition: all 0.3s ease;
 }
 
+.optional .buttons button a {
+    text-decoration: none;
+    color: inherit;
+}
+
 .optional .buttons button:hover {
     background: #fff;
     color: #6363ff;
