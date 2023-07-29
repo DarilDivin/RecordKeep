@@ -14,7 +14,7 @@ return new class extends Migration
     {
         Schema::create('divisions', function (Blueprint $table) {
             $table->id();
-            $table->string('nom');
+            $table->string('division');
             $table->string('sigle');
             $table->foreignIdFor(Service::class)->constrained()->cascadeOnDelete();
             $table->timestamps();

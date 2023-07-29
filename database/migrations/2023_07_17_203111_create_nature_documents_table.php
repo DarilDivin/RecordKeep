@@ -13,8 +13,9 @@ return new class extends Migration
     {
         Schema::create('nature_documents', function (Blueprint $table) {
             $table->id();
-            $table->string('nom');
+            $table->string('nature');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

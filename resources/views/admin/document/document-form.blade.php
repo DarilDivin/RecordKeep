@@ -6,7 +6,6 @@
 
     @section('content')
 
-
     <div class="addDocumentFormContainer showForm">
         <div class="overlay"></div>
         <div class="addDocumentForm">
@@ -24,7 +23,7 @@
                 @method($document->exists ? 'put' : 'post')
                 <x-input class="inputContainer" id="signature" label="Signature" type="text" name="signature" placeholder="Signature"  readonly="" value="{{ $document->signature }}" />
 
-                <x-input class="inputContainer" id="nom" label="Nom du Document" type="text" name="nom" placeholder="Nom du Document" readonly="" value="" />
+                <x-input class="inputContainer" id="nom" label="Nom du Document" type="text" name="nom" placeholder="Nom du Document" readonly="" value="{{ $document->nom }}" />
 
                 <x-input class="inputContainer objet" id="objet" label="Objet" type="text" name="objet" placeholder="Objet du Document" readonly="" value="{{ $document->objet }}" />
 
@@ -32,15 +31,15 @@
 
                 <x-input class="inputContainer" id="recepteur" label="Récepteur" type="text" name="recepteur" placeholder="Récepeteur"  readonly="" value="{{ $document->recepteur }}" />
 
-                <x-select class="inputContainer" id="direction" label="Direction" name="direction_id" value="DSI"/>
+                <x-select class="inputContainer" id="direction" label="Direction" name="direction_id"  :value="$directions" />
 
-                <x-select class="inputContainer" id="service" label="Service" name="service_id" value="DSI"/>
+                <x-select class="inputContainer" id="service" label="Service" name="service_id" :value="$services" />
 
-                <x-select class="inputContainer" id="division" label="Division" name="division_id" value="DSI"/>
+                <x-select class="inputContainer" id="division" label="Division" name="division_id" :value="$divisions" />
 
                 <x-input class="inputContainer" id="dua" label="DUA" type="number" name="dua" placeholder="DUA"  readonly="" value="{{ $document->dua }}" />
 
-                <x-select class="inputContainer" id="nature" label="Nature du Document" name="nature" value="Note de Service"/>
+                <x-select class="inputContainer" id="nature" label="Nature du Document" name="nature_document_id" :value="$natures" />
 
                 <div class="inputContainer motClé">
                     <label for="signature">Mots-Clefs</label>
@@ -58,13 +57,10 @@
                 <div class="inputContainer autorisation">
                     <h4>Acorder l'accès à :</h4>
 
-                    <x-checkbox class="checkboxContainer" id="directeur" label="Directeur" type="checkbox" name="directeur"/>
+                    @foreach ($fonctions as $fonction)
+                        <x-checkbox class="checkboxContainer" id="fonction" :label="$fonction" type="checkbox" name="fonction[]"/>
+                    @endforeach
 
-                    <x-checkbox class="checkboxContainer" id="chefservice" label="Chef Service" type="checkbox" name="chefservice"/>
-
-                    <x-checkbox class="checkboxContainer" id="directeur" label="Directeur" type="checkbox" name="directeur"/>
-
-                    <x-checkbox class="checkboxContainer" id="directeur" label="Directeur" type="checkbox" name="directeur"/>
                 </div>
 
                 <div class="inputContainer button">

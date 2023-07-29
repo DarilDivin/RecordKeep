@@ -2,11 +2,16 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\DocumentFormRequest;
+use App\Models\Service;
 use App\Models\Document;
+use App\Models\Direction;
 use Illuminate\Contracts\View\View;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
+use App\Http\Requests\Admin\DocumentFormRequest;
+use App\Models\Division;
+use App\Models\Fonction;
+use App\Models\NatureDocument;
 
 class DocumentController extends Controller
 {
@@ -28,6 +33,7 @@ class DocumentController extends Controller
     {
         $document =  new Document();
         $document->fill([
+            'nom' => 'Autorisation de stage',
             'signature' => 'N°564/DPAF/MISP/SGHTE/DPRF/SA',
             'objet' => 'Autorisation de stage',
             'emetteur' => 'DPAF',
@@ -37,6 +43,11 @@ class DocumentController extends Controller
 
         return view('admin.document.document-form',[
             'document' => $document,
+            'directions' => Direction::all()->pluck('direction', 'id'),
+            'services' => Service::all()->pluck('service', 'id'),
+            'divisions' => Division::all()->pluck('division', 'id'),
+            'natures' => NatureDocument::all()->pluck('nature', 'id'),
+            'fonctions' => Fonction::all()->pluck('fonction', 'id')
         ]);
     }
 
@@ -45,7 +56,8 @@ class DocumentController extends Controller
      */
     public function store(DocumentFormRequest $request)
     {
-        Document::create($this->withDocuments(new Document(), $request));
+        $document = Document::create($this->withDocuments(new Document(), $request));
+        $document->fonctions()->sync($request->validated('fonction'));
         return redirect()
             ->route('admin.document.index')
             ->with('success', 'Le Document a bien été crée');

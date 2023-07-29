@@ -30,8 +30,12 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('document', function (Blueprint $table) {
-            //
+        Schema::table('documents', function (Blueprint $table) {
+            $table->dropColumn('nature_document_id');
+            $table->dropColumn('chemise_dossier_id');
+            $table->dropColumn('division_id');
+            $table->dropColumn('service_id');
+            $table->dropColumn('direction_id');
         });
     }
 };

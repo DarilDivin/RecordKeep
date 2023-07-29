@@ -23,6 +23,7 @@ class DocumentFormRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'nom' => ['required', 'string'],
             'signature' => ['required', 'string', Rule::unique('documents')->ignore($this->route()->parameter('document'))],
             'code' => ['nullable', 'string', Rule::unique('documents')->ignore($this->route()->parameter('document'))],
             'objet' => ['required', 'string'],
@@ -34,12 +35,13 @@ class DocumentFormRequest extends FormRequest
             'datecreation' => ['required', 'date'],
             'disponibilite' => ['nullable', 'boolean'],
             'archive' => ['nullable', 'boolean'],
-            'nature_document_id' => ['nullable', 'exists:nature,id'],
+            'nature_document_id' => ['required', 'exists:nature_documents,id'],
             'chemise_dossier_id' => ['nullable', 'exists:chemise_dossiers,id'],
-           /*  'division_id' => ['nullable', 'exists:divisions,id'],
-            'service_id' => ['nullable', 'exists:services,id'],
-            'direction_id' => ['nullable', 'exists:directions,id'], */
+            'division_id' => ['required', 'exists:divisions,id', 'integer'],
+            'service_id' => ['required', 'exists:services,id', 'integer'],
+            'direction_id' => ['required', 'exists:directions,id', 'integer'],
             'document' => ['required',  'mimes:pdf',  'max:500000'],
+            'fonction' => ['required']
         ];
     }
 }

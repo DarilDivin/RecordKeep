@@ -213,5 +213,9 @@ return [
         'updated_at'               => 'mis à jour à',
         'username'                 => 'nom d\'utilisateur',
         'year'                     => 'année',
+        'division_id'              => 'Division',
+        'service_id'               => 'Service',
+        'direction_id'             => 'Direction',
+        'nature_document_id'       => 'Nature'
     ],
 ];

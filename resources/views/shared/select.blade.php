@@ -1,8 +1,8 @@
 <div class="{{ $class }}">
     <label for="{{ $id }}">{{ $label }}</label>
     <select name="{{ $name }}" id="{{ $id }}">
-        @foreach ($value as $id => $nom)
-            <option {{-- @selected(old($name, ) == $key) --}} value="{{ $id }}">{{ $nom }}</option>
+        @foreach ($elements as $key => $element)
+            <option {{-- @selected(old($name, ) == $key) --}} value="{{ $key }}">{{ $element }}</option>
         @endforeach
     </select>
     @error($name)

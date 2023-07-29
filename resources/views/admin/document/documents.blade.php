@@ -51,9 +51,9 @@
                 <thead>
                     <tr>
                         <td>Code</td>
-                        <td>Libellé</td>
+                        <td>Nom du document</td>
                         <td>Date de création</td>
-                        <td>Taille</td>
+                        <td>DUA</td>
                         <td>Actions</td>
                     </tr>
                 </thead>
@@ -61,9 +61,9 @@
                     @forelse ($documents as $document)
                     <tr>
                         <td>{{ $document->signature }}</td>
-                        <td>{{ $document->objet }}</td>
+                        <td>{{ $document->nom }}</td>
                         <td>{{ $document->created_at }}</td>
-                        <td>{{ $document->dua }}</td>
+                        <td>{{ $document->dua }}ans</td>
                         <td>
                             <button class="edit"><a href="{{ route('admin.document.edit', ['document' => $document->id]) }}">Editer</a></button>
                             <button class="delete">Supprimer</button>

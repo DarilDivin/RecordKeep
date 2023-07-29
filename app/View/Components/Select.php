@@ -16,7 +16,7 @@ class Select extends Component
         public $id,
         public $label,
         public $name,
-        public $value
+        public $value,
     )
     {
         //
