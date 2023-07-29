@@ -18,6 +18,12 @@ class Division extends Model
 
     protected $guarded = [];
 
+    protected $fillable = [
+        'division',
+        'sigle',
+        'service_id',
+    ];
+
     public function service(): BelongsTo
     {
         return $this->belongsTo(Service::class);

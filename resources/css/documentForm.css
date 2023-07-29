@@ -40,7 +40,7 @@
     border-radius: 8px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     top: 50%;
     left: 50%;
@@ -60,7 +60,6 @@
 .addUserForm form,
 .addDocumentForm form {
     position: relative;
-    top: 100px;
     width: 100%;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -134,8 +133,12 @@ textarea::-webkit-scrollbar-thumb {
     grid-column: 1 / 3;
 }
 
-.document{
+.document {
     grid-column: 1 / 3;
+}
+
+.fonction {
+    grid-column: 1 / 4;
 }
 
 .motClé {
@@ -233,7 +236,6 @@ h1 {
     align-self: flex-start;
     color: var(--color-primary);
     position: relative;
-    top: 100px;
 }
 
 .addUserForm .closeUserForm,

@@ -1,8 +1,11 @@
+
+{{-- @props(['value']) --}}
+
 <div class="{{ $class }}">
     <label for="{{ $id }}">{{ $label }}</label>
     <select name="{{ $name }}" id="{{ $id }}">
         @foreach ($value as $id => $nom)
-            <option {{-- @selected(old($name, ) == $key) --}} value="{{ $id }}">{{ $nom }}</option>
+            <option value="{{ $id }}">{{ $nom }}</option>
         @endforeach
     </select>
     @error($name)

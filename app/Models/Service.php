@@ -16,6 +16,12 @@ class Service extends Model
 
     protected $guarded = [];
 
+    protected $fillable = [
+        'service',
+        'sigle',
+        'direction_id',
+    ];
+
     public function direction(): BelongsTo
     {
         return $this->belongsTo(Direction::class);

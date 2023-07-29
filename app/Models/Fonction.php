@@ -16,6 +16,10 @@ class Fonction extends Model
 
     protected $guarded = [];
 
+    protected $fillable = [
+        'fonction'
+    ];
+
     public function documents(): BelongsToMany
     {
         return $this->belongsToMany(Document::class);

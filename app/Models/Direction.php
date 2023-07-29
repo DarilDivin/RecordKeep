@@ -14,6 +14,11 @@ class Direction extends Model
 
     protected $guarded = [];
 
+    protected $fillable = [
+        'direction',
+        'sigle',
+    ];
+
     public function services(): HasMany
     {
         return $this->hasMany(Service::class);
