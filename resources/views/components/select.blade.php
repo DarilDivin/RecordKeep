@@ -1,12 +1,12 @@
+
+{{-- @props(['value']) --}}
+
 <div class="{{ $class }}">
     <label for="{{ $id }}">{{ $label }}</label>
     <select name="{{ $name }}" id="{{ $id }}">
-        <option value="{{ $value }}">{{ $value }}</option>
-        <option value="{{ $value }}">{{ $value }}</option>
-        <option value="{{ $value }}">{{ $value }}</option>
-        <option value="{{ $value }}">{{ $value }}</option>
-        <option value="{{ $value }}">{{ $value }}</option>
-        <option value="{{ $value }}">{{ $value }}</option>
+        @foreach ($value as $id => $nom)
+            <option value="{{ $id }}">{{ $nom }}</option>
+        @endforeach
     </select>
     @error($name)
         <span style="color: red;">{{ $message }}</span>
