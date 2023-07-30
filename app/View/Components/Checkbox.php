@@ -15,7 +15,8 @@ class Checkbox extends Component
         public $class,
         public $id,
         public $label,
-        public $name
+        public $name,
+        public $value,
     )
     {
 

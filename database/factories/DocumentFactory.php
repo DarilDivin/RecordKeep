@@ -28,6 +28,7 @@ class DocumentFactory extends Factory
             'dua' => '10',
             'datecreation' => '2023-06-09',
             'document' => 'documents/J4zQ5SgevZovpWA9kK3NhtTDMeADUJawZDvXyMnX.pdf',
+            'categorie_id' => 1,
             'nature_document_id' => 1,
             'chemise_dossier_id' => 1,
             'division_id' => 1,

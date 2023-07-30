@@ -41,7 +41,7 @@ class DocumentFormRequest extends FormRequest
             'service_id' => ['required', 'exists:services,id', 'integer'],
             'direction_id' => ['required', 'exists:directions,id', 'integer'],
             'document' => ['required',  'mimes:pdf',  'max:500000'],
-            'fonction' => ['required']
+            'fonction' => ['required', 'array', 'exists:fonctions,id']
         ];
     }
 }

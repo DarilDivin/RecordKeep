@@ -65,8 +65,18 @@
                         <td>{{ $document->created_at }}</td>
                         <td>{{ $document->dua }}ans</td>
                         <td>
-                            <button class="edit"><a href="{{ route('admin.document.edit', ['document' => $document->id]) }}">Editer</a></button>
-                            <button class="delete">Supprimer</button>
+                            <button class="edit"><a href="{{ route('admin.document.edit', ['document' => $document->id]) }}">Éditer</a></button>
+                            <button class="delete">
+                                <a href="{{ route('admin.document.destroy', ['document' => $document->id]) }}"
+                                   onclick="event.preventDefault();
+                                   document.getElementById('deleteForm{{ $document->id }}').submit();">
+                                    Supprimer
+                                </a>
+                                <form action="{{ route('admin.document.destroy', ['document' => $document->id]) }}" method="POST" style="" id="deleteForm{{ $document->id }}">
+                                    @csrf
+                                    @method('delete')
+                                </form>
+                            </button>
                         </td>
                     </tr>
                     @empty

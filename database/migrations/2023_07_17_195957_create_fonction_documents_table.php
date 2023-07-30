@@ -13,9 +13,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('fonction_document', function (Blueprint $table) {
-            $table->foreignIdFor(Fonction::class)->constrained();
-            $table->foreignIdFor(Document::class)->constrained();
+        Schema::create('document_fonction', function (Blueprint $table) {
+            $table->foreignIdFor(Document::class)->constrained()->cascadeOnDelete();
+            $table->foreignIdFor(Fonction::class)->constrained()->cascadeOnDelete();
 
             $table->primary(['document_id', 'fonction_id']);
         });
@@ -26,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('fonction_documents');
+        Schema::dropIfExists('document_fonction');
     }
 };

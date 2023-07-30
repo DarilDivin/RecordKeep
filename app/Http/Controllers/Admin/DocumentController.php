@@ -20,7 +20,6 @@ class DocumentController extends Controller
      */
     public function index()
     {
-
         return view('admin.document.documents',[
             'documents' => Document::all()
         ]);
@@ -43,11 +42,11 @@ class DocumentController extends Controller
 
         return view('admin.document.document-form',[
             'document' => $document,
-            'directions' => Direction::all()->pluck('direction', 'id'),
-            'services' => Service::all()->pluck('service', 'id'),
-            'divisions' => Division::all()->pluck('division', 'id'),
-            'natures' => NatureDocument::all()->pluck('nature', 'id'),
-            'fonctions' => Fonction::all()->pluck('fonction', 'id')
+            'directions' => Direction::getAllDirections(),
+            'services' => Service::getAllServices(),
+            'divisions' => Division::getAllDivisions(),
+            'natures' => NatureDocument::getAllNatureDocuments(),
+            'fonctions' => Fonction::getAllFonctions()
         ]);
     }
 
@@ -57,7 +56,7 @@ class DocumentController extends Controller
     public function store(DocumentFormRequest $request)
     {
         $document = Document::create($this->withDocuments(new Document(), $request));
-        $document->fonctions()->sync($request->validated('fonction'));
+        $document->fonctions()->sync($request->fonction);
         return redirect()
             ->route('admin.document.index')
             ->with('success', 'Le Document a bien été crée');
@@ -66,9 +65,10 @@ class DocumentController extends Controller
     private function withDocuments(Document $document, DocumentFormRequest $request): array
     {
         $data = $request->validated();
-        $document = $data['document'];
+        unset($data['fonction']);
+        $documentCollection = $data['document'];
         /* if($document->document) Storage::delete($document->document, 'public'); */
-        $data['document'] = $document->store('documents', 'public');
+        $data['document'] = $documentCollection->store('documents', 'public');
         return $data;
     }
 
@@ -77,8 +77,13 @@ class DocumentController extends Controller
      */
     public function edit(Document $document)
     {
-        return view('admin.document.document-form', [
-            'document' => $document
+        return view('admin.document.document-form',[
+            'document' => $document,
+            'directions' => Direction::getAllDirections(),
+            'services' => Service::getAllServices(),
+            'divisions' => Division::getAllDivisions(),
+            'natures' => NatureDocument::getAllNatureDocuments(),
+            'fonctions' => Fonction::getAllFonctions()
         ]);
     }
 
@@ -95,6 +100,14 @@ class DocumentController extends Controller
      */
     public function destroy(Document $document)
     {
-
+        $document->delete();
+        if($document->document !== '')
+        {
+            $documentpath = 'public/' . $document->document;
+            if(Storage::exists($documentpath)) Storage::delete('public/' . $document->document);
+        }
+        return redirect()
+            ->route('admin.document.index')
+            ->with('success', 'Le Document a bien été supprimé');
     }
 }

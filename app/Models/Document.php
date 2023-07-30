@@ -38,6 +38,11 @@ class Document extends Model
         return $this->belongsTo(Direction::class);
     }
 
+    public function categorie(): BelongsTo
+    {
+        return $this->belongsTo(Categorie::class);
+    }
+
     public function chemisedossier(): BelongsTo
     {
         return $this->belongsTo(ChemiseDossier::class);
@@ -67,4 +72,5 @@ class Document extends Model
     {
         return $this->hasMany(DemandePret::class);
     }
+
 }

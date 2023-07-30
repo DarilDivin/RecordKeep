@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
+use App\Models\Categorie;
 use App\Models\Direction;
 use App\Models\Division;
 use App\Models\Document;
@@ -29,6 +30,7 @@ class DatabaseSeeder extends Seeder
         Direction::factory(1)->count(1)->create();
         Service::factory(1)->count(1)->create();
         Division::factory(1)->count(1)->create();
+        Categorie::factory(1)->count(1)->create();
         NatureDocument::factory(1)->count(1)->create();
         Fonction::factory(1)->count(1)->create();
         Document::factory(1)->count(1)->create();

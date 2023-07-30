@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('documents', function (Blueprint $table) {
             $table->id();
             $table->string('nom')->nullable();
-            $table->string('signature')->nullable();
-            $table->string('code')->nullable();
+            $table->string('signature')->unique()->nullable();
+            $table->string('code')->unique()->nullable();
             $table->string('objet')->nullable();
             $table->string('source')->nullable();
             $table->string('emetteur')->nullable();

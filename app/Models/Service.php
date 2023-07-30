@@ -4,11 +4,12 @@ namespace App\Models;
 
 use App\Models\Division;
 use App\Models\Direction;
+use Illuminate\Support\Collection;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Service extends Model
 {
@@ -30,5 +31,12 @@ class Service extends Model
     public function divisions(): HasMany
     {
         return $this->hasMany(Division::class);
+    }
+
+    /* Pluck Methods */
+
+    public static function getAllServices(): Collection
+    {
+        return self::all()->pluck('service', 'id');
     }
 }

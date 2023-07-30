@@ -49,9 +49,9 @@
                 <x-input class="inputContainer" id="datenaissance" label="Date de naissance" type="date" name="datenaissance" placeholder="Date de naissance"  readonly="" value="{{ $user->datenaissance }}" />
 
 
-                <x-select class="inputContainer" id="division" label="Division" name="division_id" :value="$divisions"/>
+                <x-select class="inputContainer" id="division" label="Division" name="division_id" :value="$divisions" elementIdOnEntite="{{ $user->division_id }}" />
 
-                <x-select class="inputContainer" id="fonction" label="Fonction" name="fonction_id" :value="$fonctions"/>
+                <x-select class="inputContainer" id="fonction" label="Fonction" name="fonction_id" :value="$fonctions" elementIdOnEntite="{{ $user->fonction_id }}" />
 
                 {{-- <x-select class="inputContainer" id="role" label="Rôle" name="role" :value=""/> --}}
 

@@ -31,15 +31,15 @@
 
                 <x-input class="inputContainer" id="recepteur" label="Récepteur" type="text" name="recepteur" placeholder="Récepeteur"  readonly="" value="{{ $document->recepteur }}" />
 
-                <x-select class="inputContainer" id="direction" label="Direction" name="direction_id"  :value="$directions" />
+                <x-select class="inputContainer" id="direction" label="Direction" name="direction_id"  :value="$directions" elementIdOnEntite="{{ $document->direction_id }}" />
 
-                <x-select class="inputContainer" id="service" label="Service" name="service_id" :value="$services" />
+                <x-select class="inputContainer" id="service" label="Service" name="service_id" :value="$services" elementIdOnEntite="{{ $document->service_id }}" />
 
-                <x-select class="inputContainer" id="division" label="Division" name="division_id" :value="$divisions" />
+                <x-select class="inputContainer" id="division" label="Division" name="division_id" :value="$divisions" elementIdOnEntite="{{ $document->division_id }}" />
 
                 <x-input class="inputContainer" id="dua" label="DUA" type="number" name="dua" placeholder="DUA"  readonly="" value="{{ $document->dua }}" />
 
-                <x-select class="inputContainer" id="nature" label="Nature du Document" name="nature_document_id" :value="$natures" />
+                <x-select class="inputContainer" id="nature" label="Nature du Document" name="nature_document_id" :value="$natures" elementIdOnEntite="{{ $document->nature_document_id }}" />
 
                 <div class="inputContainer motClé">
                     <label for="signature">Mots-Clefs</label>
@@ -57,8 +57,8 @@
                 <div class="inputContainer autorisation">
                     <h4>Acorder l'accès à :</h4>
 
-                    @foreach ($fonctions as $fonction)
-                        <x-checkbox class="checkboxContainer" id="fonction" :label="$fonction" type="checkbox" name="fonction[]"/>
+                    @foreach ($fonctions as $id => $fonction)
+                        <x-checkbox class="checkboxContainer" :id="$fonction" :label="$fonction" type="checkbox" name="fonction" :value="$id"/>
                     @endforeach
 
                 </div>

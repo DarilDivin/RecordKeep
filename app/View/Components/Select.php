@@ -17,6 +17,7 @@ class Select extends Component
         public $label,
         public $name,
         public $value,
+        public $elementIdOnEntite
     )
     {
         //
