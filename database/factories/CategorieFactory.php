@@ -16,8 +16,22 @@ class CategorieFactory extends Factory
      */
     public function definition(): array
     {
+        $categories = [
+            'Administratif',
+            'Économique',
+            'Commerciale',
+            'Organisationnelle',
+            'Évènementielle',
+            'Diplomatique',
+            'Cartographique',
+            'Informatique',
+            'Marketing',
+            'Ressources Humaines',
+            'Logistique',
+        ];
+
         return [
-            'catégorie' => 'Économique'
+            'categorie' => $this->faker->unique()->randomElement($categories)
         ];
     }
 }

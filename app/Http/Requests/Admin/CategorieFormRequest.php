@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Requests\Admin;
+namespace App\Http\Requests;
 
-use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
+use Illuminate\Foundation\Http\FormRequest;
 
-class DirectionFormRequest extends FormRequest
+class CategorieFormRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,12 +23,11 @@ class DirectionFormRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'direction' => ['required', 'string', 'min:3',
-                Rule::unique('directions')
-                ->ignore($this->route()->parameter('direction'))
+            'categorie' => ['required', 'string',
+                Rule::unique('categories')
+                ->ignore($this->route()->parameter('categorie'))
                 ->withoutTrashed()
-            ],
-            'sigle' => ['required', 'string', 'min:2'],
+            ]
         ];
     }
 }

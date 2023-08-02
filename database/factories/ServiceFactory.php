@@ -16,10 +16,12 @@ class ServiceFactory extends Factory
      */
     public function definition(): array
     {
+        $sigleLength = $this->faker->randomElement([2, 3, 4]);
+
         return [
-            'service' => 'Service Informatique',
-            'sigle' => 'SI',
-            'direction_id' => 1
+            'service' => $this->faker->company(),
+            'sigle' => strtoupper($this->faker->lexify(str_repeat('?', $sigleLength))),
+            'direction_id' => $this->faker->numberBetween(1, 10)
         ];
     }
 }

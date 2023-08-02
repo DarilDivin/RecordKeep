@@ -16,7 +16,7 @@ return new class extends Migration
             $table->integer('matricule')->nullable();
             $table->string('nom')->nullable();
             $table->string('prenoms')->nullable();
-            $table->string('email')->unique()->nullable();
+            $table->string('email')->nullable();
             $table->date('datenaissance')->nullable();
             $table->string('sexe')->nullable();
             $table->string('role')->nullable();

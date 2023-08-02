@@ -5,14 +5,15 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\DirectionFormRequest;
 use App\Models\Direction;
-use Illuminate\Http\Request;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 
 class DirectionController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(): View
     {
         return view('admin.direction.directions', [
             'directions' => Direction::all()
@@ -22,7 +23,7 @@ class DirectionController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(): View
     {
         $direction = new Direction;
         return view('admin.direction.direction-form', [
@@ -33,7 +34,7 @@ class DirectionController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(DirectionFormRequest $request)
+    public function store(DirectionFormRequest $request): RedirectResponse
     {
         $direction = $request->validated();
         Direction::create($direction);
@@ -43,17 +44,9 @@ class DirectionController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Direction $direction)
+    public function edit(Direction $direction): View
     {
         return view('admin.direction.direction-form', [
             'direction' => $direction
@@ -63,7 +56,7 @@ class DirectionController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(DirectionFormRequest $request, Direction $direction)
+    public function update(DirectionFormRequest $request, Direction $direction): RedirectResponse
     {
         $direction->update($request->validated());
         return redirect()
@@ -74,7 +67,7 @@ class DirectionController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Direction $direction)
+    public function destroy(Direction $direction): RedirectResponse
     {
         $direction->delete();
         return redirect()

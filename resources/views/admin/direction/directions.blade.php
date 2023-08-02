@@ -65,10 +65,10 @@
                                     <button class="delete">
                                         <a href="{{ route('admin.direction.destroy', ['direction' => $direction->id]) }}"
                                            onclick="event.preventDefault();
-                                           document.getElementById('deleteForm').submit();">
+                                           document.getElementById('deleteForm{{ $direction->id }}').submit();">
                                             Supprimer
                                         </a>
-                                        <form action="{{ route('admin.direction.destroy', ['direction' => $direction->id]) }}" method="POST" style="" id="deleteForm">
+                                        <form action="{{ route('admin.direction.destroy', ['direction' => $direction->id]) }}" method="POST" style="" id="deleteForm{{ $direction->id }}">
                                             @csrf
                                             @method('delete')
                                         </form>

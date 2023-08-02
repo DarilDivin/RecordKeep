@@ -178,8 +178,10 @@ textarea::-webkit-scrollbar-thumb {
 .addDocumentForm form .inputContainer.autorisation {
     position: relative;
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     grid-column: 2 / 4;
+    grid-row: span 2;
+    height: 80%;
     justify-content: flex-start;
     align-items: flex-start;
     border: .5px solid var(--color-primary);

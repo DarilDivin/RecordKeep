@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Admin;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class DivisionFormRequest extends FormRequest
 {
@@ -22,7 +23,11 @@ class DivisionFormRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'division' => ['required', 'string', 'min:3'],
+            'division' => ['required', 'string', 'min:3',
+                Rule::unique('divisions')
+                ->ignore($this->route()->parameter('division'))
+                ->withoutTrashed()
+            ],
             'sigle' => ['required', 'string', 'min:2'],
             'service_id' => ['integer','exists:services,id', 'required'],
         ];

@@ -27,12 +27,12 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
 
-        Direction::factory(1)->count(1)->create();
-        Service::factory(1)->count(1)->create();
-        Division::factory(1)->count(1)->create();
-        Categorie::factory(1)->count(1)->create();
-        NatureDocument::factory(1)->count(1)->create();
-        Fonction::factory(1)->count(1)->create();
-        Document::factory(1)->count(1)->create();
+        Direction::factory()->count(10)->create();
+        Service::factory()->count(25)->create();
+        Division::factory()->count(35)->create();
+        Categorie::factory()->count(11)->create();
+        NatureDocument::factory()->count(10)->create();
+        Fonction::factory()->count(4)->create();
+        Document::factory()->count(20)->create();
     }
 }

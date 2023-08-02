@@ -16,8 +16,15 @@ class FonctionFactory extends Factory
      */
     public function definition(): array
     {
+        $fonctions = [
+            'Directeur',
+            'Chef Service',
+            'Chef Division',
+            'Collaborateur'
+        ];
+
         return [
-            'fonction' => 'Chef Service',
+            'fonction' =>$this->faker->unique()->randomElement($fonctions)
         ];
     }
 }

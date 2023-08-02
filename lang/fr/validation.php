@@ -216,6 +216,7 @@ return [
         'division_id'              => 'Division',
         'service_id'               => 'Service',
         'direction_id'             => 'Direction',
+        'categorie_id'             => 'Catégorie',
         'nature_document_id'       => 'Nature'
     ],
 ];

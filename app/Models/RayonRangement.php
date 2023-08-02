@@ -12,6 +12,8 @@ class RayonRangement extends Model
 {
     use HasFactory, SoftDeletes;
 
+    protected $guarded = [];
+
     public function boitearchives(): HasMany
     {
         return $this->hasMany(BoiteArchive::class);

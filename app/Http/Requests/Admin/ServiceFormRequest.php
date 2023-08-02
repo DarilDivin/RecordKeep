@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Admin;
 
+use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class ServiceFormRequest extends FormRequest
@@ -22,7 +23,11 @@ class ServiceFormRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'service' => ['required', 'string', 'min:3'],
+            'service' => ['required', 'string', 'min:3',
+                Rule::unique('services')
+                ->ignore($this->route()->parameter('service'))
+                ->withoutTrashed()
+            ],
             'sigle' => ['required', 'string', 'min:2'],
             'direction_id' => ['integer','exists:directions,id', 'required']
         ];

@@ -16,10 +16,12 @@ class DivisionFactory extends Factory
      */
     public function definition(): array
     {
+        $sigleLength = $this->faker->randomElement([2, 3, 4]);
+
         return [
-            'division' => 'Division Informatique',
-            'sigle' => 'DI',
-            'service_id' => 1
+            'division' => $this->faker->company(),
+            'sigle' => strtoupper($this->faker->lexify(str_repeat('?', $sigleLength))),
+            'service_id' => $this->faker->numberBetween(1, 25)
         ];
     }
 }

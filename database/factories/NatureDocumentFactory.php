@@ -16,8 +16,21 @@ class NatureDocumentFactory extends Factory
      */
     public function definition(): array
     {
+        $natures = [
+            'Note de service',
+            'Arrêté',
+            'Decret',
+            'Message porté',
+            'Courrier entré',
+            'Courrier départ',
+            'Bordereau d\'envoi',
+            'Letrre Administrative',
+            'Letrre Commerciale',
+            'Rapport'
+        ];
+
         return [
-            'nature' => 'Administratif'
+            'nature' => $this->faker->unique()->randomElement($natures)
         ];
     }
 }

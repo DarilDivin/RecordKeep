@@ -16,9 +16,11 @@ class DirectionFactory extends Factory
      */
     public function definition(): array
     {
+        $sigleLength = $this->faker->randomElement([2, 3, 4, 5]);
+
         return [
-            'direction' => 'Direction de la Planification, de l\'Administration et des Finances',
-            'sigle' => 'DPAF'
+            'direction' => $this->faker->company(),
+            'sigle' => strtoupper($this->faker->lexify(str_repeat('?', $sigleLength)))
         ];
     }
 }

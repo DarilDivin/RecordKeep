@@ -3,17 +3,18 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Service;
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\ServiceFormRequest;
 use App\Models\Direction;
+use Illuminate\Contracts\View\View;
+use App\Http\Controllers\Controller;
+use Illuminate\Http\RedirectResponse;
+use App\Http\Requests\Admin\ServiceFormRequest;
 
 class ServiceController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(): View
     {
         return view('admin.service.services', [
             'services' => Service::all()
@@ -23,7 +24,7 @@ class ServiceController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(): View
     {
         $service = new Service();
 
@@ -36,7 +37,7 @@ class ServiceController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(ServiceFormRequest $request)
+    public function store(ServiceFormRequest $request): RedirectResponse
     {
         $service = Service::create($request->validated());
         // $service->direction()->sync($request->validated('direction'));
@@ -46,17 +47,9 @@ class ServiceController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Service $service)
+    public function edit(Service $service): View
     {
         return view('admin.service.service-form', [
             'service' => $service,
@@ -67,7 +60,7 @@ class ServiceController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(ServiceFormRequest $request, Service $service)
+    public function update(ServiceFormRequest $request, Service $service): RedirectResponse
     {
         $service->update($request->validated());
         // $service->direction()->sync($request->validated('direction'));
@@ -79,7 +72,7 @@ class ServiceController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Service $service)
+    public function destroy(Service $service): RedirectResponse
     {
         $service->delete();
         return redirect()

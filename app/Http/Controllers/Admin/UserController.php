@@ -5,9 +5,9 @@ namespace App\Http\Controllers\Admin;
 use App\Models\User;
 use App\Models\Division;
 use App\Models\Fonction;
-use Illuminate\Http\Request;
 use Illuminate\Contracts\View\View;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\RedirectResponse;
 use App\Http\Requests\Admin\UserFormRequest;
 
 class UserController extends Controller
@@ -44,7 +44,7 @@ class UserController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(UserFormRequest $request)
+    public function store(UserFormRequest $request): RedirectResponse
     {
         $user = $request->validated();
         User::create($user);
@@ -56,7 +56,7 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(User $user)
+    public function edit(User $user): View
     {
         return view('admin.user.user-form', [
             'user' => $user,
@@ -68,7 +68,7 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UserFormRequest $request, User $user)
+    public function update(UserFormRequest $request, User $user): RedirectResponse
     {
         $user->update($request->validated());
         return redirect()
@@ -79,7 +79,7 @@ class UserController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(User $user)
+    public function destroy(User $user): RedirectResponse
     {
         $user->delete();
         return redirect()

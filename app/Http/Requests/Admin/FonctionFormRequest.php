@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Admin;
 
+use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class FonctionFormRequest extends FormRequest
@@ -22,7 +23,11 @@ class FonctionFormRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'fonction' => ['required', 'string'],
+            'fonction' => ['required', 'string',
+                Rule::unique('fonctions')
+                ->ignore($this->route()->parameter('fonction'))
+                ->withoutTrashed()
+            ],
         ];
     }
 }

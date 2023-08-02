@@ -67,13 +67,13 @@
                                     <button class="delete">
                                         <a href="{{ route('admin.service.destroy', ['service' => $service->id]) }}"
                                            onclick="event.preventDefault();
-                                           document.getElementById('deleteForm').submit();">
+                                           document.getElementById('deleteForm{{ $service->id }}').submit();">
                                             Supprimer
                                         </a>
-                                        <form action="{{ route('admin.service.destroy', ['service' => $service->id]) }}" method="POST" style="" id="deleteForm">
+                                        <form action="{{ route('admin.service.destroy', ['service' => $service->id]) }}" method="POST" style="" id="deleteForm{{ $service->id }}">
                                             @csrf
                                             @method('delete')
-                                        </form> 
+                                        </form>
                                     </button>
                                 </td>
                             </tr>
