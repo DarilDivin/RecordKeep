@@ -53,7 +53,7 @@
 
                 <x-input class="inputContainer" id="datecreation" label="Date de Création" type="date" name="datecreation" placeholder="12/12/2003"  readonly="" value="{{ $document->datecreation }}" />
 
-                <x-select class="inputContainer" id="categories" label="Catégorie du Document" name="categorie_id" :value="$categories" elementIdOnEntite="{{ $document->categorie_id }}" />
+                <x-select class="inputContainer" id="categorie" label="Catégorie du Document" name="categorie_id" :value="$categories" elementIdOnEntite="{{ $document->categorie_id }}" />
 
                 <x-input class="inputContainer readonly" id="motclefs" label="Mot-Clefs" type="textarea" name="motclefs" placeholder=""  readonly="readonly" value="" />
 
@@ -61,7 +61,7 @@
                     <h4>Acorder l'accès à :</h4>
 
                     @foreach ($fonctions as $id => $fonction)
-                        <x-checkbox class="checkboxContainer" :id="$fonction" :label="$fonction" type="checkbox" name="fonction" :value="$id"/>
+                        <x-checkbox class="checkboxContainer" :id="$fonction" :label="$fonction" type="checkbox" name="fonction" :value="$id"  :ex="$document->fonctions->pluck('id')->toArray()" />
                     @endforeach
                     @error('fonction')
                         <span style="color: red;">{{ $message }}</span>

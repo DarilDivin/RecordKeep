@@ -21,6 +21,6 @@ class Categorie extends Model
 
     public static function getAllCategories(): Collection
     {
-        return self::all()->pluck('catégorie', 'id');
+        return self::all()->pluck('categorie', 'id');
     }
 }
