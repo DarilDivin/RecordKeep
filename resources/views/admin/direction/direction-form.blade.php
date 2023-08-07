@@ -11,13 +11,19 @@
         <div class="overlay"></div>
         <div class="addDocumentForm">
             <span class="closeDocumentForm">
-                <ion-icon name="close-outline"></ion-icon>
+                <ion-icon name="arrow-back"></ion-icon>
             </span>
             <h1> {{ $direction->exists ? 'Éditer une Direction' : 'Ajouter une Direction' }} </h1>
             @if ($errors->any())
-                @foreach ($errors->all() as $error)
-                    {{ $error }}
-                @endforeach
+                <div class="message error">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>
+                                {{ $error }}
+                            </li>
+                        @endforeach
+                    </ul>
+                </div>
             @endif
             <form method="POST" action="{{ route($direction->exists ? 'admin.direction.update' : 'admin.direction.store', ['direction' => $direction->id]) }}">
                 @csrf

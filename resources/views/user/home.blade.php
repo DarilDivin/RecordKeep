@@ -82,9 +82,27 @@
     </div>
 
     <section class="search-zone">
+        <h3>Rechercher un document</h3>
         <form action="" method="post" class="search-form">
-            <input type="search"  class="search-bar" placeholder="Rechercher..." minlength="1">
-            <ion-icon name="search"></ion-icon>
+            <div class="inputcontainer">
+                <label for="">Nom</label>
+                <input type="search"  class="search-bar" placeholder="Rechercher..." minlength="1">
+            </div>
+            <div class="inputcontainer">
+                <label for="">Nom</label>
+                <input type="search"  class="search-bar" placeholder="Rechercher..." minlength="1">
+            </div>
+            <div class="inputcontainer">
+                <label for="">Nom</label>
+                <input type="search"  class="search-bar" placeholder="Rechercher..." minlength="1">
+            </div>
+            <div class="inputcontainer">
+                <label for="">Nom</label>
+                <input type="search"  class="search-bar" placeholder="Rechercher..." minlength="1">
+            </div>
+
+
+            <button type="submit">Rechercher</button>
         </form>
     </section>
 

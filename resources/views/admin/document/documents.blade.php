@@ -15,11 +15,30 @@
             <ion-icon name="document-text"></ion-icon>
         </div>
 
-        @if (session('success'))
-            <div class="success">
-                {{ session('success') }}
+
+
+        <div class="sidebarOptions">
+            <div class="sidebarOptionContainerOverlay"></div>
+            <div class="sidebarOptionContainer">
+                <div class="optionContainer">
+                    <a href="Document-classé.html">
+                        <ion-icon name="archive"></ion-icon>
+                    </a>
+                </div>
+                <!-- <div class="optionContainer"><ion-icon name="apps"></ion-icon></div>
+                <div class="optionContainer"><ion-icon name="bookmarks"></ion-icon></div>
+                <div class="optionContainer"><ion-icon name="car-sport"></ion-icon></div>
+                <div class="optionContainer"><ion-icon name="cog"></ion-icon></div>
+                <div class="optionContainer"><ion-icon name="earth"></ion-icon></div>
+                <div class="optionContainer"><ion-icon name="document-lock"></ion-icon></div>
+                <div class="optionContainer"><ion-icon name="finger-print"></ion-icon></div>
+                <div class="optionContainer"><ion-icon name="laptop"></ion-icon></div> -->
             </div>
-        @endif
+        </div>
+
+
+
+
 
         <div class="optional">
             <div class="buttons">
@@ -45,6 +64,12 @@
                 <ion-icon name="search"></ion-icon>
             </div>
         </div>
+
+        @if (session('success'))
+            <div class="message success">
+                {{ session('success') }}
+            </div>
+        @endif
 
         <div class="tableau">
             <table class="table">
@@ -77,6 +102,9 @@
                                     @method('delete')
                                 </form>
                             </button>
+                            <button class=""><a href="">Infos</a></button>
+                            <button class="classer"><a href="{{ route('classement') }}">Classer</a></button>
+
                         </td>
                     </tr>
                     @empty
