@@ -6,6 +6,8 @@
     --color-primary-light-2: #6363ff20;
     --box-shadow: 0 4px 8px #3c9afe33,
                   0 -4px 8px #85c0ff33;
+    --box-shadow-normal: 0 4px 8px #d2d2d233,
+                         0 -4px 8px #d2d2d233;
 }
 
 
@@ -15,7 +17,7 @@
     box-sizing: border-box;
 }
 
-body { 
+body {
     font-family: 'Poppins', sans-serif;
     background: #fff;
     display: flex;
@@ -73,4 +75,72 @@ section {
 
 button {
     cursor: pointer;
+}
+
+
+/*================ Search Zone ================*/
+
+.search-zone {
+    padding: 25px 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: var(--color-primary-light);
+    border-radius: 10px;
+}
+
+.search-zone h3 {
+    align-self: flex-start;
+    padding: 15px 9%;
+    color: var(--color-primary);
+}
+
+.search-zone .search-form {
+    width: 90%;
+    height: 100%;
+    position: relative;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.search-zone .search-form .inputcontainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.search-zone .search-form .inputcontainer label {
+    padding: 0 10px;
+    color: var(--color-primary);
+}
+
+.search-zone .search-form .search-bar {
+    width: 100%;
+    padding: 5px 10px;
+    border: 1px solid var(--color-primary);
+    background: #ffffff27;
+    backdrop-filter: blur(100px);
+    border-radius: 5px;
+    margin: 0 5px;
+    outline: none;
+    font-size: .9rem;
+    font-weight: 300;
+    color: #333;
+}
+
+.search-zone .search-form button {
+    padding: 5px 10px;
+    background: var(--color-primary-light);
+    border: .5px solid var(--color-primary);
+    border-radius: 5px;
+    justify-self: flex-end;
+    align-self: flex-end;
+    height: 30px;
+}
+
+.search-zone .search-form button:hover {
+    background: var(--color-primary-light-2);
 }

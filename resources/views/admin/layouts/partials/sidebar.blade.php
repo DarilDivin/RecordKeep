@@ -37,5 +37,11 @@
                 <span class="title">User Homepage</span>
             </a>
         </li>
+        <li class="list">
+            <a href="#" class="moreOptions">
+                <span class="icon"><ion-icon name="add"></ion-icon></span>
+                <span class="title">More Options</span>
+            </a>
+        </li>
     </ul>
 </div>

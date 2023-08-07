@@ -7,7 +7,8 @@ input {
 }
 
 
-.voirInfosDoc {
+.voirInfosDoc,
+.plusInfos {
     width: 100%;
     padding: 15px 30px;
     background-color: #fff;
@@ -118,10 +119,25 @@ input {
     grid-column: 1 / 5;
 }
 
-.inputs.firstname {
+.inputs.firstname,
+.inputs.durée {
     grid-column: 1 / 3;
 }
 
 .inputs.lastname {
     grid-column: 3 / 5;
+}
+
+form button {
+    grid-column: 1 / 5;
+    justify-self: flex-end;
+    height: 35px;
+    background: var(--bg-color-light-2);
+    border: .5px solid var(--color-primary);
+    border-radius: 5px;
+    padding: 5px 10px;
+}
+
+form button:hover {
+    background: var(--bg-color-light);
 }

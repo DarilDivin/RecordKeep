@@ -120,3 +120,13 @@
     color: #ff0000;
     background: #ff000020;
 }
+
+.tableau .table tbody td .classer {
+    color: #008800;
+    background: transparent;
+}
+
+.tableau .table tbody td .classer:hover {
+    color: #008800;
+    background: #00880020;
+}

@@ -7,14 +7,17 @@ const closeUserForm = document.querySelector('.closeUserForm');
 const overlay = document.querySelector('.overlay');
 const documentFormContainer = document.querySelector('.addDocumentFormContainer');
 const closeDocumentForm = document.querySelector('.closeDocumentForm');
+const moreOptionsbtn = document.querySelector('.moreOptions');
+const sidebarOptions = document.querySelector('.sidebarOptions')
+const sidebarOptionContainerOverlay = document.querySelector('.sidebarOptionContainerOverlay')
 
 
 function activeLink() {
-    list.forEach((item) => 
+    list.forEach((item) =>
     item.classList.remove('active'));
     this.classList.add('active');
 }
-list.forEach((item) => 
+list.forEach((item) =>
 item.addEventListener('click', activeLink));
 
 sidebar.addEventListener('mouseenter', () => {
@@ -43,3 +46,13 @@ const closeFormDoc = () => {
 closeDocumentForm.addEventListener('click', closeFormDoc);
 overlay.addEventListener('click', closeFormDoc);
 
+
+const closeMoreOptions = () => {
+    sidebarOptions.classList.remove('show');
+}
+
+moreOptionsbtn.addEventListener('click', () => {
+    sidebarOptions.classList.toggle('show');
+})
+
+sidebarOptionContainerOverlay.addEventListener('click', closeMoreOptions);
