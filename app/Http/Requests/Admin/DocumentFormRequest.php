@@ -48,7 +48,6 @@ class DocumentFormRequest extends FormRequest
             'dua' => ['required', 'integer'],
             'emetteur' => ['required', 'string'],
             'recepteur' => ['required', 'string'],
-            'motclefs' => ['nullable', 'string'],
             'datecreation' => ['required', 'date'],
             'disponibilite' => ['nullable', 'boolean'],
             'archive' => ['nullable', 'boolean'],
@@ -59,7 +58,8 @@ class DocumentFormRequest extends FormRequest
             'service_id' => ['required', 'exists:services,id', 'integer'],
             'direction_id' => ['required', 'exists:directions,id', 'integer'],
             'document' => $documentRule,
-            'fonction' => ['required', 'array', 'exists:fonctions,id']
+            'fonction' => ['required', 'array', 'exists:fonctions,id'],
+            'motclefs' => ['required', 'array']
         ];
     }
 }

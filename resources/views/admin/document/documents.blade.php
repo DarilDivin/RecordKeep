@@ -36,10 +36,6 @@
             </div>
         </div>
 
-
-
-
-
         <div class="optional">
             <div class="buttons">
                 <button class="filter">
@@ -103,7 +99,7 @@
                                 </form>
                             </button>
                             <button class=""><a href="">Infos</a></button>
-                            <button class="classer"><a href="{{ route('classement') }}">Classer</a></button>
+                            <button class="classer"><a href="{{ route('admin.document.classement', ['document' => $document->id]) }}">Classer</a></button>
 
                         </td>
                     </tr>

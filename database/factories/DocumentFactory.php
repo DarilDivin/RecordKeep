@@ -16,6 +16,27 @@ class DocumentFactory extends Factory
      */
     public function definition(): array
     {
+        $motsclefs = [
+            'Administratif',
+            'Économique',
+            'Commerciale',
+            'Organisationnelle',
+            'Évènementielle',
+            'Diplomatique',
+            'Cartographique',
+            'Informatique',
+            'Marketing',
+            'Ressources Humaines',
+            'Logistique',
+        ];
+
+        $keywords = "";
+        $index_tab = [];
+
+        for($i = 0; $i < rand(2, 4); $i++){
+            $keywords .= '#' . $this->faker/* ->unique() */->randomElement($motsclefs);
+        }
+
         $signatureNumber = $this->faker->numberBetween(100, 999);
         $signature = "N° $signatureNumber/" . $this->faker->regexify('[A-Z]{2,5}/[A-Z]{2,4}/[A-Z]{2,5}/[A-Z]{2,3}');
 
@@ -27,16 +48,11 @@ class DocumentFactory extends Factory
             'source' => $this->faker->company(),
             'emetteur' => $this->faker->company(),
             'recepteur' => $this->faker->name(),
-            /* 'motclefs' => '#Administratifs', */
+            'motclefs' => $keywords,
             'dua' => $this->faker->numberBetween(4, 15),
             'datecreation' => $this->faker->date(),
-            /* 'document' => 'documents/J4zQ5SgevZovpWA9kK3NhtTDMeADUJawZDvXyMnX.pdf', */
             'categorie_id' => $this->faker->numberBetween(1, 6),
             'nature_document_id' => $this->faker->numberBetween(1, 8),
-            /* 'chemise_dossier_id' => 1, */
-            'division_id' => $this->faker->numberBetween(1, 30),
-            'service_id' => $this->faker->numberBetween(1, 20),
-            'direction_id' => $this->faker->numberBetween(1, 10)
         ];
     }
 }

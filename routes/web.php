@@ -31,10 +31,6 @@ Route::get('/login', function () {
     return view('auth.login');
 })->name('login');
 
-Route::get('/classé-doc', function () {
-    return view('admin.document.document-classement');
-})->name('classement');
-
 /* Route::get('/dashboard/users', function () {
     return view('admin.Dashboard-User-Management');
 })->name('dashboard.users');

@@ -26,10 +26,8 @@ class DivisionController extends Controller
      */
     public function create(): View
     {
-        $division = new Division();
-
         return view('admin.division.division-form', [
-            'division' => $division,
+            'division' => new Division(),
             'services' => Service::pluck('service', 'id'),
         ]);
     }
@@ -39,7 +37,7 @@ class DivisionController extends Controller
      */
     public function store(DivisionFormRequest $request): RedirectResponse
     {
-        $division = Division::create($request->validated());
+        Division::create($request->validated());
         return redirect()
             ->route('admin.division.index')
             ->with('success', 'Le service a bien été  créé');
@@ -64,7 +62,7 @@ class DivisionController extends Controller
         $division->update($request->validated());
         return redirect()
             ->route('admin.division.index')
-            ->with('success', 'La division a bien été  modifié');
+            ->with('success', 'La division a bien été  modifiée');
     }
 
     /**
@@ -75,6 +73,6 @@ class DivisionController extends Controller
         $division->delete();
         return redirect()
             ->route('admin.division.index')
-            ->with('success', 'La division a bien été supprimé');
+            ->with('success', 'La division a bien été supprimée');
     }
 }

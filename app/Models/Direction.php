@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Service;
+use App\Models\Document;
 use Illuminate\Support\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -23,6 +24,11 @@ class Direction extends Model
     public function services(): HasMany
     {
         return $this->hasMany(Service::class);
+    }
+
+    public function documents(): HasMany
+    {
+        return $this->hasMany(Document::class);
     }
 
     /* Pluck Methods */

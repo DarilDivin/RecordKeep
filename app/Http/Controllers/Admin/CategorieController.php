@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
-use App\Http\Requests\CategorieFormRequest;
 use App\Models\Categorie;
 use Illuminate\Contracts\View\View;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;
+use App\Http\Requests\Admin\CategorieFormRequest;
 
 class CategorieController extends Controller
 {
@@ -15,7 +15,9 @@ class CategorieController extends Controller
      */
     public function index(): View
     {
-        //
+        return view('admin.categorie.categories',[
+            'categories' => Categorie::all()
+        ]);
     }
 
     /**
@@ -23,7 +25,9 @@ class CategorieController extends Controller
      */
     public function create(): View
     {
-        //
+        return view('admin.categorie.categorie-form', [
+            'categorie' => new Categorie()
+        ]);
     }
 
     /**
@@ -31,7 +35,10 @@ class CategorieController extends Controller
      */
     public function store(CategorieFormRequest $request): RedirectResponse
     {
-        //
+        Categorie::create($request->validated());
+        return redirect()
+            ->route('admin.categorie.index')
+            ->with('success', 'La Catégorie a bien été créé');
     }
 
     /**
@@ -39,7 +46,9 @@ class CategorieController extends Controller
      */
     public function edit(Categorie $categorie): view
     {
-        //
+        return view('admin.categorie.categorie-form', [
+            'categorie' => $categorie
+        ]);
     }
 
     /**
@@ -47,7 +56,10 @@ class CategorieController extends Controller
      */
     public function update(CategorieFormRequest $request,  Categorie $categorie): RedirectResponse
     {
-        //
+        $categorie->update($request->validated());
+        return redirect()
+            ->route('admin.categorie.index')
+            ->with('success', 'La Catégorie a bien été modifiée');
     }
 
     /**
@@ -55,6 +67,9 @@ class CategorieController extends Controller
      */
     public function destroy(Categorie $categorie): RedirectResponse
     {
-        //
+        $categorie->delete();
+        return redirect()
+            ->route('admin.categorie.index')
+            ->with('success', 'La Catégorie a bien été supprimée');
     }
 }

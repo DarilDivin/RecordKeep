@@ -21,7 +21,6 @@ class DivisionFactory extends Factory
         return [
             'division' => $this->faker->company(),
             'sigle' => strtoupper($this->faker->lexify(str_repeat('?', $sigleLength))),
-            'service_id' => $this->faker->numberBetween(1, 25)
         ];
     }
 }

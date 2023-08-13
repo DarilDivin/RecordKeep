@@ -21,5 +21,8 @@
         },
     })
 </script>
+
+@livewireScripts()
+
 </body>
 </html>

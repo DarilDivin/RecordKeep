@@ -25,9 +25,8 @@ class DirectionController extends Controller
      */
     public function create(): View
     {
-        $direction = new Direction;
         return view('admin.direction.direction-form', [
-            'direction' => $direction
+            'direction' => new Direction
         ]);
     }
 
@@ -36,8 +35,7 @@ class DirectionController extends Controller
      */
     public function store(DirectionFormRequest $request): RedirectResponse
     {
-        $direction = $request->validated();
-        Direction::create($direction);
+        Direction::create($request->validated());
         return redirect()
             ->route('admin.direction.index')
             ->with('success', 'La direction a bien été créé');
@@ -61,7 +59,7 @@ class DirectionController extends Controller
         $direction->update($request->validated());
         return redirect()
             ->route('admin.direction.index')
-            ->with('success', 'La direction a bien été modifié');
+            ->with('success', 'La direction a bien été modifiée');
     }
 
     /**

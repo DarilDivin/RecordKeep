@@ -17,9 +17,8 @@ class ChemiseDossierFactory extends Factory
     public function definition(): array
     {
         return [
-            'libelle' => 'Chemise Dossier 1',
-            'code' => 'CH 1',
-            'boite_archive_id' => 1
+            'libelle' => $this->faker->sentence(rand(1, 2)),
+            'code' => strtoupper($this->faker->bothify('?#')) . ' ' . rand(0, 9),
         ];
     }
 }

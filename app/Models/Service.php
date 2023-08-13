@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Division;
+use App\Models\Document;
 use App\Models\Direction;
 use Illuminate\Support\Collection;
 use Illuminate\Database\Eloquent\Model;
@@ -31,6 +32,11 @@ class Service extends Model
     public function divisions(): HasMany
     {
         return $this->hasMany(Division::class);
+    }
+
+    public function documents(): HasMany
+    {
+        return $this->hasMany(Document::class);
     }
 
     /* Pluck Methods */
