@@ -15,7 +15,7 @@ class UserController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(): View
     {
         return view('admin.user.users',[
             'users' => User::all()
@@ -46,8 +46,7 @@ class UserController extends Controller
      */
     public function store(UserFormRequest $request): RedirectResponse
     {
-        $user = $request->validated();
-        User::create($user);
+        User::create($request->validated());
         return redirect()
             ->route('admin.user.index')
             ->with('success', 'L\'utilisateur à bien été créé');
@@ -73,7 +72,7 @@ class UserController extends Controller
         $user->update($request->validated());
         return redirect()
             ->route('admin.user.index')
-            ->with('success', 'L\' utilisateur a bien été créé');
+            ->with('success', 'L\' utilisateur a bien été modifié');
     }
 
     /**

@@ -26,10 +26,8 @@ class ServiceController extends Controller
      */
     public function create(): View
     {
-        $service = new Service();
-
         return view('admin.service.service-form', [
-            'service' => $service,
+            'service' => new Service(),
             'directions' => Direction::pluck('direction', 'id'),
         ]);
     }
@@ -40,7 +38,6 @@ class ServiceController extends Controller
     public function store(ServiceFormRequest $request): RedirectResponse
     {
         $service = Service::create($request->validated());
-        // $service->direction()->sync($request->validated('direction'));
         return redirect()
             ->route('admin.service.index')
             ->with('success', 'Le service a bien été  créé');
@@ -63,7 +60,6 @@ class ServiceController extends Controller
     public function update(ServiceFormRequest $request, Service $service): RedirectResponse
     {
         $service->update($request->validated());
-        // $service->direction()->sync($request->validated('direction'));
         return redirect()
             ->route('admin.service.index')
             ->with('success', 'Le service a bien été  modifié');

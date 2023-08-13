@@ -21,7 +21,6 @@ class ServiceFactory extends Factory
         return [
             'service' => $this->faker->company(),
             'sigle' => strtoupper($this->faker->lexify(str_repeat('?', $sigleLength))),
-            'direction_id' => $this->faker->numberBetween(1, 10)
         ];
     }
 }

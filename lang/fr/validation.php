@@ -217,6 +217,10 @@ return [
         'service_id'               => 'Service',
         'direction_id'             => 'Direction',
         'categorie_id'             => 'Catégorie',
-        'nature_document_id'       => 'Nature'
+        'nature_document_id'       => 'Nature',
+        'document'                 => 'Document',
+        'motclefs'                => 'Mots Clés',
+        'datecreation'             => 'Date de création',
+        'libelle'             => 'Libellé'
     ],
 ];

@@ -46,12 +46,12 @@ class Document extends Model
 
     public function chemisedossier(): BelongsTo
     {
-        return $this->belongsTo(ChemiseDossier::class);
+        return $this->belongsTo(ChemiseDossier::class, 'chemise_dossier_id', 'id');
     }
 
     public function naturedocument(): BelongsTo
     {
-        return $this->belongsTo(NatureDocument::class);
+        return $this->belongsTo(NatureDocument::class, 'nature_document_id', 'id');
     }
 
     public function motclefs(): BelongsToMany

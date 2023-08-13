@@ -59,6 +59,7 @@ class DocumentController extends Controller
      */
     public function store(DocumentFormRequest $request): RedirectResponse
     {
+        dd($request->validated());
         $document = Document::create($this->withDocuments(new Document(), $request));
         $document->fonctions()->sync($request->fonction);
         return redirect()
@@ -69,6 +70,7 @@ class DocumentController extends Controller
     private function withDocuments(Document $document, DocumentFormRequest $request): array
     {
         $data = $request->validated();
+        $data['motclefs'] = '#' . implode('#', $request->validated('motclefs'));
         unset($data['fonction']);
         if(array_key_exists('document', $data))
         {

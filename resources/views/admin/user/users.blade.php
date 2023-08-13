@@ -15,7 +15,7 @@
 
         <div class="main">
             <div class="title">
-                <p>Manage User</p>
+                <p>Manage Users</p>
                 <ion-icon name="person"></ion-icon>
             </div>
 
@@ -90,6 +90,7 @@
                         @endforelse
                     </tbody>
                 </table>
+
                 {{-- {{ $users->links() }} --}}
             </div>
         </div>

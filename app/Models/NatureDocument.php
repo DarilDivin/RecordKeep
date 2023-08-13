@@ -17,7 +17,7 @@ class NatureDocument extends Model
 
     public function documents(): HasMany
     {
-        return $this->hasMany(Document::class);
+        return $this->hasMany(Document::class, 'nature_document_id', 'id');
     }
 
     /* Pluck Methods */

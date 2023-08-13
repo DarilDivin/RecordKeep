@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\BoiteArchive;
+use Illuminate\Support\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -16,6 +17,13 @@ class RayonRangement extends Model
 
     public function boitearchives(): HasMany
     {
-        return $this->hasMany(BoiteArchive::class);
+        return $this->hasMany(BoiteArchive::class, 'rayon_rangement_id', 'id');
+    }
+
+    /* Pluck Methods */
+
+    public static function getAllRayons(): Collection
+    {
+        return self::all()->pluck('libelle', 'id');
     }
 }

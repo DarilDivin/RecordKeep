@@ -25,9 +25,8 @@ class FonctionController extends Controller
      */
     public function create(): View
     {
-        $fonction = new Fonction();
         return view('admin.fonction.fonction-form', [
-            'fonction' => $fonction
+            'fonction' => new Fonction()
         ]);
     }
 
@@ -36,8 +35,7 @@ class FonctionController extends Controller
      */
     public function store(FonctionFormRequest $request): RedirectResponse
     {
-        $fonction = $request->validated();
-        Fonction::create($fonction);
+        Fonction::create($request->validated());
         return redirect()
             ->route('admin.fonction.index')
             ->with('success', 'La fonction a bien été créé');
@@ -61,7 +59,7 @@ class FonctionController extends Controller
         $fonction->update($request->validated());
         return redirect()
             ->route('admin.fonction.index')
-            ->with('success', 'La fonction a bien été modifié');
+            ->with('success', 'La fonction a bien été modifiée');
     }
 
     /**
