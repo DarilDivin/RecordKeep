@@ -106,7 +106,7 @@
         </form>
     </section>
 
-    <section class="infos-zone">
+    {{-- <section class="infos-zone">
         <div class="info-container">
             <h3 class="info-title">This is the information title</h3>
             <p>
@@ -114,78 +114,29 @@
                 Lorem ipsum, dolor sit amet consectetur adipisicing elit. Facilis, iste in expedita consequuntur sed voluptate qui doloremque placeat quae animi necessitatibus adipisci facere quas. Expedita incidunt at aperiam culpa vitae tenetur. Nam, voluptates nobis similique necessitatibus aperiam, sit fugit adipisci illo, eum porro beatae animi? Aut ratione quod eos nostrum.
             </p>
         </div>
-    </section>
+    </section> --}}
 
     <section class="recent">
         <div class="recent-title">
-            <h3> Quick Access </h3>
+            <h3> Accès rapide </h3>
         </div>
         <div class="recent-container">
-            <div class="recent-element">
-            <a href="#"><ion-icon name="folder"></ion-icon></a>
-            <p>Nom du document</p>
-            </div>
-            <div class="recent-element">
-            <a href="#"><ion-icon name="folder"></ion-icon></a>
-            <p>Nom du document</p>
-            </div>
-            <div class="recent-element">
-            <a href="#"><ion-icon name="folder"></ion-icon></a>
-            <p>Nom du document</p>
-            </div>
-            <div class="recent-element">
-            <a href="#"><ion-icon name="folder"></ion-icon></a>
-            <p>Nom du document</p>
-            </div>
-            <div class="recent-element">
-            <a href="#"><ion-icon name="folder"></ion-icon></a>
-            <p>Nom du document</p>
-            </div>
-            <div class="recent-element">
-            <a href="#"><ion-icon name="folder"></ion-icon></a>
-            <p>Nom du document</p>
-            </div>
-            <div class="recent-element">
-            <a href="#"><ion-icon name="folder"></ion-icon></a>
-            <p>Nom du document</p>
-            </div>
-            <div class="recent-element">
-            <a href="#"><ion-icon name="folder"></ion-icon></a>
-            <p>Nom du document</p>
-            </div>
-            <div class="recent-element">
-            <a href="#"><ion-icon name="document-text-outline"></ion-icon></a>
-            <p>Nom du document</p>
-            </div>
-            <div class="recent-element">
-            <a href="#"><ion-icon name="document-text-outline"></ion-icon></a>
-            <p>Nom du document</p>
-            </div>
-            <div class="recent-element">
-            <a href="#"><ion-icon name="document-text-outline"></ion-icon></a>
-            <p>Nom du document</p>
-            </div>
-            <div class="recent-element">
-            <a href="#"><ion-icon name="document-text-outline"></ion-icon></a>
-            <p>Nom du document</p>
-            </div>
-            <div class="recent-element">
-            <a href="#"><ion-icon name="document-text-outline"></ion-icon></a>
-            <p>Nom du document</p>
-            </div>
-            <div class="recent-element">
-            <a href="#"><ion-icon name="document-text-outline"></ion-icon></a>
-            <p>Nom du document</p>
-            </div>
-            <div class="recent-element">
-            <a href="#"><ion-icon name="document-text-outline"></ion-icon></a>
-            <p>Nom du document</p>
-            </div>
-            <div class="recent-element">
-            <a href="#"><ion-icon name="document-text-outline"></ion-icon></a>
-            <p>Nom du document</p>
-            </div>
 
+            @foreach ($documents as $document)
+                <div class="recent-element">
+                    <a href="#"><ion-icon name="document-text-outline"></ion-icon></a>
+                    <p>{{ $document->nom }}</p>
+                </div>
+            @endforeach
+
+            {{-- <div class="recent-element">
+                <a href="#"><ion-icon name="folder"></ion-icon></a>
+                <p>Nom du document</p>
+            </div>
+            <div class="recent-element">
+                <a href="#"><ion-icon name="document-text-outline"></ion-icon></a>
+                <p>Nom du document</p>
+            </div> --}}
         </div>
     </section>
 @endsection

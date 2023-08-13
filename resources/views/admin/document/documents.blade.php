@@ -51,18 +51,24 @@
                     <a href="{{ route('admin.document.create') }}">Ajouter Document</a>
                 </button>
             </div>
-            <div class="check-categorie-documents">
-                <select name="" id="">
-                    <option value="service informatique">Service Informatique</option>
-                    <option value="service informatique">Secrétariat</option>
-                    <option value="service informatique">Service Informatique et quelque chose</option>
-                    <option value="service informatique">Service Informatique</option>
-                </select>
-            </div>
-            <div class="search-box">
-                <input type="text">
-                <ion-icon name="search"></ion-icon>
-            </div>
+            <form action="">
+                <div class="check-categorie-documents">
+                    <select name="" id="">
+                        <option value="service informatique">Service Informatique</option>
+                        <option value="service informatique">Secrétariat</option>
+                        <option value="service informatique">Service Informatique et quelque chose</option>
+                        <option value="service informatique">Service Informatique</option>
+                    </select>
+                </div>
+                <div class="search-box">
+                    <input type="text">
+                    <ion-icon name="search"></ion-icon>
+                </div>
+                <div class="search-box">
+                    <input type="text">
+                    <ion-icon name="search"></ion-icon>
+                </div>
+            </form>
         </div>
 
         @if (session('success'))

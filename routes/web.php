@@ -15,12 +15,12 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('index');
+    return view('welcome');
 });
 
-Route::get('/home', function () {
-    return view('user.home');
-})->name('home');
+// Route::get('/home', function () {
+//     return view('user.home');
+// })->name('home');
 // ->middleware(['auth', 'verified']);
 
 /* Route::get('/dashboard/documents', function () {
@@ -43,18 +43,18 @@ Route::get('/dashboard/statistiques', function () {
     return view('admin.Dashboard-Statistiques');
 })->name('dashboard.statistiques'); */
 
-/*Route::get('/demande-de-pret', function () {
-    return view('user.DemandePrêt');
-})->name('user.demandePret');
+// Route::get('/demande-de-pret', function () {
+//     return view('user.DemandePrêt');
+// })->name('user.demandePret');
 
-Route::get('/documents', function () {
-    return view('user.DocumentPage');
-})->name('user.documents');
+// Route::get('/documents', function () {
+//     return view('user.DocumentPage');
+// })->name('user.documents');
 
-Route::get('/folder-content', function () {
-    return view('user.FolderContentPage');
-})->name('user.folder-content');
+// Route::get('/folder-content', function () {
+//     return view('user.FolderContentPage');
+// })->name('user.folder-content');
 
-Route::get('/folder', function () {
-    return view('user.FolderPage');
-})->name('user.folder'); */
+// Route::get('/folder', function () {
+//     return view('user.FolderPage');
+// })->name('user.folder');

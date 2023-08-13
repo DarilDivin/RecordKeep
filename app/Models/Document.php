@@ -8,14 +8,15 @@ use App\Models\Fonction;
 use App\Models\Direction;
 use App\Models\Transfert;
 use App\Models\DemandePret;
+use Illuminate\Support\Str;
 use App\Models\ChemiseDossier;
 use App\Models\NatureDocument;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Document extends Model
 {
@@ -71,6 +72,11 @@ class Document extends Model
     public function demandeprets(): HasMany
     {
         return $this->hasMany(DemandePret::class);
+    }
+
+    public function getSlug(): string
+    {
+        return Str::slug($this->nom);
     }
 
 }

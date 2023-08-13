@@ -4,8 +4,10 @@ const documentListContainer = document.querySelector('.documentList');
 
 const consultBtn = document.querySelectorAll('.consult');
 const documentView = document.querySelector('.documentView');
+const embed = document.getElementById("documentEmbed");
 const closeDoc= document.querySelector('.closeDoc');
 const overlay = document.querySelector('.overlay');
+
 
 const menuHamburgerbtn = document.querySelector('.menuHamburger')
 const menuHamburger = document.querySelector('.nav_menu')
@@ -37,14 +39,14 @@ gridIcon.addEventListener('click', () => {
 })
 
 
-consultBtn.forEach(element => 
-    element.addEventListener('click', () => {
-    documentView.classList.add('show')
+consultBtn.forEach(element =>
+    element.addEventListener('click', (event) => {
+    const documentLink = element.getAttribute("data-document-link");
+    embed.setAttribute("src", documentLink);
+    // console.log(documentLink);
+    documentView.classList.add('show');
 }));
 
-// consultBtn.addEventListener('click', () => {
-//     documentView.classList.add('show')
-// })
 
 const closeDocument = () => {
     documentView.classList.remove('show');

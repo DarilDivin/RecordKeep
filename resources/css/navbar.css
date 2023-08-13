@@ -4,7 +4,10 @@ nav {
     width: 100%;
     display: flex;
     justify-content: space-between;
-    padding: 20px 0;
+    padding: 20px 5px;
+    background: var(--color-primary-light);
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
 }
 
 nav .logo {
@@ -21,22 +24,70 @@ nav .nav_menu {
 nav .nav_menu ul {
     width: 100%;
     display: flex;
-    justify-content: space-around;
+    justify-content: flex-end;
     align-items: center;
+    position: relative;
 }
 
 nav .nav_menu ul li {
     list-style: none;
+    margin-right: 50px;
 }
 
 nav .nav_menu ul li a {
     text-decoration: none;
     color: #333;
+    transition: color .4s ease;
 }
 
 nav .nav_menu ul li a:hover {
     text-decoration: none;
     color: #6363ff;
+    transition: var(--transition);
+}
+
+nav .nav_menu ul li.active a {
+    text-decoration: none;
+    color: #6363ff;
+    transition: var(--transition);
+}
+
+
+
+nav .nav_menu ul li.active::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    text-decoration: none;
+    background: #6363ff;
+    border: .25px solid #6363ff;
+    border-radius: 25%;
+    width: 5%;
+    height: 2px;
+    opacity: 1;
+    transition: width .4s ease;
+}
+
+
+
+nav .nav_menu ul li::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    text-decoration: none;
+    background: #6363ff;
+    border: .25px solid #6363ff;
+    border-radius: 25%;
+    width: 0;
+    height: 2px;
+    opacity: 0;
+    transition: width .4s ease, opacity .2s .1s ease;
+}
+
+nav .nav_menu ul li:hover::before {
+    opacity: 1;
+    width: 5%;
+    transition: width .4s ease;
 }
 
 nav .menuHamburger {

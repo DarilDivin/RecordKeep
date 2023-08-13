@@ -130,3 +130,9 @@
     color: #008800;
     background: #00880020;
 }
+
+
+.vertical-line {
+    border-left: 1px solid #33333350;
+    height: 250px;
+}

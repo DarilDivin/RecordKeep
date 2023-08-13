@@ -2,6 +2,11 @@
 
 namespace App\Providers;
 
+use App\Events\AcceptDemandeEvent;
+use App\Events\DemandePretEvent;
+use App\Events\RejectDemandeEvent;
+use App\Listeners\DemandePretListener;
+use App\Listeners\RejectDemandeListener;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -18,6 +23,9 @@ class EventServiceProvider extends ServiceProvider
         Registered::class => [
             SendEmailVerificationNotification::class,
         ],
+        DemandePretEvent::class => [DemandePretListener::class],
+        AcceptDemandeEvent::class => [AcceptDemandeListener::class],
+        RejectDemandeEvent::class => [RejectDemandeListener::class],
     ];
 
     /**

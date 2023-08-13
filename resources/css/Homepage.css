@@ -63,7 +63,7 @@
 
 /*================ Search Zone ================*/
 
-.search-zone {
+/* .search-zone {
     padding: 25px 10px;
     display: flex;
     justify-content: center;
@@ -102,7 +102,7 @@
 
 .search-zone .search-form .search-bar:focus + ion-icon  {
     visibility: hidden;
-}
+} */
 
 /*================ Information Zone ================*/
 
