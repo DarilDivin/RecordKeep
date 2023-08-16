@@ -20,7 +20,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 15px;
+    margin: 15px 0;
 }
 
 .connexion-message .twofa-message.success {
@@ -47,6 +47,22 @@
     align-items: center;
 }
 
+.connexion-message .recovery-container .QrContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.connexion-message .recovery-container .QrContainer .QrMessage {
+    width: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #0889fa;
+}
+
 .connexion-message .recovery-container .Qrcode {
     margin: 10px;
     width: 230px;
@@ -57,6 +73,82 @@
     background: #ffffff;
     box-shadow:  -5px 5px 20px #e3e3e3,
                  5px -5px 20px #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+form .input {
+    width: 100%;
+    height: 45px;
+    padding: 5px 10px;
+    outline: none;
+    border: .5px solid #0889fa;
+    box-shadow: var(--box-shadow);
+    border-radius: 8px;
+    margin: 10px 0 25px;
+    background: #fff;
+    font-size: 1rem;
+    color: #333;
+    font-weight: 400;
+}
+
+form button {
+    height: 45px;
+    padding: 5px 10px;
+    background: #0889fa10;
+    color: #0889fa;
+    font-weight: 600;
+    align-self: flex-end;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all .2s ease;
+}
+
+form button:hover {
+    background: #0889fa20;
+}
+
+.connexion-message .recovery-container .Qrcode {
+    margin: 10px;
+    width: 230px;
+    height: 230px;
+    background: #fff;
+    border-radius: 10px;
+    border-radius: 11px;
+    background: #ffffff;
+    box-shadow:  -5px 5px 20px #e3e3e3,
+                 5px -5px 20px #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.recuperation {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.recuperation p {
+    color: #0889fa;
+    font-size: 1.2rem;
+}
+
+.recuperation ul {
+    background: #0889fa20;
+    border-radius: 5px;
+    margin: 5px;
+    padding: 10px;
+    list-style: none;
+    width: 100%;
+}
+
+.recuperation ul li {
+    margin: 5px 0;
+    letter-spacing: 3px;
 }
 
 
@@ -188,6 +280,11 @@
     font-weight: 100;
     background: #fff;
     border-radius: 15px;
+}
+
+.recent .recent-container .recent-element a img{
+    width: 50px;
+    /* height: 64px; */
 }
 
 .recent .recent-container .recent-element p {

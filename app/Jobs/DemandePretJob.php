@@ -5,6 +5,7 @@ namespace App\Jobs;
 use App\Models\Document;
 use Illuminate\Bus\Queueable;
 use App\Mail\DocumentDemandeMail;
+use App\Models\DemandePret;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
@@ -19,7 +20,7 @@ class DemandePretJob implements ShouldQueue
     /**
      * Create a new job instance.
      */
-    public function __construct(public Document $document, public array $data)
+    public function __construct(public DemandePret $demande)
     {
         //
     }
@@ -29,6 +30,8 @@ class DemandePretJob implements ShouldQueue
      */
     public function handle(): void
     {
-        Mail::send(new DocumentDemandeMail($this->document, $this->data));
+        // dd($this->demande);
+        // dd(route('document.demande.accept', ['demande' => $this->demande]));
+        Mail::send(new DocumentDemandeMail($this->demande));
     }
 }

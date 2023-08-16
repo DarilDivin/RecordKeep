@@ -11,18 +11,16 @@
 @include('user.layouts.partials.navbar')
 
 @section('content')
-    <div class="connexion-message">
+    {{-- <div class="connexion-message">
 
-        @if ( true
-            // ! auth()->user()->two_factor_secret
-            )
+        @if (! auth()->user()->two_factor_secret )
             <div class="twofa-message error">
                 <h3>
-                    Vous n'avez pas activé la double authentification
+                    La double authentification n'est pas activée
                 </h3>
                 <form
-                {{-- action="{{ url('user/two-factor-authentication') }} --}}
-                " method="POST">
+                    action="{{ url('user/two-factor-authentication') }}"
+                    method="POST">
                     @csrf
                     <button type="submit"
                             style="background: #31dc01;
@@ -39,10 +37,10 @@
         @else
             <div class="twofa-message success">
                 <h3>
-                    Vous avez activé la double authentification
+                    La double authentification est activée
                 </h3>
                 <form
-                {{-- action="{{ url('user/two-factor-authentication') }}" --}}
+                action="{{ url('user/two-factor-authentication') }}"
                 method="POST">
                     @csrf
                     @method('DELETE')
@@ -79,7 +77,7 @@
                 </ul>
             </div>
         @endif
-    </div>
+    </div> --}}
 
     <section class="search-zone">
         <h3>Rechercher un document</h3>
@@ -124,19 +122,11 @@
 
             @foreach ($documents as $document)
                 <div class="recent-element">
-                    <a href="#"><ion-icon name="document-text-outline"></ion-icon></a>
+                    {{-- <a href="#"><ion-icon name="document-text-outline"></ion-icon></a> --}}
+                    <a href="#"><img src="storage/images/pdf.png" alt=""></a>
                     <p>{{ $document->nom }}</p>
                 </div>
             @endforeach
-
-            {{-- <div class="recent-element">
-                <a href="#"><ion-icon name="folder"></ion-icon></a>
-                <p>Nom du document</p>
-            </div>
-            <div class="recent-element">
-                <a href="#"><ion-icon name="document-text-outline"></ion-icon></a>
-                <p>Nom du document</p>
-            </div> --}}
         </div>
     </section>
 @endsection

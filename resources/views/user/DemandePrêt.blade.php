@@ -116,27 +116,27 @@
                 @csrf
                 <div class="inputs firstname">
                     <label for="nom">Nom</label>
-                    <input type="text" name="nom" id="" placeholder="Nom">
+                    <input type="text" name="nom" id="" placeholder="Nom" value="{{ Auth::user()->nom }}" readonly>
                     <small></small>
                 </div>
                 <div class="inputs lastname">
                     <label for="prenoms">Prénoms</label>
-                    <input type="text" name="prenoms" id="" placeholder="Prénoms">
+                    <input type="text" name="prenoms" id="" placeholder="Prénoms" value="{{ Auth::user()->prenoms }}" readonly>
                     <small></small>
                 </div>
                 <div class="inputs durée">
                     <label for="duree">Durée du prêt</label>
-                    <input type="text" name="duree" id="" placeholder="Durée du prêt en jours">
+                    <input type="text" name="duree" id="" placeholder="Durée du prêt en jours" value="15">
                     <small></small>
                 </div>
                 <div class="inputs">
                     <label for="email">Email</label>
-                    <input type="text" name="email" id="" placeholder="Email">
+                    <input type="text" name="email" id="" placeholder="Email" value="{{ Auth::user()->email }}" readonly>
                     <small></small>
                 </div>
                 <div class="inputs">
                     <label for="telephone">Téléphone</label>
-                    <input type="text" name="telephone" id="" placeholder="Téléphone">
+                    <input type="text" name="telephone" id="" placeholder="Téléphone" value="55555555">
                     <small></small>
                 </div>
                 <div class="inputs motif">

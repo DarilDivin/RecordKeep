@@ -16,12 +16,9 @@
                         <span style="color: red;">{{ $error }}</span>
                 @endforeach
             </div>
-            @endif
+        @endif
         <form action="{{ route('password.request') }}" class="connexion connexion-form" method="POST">
             @csrf
-
-
-
             <input type="email" name="email" id="" placeholder="Email" class="input">
 
             <button type="submit">Réinitialiser</button>

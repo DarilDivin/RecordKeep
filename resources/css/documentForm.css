@@ -151,6 +151,12 @@ textarea::-webkit-scrollbar-thumb {
     grid-column: 1 / 4;
 }
 
+.structure {
+    grid-column: 1 / 4;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+
 .motClé {
     display: flex;
     flex-direction: row;

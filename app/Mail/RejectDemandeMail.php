@@ -13,14 +13,12 @@ class RejectDemandeMail extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $destination;
-
     /**
      * Create a new message instance.
      */
-    public function __construct(string $destination)
+    public function __construct(public string $destination)
     {
-        $this->destination = $destination;
+        //
     }
 
     /**

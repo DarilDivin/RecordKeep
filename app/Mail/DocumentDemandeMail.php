@@ -2,6 +2,7 @@
 
 namespace App\Mail;
 
+use App\Models\DemandePret;
 use App\Models\Document;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
@@ -17,7 +18,7 @@ class DocumentDemandeMail extends Mailable
     /**
      * Create a new message instance.
      */
-    public function __construct(public Document $document, public array $data)
+    public function __construct(public DemandePret $demande)
     {
         //
     }
@@ -29,7 +30,7 @@ class DocumentDemandeMail extends Mailable
     {
         return new Envelope(
             to: 'manager@gmail.fr',
-            replyTo: $this->data['email'],
+            replyTo: $this->demande->user->email,
             subject: 'Document Demande Mail',
         );
     }
@@ -40,10 +41,11 @@ class DocumentDemandeMail extends Mailable
     public function content(): Content
     {
         return new Content(
-            html: 'emails.document.demande',
+            markdown: 'emails.document.demande',
             with: [
-                'urlaccept' => route('document.demande.accept', ['document' => $this->document,'email' => $this->data['email'], 'name' => $this->data['nom']]),
-                'urlreject' => route('document.demande.reject', ['destination' => $this->data['email']])
+                'demande' => $this->demande,
+                'urlaccept' => route('/documents/demande/accept/' . $this->demande->id),
+                'urlreject' => route('document.demande.reject', ['demande' => $this->demande])
             ],
         );
     }

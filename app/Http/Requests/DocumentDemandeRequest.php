@@ -22,11 +22,11 @@ class DocumentDemandeRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'nom' => ['required', 'string'],
-            'prenoms' => ['required', 'string'],
+            // 'nom' => ['required', 'string'],
+            // 'prenoms' => ['required', 'string'],
             'motif' => ['required', 'string'],
-            'email' => ['required', 'string', 'min:4'],
-            'telephone' => ['required', 'string', 'min:8'],
+            // 'email' => ['required', 'string', 'min:4'],
+            // 'telephone' => ['required', 'string', 'min:8'],
             'duree' => ['required', 'integer', 'max:30'],
         ];
     }

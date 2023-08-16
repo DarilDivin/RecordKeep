@@ -59,7 +59,7 @@ class DocumentController extends Controller
      */
     public function store(DocumentFormRequest $request): RedirectResponse
     {
-        dd($request->validated());
+        // dd($request->validated());
         $document = Document::create($this->withDocuments(new Document(), $request));
         $document->fonctions()->sync($request->fonction);
         return redirect()

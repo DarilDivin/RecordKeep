@@ -10,9 +10,11 @@
     <div class="addDocumentFormContainer showForm">
         <div class="overlay"></div>
         <div class="addDocumentForm">
-            <span class="closeDocumentForm">
-                <ion-icon name="arrow-back"></ion-icon>
-            </span>
+            <a href="{{ route('admin.user.index') }}">
+                <span class="closeDocumentForm">
+                    <ion-icon name="arrow-back"></ion-icon>
+                </span>
+            </a>
             <h1> {{ $user->exists ? 'Éditer un Utilisateur' : 'Ajouter un Utilisateur' }} </h1>
             @if ($errors->any())
                 <div class="message error">
@@ -25,7 +27,7 @@
                     </ul>
                 </div>
             @endif
-            <form method="POST" action="{{ route($user->exists ? 'admin.user.update' : 'admin.user.store', ['user' => $user->id]) }}" enctype="multipart/form-data">
+            <form method="POST" action="{{ route($user->exists ? 'admin.user.update' : 'register', ['user' => $user->id]) }}" enctype="multipart/form-data">
                 @csrf
                 @method($user->exists ? 'put' : 'post')
                 <x-input class="inputContainer" id="matricule" label="Matricule" type="text" name="matricule" placeholder="Matricule"  readonly="" value="{{ $user->matricule }}" />
@@ -36,7 +38,9 @@
 
                 <x-input class="inputContainer" id="email" label="Email" type="email" name="email" placeholder="Email"  readonly="" value="{{ $user->email }}" />
 
-                <x-input class="inputContainer" id="password" label="Mot de passe" type="text" name="password" placeholder="Mot de passe"  readonly="" value="" />
+                <x-input class="inputContainer" id="password" label="Mot de passe" type="password" name="password" placeholder="Mot de passe"  readonly="" value="" />
+
+                <x-input class="inputContainer" id="password_confirmation" label="Confirmer Mot de passe" type="password" name="password_confirmation" placeholder="Confirmer Mot de passe"  readonly="" value="" />
 
                 {{-- <x-select class="inputContainer" id="sexe" label="Sexe" name="sexe" value="Masculin" /> --}}
 

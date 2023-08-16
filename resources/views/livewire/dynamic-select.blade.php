@@ -1,4 +1,4 @@
-<div>
+<div class="structure">
     <div class="inputContainer">
         <label for="direction">Direction</label>
         <select class="inputContainer" id="direction" wire:model="selectedDirection" name="direction_id">

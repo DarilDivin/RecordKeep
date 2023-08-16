@@ -94,6 +94,7 @@ button {
     align-items: center;
     background: var(--color-primary-light);
     border-radius: 10px;
+    margin: 10px;
 }
 
 .search-zone h3 {

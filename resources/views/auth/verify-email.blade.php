@@ -4,7 +4,7 @@
 
 @section('content')
     <div class="container">
-        <h3>You must verify you email address, please check your mail for a verification link.</h3>
+        <h3>Vous devez vérifier votre adresse e-mail, veuillez vérifier votre courrier pour un lien de vérification.</h3>
         @if (session('status'))
         <div class="connexion message success">
             <p style=" color: green;">{{ session('status') }}</p>
