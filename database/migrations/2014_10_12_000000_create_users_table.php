@@ -19,7 +19,6 @@ return new class extends Migration
             $table->string('email')->nullable();
             $table->date('datenaissance')->nullable();
             $table->string('sexe')->nullable();
-            $table->string('role')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password')->nullable();
             $table->rememberToken();

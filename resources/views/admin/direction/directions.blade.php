@@ -35,7 +35,7 @@
             </div>
 
             @if (session('success'))
-                <div class="success">
+                <div class="message success">
                     {{ session('success') }}
                 </div>
             @endif
@@ -76,7 +76,7 @@
                                 </td>
                             </tr>
                         @empty
-                            Aucune fonction en base de données
+                            Aucune direction en base de données
                         @endforelse
                     </tbody>
                 </table>

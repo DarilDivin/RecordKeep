@@ -1,7 +1,7 @@
 @extends('admin.layouts.template')
 
     @section('title')
-        Admin-Fonction-Management
+        Admin-Direction-Management
     @endsection
 
     @section('content')

@@ -28,7 +28,7 @@ class ServiceController extends Controller
     {
         return view('admin.service.service-form', [
             'service' => new Service(),
-            'directions' => Direction::pluck('direction', 'id'),
+            'directions' => Direction::getAllDirections(),
         ]);
     }
 
@@ -50,7 +50,7 @@ class ServiceController extends Controller
     {
         return view('admin.service.service-form', [
             'service' => $service,
-            'directions' => Direction::pluck('direction', 'id'),
+            'directions' => Direction::getAllDirections(),
         ]);
     }
 

@@ -35,9 +35,9 @@ class ClassementFormRequest extends FormRequest
             'emetteur' => ['required', 'string'],
             'recepteur' => ['required', 'string'],
             'chemise_dossier_id' => ['required', 'exists:chemise_dossiers,id', 'integer'],
-            /* 'boite_archive_id' => ['required', 'exists:boite_archive,id', 'integer'], */
-            /* 'rayon_rangement_id' => ['required', 'exists:rayon_rangement,id', 'integer'], */
-            /* 'motclefs' => ['required', 'array'] */
+            'boite_archive_id' => ['required', 'exists:boite_archives,id', 'integer'],
+            'rayon_rangement_id' => ['required', 'exists:rayon_rangements,id', 'integer'],
+            'motclefs' => ['required'/* , 'array' */],
             'archive' => ['required', Rule::in([1])],
         ];
     }

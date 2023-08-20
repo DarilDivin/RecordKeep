@@ -103,7 +103,7 @@
                         </td>
                     </tr>
                     @empty
-                        AUCUN DOCUMENT EN BASE DE DONNÉES
+                        AUCUN DOCUMENT CLASSÉ EN BASE DE DONNÉES
                     @endforelse
                 </tbody>
             </table>

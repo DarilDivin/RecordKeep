@@ -33,7 +33,7 @@ class CreateNewUser implements CreatesNewUsers
             ],
             'datenaissance' => ['required', 'date'],
             'sexe' => ['required', 'string'],
-            'role' => ['required', 'string'],
+            'role_id' => ['integer','exists:roles,id', 'required'],
 
             'password' => $this->passwordRules(),
         ])->validate();
@@ -45,10 +45,10 @@ class CreateNewUser implements CreatesNewUsers
             'email' => $input['email'],
             'datenaissance' => $input['datenaissance'],
             'sexe' => $input['sexe'],
-            'role' => $input['role'],
+            'role_id' => $input['role_id'],
             'password' => Hash::make($input['password']),
             'fonction_id' => $input['fonction_id'],
-            'division_id' => $input['division_id'],
+            'division_id' => $input['division_id']
         ]);
     }
 }

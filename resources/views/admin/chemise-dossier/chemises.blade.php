@@ -23,7 +23,7 @@
                     </button>
                     <button class="add">
                         <ion-icon name="add"></ion-icon>
-                        <a href="{{ route('admin.fonction.create') }}">Add Chemise Dossier</a>
+                        <a href="{{ route('admin.chemise.create') }}">Add Chemise Dossier</a>
                     </button>
                 </div>
                 <form action="">
@@ -35,7 +35,7 @@
             </div>
 
             @if (session('success'))
-                <div class="success">
+                <div class="message success">
                     {{ session('success') }}
                 </div>
             @endif

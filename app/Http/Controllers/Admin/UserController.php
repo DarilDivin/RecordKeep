@@ -9,6 +9,7 @@ use Illuminate\Contracts\View\View;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;
 use App\Http\Requests\Admin\UserFormRequest;
+use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
 {
@@ -36,8 +37,9 @@ class UserController extends Controller
         ]);
         return view('admin.user.user-form', [
             'user' => $user,
-            'fonctions' => Fonction::pluck('fonction', 'id'),
-            'divisions' => Division::pluck('division', 'id'),
+            'fonctions' => Fonction::getAllFonctions(),
+            'divisions' => Division::getAllDivisions(),
+            'roles' => Role::all()->pluck('name', 'id')
         ]);
     }
 
@@ -61,6 +63,7 @@ class UserController extends Controller
             'user' => $user,
             'fonctions' => Fonction::pluck('fonction', 'id'),
             'divisions' => Division::pluck('division', 'id'),
+            'roles' => Role::all()->pluck('name', 'id')
         ]);
     }
 

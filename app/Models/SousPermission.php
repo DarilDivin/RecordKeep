@@ -2,20 +2,20 @@
 
 namespace App\Models;
 
-use App\Models\Document;
+use App\Models\Permission;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
-class Transfert extends Model
+class SousPermission extends Model
 {
     use HasFactory, SoftDeletes;
 
     protected $guarded = [];
 
-    public function documents(): BelongsToMany
+    public function mainPermission(): BelongsTo
     {
-        return $this->belongsToMany(Document::class);
+        return $this->belongsTo(Permission::class, 'permission_id', 'id');
     }
 }

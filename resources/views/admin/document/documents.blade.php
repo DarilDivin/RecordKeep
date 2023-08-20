@@ -9,7 +9,7 @@
 <div class="container">
     @include('admin.layouts.partials.sidebar')
 
-    <div class="main">
+    {{-- <div class="main">
         <div class="title">
             <p>Manage Document</p>
             <ion-icon name="document-text"></ion-icon>
@@ -25,14 +25,6 @@
                         <ion-icon name="archive"></ion-icon>
                     </a>
                 </div>
-                <!-- <div class="optionContainer"><ion-icon name="apps"></ion-icon></div>
-                <div class="optionContainer"><ion-icon name="bookmarks"></ion-icon></div>
-                <div class="optionContainer"><ion-icon name="car-sport"></ion-icon></div>
-                <div class="optionContainer"><ion-icon name="cog"></ion-icon></div>
-                <div class="optionContainer"><ion-icon name="earth"></ion-icon></div>
-                <div class="optionContainer"><ion-icon name="document-lock"></ion-icon></div>
-                <div class="optionContainer"><ion-icon name="finger-print"></ion-icon></div>
-                <div class="optionContainer"><ion-icon name="laptop"></ion-icon></div> -->
             </div>
         </div>
 
@@ -93,17 +85,7 @@
                         <td>{{ $document->dua }}ans</td>
                         <td>
                             <button class="edit"><a href="{{ route('admin.document.edit', ['document' => $document->id]) }}">Éditer</a></button>
-                            {{-- <button class="delete">
-                                <a href="{{ route('admin.document.destroy', ['document' => $document->id]) }}"
-                                   onclick="event.preventDefault();
-                                   document.getElementById('deleteForm{{ $document->id }}').submit();">
-                                    Supprimer
-                                </a>
-                                <form action="{{ route('admin.document.destroy', ['document' => $document->id]) }}" method="POST" style="" id="deleteForm{{ $document->id }}">
-                                    @csrf
-                                    @method('delete')
-                                </form>
-                            </button> --}}
+
                             <button
                             class="delete"
                             routeForDeleting="{{ route('admin.document.destroy', ['document' => $document->id]) }}">
@@ -122,7 +104,10 @@
                 </tbody>
             </table>
         </div>
-    </div>
+    </div> --}}
+
+
+    @livewire('documents-table')
 </div>
 <div class="warningMessageContainer">
     <div class="overlay"></div>
