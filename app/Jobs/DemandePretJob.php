@@ -20,7 +20,7 @@ class DemandePretJob implements ShouldQueue
     /**
      * Create a new job instance.
      */
-    public function __construct(public DemandePret $demande)
+    public function __construct(public DemandePret $demande, public string $routeAccept, public string $routeReject)
     {
         //
     }
@@ -30,8 +30,6 @@ class DemandePretJob implements ShouldQueue
      */
     public function handle(): void
     {
-        // dd($this->demande);
-        // dd(route('document.demande.accept', ['demande' => $this->demande]));
-        Mail::send(new DocumentDemandeMail($this->demande));
+        Mail::send(new DocumentDemandeMail($this->demande, $this->routeAccept, $this->routeReject));
     }
 }

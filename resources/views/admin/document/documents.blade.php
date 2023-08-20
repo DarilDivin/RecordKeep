@@ -93,7 +93,7 @@
                         <td>{{ $document->dua }}ans</td>
                         <td>
                             <button class="edit"><a href="{{ route('admin.document.edit', ['document' => $document->id]) }}">Éditer</a></button>
-                            <button class="delete">
+                            {{-- <button class="delete">
                                 <a href="{{ route('admin.document.destroy', ['document' => $document->id]) }}"
                                    onclick="event.preventDefault();
                                    document.getElementById('deleteForm{{ $document->id }}').submit();">
@@ -103,6 +103,13 @@
                                     @csrf
                                     @method('delete')
                                 </form>
+                            </button> --}}
+                            <button
+                            class="delete"
+                            routeForDeleting="{{ route('admin.document.destroy', ['document' => $document->id]) }}">
+                                <a href="" onclick="event.preventDefault()">
+                                    Supprimer
+                                </a>
                             </button>
                             <button class=""><a href="">Infos</a></button>
                             <button class="classer"><a href="{{ route('admin.document.classement', ['document' => $document->id]) }}">Classer</a></button>
@@ -117,5 +124,17 @@
         </div>
     </div>
 </div>
-
+<div class="warningMessageContainer">
+    <div class="overlay"></div>
+    <div class="warning">
+        <ion-icon name="alert-circle"></ion-icon>
+        <h3>Est vous sur de vouloir supprimer cet élément ??</h3>
+        <form action="" class="deleteForm" method="POST">
+            @csrf
+            @method('delete')
+            <button type="button" class="closeWarning">Annuler</button>
+            <button type="submit" class="submitdeleteForm">Supprimer</button>
+        </form>
+    </div>
+</div>
 @endsection

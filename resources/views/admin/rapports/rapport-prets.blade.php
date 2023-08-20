@@ -4,18 +4,13 @@
     Dashboard-User-Management
 @endsection
 
-{{-- @section('style')
-    @vite(['resources/css/Dashboard-User-Document-Management.css', 'resources/js/Dashboard-User-Management.js'])
-@endsection --}}
-
-
 @section('content')
     <div class="container">
         @include('admin.layouts.partials.sidebar')
 
         <div class="main">
             <div class="title">
-                <p>Manage Users</p>
+                <p>Rapports</p>
                 <ion-icon name="person"></ion-icon>
             </div>
 
@@ -90,21 +85,8 @@
                         @endforelse
                     </tbody>
                 </table>
-
-                {{-- {{ $users->links() }} --}}
             </div>
         </div>
     </div>
 
-    <div class="warningMessageContainer show">
-        <div class="overlay"></div>
-        <div class="warning">
-            <ion-icon name="alert-circle"></ion-icon>
-            <h3>Est vous sur de vouloir supprimer cet élément ??</h3>
-            <form action="{{ route('admin.user.destroy', ['user' => $user->id]) }}">
-                <button type="button" class="closeWarning">Annuler</button>
-                <button type="submit" class="delete">Supprimer</button>
-            </form>
-        </div>
-    </div>
 @endsection

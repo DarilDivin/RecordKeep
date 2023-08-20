@@ -29,6 +29,10 @@
         <div class="infosDoc">
             <table class="table">
                 <tr>
+                    <td>Signature</td>
+                    <td>{{ $document->signature }}</td>
+                </tr>
+                <tr>
                     <td>Nom</td>
                     <td>{{ $document->nom }}</td>
                 </tr>

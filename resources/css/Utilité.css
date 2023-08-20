@@ -100,35 +100,32 @@
 }
 
 .tableau .table tbody td button:hover {
-    background: #6363ff20;
+    background: var(--bg-color-primary);
 }
 
 .tableau .table tbody td .edit {
-    color: #ffa500;
+    color: var(--text-color-warning);
     background: transparent;
 }
 .tableau .table tbody td .edit:hover {
-    color: #ffa500;
-    background: #ffa50020;
+    background: var(--bg-color-warning);
 }
 
 .tableau .table tbody td .delete {
-    color: #ff0000;
+    color: var(--text-color-error);
     background: transparent;
 }
 .tableau .table tbody td .delete:hover {
-    color: #ff0000;
-    background: #ff000020;
+    background: var(--bg-color-error);
 }
 
 .tableau .table tbody td .classer {
-    color: #008800;
+    color: var(--text-color-success);
     background: transparent;
 }
 
 .tableau .table tbody td .classer:hover {
-    color: #008800;
-    background: #00880020;
+    background: var(--bg-color-success);
 }
 
 

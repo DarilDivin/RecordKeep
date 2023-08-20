@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Admin;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class SearchDocumentRequest extends FormRequest
+class RapportPretFormRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,10 +22,9 @@ class SearchDocumentRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'nom' => ['string', 'nullable'],
-            'dateDébut' => ['date', 'nullable'],
-            'dateFin' => ['date', 'nullable'],
-            'motclé' => ['string', 'nullable'],
+            'demande_pret_id' => ['required', 'exists:demande_prets,id'],
+            'observation' => ['required'],
+            'etat_doc' => ['required']
         ];
     }
 }

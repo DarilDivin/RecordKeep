@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('motif');
             $table->integer('duree');
+            $table->string('etat')->nullable();
             $table->foreignIdFor(User::class)->constrained()->cascadeOnDelete();
             $table->foreignIdFor(Document::class)->constrained()->cascadeOnDelete();
             $table->timestamps();

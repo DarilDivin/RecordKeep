@@ -23,7 +23,7 @@ class DemandePret extends Model
 
     public function document(): BelongsTo
     {
-        return $this->belongsTo(Document::class);
+        return $this->belongsTo(Document::class, 'document_id', 'id');
     }
 
     public function rapportprets(): HasMany

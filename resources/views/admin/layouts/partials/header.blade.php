@@ -34,6 +34,7 @@
         'resources/js/Dashboard-User-Management.js',
         'resources/js/Dashboard-Statistiques.js', */
         'resources/js/DocumentPage.js',
+        'resources/js/Dashboard.js',
 ])
 
 </head>
