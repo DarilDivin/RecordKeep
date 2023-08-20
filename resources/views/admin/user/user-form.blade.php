@@ -125,7 +125,6 @@
                         </div>
                     </div>
                 </div>
-                <x-select class="inputContainer" id="role" label="Rôle" name="role_id" :value="$roles" elementIdOnEntite="{{ $user->role_id }}" />
 
                 <div class="inputContainer button">
                     <button type="submit">{{ $user->exists ? 'Éditer' : 'Créer' }}</button>
