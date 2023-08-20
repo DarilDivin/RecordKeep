@@ -21,6 +21,9 @@
                 <a href="{{ route('admin.role.create') }}">Add Role</a>
             </button>
         </div>
+
+        @livewire('counter')
+
         <form action="">
             <div class="search-box">
                 <input type="text" name="search" wire:model="search">
