@@ -20,7 +20,7 @@ class FonctionFactory extends Factory
             'Directeur',
             'Chef Service',
             'Chef Division',
-            'Collaborateur'
+            'Chargé'
         ];
 
         return [

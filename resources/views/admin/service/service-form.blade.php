@@ -32,7 +32,7 @@
 
                 <x-input class="inputContainer fonction" id="sigle" label="Sigle" type="text" name="sigle" placeholder="Sigle"  readonly="" value="{{ $service->sigle }}" />
 
-                <x-select class="inputContainer fonction" id="direction_id" label="Direction" name="direction_id" :value="$directions"/>
+                <x-select class="inputContainer fonction" id="direction_id" label="Direction" name="direction_id" :value="$directions" elementIdOnEntite="{{ $service->direction_id }}"/>
 
                 <div class="inputContainer button">
                     <button type="submit">

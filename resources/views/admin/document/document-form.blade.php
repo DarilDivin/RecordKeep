@@ -53,19 +53,18 @@
                 <x-select class="inputContainer" id="division" label="Division" name="division_id" :value="$divisions" elementIdOnEntite="{{ $document->division_id }}" /> --}}
 
 
+                <x-select class="inputContainer" id="categories" label="Catégorie du Document" name="categorie_id" :value="$categories" elementIdOnEntite="{{ $document->categorie_id }}" />
+
+                <x-input class="inputContainer" id="source" label="Source du Document" type="text" name="source" placeholder="Source du Document" readonly="" value="{{ $document->source }}" />
+
+                <x-input class="inputContainer" id="datecreation" label="Date de Création" type="date" name="datecreation" placeholder="12/12/2003"  readonly="" value="{{ $document->datecreation }}" />
+
                 @livewire('dynamic-select', [
                     'directions' => $directions,
                     'divisions' => $divisions,
                     'document' => $document,
                     'services' => $services,
                 ])
-
-
-                <x-select class="inputContainer" id="categories" label="Catégorie du Document" name="categorie_id" :value="$categories" elementIdOnEntite="{{ $document->categorie_id }}" />
-
-                <x-input class="inputContainer" id="source" label="Source du Document" type="text" name="source" placeholder="Source du Document" readonly="" value="{{ $document->source }}" />
-
-                <x-input class="inputContainer" id="datecreation" label="Date de Création" type="date" name="datecreation" placeholder="12/12/2003"  readonly="" value="{{ $document->datecreation }}" />
 
                 <x-input class="inputContainer" id="document" label="Document" type="file" name="document" placeholder=""  readonly="" value="" />
 

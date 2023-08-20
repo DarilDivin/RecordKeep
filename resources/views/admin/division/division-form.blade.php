@@ -32,7 +32,7 @@
 
                 <x-input class="inputContainer fonction" id="sigle" label="Sigle" type="text" name="sigle" placeholder="Sigle"  readonly="" value="{{ $division->sigle }}" />
 
-                <x-select class="inputContainer fonction" id="service_id" label="Service" name="service_id" :value="$services"/>
+                <x-select class="inputContainer fonction" id="service_id" label="Service" name="service_id" :value="$services" elementIdOnEntite="{{ $division->service_id }}"/>
 
                 <div class="inputContainer button">
                     <button type="submit">

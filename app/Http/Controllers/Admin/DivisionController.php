@@ -28,7 +28,7 @@ class DivisionController extends Controller
     {
         return view('admin.division.division-form', [
             'division' => new Division(),
-            'services' => Service::pluck('service', 'id'),
+            'services' => Service::getAllServices(),
         ]);
     }
 
@@ -50,7 +50,7 @@ class DivisionController extends Controller
     {
         return view('admin.division.division-form', [
             'division' => $division,
-            'services' => Service::pluck('service', 'id'),
+            'services' => Service::getAllServices(),
         ]);
     }
 
@@ -62,7 +62,7 @@ class DivisionController extends Controller
         $division->update($request->validated());
         return redirect()
             ->route('admin.division.index')
-            ->with('success', 'La division a bien été  modifiée');
+            ->with('success', 'La division a bien été  modifié');
     }
 
     /**

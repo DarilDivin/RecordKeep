@@ -42,8 +42,6 @@
 
                 <x-input class="inputContainer" id="password_confirmation" label="Confirmer Mot de passe" type="password" name="password_confirmation" placeholder="Confirmer Mot de passe"  readonly="" value="" />
 
-                {{-- <x-select class="inputContainer" id="sexe" label="Sexe" name="sexe" value="Masculin" /> --}}
-
                 <div class="inputContainer">
                     <label for="sexe">Sexe</label>
                     <select name="sexe" id="sexe">
@@ -58,24 +56,11 @@
 
                 <x-input class="inputContainer" id="datenaissance" label="Date de naissance" type="date" name="datenaissance" placeholder="Date de naissance"  readonly="" value="{{ $user->datenaissance }}" />
 
-
                 <x-select class="inputContainer" id="division" label="Division" name="division_id" :value="$divisions" elementIdOnEntite="{{ $user->division_id }}" />
 
                 <x-select class="inputContainer" id="fonction" label="Fonction" name="fonction_id" :value="$fonctions" elementIdOnEntite="{{ $user->fonction_id }}" />
 
-                {{-- <x-select class="inputContainer" id="role" label="Rôle" name="role" :value=""/> --}}
-
-                <div class="inputContainer">
-                    <label for="role">Rôle</label>
-                    <select name="role" id="role">
-                            <option value="utilisateur">Utilisateur</option>
-                            <option value="gestionnaire">Gestionnaire</option>
-                            <option value="administrateur">Administrateur</option>
-                    </select>
-                    @error('role')
-                        <span style="color: red;">{{ $message }}</span>
-                    @enderror
-                </div>
+                <x-select class="inputContainer" id="role" label="Rôle" name="role_id" :value="$roles" elementIdOnEntite="{{ $user->role_id }}" />
 
                 <div class="inputContainer button">
                     <button type="submit">{{ $user->exists ? 'Éditer' : 'Créer' }}</button>

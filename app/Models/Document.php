@@ -6,11 +6,11 @@ use App\Models\Service;
 use App\Models\Division;
 use App\Models\Fonction;
 use App\Models\Direction;
-use App\Models\Transfert;
 use App\Models\DemandePret;
 use Illuminate\Support\Str;
 use App\Models\ChemiseDossier;
 use App\Models\NatureDocument;
+use App\Models\DemandeTransfert;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -59,9 +59,9 @@ class Document extends Model
         return $this->belongsToMany(ChemiseDossier::class);
     }
 
-    public function transferts(): BelongsToMany
+    public function demandetransfert(): BelongsTo
     {
-        return $this->belongsToMany(Transfert::class);
+        return $this->belongsTo(DemandeTransfert::class, 'demande_transfert_id', 'id');
     }
 
     public function fonctions(): BelongsToMany

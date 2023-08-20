@@ -4,17 +4,18 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
-use App\Models\BoiteArchive;
-use App\Models\Categorie;
-use App\Models\ChemiseDossier;
-use App\Models\Direction;
+use App\Models\Service;
 use App\Models\Division;
 use App\Models\Document;
 use App\Models\Fonction;
+use App\Models\Categorie;
+use App\Models\Direction;
+use App\Models\BoiteArchive;
+use App\Models\ChemiseDossier;
 use App\Models\NatureDocument;
 use App\Models\RayonRangement;
-use App\Models\Service;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
@@ -23,18 +24,20 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // \App\Models\User::factory(10)->create();
+        $this->call(RoleSeeder::class);
+        $this->call(PermissionSeeder::class);
 
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+        \App\Models\User::factory(10)->create();
+
+        \App\Models\User::factory()->create([
+            'nom' => 'Jonh',
+            'email' => 'jonh@doe.fr',
+            'password' => Hash::make('jonhdoefr')
+        ])->assignRole(['Administrateur', 'Gestionnaire']);
 
         Categorie::factory()->count(11)->create();
         NatureDocument::factory()->count(10)->create();
         Fonction::factory()->count(4)->create();
-
-        $code = '';
 
         RayonRangement::factory()->count(10)->create()->each(function ($rayon) {
             BoiteArchive::factory()->count(1)->create([

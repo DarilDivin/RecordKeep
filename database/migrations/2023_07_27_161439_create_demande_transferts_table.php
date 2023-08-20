@@ -1,6 +1,5 @@
 <?php
 
-use App\Models\Division;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -12,8 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->foreignIdFor(Division::class)->nullable();
+        Schema::create('demande_transferts', function (Blueprint $table) {
+            $table->id();
+            $table->string('libelle');
+            $table->timestamps();
+            $table->softDeletes();
         });
     }
 
@@ -22,8 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('division_id');
-        });
+        Schema::dropIfExists('demande_transferts');
     }
 };

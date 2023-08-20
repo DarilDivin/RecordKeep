@@ -39,11 +39,18 @@
 
                 <x-input class="inputContainer" id="recepteur" label="Récepteur" type="text" name="recepteur" placeholder="Récepeteur"  readonly="readonly" value="{{ $document->recepteur }}" />
 
-                <x-select class="inputContainer" id="chemise" label="Chemise Dossier" name="chemise_dossier_id" :value="$chemises" elementIdOnEntite="{{ $document->chemise_dossier_id }}" />
+                {{-- <x-select class="inputContainer" id="chemise" label="Chemise Dossier" name="chemise_dossier_id" :value="$chemises" elementIdOnEntite="{{ $document->chemise_dossier_id }}" />
 
-                <x-select class="inputContainer" id="boite" label="Boîte Archive" name="boite_archive_id" :value="$boites" elementIdOnEntite="{{ $document->boite_archive_id }}" />
+                <x-select class="inputContainer" id="boite" label="Boîte Archive" name="boite_archive_id" :value="$boites" elementIdOnEntite="{{ $document->chemisedossier->boitearchive->id  }}" />
 
-                <x-select class="inputContainer" id="rayon" label="Rayon de Rangement" name="rayon_rangement_id" :value="$rayons" elementIdOnEntite="{{ $document->rayon_rangement_id }}" />
+                <x-select class="inputContainer" id="rayon" label="Rayon de Rangement" name="rayon_rangement_id" :value="$rayons" elementIdOnEntite="{{ $document->chemisedossier->boitearchive->rayonrangement->id }}" /> --}}
+
+                @livewire('classement-dynamic-select', [
+                    'chemises' => $chemises,
+                    'boites' => $boites,
+                    'rayons' => $rayons,
+                    'document' => $document
+                ])
 
                 <x-input class="inputContainer" id="archive" label="" type="hidden" name="archive" placeholder="Archive"  readonly="readonly" value="1" />
 

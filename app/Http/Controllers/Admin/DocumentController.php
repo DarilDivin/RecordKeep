@@ -14,6 +14,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\Admin\DocumentFormRequest;
+use Illuminate\Http\Request;
 
 class DocumentController extends Controller
 {
@@ -23,7 +24,7 @@ class DocumentController extends Controller
     public function index(): View
     {
         return view('admin.document.documents',[
-            'documents' => Document::latest('created_at')->get()
+            // 'documents' => Document::latest('created_at')->get()
         ]);
     }
 
@@ -124,5 +125,10 @@ class DocumentController extends Controller
         return redirect()
             ->route('admin.document.index')
             ->with('success', 'Le Document a bien été supprimé');
+    }
+
+    public function destroyManyDocs(Request $request)
+    {
+        dd(request()->documentSelected);
     }
 }

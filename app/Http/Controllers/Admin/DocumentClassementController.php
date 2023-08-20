@@ -22,6 +22,7 @@ class DocumentClassementController extends Controller
 
     public function showClassementForm(Document $document): View
     {
+        // dd($document->chemisedossier->boitearchive->rayonrangement->id );
         $motclefsArray = explode('#', $document->motclefs);
         unset($motclefsArray[0]);
         $motclefsString = implode(', ', $motclefsArray);
@@ -36,6 +37,7 @@ class DocumentClassementController extends Controller
 
     public function doClassement(ClassementFormRequest $request, Document $document): RedirectResponse
     {
+        dd($request->validated());
         $ch_code = ChemiseDossier::find($request->validated('chemise_dossier_id'))->code;
 
         $document->update(array_merge($request->validated(), [
