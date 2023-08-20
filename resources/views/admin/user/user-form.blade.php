@@ -60,7 +60,71 @@
 
                 <x-select class="inputContainer" id="fonction" label="Fonction" name="fonction_id" :value="$fonctions" elementIdOnEntite="{{ $user->fonction_id }}" />
 
-                <x-select class="inputContainer" id="role" label="Rôle" name="role_id" :value="$roles" elementIdOnEntite="{{ $user->role_id }}" />
+                <div class="inputContainer TomSelect role">
+                    <label for="role">Rôle</label>
+                    <select name="role" id="role" multiple placeholder="Choisir les rôles">
+                        <option value="Utilisateur">Utilisateur</option>
+                        <option value="Gestionnaire">Gestionnaire</option>
+                        <option value="Administrateur">Administrateur</option>
+                    </select>
+                    @error('role')
+                        <span style="color: red;">{{ $message }}</span>
+                    @enderror
+                </div>
+
+                <hr>
+
+                <h3>Accorder les permissions</h3>
+                <div class="permissionsContainer">
+                    <div class="permission">
+                        <div class="permissionName">
+                            <input type="checkbox" name="" id="">
+                            <label for="">Permission</label>
+                        </div>
+                        <div class="sousPermission">
+                            <div class="checkPermission">
+                                <label for="">Sous permission 1</label>
+                                <input type="checkbox" name="" id="">
+                            </div>
+                            <div class="checkPermission">
+                                <label for="">Sous permission 2</label>
+                                <input type="checkbox" name="" id="">
+                            </div>
+                            <div class="checkPermission">
+                                <label for="">Sous permission 3</label>
+                                <input type="checkbox" name="" id="">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="permission">
+                        <div class="permissionName">
+                            <input type="checkbox" name="" id="">
+                            <label for="">Permission</label>
+                        </div>
+                        <div class="sousPermission">
+                            <div class="checkPermission">
+                                <label for="">Sous permission 1</label>
+                                <input type="checkbox" name="" id="">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="permission">
+                        <div class="permissionName">
+                            <input type="checkbox" name="" id="">
+                            <label for="">Permission</label>
+                        </div>
+                        <div class="sousPermission">
+                            <div class="checkPermission">
+                                <label for="">Sous permission 1</label>
+                                <input type="checkbox" name="" id="">
+                            </div>
+                            <div class="checkPermission">
+                                <label for="">Sous permission 2</label>
+                                <input type="checkbox" name="" id="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
                 <div class="inputContainer button">
                     <button type="submit">{{ $user->exists ? 'Éditer' : 'Créer' }}</button>

@@ -12,7 +12,16 @@
 <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 <script>
+
     new TomSelect('select[multiple]', {
+        create: false,
+        plugins: {
+            remove_button:{
+                title:'Remove this item',
+            }
+        },
+    })
+    new TomSelect('#motclefs', {
         create: true,
         plugins: {
             remove_button:{

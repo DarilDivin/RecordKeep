@@ -71,7 +71,7 @@ class Document extends Model
 
     public function demandeprets(): HasMany
     {
-        return $this->hasMany(DemandePret::class);
+        return $this->hasMany(DemandePret::class, 'document_id', 'id');
     }
 
     public function getSlug(): string

@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\BoiteArchiveController;
 use App\Http\Controllers\Admin\CategorieController;
 use App\Http\Controllers\Admin\ChemiseDossierController;
+use App\Http\Controllers\Admin\DemandePretController;
 use App\Http\Controllers\Admin\DemandeTransfertController;
 use App\Http\Controllers\Admin\DirectionController;
 use App\Http\Controllers\Admin\DivisionController;
@@ -43,12 +44,27 @@ Route::prefix('admin')->name('admin.')->group(function () {
 });
 
 Route::get('manager/rapport-de-depart-de-pret', [RapportDepartController::class, 'index'])->name('rapport-depart-list');
-Route::get('manager/rapport-de-depart-de-pret/create/{document}-{name}-{email}', [RapportDepartController::class, 'create'])
+Route::get('manager/rapport-de-depart-de-pret/create/{demande}', [RapportDepartController::class, 'create'])
     ->name('rapport-depart-create')
     ->where([
-        'document' => $idRegex
+        'demande' => $idRegex
     ]);
-Route::post('manager/rapport-de-depart-de-pret/store', [RapportDepartController::class, 'store'])->name('rapport-depart-store');
+Route::post('manager/rapport-de-depart-de-pret/store/', [RapportDepartController::class, 'store'])
+    ->name('rapport-depart-store');
+
+Route::get('manager/rapport-preview/{rapport}', [RapportDepartController::class, 'show'])
+    ->name('rapport-show')
+    ->where([
+        'rapport' => $idRegex
+    ]);
+
+Route::get('downloadPdf/{rapport}', [RapportDepartController::class, 'pdf'])->where(['rapport' => $idRegex]);
+
+Route::get('admin/demandes-de-pret/encours', [DemandePretController::class, 'indexEncours'])->name('demande-de-prets-encours');
+Route::get('admin/demandes-de-pret/validé', [DemandePretController::class, 'indexValidé'])->name('demande-de-prets-validé');
+
+
+
 
 Route::get('admin/document/classement', [DocumentClassementController::class, 'index'])
     ->name('admin.document.classed');

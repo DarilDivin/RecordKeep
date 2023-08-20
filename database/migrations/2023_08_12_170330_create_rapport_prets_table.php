@@ -15,8 +15,8 @@ return new class extends Migration
         Schema::create('rapport_prets', function (Blueprint $table) {
             $table->id();
             $table->string('type');
-            $table->string('observation');
-            $table->string('etat-doc');
+            $table->text('observation');
+            $table->string('etat_doc');
             $table->foreignIdFor(DemandePret::class)->constrained()->cascadeOnDelete();
             $table->timestamps();
             $table->softDeletes();

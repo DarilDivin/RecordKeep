@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Document;
 use App\Models\DemandePret;
 use App\Jobs\DemandePretJob;
-use Illuminate\Http\Request;
 use App\Mail\AcceptDemandeMail;
 use App\Mail\RejectDemandeMail;
 use App\Events\DemandePretEvent;
@@ -22,7 +21,18 @@ class DocumentController extends Controller
     {
         $documents = Document::query()->orderBy('created_at', 'desc');
 
-        // dd($documents->items());
+        if ($nom = $request->validated('nom')) {
+            $documents = $documents->where('nom', 'like', "%{$nom}%");
+        }
+        if ($dateDébut = $request->validated('dateDébut')) {
+            $documents = $documents->where('datecreation', '>=', $dateDébut);
+        }
+        if ($dateFin = $request->validated('dateFin')) {
+            $documents = $documents->where('datecreation', '<=', $dateFin);
+        }
+        if ($motclé = $request->validated('motclé')) {
+            $documents = $documents->where('motclefs', 'like', "%{$motclé}%");
+        }
 
         return view('user.DocumentPage', [
             'documents' => $documents->paginate(10),
@@ -33,9 +43,7 @@ class DocumentController extends Controller
     public function show(string $slug, Document $document)
     {
         $expectedSlug = $document->getSlug();
-        // dd($expectedSlug);
-        // dd($document->naturedocument);
-        if($slug != $expectedSlug) {
+        if ($slug != $expectedSlug) {
             return to_route('document.show', ['slug' => $expectedSlug, 'document' => $document]);
         }
 
@@ -49,32 +57,31 @@ class DocumentController extends Controller
         $lastCreatedDemande = DemandePret::create(array_merge($request->validated(), [
             'user_id' => Auth::user()->id,
             'document_id' => $document->id,
+            'etat' => 'encour'
         ]));
 
-        // dd(Mail::send(new DocumentDemandeMail($lastCreatedDemande)));
-
-        // dd(route('document.demande.accept', ['demande' => $lastCreatedDemande]));
-        DemandePretJob::dispatch($lastCreatedDemande);
+        $routeAccept = route('document.demande.accept', ['demande' => $lastCreatedDemande]);
+        $routeReject = route('document.demande.reject', ['demande' => $lastCreatedDemande]);
+        DemandePretJob::dispatch($lastCreatedDemande, $routeAccept, $routeReject);
 
         return back()->with('success', 'Votre demande a bien été envoyée');
     }
 
     public function acceptDemande(DemandePret $demande)
     {
-        // dd($demande->user->email);
+
+        $demande->update(['etat' => 'validé']);
+
         Mail::send(new AcceptDemandeMail($demande->user->email));
 
-        // event(new AcceptDemandeEvent($email))
-
-        // dd(request()->prenoms);
-
-        // DemandePret::create();
-
-        // return redirect(route('rapport-depart-create', ['document' => $document, 'name' => $name, 'email' => $email]));
+        return redirect(route('rapport-depart-create', ['demande' => $demande]));
     }
 
     public function rejectDemande(DemandePret $demande)
     {
+
+        DemandePret::destroy($demande);
+
         Mail::send(new RejectDemandeMail($demande->user->email));
 
         return to_route('document.index')->with('success', 'Votre demande a bien été envoyée');

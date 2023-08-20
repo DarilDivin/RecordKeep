@@ -260,12 +260,6 @@
 }
 
 
-
-
-
-
-
-
 .main .information-group {
     width: 100%;
     display: flex;
@@ -455,6 +449,113 @@
     background: #33333320;
     border-radius: 8px;
 }
+
+/* DashBoardCard */
+
+.cardContainer {
+    width: 100%;
+    height: 90vh !important;
+    padding: 15px 45px;
+    overflow-y: scroll;
+    /* background: #4186f63e; */
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+}
+
+.cardContainer .card {
+    background: var(--bg-color);
+    height: 230px;
+    border-radius: 5px;
+    padding: 5px 10px;
+    box-shadow: var(--box-shadow-normal);
+    border: .5px solid var(--color-primary);
+}
+
+.cardContainer .card .head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 20%;
+    border-bottom: .5px solid #80808080;
+}
+
+.cardContainer .card .head .titleInfos {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.cardContainer .card .head .titleInfos h3 {
+    font-size: .9rem;
+    font-weight: 400;
+}
+
+.cardContainer .card .head .titleInfos span {
+    font-size: .7rem;
+    color: #33333380;
+}
+
+.cardContainer .card .head span {
+    font-size: .8rem;
+    color: #33333380;
+}
+
+.cardContainer .card .body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* gap: 5px; */
+    /* background: #4186f66d; */
+    height: 65%;
+}
+
+.cardContainer .card .body .info {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 2px 0;
+    /* background: #0c0; */
+    color: #333;
+}
+
+.cardContainer .card .body .info p {
+    font-size: .9rem;
+    font-weight: 400;
+}
+
+.cardContainer .card .body .info span {
+    font-size: .8rem;
+    opacity: .5;
+    font-weight: 400;
+}
+
+.cardContainer .card .foot {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 35px;
+    margin: 0 0 10px;
+    /* background: #33333320; */
+    height: 15%;
+}
+
+.cardContainer .card .foot a {
+    padding: 5px;
+    text-decoration: none;
+    color: #0c0;
+    font-size: .8rem;
+    background: #00cc0020;
+    border-radius: 5px;
+}
+
+
+
+
+
 
 /* ===================== Manager Dashboard Add ====================== */
 

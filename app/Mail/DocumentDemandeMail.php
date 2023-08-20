@@ -18,7 +18,7 @@ class DocumentDemandeMail extends Mailable
     /**
      * Create a new message instance.
      */
-    public function __construct(public DemandePret $demande)
+    public function __construct(public DemandePret $demande, public string $routeAccept, public string $routeReject)
     {
         //
     }
@@ -44,8 +44,8 @@ class DocumentDemandeMail extends Mailable
             markdown: 'emails.document.demande',
             with: [
                 'demande' => $this->demande,
-                'urlaccept' => route('/documents/demande/accept/' . $this->demande->id),
-                'urlreject' => route('document.demande.reject', ['demande' => $this->demande])
+                'urlaccept' => $this->routeAccept,
+                'urlreject' => $this->routeReject,
             ],
         );
     }

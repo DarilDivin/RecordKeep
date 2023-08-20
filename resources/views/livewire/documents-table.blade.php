@@ -1,4 +1,4 @@
-<div class="main">
+{{-- <div class="main">
     <div class="title">
         <p>Manage Document</p>
         <ion-icon name="document-text"></ion-icon>
@@ -14,16 +14,8 @@
                     <ion-icon name="archive"></ion-icon>
                 </a>
             </div>
-            <!-- <div class="optionContainer"><ion-icon name="apps"></ion-icon></div>
-            <div class="optionContainer"><ion-icon name="bookmarks"></ion-icon></div>
-            <div class="optionContainer"><ion-icon name="car-sport"></ion-icon></div>
-            <div class="optionContainer"><ion-icon name="cog"></ion-icon></div>
-            <div class="optionContainer"><ion-icon name="earth"></ion-icon></div>
-            <div class="optionContainer"><ion-icon name="document-lock"></ion-icon></div>
-            <div class="optionContainer"><ion-icon name="finger-print"></ion-icon></div>
-            <div class="optionContainer"><ion-icon name="laptop"></ion-icon></div> -->
         </div>
-    </div>
+    </div> --}}
 
     <div class="optional">
         <div class="buttons">
@@ -66,7 +58,6 @@
         <table class="table">
             <thead>
                 <tr>
-                    <td></td>
                     <td>Code</td>
                     <td>Nom du document</td>
                     <td>Date de création</td>
@@ -77,25 +68,19 @@
             <tbody>
                 @forelse ($documents as $document)
                 <tr>
-                    <td>
-                        <input type="checkbox" name="documentSelected[]" value="{{ $document->id }}">
-                    </td>
                     <td>{{ $document->signature }}</td>
                     <td>{{ $document->nom }}</td>
                     <td>{{ $document->created_at }}</td>
                     <td>{{ $document->dua }}ans</td>
                     <td>
                         <button class="edit"><a href="{{ route('admin.document.edit', ['document' => $document->id]) }}">Éditer</a></button>
-                        <button class="delete">
-                            <a href="{{ route('admin.document.destroy', ['document' => $document->id]) }}"
-                               onclick="event.preventDefault();
-                               document.getElementById('deleteForm{{ $document->id }}').submit();">
+
+                        <button
+                        class="delete"
+                        routeForDeleting="{{ route('admin.document.destroy', ['document' => $document->id]) }}">
+                            <a href="" onclick="event.preventDefault()">
                                 Supprimer
                             </a>
-                            <form action="{{ route('admin.document.destroy', ['document' => $document->id]) }}" method="POST" style="" id="deleteForm{{ $document->id }}">
-                                @csrf
-                                @method('delete')
-                            </form>
                         </button>
                         <button class=""><a href="">Infos</a></button>
                         <button class="classer"><a href="{{ route('admin.document.classement', ['document' => $document->id]) }}">Classer</a></button>
@@ -108,4 +93,4 @@
             </tbody>
         </table>
     </div>
-</div>
+{{-- </div> --}}
