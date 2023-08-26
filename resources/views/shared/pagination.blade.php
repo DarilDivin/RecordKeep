@@ -16,7 +16,11 @@
             @if ($paginator->onFirstPage())
                 <li class="page-item disabled"><span class="page-link">Précédente</span></li>
             @else
-                <li class="page-item"><a href="{{ $paginator->previousPageUrl() }}" class="page-link">Précédente</a></li>
+                <li wire:click="previousPage" wire:loading.attr="disabled" class="page-item">
+                    {{-- <a href="{{ $paginator->previousPageUrl() }}" class="page-link"> --}}
+                        Précédente
+                    {{-- </a> --}}
+                </li>
             @endif
 
             <!-- Liens vers les pages individuelles -->
@@ -30,7 +34,11 @@
                         @if ($page == $paginator->currentPage())
                             <li class="page-item active"><span class="page-link">{{ $page }}</span></li>
                         @else
-                            <li class="page-item"><a href="{{ $url }}" class="page-link">{{ $page }}</a></li>
+                            <li class="page-item" wire:click="gotoPage({{ $page }})">
+                                {{-- <a href="{{ $url }}" class="page-link"> --}}
+                                    {{ $page }}
+                                {{-- </a> --}}
+                            </li>
                         @endif
                     @endforeach
                 @endif
@@ -40,7 +48,11 @@
 
             <!-- Lien vers la dernière page -->
             @if ($paginator->hasMorePages())
-                <li class="page-item"><a href="{{ $paginator->nextPageUrl() }}" class="page-link">Suivant</a></li>
+                <li class="page-item" wire:click="nextPage" wire:loading.attr="disabled">
+                    {{-- <a href="{{ $paginator->nextPageUrl() }}" class="page-link"> --}}
+                        Suivant
+                    {{-- </a> --}}
+                </li>
             @else
                 <li class="page-item disabled"><span class="page-link">Suivant</span></li>
             @endif

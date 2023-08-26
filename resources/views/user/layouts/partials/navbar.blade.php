@@ -1,7 +1,7 @@
 @php
     $route = request()->route()->getName();
 @endphp
-<nav>
+<nav id="navbar">
     <div class="logo">
         <span>D</span>
         <span>S</span>

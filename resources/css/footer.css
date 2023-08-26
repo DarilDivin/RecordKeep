@@ -6,14 +6,20 @@ footer {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    padding: 0 7.5%;
+    background: var(--color-primary);
+    /* background: #008559; */
+    background: #162233;
+    background: #6363ff;
+    background: linear-gradient(45deg, #6363ff 0%, #162233 60%);
 }
 
 footer hr {
-    width: 75%;
-    border: .5px solid #6363ff;
+    width: 100%;
+    border: .5px solid var(--color-primary);
 }
 
-footer .footer-content {
+/* footer .footer-content {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -24,7 +30,7 @@ footer .footer-content {
 footer .footer-content h2 {
     font-size: 40px;
     font-weight: 500;
-    color: #333;
+    color: var(--text-color);
     letter-spacing: 10px;
     margin: 10px 0 25px;
 }
@@ -43,7 +49,7 @@ footer .footer-content ul li {
 
 footer .footer-content ul li a{
     text-decoration: none;
-    color: #333;
+    color: var(--text-color);
     font-weight: 500;
 }
 
@@ -57,10 +63,70 @@ footer .footer-content .socials {
 
 footer .footer-content .socials ion-icon {
     font-size: 1.5rem;
-    color: #333;
+    color: var(--text-color);
 }
 
 footer .footer-content .copyright {
-    color: #333;
+    color: var(--text-color);
     margin: 0 0 15px;
+} */
+
+footer .footer-content {
+    width: 100%;
+    min-height: 165px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    border-bottom: 1px solid #00b7ff;
+}
+
+footer .footer-content .infoStructure {
+    width: 100%;
+    height: 100%;
+    padding: 10px;
+    /* background: #0000ff4c; */
+}
+
+footer .footer-content .infoStructure img {
+    width: 75%;
+    height: 60%;
+    object-fit: cover;
+}
+
+footer .footer-content .navLinks {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 45px 0 0;
+}
+
+footer .footer-content .navLinks ul {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100%;
+    /* border-bottom: 1px solid #333; */
+}
+
+footer .footer-content .navLinks ul li {
+    list-style: none;
+    color: #fff;
+}
+
+footer .footer-content .navLinks ul li a {
+    text-decoration: none;
+    color: #fff;
+}
+
+footer .copyright {
+    width: 100%;
+    height: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 65px;
+    margin: 0 0 15px;
+}
+
+footer .copyright p {
+    color: var(--text-color-white);
 }

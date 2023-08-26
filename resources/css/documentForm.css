@@ -37,7 +37,7 @@
     width: 90%;
     padding: 20px 30px;
     height: 0;
-    background: #fff;
+    background: var(--bg-color);
     border-radius: 8px;
     display: flex;
     flex-direction: column;
@@ -98,7 +98,7 @@ label {
 .addUserForm form .inputContainer span,
 .addDocumentForm form .inputContainer span {
     font-size: .7rem;
-    color: #f00;
+    color: var(--text-color-danger);
 }
 
 .addUserForm form .inputContainer input,
@@ -114,11 +114,10 @@ label {
     border-radius: 5px;
     background: var(--color-primary-light);
     font-size: 1rem;
-    color: #555;
+    color: var(--text-color);
     font-family: 'Poppins', sans-serif;
 }
 
-/* .addUserForm form .inputContainer.TomSelect.role input, */
 .addDocumentForm form .inputContainer.TomSelect.role input {
     width: 250px!important;
 }
@@ -128,7 +127,7 @@ label {
     resize: none;
     overflow-y: scroll;
     scrollbar-width: thin; /* Permet de définir l'épaisseur de la scrollbar (auto, thin, none) */
-    scrollbar-color: var(--color-primary) #f2f2f2;
+    scrollbar-color: var(--color-primary);
 }
 
 textarea::-webkit-scrollbar-track {
@@ -213,17 +212,6 @@ hr {
     color: #fff;
 }
 
-.addDocumentForm form .inputContainer input[name='motClé'] {
-    width: 75%;
-}
-
-.addDocumentForm form .inputContainer input[name='motCléSubmit'] {
-    width: 24%;
-    background: var(--color-primary);
-    color: #eee;
-    cursor: pointer;
-    max-width: 75px;
-}
 
 .addDocumentForm form .inputContainer.autorisation {
     position: relative;
@@ -246,7 +234,7 @@ hr {
     left: 10px;
     color: var(--color-primary);
     font-weight: 400;
-    background: #fff;
+    background: var(--bg-color);
     padding: 1px 5px;
 
 }
@@ -256,7 +244,6 @@ hr {
     flex-direction: row-reverse;
     justify-content: flex-end;
     align-items: center;
-    /* background: #555; */
     gap: 15px;
     padding: 5px 10px;
 }
@@ -322,11 +309,10 @@ h1 {
 
 
 .ts-wrapper {
-    border: .5px solid #006aff;
+    border: .5px solid var(--color-primary);
     border-radius: 5px;
     width: 100%;
     height: 130px;
-    /* padding: 2px; */
 }
 
 .TomSelect.role .ts-wrapper {
@@ -360,8 +346,8 @@ h1 {
     padding: 2px 6px;
     padding-right: 6px;
     background: var(--color-primary-light-2)!important;
-    color: #303030;
-    border: .5px solid #006aff!important;
+    color: var(--text-color);
+    border: .5px solid var(--color-primary)!important;
     border-radius: 3px;
     max-height: 35px;
 }
@@ -374,7 +360,6 @@ h3 {
 
 .permissionsContainer {
     grid-column: 1 / span 3;
-    /* background-color: #0000003c; */
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -444,7 +429,7 @@ h3 {
     width: 35%;
     padding: 20px 30px;
     height: 0;
-    background: #fff;
+    background: var(--bg-color);
     border-radius: 8px;
     display: flex;
     flex-direction: column;
@@ -461,13 +446,14 @@ h3 {
 .warning ion-icon {
     font-size: 4rem;
     opacity: .8;
-    color: #ffcc00;
+    color: var(--text-color-warning);
 }
 
 .warning h3 {
     font-weight: 400;
     font-size: 1.2rem;
-    color: #30303080;
+    color: var(--text-color);
+    opacity: .5;
 }
 
 .warning form {
@@ -481,15 +467,16 @@ h3 {
 
 .warning form button {
     width: 100px;
+    background: transparent;
 }
 
 .warning form button.submitdeleteForm {
-    background-color: #ff000020;
-    color: #f00;
+    /* background-color: var(--bg-color-danger); */
+    color: var(--text-color-error);
 }
 
 .warning form button.submitdeleteForm:hover {
-    background: #ff000030;
+    background: var(--bg-color-error);
 }
 
 .warningMessageContainer.show .warning {

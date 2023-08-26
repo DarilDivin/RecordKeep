@@ -28,6 +28,7 @@ export default defineConfig({
                 'resources/js/Dashboard-User-Management.js',
                 'resources/js/Dashboard-Statistiques.js',
                 'resources/js/DocumentPage.js',
+                'resources/js/DemandePrêt.js',
                 'resources/js/Dashboard.js',
 
             ],

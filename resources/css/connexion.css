@@ -37,9 +37,9 @@
     box-shadow: var(--box-shadow);
     border-radius: 8px;
     margin: 10px 0 25px;
-    background: #fff;
+    background: var(--bg-color);
     font-size: 1rem;
-    color: #333;
+    color: var(--text-color);
     font-weight: 400;
 }
 
@@ -110,9 +110,9 @@
 }
 
 .container .error {
-    background: #ff000020;
+    background: var(--bg-color-error)
 }
 
 .container .success {
-    background: #04ff0020;
+    background: var(--bg-color-success);
 }

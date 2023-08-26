@@ -4,6 +4,7 @@
 
 :root {
     --color-primary: #6363ff;
+    --color-secondary: #162233;
     --color-primary-light: #7ebbf810;
     --color-primary-light-2: #6363ff20;
     --color-primary-light-3: #6363ff50;
@@ -11,9 +12,18 @@
                   0 -4px 8px #85c0ff33;
     --box-shadow-normal: 0 4px 8px #d2d2d233,
                          0 -4px 8px #d2d2d233;
+    --box-shadow-normal-dark: 0 4px 8px #0000001a,
+                         0 -4px 8px #0000001a;
     --transition: .4s ease;
-    /* --bg-color: #001b67; */
     --bg-color: #fff;
+    --bg-color-transparent: #ffffff40;
+    --bg-color-dark-transparent: #00000010;
+
+    --border-darkgray: #ddd;
+    --bg-color-dark: #1c1c1c;
+    --bg-color-dark-second: #2f2f2f;
+    --bg-color-light: #ffffff;
+    --bg-color-light-second: #efefef;
 
     --bg-color-success: #00880020;
     --bg-color-error: #ff000020;
@@ -23,6 +33,9 @@
     --text-color-error: #ff0000;
     --text-color-warning: #ffa500;
     --text-color-primary: #6363ff;
+
+    --text-color: #333;
+    --text-color-white: #fff;
 }
 
 
@@ -40,11 +53,12 @@ body {
     align-items: center;
     overflow-x: hidden;
     transition: .4s ease;
+    margin-bottom: 0!important;
 }
 
-body.user {
+/* body.user {
     padding: 0 7.5%!important;
-}
+} */
 
 body.dash {
     height: 100vh;
@@ -53,6 +67,7 @@ body.dash {
 
 section {
     width: 100%;
+    /* margin-top: 50px; */
 }
 
 .bg_ball_style {
@@ -67,44 +82,37 @@ section {
 }
 
 .bg_ball_style.ball1 {
-    background: #c6ffe0;
+    background: #0083fd49;
     right: -350px;
     top: 300px;
 }
 
 .bg_ball_style.ball2 {
-    background: #cbfffa;
+    background: #0083fd49;
     left: 100px;
     top: -390px;
-}
-
-.bg_ball_style.ball3 {
-    background: #C6FCFF;
-    left: -150px;
-    bottom: -870px;
-}
-.bg_ball_style.ball4 {
-    background: #F4CBFF;
-    right: -150px;
-    bottom: -870px;
 }
 
 button {
     cursor: pointer;
 }
 
+ion-icon {
+    visibility: visible!important;
+}
+
 
 /*================ Search Zone ================*/
 
 .search-zone {
-    padding: 25px 10px;
+    padding: 25px 7.5%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background: var(--color-primary-light);
+    /* background: var(--color-primary-light); */
     border-radius: 10px;
-    margin: 10px;
+    margin: 70px 10px 10px;
 }
 
 .search-zone h3 {
@@ -120,6 +128,9 @@ button {
     display: flex;
     justify-content: space-evenly;
     align-items: center;
+    background: var(--color-primary-light);
+    padding: 10px 10px;
+    border-radius: 10px9;
 }
 
 .search-zone .search-form .inputcontainer {

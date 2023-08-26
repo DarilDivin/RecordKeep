@@ -62,10 +62,10 @@
 
                 <div class="inputContainer TomSelect role">
                     <label for="role">Rôle</label>
-                    <select name="role" id="role" multiple placeholder="Choisir les rôles">
-                        <option value="Utilisateur">Utilisateur</option>
-                        <option value="Gestionnaire">Gestionnaire</option>
-                        <option value="Administrateur">Administrateur</option>
+                    <select name="role_id" id="role" multiple placeholder="Choisir les rôles">
+                        <option value="3">Utilisateur</option>
+                        <option value="2">Gestionnaire</option>
+                        <option value="1">Administrateur</option>
                     </select>
                     @error('role')
                         <span style="color: red;">{{ $message }}</span>

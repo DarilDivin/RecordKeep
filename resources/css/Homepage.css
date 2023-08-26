@@ -1,5 +1,11 @@
 /*================ Connexion Message ================*/
 
+.settings {
+    margin-top: 100px;
+    min-height: 90vh;
+    padding: 0 7.5%;
+}
+
 .connexion-message {
     width: 100%;
     background: transparent;
@@ -78,6 +84,10 @@
     align-items: center;
 }
 
+    /* .search-zone {
+        padding: 0 7.5%;
+    } */
+
 form .input {
     width: 100%;
     height: 45px;
@@ -151,51 +161,6 @@ form button:hover {
     letter-spacing: 3px;
 }
 
-
-
-/*================ Search Zone ================*/
-
-/* .search-zone {
-    padding: 25px 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.search-zone .search-form {
-    width: 80%;
-    height: 100%;
-    position: relative;
-}
-
-.search-zone .search-form .search-bar {
-    width: 100%;
-    padding: 15px 25px;
-    border: 1px solid var(--color-primary);
-    background: #ffffff27;
-    backdrop-filter: blur(100px);
-    border-radius: 50px;
-    outline: none;
-    font-size: 1.2rem;
-    font-weight: 300;
-    color: #333;
-}
-
-.search-zone .search-form ion-icon {
-    position: absolute;
-    top: 50%;
-    right: 25px;
-    font-size: 1.2rem;
-    color: var(--color-primary);
-    transform: translateY(-50%);
-    visibility: visible;
-    transition: visibility .2s ease;
-}
-
-.search-zone .search-form .search-bar:focus + ion-icon  {
-    visibility: hidden;
-} */
-
 /*================ Information Zone ================*/
 
 .infos-zone {
@@ -237,7 +202,7 @@ form button:hover {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 15px 25px;
+    padding: 15px 7.5%;
 }
 
 .recent .recent-title {
@@ -292,119 +257,15 @@ form button:hover {
     font-weight: 300;
     color: #333;
     height: 60px;
-}
-
-
-/*================ Add Document ================*/
-
-.add-document {
-    display: flex;
-    padding: 15px 25px;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-}
-
-.add-document .add-title {
-    width: 80%;
     text-align: center;
-}
-
-.add-document .add-title h3 {
-    font-size: 1.5rem;
-    color: #333;
-    margin: 15px;
-}
-
-.add-document .add-form {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-.add-document .add-form form {
-    width: 500px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 10px;
-    margin: 20px;
-}
-
-.add-document .add-form form input,
-.add-document .add-form form textarea {
-    width: 100%;
-    height: 45px;
-    padding: .8rem 10px;
-    outline: none;
-    border: none;
-    border-radius: 8px;
-    margin: 10px 0 15px;
-    background: #33333333;
-    font-size: 1rem;
-    color: #333;
-    font-weight: 400;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.add-document .add-form form textarea {
-    resize: none;
-    height: 120px;
-    font-family: 'Poppins', sans-serif;
-}
-
-.add-document .add-form .form__control {
-	display: flex;
-	flex-direction: column;
-	gap: 0.6rem;
-    width: 100%;
-}
-
-.add-document .add-form form button {
-    min-width: 100px;
-    height: 45px;
-    padding: 5px 10px;
-    background: #9A9CE0;
-    color: #fff;
-    font-weight: 600;
-    align-self: flex-end;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: all .2s ease;
-}
-
-.add-document .add-form form button:hover {
-    background: #7377e1;
 }
 
 
 /*================ Media Queries ================*/
 
-/*================ MEDIA QUERIES (MEDIUM DEVICES) ================*/
-@media screen and (max-width: 1024px) {
-
-    .bg_ball_style.ball3 {
-        background: #C6FCFF;
-        left: -149px;
-        bottom: -1400px;
-    }
-}
 
 /*================ MEDIA QUERIES (SMALL DEVICES) ================*/
 @media screen and (max-width: 750px) {
-
-    .bg_ball_style.ball3 {
-        background: #C6FCFF;
-        left: -149px;
-        bottom: -1400px;
-        display: none;
-    }
 
    /*================ Footer ================*/
 
@@ -462,13 +323,6 @@ form button:hover {
 
     nav .menuHamburger {
         display: block;
-    }
-
-    .bg_ball_style.ball3 {
-        background: #C6FCFF;
-        left: -149px;
-        bottom: -1400px;
-        display: none;
     }
 
     /*================ Search Zone ================*/
@@ -559,13 +413,6 @@ form button:hover {
         font-size: 12px;
     }
 
-    .bg_ball_style.ball3 {
-        background: #C6FCFF;
-        left: -149px;
-        bottom: -1400px;
-        display: none;
-    }
-
     /*================ Footer ================*/
 
     .recent .recent-container {
@@ -601,8 +448,6 @@ form button:hover {
         font-size: 10px;
     }
 }
-
-
 @media screen and (max-width: 348px) {
     .recent .recent-container {
         grid-template-columns: repeat(1, 1fr);
