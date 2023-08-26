@@ -5,6 +5,8 @@
     height: calc(100vh - 68px);
     display: grid;
     grid-template-columns: repeat(2, 1fr);
+    padding: 0 7.5%;
+    margin: 100px 0 0;
 }
 
 .description-container .description_msg {
@@ -20,39 +22,51 @@
     font-weight: 600;
     color: var(--color-primary);
     margin-bottom: 15px;
+    background: -webkit-linear-gradient(45deg, var(--color-primary), var(--color-secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 .description-container .description_msg p {
     font-size: 20px;
-    font-weight: 100;
+    font-weight: 400;
     color: #333;
     margin-bottom: 15px;
 }
 
 .description-container .description_msg .btn-signin {
-    width: 255px;
-    height: 58px;
-    font-size: 30px;
+    width: 150px;
+    height: 45px;
+    font-size: 18px;
     font-weight: 400;
-    color: #FFF;
-    border-radius: 50px;
+    color: var(--color-primary);
+    border-radius: 10px;
     outline: none;
     border: 0;
-    background: var(--color-primary);
+    background: linear-gradient(45deg, #16223350 35%, #6363ff50 100%);
     cursor: pointer;
-    transition: opacity 0.2s;
+    transition: all 0.4s ease;
 }
 
 .description-container .description_msg .btn-signin:hover {
-    background: #9A9CE0;
+    background: linear-gradient(45deg, #162233 35%, #6363ff 100%);
     opacity: 0.9;
 }
 
 .description-container .description_msg .btn-signin a {
     text-decoration: none;
-    color: #fff;
-    width: 100%;
-    height: 100%;
+    /* width: 100%; */
+    /* height: 100%; */
+    background: -webkit-linear-gradient(45deg, var(--color-primary), var(--color-secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.description-container .description_msg .btn-signin:hover a {
+    background: #fff;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    transition: all .4s ease;
 }
 
 .description-container .description_img {
@@ -65,102 +79,90 @@
 
 /*================ Preview Section ================*/
 
-.image img {
-    width: 1292px;
-    height: 100%;
-    object-fit: cover;
-}
-
 .carousel {
     width: 100%;
     height: 95vh;
     overflow: hidden;
     margin: 10px 0;
     position: relative;
+    /* border-radius: 20px; */
+    padding: 10px 7.5%;
+    background: #16223350;
+}
+
+swiper-container {
+    display: block;
+    width: 100%;
+    height: 100%;
     border-radius: 20px;
+    overflow: hidden;
 }
 
-.carousel .image-container {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    transform: translateX(0);
-    transition: transform 0.5s ease-in-out;
-}
-
-.carousel .image-container .image {
-    width: 100%;
-    height: 100%;
-}
-
-/* .carousel .image-container .image img {
-    width: 100%;
-    object-fit: cover;
-    height: 100%;
-} */
-
-.carousel .image-container .image p {
-    position: absolute;
-    width: 100%;
-    bottom: 15px;
+swiper-slide {
     text-align: center;
-    padding: 15px 150px;
-    color: #FFF;
-    backdrop-filter: blur(50px);
-    font-size: 20px;
-}
-
-.buttons-container {
-    display: flex;
-    justify-content: space-between;
-    position: absolute;
-    top: 50%;
-    width: 100%;
-}
-
-.btn {
-    background: #ffffff61;
-    color: #fff;
-    border: none;
-    padding: 0.5em;
-    cursor: pointer;
-    width: 40px;
-    height: 100px;
-    transform: translateY(-50px);
-    font-size: 1.8rem;
+    font-size: 18px;
+    background: #fff;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-#left {
-    border-top-right-radius: 10px;
-    border-bottom-right-radius: 10px;
+swiper-slide img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
-#right {
-    border-top-left-radius: 10px;
-    border-bottom-left-radius: 10px;
+swiper-slide p {
+    position: absolute;
+    width: 90%;
+    border-radius: 15px;
+    bottom: 20px;
+    text-align: center;
+    padding: 15px 150px;
+    color: #333;
+    background: #16223310;
+    backdrop-filter: blur(10px);
+    font-size: 18px;
 }
 
-.btn ion-icon {
-    font-size: 1.8rem;
-    font-weight: 600;
+.autoplay-progress {
+    position: absolute;
+    right: 16px;
+    bottom: 16px;
+    z-index: 10;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    color: var(--swiper-theme-color);
 }
 
-.btn:hover {
-    opacity: 0.9;
-}
-
-.btn:focus {
-    outline: none;
+.autoplay-progress svg {
+    --progress: 0;
+    position: absolute;
+    left: 0;
+    top: 0px;
+    z-index: 10;
+    width: 100%;
+    height: 100%;
+    stroke-width: 4px;
+    stroke: var(--swiper-theme-color);
+    fill: none;
+    stroke-dashoffset: calc(125.6 * (1 - var(--progress)));
+    stroke-dasharray: 125.6;
+    transform: rotate(-90deg);
 }
 
 .carousel-text {
     width: 100%;
     color: #333;
     margin: 10px 0 45px;
+    padding: 0 7.5%;
+
 }
 
 .carousel-text h3 {
@@ -169,6 +171,9 @@
     font-size: 40px;
     font-weight: 700;
     margin: 0 0 15px;
+    background: -webkit-linear-gradient(0deg, var(--color-primary), var(--color-secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 .carousel-text p {
@@ -183,6 +188,8 @@
     height: 90vh;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
+    padding: 0 7.5%;
+
 }
 
 .advantage .advantage-img {
@@ -205,11 +212,14 @@
     font-weight: 600;
     color: var(--color-primary);
     margin-bottom: 15px;
+    background: -webkit-linear-gradient(45deg, var(--color-primary), var(--color-secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 .advantage .advantage-text p {
     font-size: 20px;
-    font-weight: 100;
+    font-weight: 400;
     color: #333;
     margin-bottom: 15px;
 }
@@ -249,7 +259,7 @@
         height: 75vh;
     }
 
-    .carousel .image-container .image p {
+    swiper-slide p {
         font-size: 15px;
     }
 
@@ -304,17 +314,11 @@
     }
 
     /*================ Preview Section ================*/
-    .image img {
-        width: 553px;
-        height: 100%;
-        object-fit: cover;
-    }
-
     .carousel {
         height: 50vh;
     }
 
-    .carousel .image-container .image p {
+    swiper-slide p {
         font-size: 12px;
         padding: 15px 50px;
     }
@@ -442,7 +446,7 @@
         height: 35vh;
     }
 
-    .carousel .image-container .image p {
+    swiper-slide p {
         font-size: 8px;
         padding: 15px 35px;
     }
@@ -588,7 +592,7 @@
         height: 25vh;
     }
 
-    .carousel .image-container .image p {
+    swiper-slide p {
         font-size: 6px;
         padding: 15px 15px;
     }

@@ -16,7 +16,7 @@ use App\Http\Controllers\Manager\DocumentController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('index');
 });
 
 Route::get('/home', [HomeController::class, 'index'])->name('home')->middleware(['auth', 'verified']);

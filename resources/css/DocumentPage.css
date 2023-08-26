@@ -4,6 +4,7 @@
     width: 100%;
     min-height: 80vh;
     transition: .4s ease;
+    padding: 0 7.5%;
 }
 
 .documentList.marge {
@@ -16,7 +17,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    color: #333;
+    color: var(--text-color);
     padding: 10px 25px;
 }
 
@@ -51,7 +52,7 @@
     outline: none;
     border-radius: 15px;
     font-size: 1.1rem;
-    background: #ffffff40;
+    background: var(--bg-color-transparent);
 }
 
 .documentList .sectionIndication .searchBar form ion-icon {
@@ -84,7 +85,7 @@
 }
 
 .documentList .sectionIndication .listOption ion-icon:hover {
-    background: #0000001e;
+    background: var(--bg-color-dark-transparent);
 }
 
 /*================ List ================*/
@@ -106,13 +107,31 @@
     justify-content: flex-start;
     align-items: center;
     margin-bottom: 35px;
+    border-radius: 5px;
+}
+.documentList.list .documents form {
+    width: 100%;
+    min-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    /* gap: 15px; */
+    margin-bottom: 35px;
+}
+
+.btndownload {
+    align-self: flex-start;
 }
 
 .documentList.list .document {
     width: 100%;
     height: 60px;
-    border-bottom: 1px solid #bbb;
+    border-bottom: 1px solid var(--boder-darkgray);
     transition: .2s ease;
+    display: flex;
+    /* justify-content: center;
+    align-items: center; */
 }
 
 .documentList.list .document:hover {
@@ -138,11 +157,15 @@
 
 .documentList.list .document  .documentLine .documentIcon ion-icon {
     font-size: 3.5rem;
-    background: #fff;
+    background: var(--bg-color);
     border-radius: 10px;
 }
 
-.documentList.list .document  .documentLine .documentIcon ion-icon[name='folder'] {
+.documentList.list .document  .documentLine .documentIcon img {
+    width: 35px;
+}
+
+/* .documentList.list .document  .documentLine .documentIcon ion-icon[name='folder'] {
     font-size: 3.5rem;
     border-radius: 10px;
     color: #fee503;
@@ -153,12 +176,17 @@
     border-radius: 10px;
     color: var(--color-primary);
     background: #fff;
-}
+} */
 
 .documentList.list .document  .documentLine .documentName {
     width: 400px;
     overflow: hidden;
     text-align: center;
+}
+
+.documentList.list .document  .documentLine .documentName p a {
+    text-decoration: underline;
+    color: var(--color-primary);
 }
 
 
@@ -168,11 +196,10 @@
 
 .documentList.list .document  .documentLine .documentOptions {
     width: 345px;
-    height: 100%;
+    /* height: 100%; */
     display: flex;
     justify-content: space-around;
     align-items: center;
-
 }
 
 .documentList.list .document  .documentLine .documentOptions button {
@@ -199,6 +226,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 100%;
+    height: 100%;
     text-decoration: none;
     color: var(--color-primary);
     gap: 10px;
@@ -222,6 +251,21 @@
     justify-content: center;
     margin-bottom: 35px;
 }
+
+.documentList.grid .documents .btndownload {
+    grid-column: span 5;
+    width: 100px;
+}
+
+/* .documentList.grid .documents form {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: repeat(5, 200px);
+    gap: 15px;
+    justify-content: center;
+    margin-bottom: 35px;
+} */
 
 .documentList.grid .documents .document {
     width: 190px;
@@ -265,7 +309,11 @@
     border-radius: 10px;
 }
 
-.documentList.grid .document  .documentLine .documentIcon ion-icon[name='folder'] {
+.documentList.grid .document  .documentLine .documentIcon img {
+    width: 75px;
+}
+
+/* .documentList.grid .document  .documentLine .documentIcon ion-icon[name='folder'] {
     font-size: 3.5rem;
     border-radius: 10px;
     color: #fee503;
@@ -276,7 +324,7 @@
     border-radius: 10px;
     color: var(--color-primary);
     background: #fff;
-}
+} */
 
 .documentList.grid .document  .documentLine .documentCreationDate,
 .documentList.grid .document  .documentLine .documentSize {
@@ -286,6 +334,11 @@
 .documentList.grid .document  .documentLine .documentName {
     font-size: .8rem;
     text-align: center;
+}
+
+.documentList.grid .document  .documentLine .documentName p a {
+    text-decoration: underline;
+    color: var(--color-primary);
 }
 
 .documentList.grid .document  .documentLine .documentOptions {
@@ -301,7 +354,6 @@
     font-weight: 400;
     font-size: 1rem;
     padding: 0 5px;
-    /* background: #3c8ffd; */
     background: transparent;
     transition: 0.2s ease;
     min-width: 75px;
@@ -318,6 +370,17 @@
     background: var(--color-primary-light-2);
 }
 
+.documentList.grid .document  .documentLine .documentOptions button a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    text-decoration: none;
+    color: var(--color-primary);
+    gap: 10px;
+}
+
 /*================ DocumentView ================*/
 
 .documentView {
@@ -327,6 +390,7 @@
     position: fixed;
     top: 0;
     transition: visibility 0.4s;
+    z-index: 2;
 }
 
 .documentView.show {
@@ -356,7 +420,7 @@
     transform: translate(-50%, calc(-50% - 50px));
     width: 75%;
     height: 0;
-    background: #eee;
+    background: var(--boder-darkgray);
     border-radius: 15px;
     overflow: hidden;
     display: flex;
@@ -384,19 +448,19 @@
     width: 35px;
     height: 35px;
     font-size: 1.5rem;
-    background-color: #eee;
+    background-color: var(--boder-darkgray);
     color: var(--color-primary);
     display: flex;
     justify-content: center;
     align-items: center;
     border-radius: 8px;
-    border: 1px solid #eee;
+    border: 1px solid var(--boder-darkgray);
     transition: all .4s ease;
     padding: 0;
 }
 
 .view button:hover {
-    color: #eee;
+    color: var(--boder-darkgray);
     background: var(--color-primary);
     border: 1px solid var(--color-primary);
 }
@@ -404,8 +468,8 @@
 .table tbody td button {
     height: 30px;
     margin-right: 35px;
-    background: #4187f6;
-    color: #fff;
+    background: var(--color-primary);
+    color: var(--bg-color);
     font-size: .8rem;
     font-weight: 400;
     border: none;
@@ -416,7 +480,7 @@
 
 .table tbody th,
 .table tbody td {
-    border-top: 1px solid #0000004d;
+    border-top: 1px solid var(--boder-darkgray);
 }
 
 
@@ -435,12 +499,6 @@
 
 @media screen and (max-width: 1024px) {
 
-    .bg_ball_style.ball3 {
-        background: #C6FCFF;
-        left: -149px;
-        bottom: -1400px;
-    }
-
     .documentList.list .document  .documentLine .documentCreationDate,
     .documentList.list .document  .documentLine .documentSize{
         display: none;
@@ -455,13 +513,6 @@
 
     body {
         padding: 0 3.5%;
-    }
-
-    .bg_ball_style.ball3 {
-        background: #C6FCFF;
-        left: -149px;
-        bottom: -1400px;
-        display: none;
     }
 
     .documentList.list .document  .documentLine .documentOptions button p {
@@ -561,13 +612,6 @@
         display: block;
     }
 
-    .bg_ball_style.ball3 {
-        background: #C6FCFF;
-        left: -149px;
-        bottom: -1400px;
-        display: none;
-    }
-
     .documentList.grid .documents {
         grid-template-columns: repeat(2, 200px);
     }
@@ -625,13 +669,6 @@
 
     nav .nav_menu ul li a {
         font-size: 12px;
-    }
-
-    .bg_ball_style.ball3 {
-        background: #C6FCFF;
-        left: -149px;
-        bottom: -1400px;
-        display: none;
     }
 
     .documentList.grid .documents {

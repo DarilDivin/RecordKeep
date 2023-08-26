@@ -5,14 +5,30 @@ nav {
     display: flex;
     justify-content: space-between;
     padding: 20px 5px;
-    background: var(--color-primary-light);
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
+    padding: 20px 7.5%;
+    background: transparent;
+    backdrop-filter: blur(100px);
+    color: var(--color-primary);
+    position: fixed;
+    transition: all .6s .2s ease;
+    z-index: 1;
+}
+
+nav.scrolled {
+    background: #6363ff;
+    background: linear-gradient(45deg, #162233 35%, #6363ff 100%);
+    color: var(--text-color-white);
 }
 
 nav .logo {
     font-size: 1.5rem;
     font-weight: 500;
+}
+
+nav.scrolled .logo {
+    color: var(--text-color-white);
 }
 
 nav .nav_menu {
@@ -36,19 +52,20 @@ nav .nav_menu ul li {
 
 nav .nav_menu ul li a {
     text-decoration: none;
-    color: #333;
+    /* color: var(--text-color); */
+    color: inherit;
     transition: color .4s ease;
 }
 
 nav .nav_menu ul li a:hover {
     text-decoration: none;
-    color: #6363ff;
+    color: var(--color-primary);
     transition: var(--transition);
 }
 
 nav .nav_menu ul li.active a {
     text-decoration: none;
-    color: #6363ff;
+    color: var(--color-primary);
     transition: var(--transition);
 }
 
@@ -59,8 +76,8 @@ nav .nav_menu ul li.active::before {
     position: absolute;
     bottom: 0;
     text-decoration: none;
-    background: #6363ff;
-    border: .25px solid #6363ff;
+    background: var(--color-primary);
+    border: .25px solid var(--color-primary);
     border-radius: 25%;
     width: 5%;
     height: 2px;
@@ -75,8 +92,8 @@ nav .nav_menu ul li::before {
     position: absolute;
     bottom: 0;
     text-decoration: none;
-    background: #6363ff;
-    border: .25px solid #6363ff;
+    background: var(--color-primary);
+    border: .25px solid var(--color-primary);
     border-radius: 25%;
     width: 0;
     height: 2px;

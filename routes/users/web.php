@@ -26,6 +26,11 @@ Route::post('/documents/{document}/demande', [DocumentController::class, 'demand
 //     'destination' => $mailRegex,
 // ]);
 
+Route::get('/document/download/{document}', [DocumentController::class, 'download'])->name('document.download')->where([
+    'demande' => $idRegex,
+]);
+
+Route::post('/many-zip', [DocumentController::class, 'filesdownload']);
 
 Route::get('/documents/demande/reject/{demande}', [DocumentController::class, 'rejectDemande'])->name('document.demande.reject')
 ->where([

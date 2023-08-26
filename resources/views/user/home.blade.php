@@ -123,7 +123,7 @@
             @foreach ($documents as $document)
                 <div class="recent-element">
                     {{-- <a href="#"><ion-icon name="document-text-outline"></ion-icon></a> --}}
-                    <a href="#"><img src="storage/images/pdf.png" alt=""></a>
+                    <a href="#"><img src="storage/images/pdf-1.png" alt=""></a>
                     <p>{{ $document->nom }}</p>
                 </div>
             @endforeach

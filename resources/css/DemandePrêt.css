@@ -6,6 +6,10 @@ input {
     border-radius: 5px;
 }
 
+.voir {
+    padding: 0 7.5%;
+}
+
 
 .voirInfosDoc,
 .plusInfos {
@@ -14,18 +18,18 @@ input {
     background-color: #fff;
     border-radius: 5px;
     box-shadow: var(--box-shadow);
-    margin: 10px;
+    margin: 100px 10px 10px;
     display: flex;
     justify-content: space-evenly;
     align-items: center;
     gap: 30px;
-    border: .1px solid #6363ff;
+    border: .1px solid var(--color-primary);
 }
 
 .voirDoc {
     width: 35%;
     position: relative;
-    border-right: 1px solid #6363ff;
+    border-right: 1px solid var(--color-primary);
 }
 
 .voirDoc .doc {
@@ -41,6 +45,34 @@ input {
 .voirDoc .doc a ion-icon {
     width: 100%;
     height: 100%;
+}
+
+.voirDoc .docOptions {
+    display: flex;
+    /* background-color: aqua; */
+    width: 60%;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.voirDoc .docOptions button{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 35px;
+    gap: 5px;
+    background: var(--color-primary);
+    color: #fff;
+}
+
+.voirDoc .docOptions button a {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    gap: 5px;
+    justify-content: space-evenly;
+    text-decoration: none;
+    color: #fff;
 }
 
 .voirDoc .badge {
@@ -68,19 +100,14 @@ input {
 }
 
 .table tbody tr:nth-child(odd) {
-    background-color: #edf7fb;
-    /* color: #000; */
+    background-color: var(--color-primary-light);
 }
 
-
-
 .loanRequest {
-    /* min-height: 90vh; */
     width: 100%;
-    /* background: #3c8ffd; */
     padding: 10px 20px;
     margin: 30px 0;
-    background: #7ebbf810;
+    background: var(--color-primary-light);
 }
 
 .loanRequest .formContainer {
@@ -91,7 +118,6 @@ input {
 
 .loanRequest .formContainer h1 {
     grid-column: 1 / span 4;
-    /* background: #f97878; */
     font-weight: 600;
     font-size: 1.2rem;
     text-align: center;
@@ -103,7 +129,6 @@ input {
     display: grid;
     gap: 10px 5px;
     grid-template-columns: repeat(4, 1fr);
-    /* background: #3cfd5c; */
     padding: 15px;
 }
 
@@ -113,12 +138,11 @@ input {
 .inputs select {
     width: 100%;
     padding: 10px;
-    border: 0.1px solid #6363ff;
-    /* border-bottom: 2px solid gray; */
+    border: 0.1px solid var(--color-primary);
     border-radius: 5px;
     font-family: 'Poppins', sans-serif;
     outline: none;
-    background: #b0d2f710;
+    background: var(--color-primary-light);
     resize: none;
 }
 
