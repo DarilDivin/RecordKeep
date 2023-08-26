@@ -14,6 +14,7 @@ use App\Models\BoiteArchive;
 use App\Models\ChemiseDossier;
 use App\Models\NatureDocument;
 use App\Models\RayonRangement;
+use App\Models\TypeRole;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 
@@ -24,20 +25,14 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        $this->call(RoleSeeder::class);
-        $this->call(PermissionSeeder::class);
 
         \App\Models\User::factory(10)->create();
-
-        \App\Models\User::factory()->create([
-            'nom' => 'Jonh',
-            'email' => 'jonh@doe.fr',
-            'password' => Hash::make('jonhdoefr')
-        ])->assignRole(['Administrateur', 'Gestionnaire']);
 
         Categorie::factory()->count(11)->create();
         NatureDocument::factory()->count(10)->create();
         Fonction::factory()->count(4)->create();
+        TypeRole::factory()->count(3)->create();
+
 
         RayonRangement::factory()->count(10)->create()->each(function ($rayon) {
             BoiteArchive::factory()->count(1)->create([
@@ -66,5 +61,15 @@ class DatabaseSeeder extends Seeder
                 });
             });
         });
+
+        $this->call(RoleSeeder::class);
+        $this->call(PermissionSeeder::class);
+
+        \App\Models\User::factory()->create([
+            'nom' => 'Jonh',
+            'email' => 'jonh@doe.fr',
+            'password' => Hash::make('jonhdoefr')
+        ])->assignRole(['Administrateur', 'Gestionnaire']);
+
     }
 }

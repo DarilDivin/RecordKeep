@@ -2,13 +2,16 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\Division;
 use App\Models\Service;
 use Livewire\Component;
+use App\Models\Division;
+use Illuminate\Support\Str;
 
-class DynamicSelect extends Component
+class DocumentDynamicSelect extends Component
 {
     public $document;
+
+    public $user;
 
     public $directions;
 
@@ -16,12 +19,27 @@ class DynamicSelect extends Component
 
     public $divisions;
 
-    public $selectedDirection = null;
+    public $selectedService;
 
-    public $selectedService = null;
+    public $selectedDivision;
 
-    public $selectedDivision = null;
+    public $selectedDirection;
 
+
+    public function mount()
+    {
+        $route = request()->route()->getName();
+        if(Str::contains($route, 'document')){
+            $this->selectedService = $this->document->service_id;
+            $this->selectedDivision = $this->document->division_id;
+            $this->selectedDirection = $this->document->direction_id;
+        }
+        elseif(Str::contains($route, 'user')) {
+            $this->selectedService = $this->user->service_id;
+            $this->selectedDivision = $this->user->division_id;
+            $this->selectedDirection = $this->user->direction_id;
+        }
+    }
 
     public function updatedSelectedDirection($direction_id)
     {
@@ -48,6 +66,6 @@ class DynamicSelect extends Component
 
     public function render()
     {
-        return view('livewire.dynamic-select');
+        return view('livewire.document-dynamic-select');
     }
 }

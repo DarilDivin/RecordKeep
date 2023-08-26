@@ -15,9 +15,7 @@ class DirectionController extends Controller
      */
     public function index(): View
     {
-        return view('admin.direction.directions', [
-            'directions' => Direction::all()
-        ]);
+        return view('admin.direction.directions');
     }
 
     /**

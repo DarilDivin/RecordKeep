@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Document;
 use App\Models\DemandePret;
 use App\Models\RapportPret;
-use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Contracts\View\View;
 use App\Http\Controllers\Controller;

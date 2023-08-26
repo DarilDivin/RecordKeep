@@ -218,6 +218,7 @@ return [
         'categorie_id'             => 'Catégorie',
         'nature_document_id'       => 'Nature',
         'document'                 => 'Document',
+        'documents'                 => 'Documents',
         'motclefs'                 => 'Mots Clés',
         'datecreation'             => 'Date de création',
         'libelle'                  => 'Libellé',

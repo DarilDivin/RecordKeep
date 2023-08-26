@@ -40,58 +40,38 @@
                 </div>
             @endif
 
-            <div class="tableau">
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <td></td>
-                            <td>N°</td>
-                            <td>Demande</td>
-                            <td>Demande crée le : </td>
-                            <td>Actions</td>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @forelse ($transferts as $transfert)
-                            <tr>
-                                <td>
-                                    <input type="checkbox">
-                                </td>
-                                <td>{{ $transfert->id }}</td>
-                                <td>{{ $transfert->libelle }}</td>
-                                <td>{{ $transfert->created_at->translatedFormat('d-F-Y') }}</td>
-                                <td>
-                                    <button class="infos">
-                                        <a href="{{ route('admin.transfert.show', ['slug' => $transfert->getSlug(), 'transfert' => $transfert->id]) }}">
-                                            Consulter
-                                        </a>
-                                    </button>
-                                    <button class="edit">
-                                        <a href="{{ route('admin.transfert.edit', ['transfert' => $transfert->id]) }}">
-                                            Editer
-                                        </a>
-                                    </button>
-                                    <button class="delete">
-                                        <a href="{{ route('admin.transfert.destroy', ['transfert' => $transfert->id]) }}"
-                                           onclick="event.preventDefault();
-                                           document.getElementById('deleteForm{{ $transfert->id }}').submit();">
-                                            Supprimer
-                                        </a>
-                                        <form action="{{ route('admin.transfert.destroy', ['transfert' => $transfert->id]) }}" method="POST" style="" id="deleteForm{{ $transfert->id }}">
-                                            @csrf
-                                            @method('delete')
-                                        </form>
-                                    </button>
-                                </td>
-                            </tr>
-                        @empty
-                            Aucune Demande de Transfert en base de données
-                        @endforelse
-                    </tbody>
-                </table>
+            <div class="cardContainer">
+                @forelse ($transferts as $transfert)
+                    <div class="card">
+                        <div class="head">
+                            <div class="titleInfos ">
+                                <h3>{{ $transfert->libelle }}</h3>
+                                <span>DPAF</span>
+                            </div>
+                            <span>{{ $transfert->created_at->translatedFormat('d/F/Y') }}</span>
+                        </div>
+                        <div class="body">
+                            <div class="info">
+                                <p>Nombre de Documents</p>
+                                <span>{{ $transfert->documents->count() }}</span>
+                            </div>
+                        </div>
+                        <div class="foot">
+                            <a href="{{ route('admin.transfert.show', ['slug' => $transfert->getSlug(), 'transfert' => $transfert->id]) }}">Consulter</a>
+                            <a href="{{ route('admin.transfert.edit', ['transfert' => $transfert->id]) }}">Éditer</a>
+                        </div>
+                    </div>
+                @empty
+                    Aucune Demande de Transfert en base de données
+                @endforelse
             </div>
         </div>
     </div>
+
+
+
+
+
 
     {{-- <div class="addUserFormContainer">
         <div class="overlay"></div>

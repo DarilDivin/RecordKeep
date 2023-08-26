@@ -180,6 +180,10 @@ textarea::-webkit-scrollbar-thumb {
     grid-column: 1 / 4;
 }
 
+.transfert {
+    grid-column: 1 / 4;
+}
+
 .structure {
     grid-column: 1 / 4;
     display: grid;
@@ -375,10 +379,8 @@ h3 {
 .permissionsContainer {
     grid-column: 1 / span 3;
     /* background-color: #0000003c; */
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
     gap: 5px;
 }
 

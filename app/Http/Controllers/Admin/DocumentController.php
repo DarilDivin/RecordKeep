@@ -14,7 +14,6 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\Admin\DocumentFormRequest;
-use Illuminate\Http\Request;
 
 class DocumentController extends Controller
 {
@@ -23,8 +22,9 @@ class DocumentController extends Controller
      */
     public function index(): View
     {
-        return view('admin.document.documents',[
-            // 'documents' => Document::latest('created_at')->get()
+        return view('admin.document.documents', [
+            'services' => Service::getAllServices(),
+            'divisions' => Division::getAllDivisions(),
         ]);
     }
 
@@ -46,12 +46,12 @@ class DocumentController extends Controller
 
         return view('admin.document.document-form',[
             'document' => $document,
-            'directions' => Direction::getAllDirections(),
             'services' => Service::getAllServices(),
             'divisions' => Division::getAllDivisions(),
-            'natures' => NatureDocument::getAllNatureDocuments(),
+            'fonctions' => Fonction::getAllFonctions(),
             'categories' => Categorie::getAllCategories(),
-            'fonctions' => Fonction::getAllFonctions()
+            'directions' => Direction::getAllDirections(),
+            'natures' => NatureDocument::getAllNatureDocuments(),
         ]);
     }
 
@@ -60,7 +60,6 @@ class DocumentController extends Controller
      */
     public function store(DocumentFormRequest $request): RedirectResponse
     {
-        // dd($request->validated());
         $document = Document::create($this->withDocuments(new Document(), $request));
         $document->fonctions()->sync($request->fonction);
         return redirect()
@@ -90,12 +89,12 @@ class DocumentController extends Controller
     {
         return view('admin.document.document-form',[
             'document' => $document,
-            'directions' => Direction::getAllDirections(),
             'services' => Service::getAllServices(),
             'divisions' => Division::getAllDivisions(),
-            'natures' => NatureDocument::getAllNatureDocuments(),
+            'fonctions' => Fonction::getAllFonctions(),
             'categories' => Categorie::getAllCategories(),
-            'fonctions' => Fonction::getAllFonctions()
+            'directions' => Direction::getAllDirections(),
+            'natures' => NatureDocument::getAllNatureDocuments(),
         ]);
     }
 
@@ -127,8 +126,4 @@ class DocumentController extends Controller
             ->with('success', 'Le Document a bien été supprimé');
     }
 
-    public function destroyManyDocs(Request $request)
-    {
-        dd(request()->documentSelected);
-    }
 }

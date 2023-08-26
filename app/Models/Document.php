@@ -11,6 +11,7 @@ use Illuminate\Support\Str;
 use App\Models\ChemiseDossier;
 use App\Models\NatureDocument;
 use App\Models\DemandeTransfert;
+use Illuminate\Support\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -23,6 +24,11 @@ class Document extends Model
     use HasFactory, SoftDeletes;
 
     protected $guarded = [];
+
+    protected $casts = [
+        'datecreation' => 'datetime',
+        'created_at' => 'datetime'
+    ];
 
     public function division(): BelongsTo
     {
@@ -77,6 +83,14 @@ class Document extends Model
     public function getSlug(): string
     {
         return Str::slug($this->nom);
+    }
+
+
+    /* Pluck Methods */
+
+    public static function getAllDocuments(): Collection
+    {
+        return self::all()->pluck('nom', 'id');
     }
 
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\DemandeTransfertFormRequest;
 use App\Models\DemandeTransfert;
+use App\Models\Document;
 use Illuminate\Contracts\View\View;
 
 class DemandeTransfertController extends Controller
@@ -25,8 +26,28 @@ class DemandeTransfertController extends Controller
     public function create(): View
     {
         return view('admin.demande-tranfert.transfert-form', [
-            'transfert' => new DemandeTransfert()
+            'transfert' => new DemandeTransfert(),
+            'documents' => Document::getAllDocuments()
         ]);
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function store(DemandeTransfertFormRequest $request)
+    {
+        $data = $request->validated();
+        unset($data['documents']);
+        $demande = DemandeTransfert::create($data);
+        foreach($request->documents as $documentId){
+            $document = Document::find($documentId);
+            $document->update([
+                'demande_transfert_id' => $demande->id
+            ]);
+        }
+        return redirect()
+            ->route('admin.transfert.index')
+            ->with('success', 'La Demande de Transfert a bien été créé');
     }
 
 
@@ -44,23 +65,13 @@ class DemandeTransfertController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     */
-    public function store(DemandeTransfertFormRequest $request)
-    {
-        DemandeTransfert::create($request->validated());
-        return redirect()
-            ->route('admin.transfert.index')
-            ->with('success', 'La Demande de Transfert a bien été créé');
-    }
-
-    /**
      * Show the form for editing the specified resource.
      */
     public function edit(DemandeTransfert $transfert)
     {
         return view('admin.demande-tranfert.transfert-form', [
-            'transfert' => $transfert
+            'transfert' => $transfert,
+            'documents' => Document::getAllDocuments()
         ]);
     }
 

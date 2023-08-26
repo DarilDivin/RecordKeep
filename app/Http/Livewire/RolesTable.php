@@ -11,9 +11,7 @@ class RolesTable extends Component
 {
     use WithPagination;
 
-    public $roles;
-
-    public $search = '';
+    public $role = '';
 
     public $orderField = 'name';
 
@@ -22,10 +20,16 @@ class RolesTable extends Component
     public array $rolesChecked = [];
 
     protected $queryString = [
-        'search' => ['except' => '']
+        'role' => ['except' => ''],
+        'orderField' => ['except' => 'name'],
+        'orderDirection' => ['except' => 'ASC']
     ];
 
-    public function updatedSearch()
+    protected $rules = [
+        'role' => 'nullable|string'
+    ];
+
+    public function updatedRole()
     {
         $this->resetPage();
     }
@@ -33,6 +37,8 @@ class RolesTable extends Component
     public function deletedRoles(array $ids)
     {
         Role::destroy($ids);
+        $this->rolesChecked = [];
+        session()->flash('success', 'Les Rôles ont bien été supprimé');
     }
 
     public function setOrderField(string | int | DateTime  $field)
@@ -46,14 +52,25 @@ class RolesTable extends Component
         }
     }
 
+    public function paginationView()
+    {
+        return 'shared.pagination';
+    }
+
     public function render()
     {
-        $this->roles = Role::where('name', 'LIKE', "%{$this->search}%")
-            ->orderBy($this->orderField, $this->orderDirection)
-            ->get();
+        $this->validate();
+
+        $roles = Role::query();
+
+        if(!empty($this->role)){
+            $roles = $roles->where('name', 'LIKE', "%{$this->role}%");
+        }
 
         return view('livewire.roles-table', [
-            'roles' => $this->roles
+            'roles' => $roles
+                ->orderBy($this->orderField, $this->orderDirection)
+                ->get()
         ]);
     }
 }

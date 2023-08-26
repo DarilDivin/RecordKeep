@@ -27,7 +27,8 @@ class DemandeTransfertFormRequest extends FormRequest
                 Rule::unique('demande_transferts')
                 ->ignore($this->route()->parameter('transfert'))
                 ->withoutTrashed()
-            ]
+            ],
+            'documents' => ['required', 'array', 'exists:documents,id']
         ];
     }
 }

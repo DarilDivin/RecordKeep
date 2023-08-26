@@ -38,7 +38,7 @@ class CreateNewUser implements CreatesNewUsers
             'password' => $this->passwordRules(),
         ])->validate();
 
-        return User::create([
+        $user = User::create([
             'matricule' => $input['matricule'],
             'nom' => $input['nom'],
             'prenoms' => $input['prenoms'],
@@ -50,5 +50,7 @@ class CreateNewUser implements CreatesNewUsers
             'fonction_id' => $input['fonction_id'],
             'division_id' => $input['division_id']
         ]);
+        $user->roles->sync($input['roles']);
+        return $user;
     }
 }

@@ -1,27 +1,13 @@
-{{-- <div class="main">
-    <div class="title">
-        <p>Manage Document</p>
-        <ion-icon name="document-text"></ion-icon>
-    </div>
-
-
-
-    <div class="sidebarOptions">
-        <div class="sidebarOptionContainerOverlay"></div>
-        <div class="sidebarOptionContainer">
-            <div class="optionContainer">
-                <a href="Document-classé.html">
-                    <ion-icon name="archive"></ion-icon>
-                </a>
-            </div>
-        </div>
-    </div> --}}
-
+<div x-data = "{ documentsChecked : @entangle('documentsChecked').defer }">
     <div class="optional">
         <div class="buttons">
-            <button class="filter">
+            <button class="filter" x-show="documentsChecked.length > 0" x-on:click="$wire.destroyDocuments(documentsChecked)">
                 <ion-icon name="filter"></ion-icon>
-                Filtrer
+                Supprimer
+            </button>
+            <button class="filter" x-show="documentsChecked.length > 0" x-on:click="$wire.createTransfertDocuments(documentsChecked)">
+                <ion-icon name="filter"></ion-icon>
+                Transférer
             </button>
             <button class="add">
                 <ion-icon name="add"></ion-icon>
@@ -30,21 +16,33 @@
         </div>
         <form action="">
             <div class="check-categorie-documents">
-                <select name="" id="">
-                    <option value="service informatique">Service Informatique</option>
-                    <option value="service informatique">Secrétariat</option>
-                    <option value="service informatique">Service Informatique et quelque chose</option>
-                    <option value="service informatique">Service Informatique</option>
+                <select class="inputContainer" id="service" wire:model="selectedService" name="service_id">
+                    @foreach ($services as $id => $service)
+                        <option value="{{ $id }}">{{ $service }}</option>
+                    @endforeach
                 </select>
             </div>
-            <div class="search-box">
-                <input type="text">
-                <ion-icon name="search"></ion-icon>
+            <div class="check-categorie-documents">
+                <select class="inputContainer" id="division" wire:model="selectedDivision" name="division_id">
+                    @foreach ($divisions as $id => $division)
+                        <option value="{{ $id }}">{{ $division }}</option>
+                    @endforeach
+                </select>
             </div>
-            <div class="search-box">
-                <input type="text">
+            <div class="search-box" style="margin-right: 17px;">
+                <input type="text" name="nom" placeholder="Nom du document" wire:model="nom">
                 <ion-icon name="search"></ion-icon>
+                @error('nom')
+                    <span style="color: red; font-size: 0.7rem">{{ $message }}</span>
+                @enderror
             </div>
+            {{-- <div class="search-box">
+                <input type="text" name="datecreation" placeholder="12-12-2023" wire:model="datecreation">
+                <ion-icon name="search"></ion-icon>
+                @error('datecreation')
+                    <span style="color: red; font-size: 0.7rem">{{ $message }}</span>
+                @enderror
+            </div> --}}
         </form>
     </div>
 
@@ -54,23 +52,33 @@
         </div>
     @endif
 
+    @if (session('error'))
+        <div class="message error">
+            {{ session('error') }}
+        </div>
+    @endif
+
     <div class="tableau">
         <table class="table">
             <thead>
                 <tr>
-                    <td>Code</td>
-                    <td>Nom du document</td>
-                    <td>Date de création</td>
-                    <td>DUA</td>
+                    <td></td>
+                    <x-table-header label="Signature" :direction="$orderDirection" name="signature" :field="$orderField"></x-table-header>
+                    <x-table-header label="Nom du Document" :direction="$orderDirection" name="nom" :field="$orderField"></x-table-header>
+                    <x-table-header label="Date de Création" :direction="$orderDirection" name="datecreation" :field="$orderField"></x-table-header>
+                    <x-table-header label="DUA" :direction="$orderDirection" name="dua" :field="$orderField"></x-table-header>
                     <td>Actions</td>
                 </tr>
             </thead>
             <tbody>
                 @forelse ($documents as $document)
                 <tr>
+                    <td>
+                        <input type="checkbox" x-model="documentsChecked" value="{{ $document->id }}">
+                    </td>
                     <td>{{ $document->signature }}</td>
                     <td>{{ $document->nom }}</td>
-                    <td>{{ $document->created_at }}</td>
+                    <td>{{ $document->datecreation->translatedFormat('d F Y') }}</td>
                     <td>{{ $document->dua }}ans</td>
                     <td>
                         <button class="edit"><a href="{{ route('admin.document.edit', ['document' => $document->id]) }}">Éditer</a></button>
@@ -93,4 +101,5 @@
             </tbody>
         </table>
     </div>
-{{-- </div> --}}
+</div>
+

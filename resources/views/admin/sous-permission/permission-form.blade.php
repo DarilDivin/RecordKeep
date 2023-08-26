@@ -30,7 +30,7 @@
 
                 <x-input class="inputContainer fonction" id="permission" label="Libellé de la Sous-Permission" type="text" name="name" placeholder="Permission"  readonly="" value="{{ $permission->name }}" />
 
-                <x-select class="inputContainer" id="permissions" label="Permission de la Sous-Permission" name="permission_id" :value="$permissions" elementIdOnEntite="{{ $permission->permission_id }}" />
+                <x-select class="inputContainer fonction" id="permissions" label="Permission de la Sous-Permission" name="permission_id" :value="$permissions" elementIdOnEntite="{{ $permission->permission_id }}" />
 
                 <div class="inputContainer button">
                     <button type="submit">

@@ -13,7 +13,7 @@
             <span class="closeDocumentForm">
                 <ion-icon name="arrow-back"></ion-icon>
             </span>
-            <h1> {{ $transfert->exists ? 'Éditer une Demande de Transfert' : 'Ajouter une Demande de Transfert' }} </h1>
+            <h1> {{ $transfert->exists ? 'Éditer votre Demande de Transfert' : 'Créer votre Demande de Transfert' }} </h1>
             @if ($errors->any())
                 <div class="message error">
                     <ul>
@@ -28,7 +28,20 @@
             <form method="POST" action="{{ route($transfert->exists ? 'admin.transfert.update' : 'admin.transfert.store', ['transfert' => $transfert->id]) }}">
                 @csrf
                 @method($transfert->exists ? 'put' : 'post')
-                <x-input class="inputContainer transfert" id="transfert" label="Libellé" type="text" name="libelle" placeholder="Demande de Transfert"  readonly="" value="{{ $transfert->libelle }}" />
+
+                <x-input style="grid-column: 1 / span 3;" class="inputContainer transfert" id="transfert" label="Libellé de la Demande" type="text" name="libelle" placeholder="Demande de Transfert"  readonly="" value="{{ $transfert->libelle }}" />
+
+                <div class="inputContainer TomSelect" style="grid-column: 1 / span 3;">
+                    <label for="documents">Documents</label>
+                    <select name="documents[]" id="documents" multiple placeholder="Choisissez quelques documents à transférer...">
+                        @foreach ($documents as $id => $document)
+                            <option value="{{ $id }}">{{ $document }}</option>
+                        @endforeach
+                    </select>
+                    @error('documents')
+                        <span style="color: red; font-size: 0.7rem">{{ $message }}</span>
+                    @enderror
+                </div>
 
                 <div class="inputContainer button">
                     <button type="submit">

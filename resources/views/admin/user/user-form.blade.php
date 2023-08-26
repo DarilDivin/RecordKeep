@@ -27,7 +27,7 @@
                     </ul>
                 </div>
             @endif
-            <form method="POST" action="{{ route($user->exists ? 'admin.user.update' : 'register', ['user' => $user->id]) }}" enctype="multipart/form-data">
+            <form method="POST" action="{{ route($user->exists ? 'admin.user.update' : 'admin.user.store', ['user' => $user->id]) }}" enctype="multipart/form-data">
                 @csrf
                 @method($user->exists ? 'put' : 'post')
                 <x-input class="inputContainer" id="matricule" label="Matricule" type="text" name="matricule" placeholder="Matricule"  readonly="" value="{{ $user->matricule }}" />
@@ -56,75 +56,19 @@
 
                 <x-input class="inputContainer" id="datenaissance" label="Date de naissance" type="date" name="datenaissance" placeholder="Date de naissance"  readonly="" value="{{ $user->datenaissance }}" />
 
-                <x-select class="inputContainer" id="division" label="Division" name="division_id" :value="$divisions" elementIdOnEntite="{{ $user->division_id }}" />
+                <x-select class="inputContainer" id="fonction" label="Fonction" name="fonction_id" :value="$fonctions" elementIdOnEntite="{{ $user->fonction_id }}"/>
 
-                <x-select class="inputContainer" id="fonction" label="Fonction" name="fonction_id" :value="$fonctions" elementIdOnEntite="{{ $user->fonction_id }}" />
+                @livewire('document-dynamic-select', [
+                    'user' => $user,
+                    'services' => $services,
+                    'divisions' => $divisions,
+                    'directions' => $directions,
+                ])
 
-                <div class="inputContainer TomSelect role">
-                    <label for="role">Rôle</label>
-                    <select name="role" id="role" multiple placeholder="Choisir les rôles">
-                        <option value="Utilisateur">Utilisateur</option>
-                        <option value="Gestionnaire">Gestionnaire</option>
-                        <option value="Administrateur">Administrateur</option>
-                    </select>
-                    @error('role')
-                        <span style="color: red;">{{ $message }}</span>
-                    @enderror
-                </div>
-
-                <hr>
-
-                <h3>Accorder les permissions</h3>
-                <div class="permissionsContainer">
-                    <div class="permission">
-                        <div class="permissionName">
-                            <input type="checkbox" name="" id="">
-                            <label for="">Permission</label>
-                        </div>
-                        <div class="sousPermission">
-                            <div class="checkPermission">
-                                <label for="">Sous permission 1</label>
-                                <input type="checkbox" name="" id="">
-                            </div>
-                            <div class="checkPermission">
-                                <label for="">Sous permission 2</label>
-                                <input type="checkbox" name="" id="">
-                            </div>
-                            <div class="checkPermission">
-                                <label for="">Sous permission 3</label>
-                                <input type="checkbox" name="" id="">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="permission">
-                        <div class="permissionName">
-                            <input type="checkbox" name="" id="">
-                            <label for="">Permission</label>
-                        </div>
-                        <div class="sousPermission">
-                            <div class="checkPermission">
-                                <label for="">Sous permission 1</label>
-                                <input type="checkbox" name="" id="">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="permission">
-                        <div class="permissionName">
-                            <input type="checkbox" name="" id="">
-                            <label for="">Permission</label>
-                        </div>
-                        <div class="sousPermission">
-                            <div class="checkPermission">
-                                <label for="">Sous permission 1</label>
-                                <input type="checkbox" name="" id="">
-                            </div>
-                            <div class="checkPermission">
-                                <label for="">Sous permission 2</label>
-                                <input type="checkbox" name="" id="">
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                @livewire('user-dynamic-select', [
+                    'roles' => $roles,
+                    'permissions' => $permissions
+                ])
 
                 <div class="inputContainer button">
                     <button type="submit">{{ $user->exists ? 'Éditer' : 'Créer' }}</button>

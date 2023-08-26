@@ -161,3 +161,7 @@ button {
 .search-zone .search-form button:hover {
     background: var(--color-primary-light-2);
 }
+
+ion-icon {
+    visibility: visible!important;
+}

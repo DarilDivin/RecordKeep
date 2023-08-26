@@ -19,6 +19,7 @@ use App\Http\Controllers\Admin\RapportDepartController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\ServiceController;
 use App\Http\Controllers\Admin\SousPermissionController;
+use App\Http\Controllers\Admin\TypeRoleController;
 
 $idRegex = '[0-9]+';
 $slugRegex = '[0-9a-z\-]+';
@@ -39,6 +40,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::resource('rayon', RayonRangementController::class)->except(['show']);
     Route::resource('user', UserController::class)->except('show');
     Route::resource('role', RoleController::class)->except('show');
+    Route::resource('type-role', TypeRoleController::class)->except('show');
     Route::resource('permission', PermissionController::class)->except('show');
     Route::resource('sous-permission', SousPermissionController::class)->except('show');
 });

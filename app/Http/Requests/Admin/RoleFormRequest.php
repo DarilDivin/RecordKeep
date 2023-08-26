@@ -27,7 +27,8 @@ class RoleFormRequest extends FormRequest
                 Rule::unique('roles')
                 ->ignore($this->route()->parameter('role'))
             ],
-            'permissions' => ['required', 'array', 'exists:permissions,id']
+            'permissions' => ['required', 'array', 'exists:permissions,id'],
+            'type_role_id' => ['required', 'integer', 'exists:type_roles,id'],
         ];
     }
 }

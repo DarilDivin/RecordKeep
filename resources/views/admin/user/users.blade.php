@@ -96,7 +96,7 @@
         </div>
     </div>
 
-    <div class="warningMessageContainer show">
+    <div class="warningMessageContainer">
         <div class="overlay"></div>
         <div class="warning">
             <ion-icon name="alert-circle"></ion-icon>

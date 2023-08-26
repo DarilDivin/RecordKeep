@@ -75,7 +75,7 @@
                 </table>
             </div>
 
-            {{-- <div class="cardContainer">
+            <div class="cardContainer">
                 <div class="card">
                     <div class="head">
                         <div class="titleInfos ">
@@ -401,7 +401,7 @@
                     </div>
                 </div>
 
-            </div> --}}
+            </div>
         </div>
     </div>
 @endsection

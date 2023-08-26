@@ -35,6 +35,8 @@
 
                 <x-input class="inputContainer fonction" id="permission" label="Libellé de la Permission" type="text" name="name" placeholder="Permission"  readonly="" value="{{ $permission->name }}" />
 
+                <x-select class="inputContainer fonction" id="typerole" label="Type de Rôle" name="type_role_id" :value="$typeroles" elementIdOnEntite="{{-- {{ $document->division_id }} --}}" />
+
                 <div class="inputContainer TomSelect" style="grid-column: 1 / span 3;">
                     <label for="roles">Rôles</label>
                     <select name="roles[]" id="roles" multiple placeholder="Entrer quelques rôles...">

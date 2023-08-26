@@ -29,10 +29,13 @@ class UserFormRequest extends FormRequest
             'email' => ['required', 'email', Rule::unique('users')->ignore($this->route()->parameter('user'))],
             'datenaissance' => ['required', 'date'],
             'sexe' => ['required', 'string'],
-            'role_id' => ['integer','exists:roles,id', 'required'],
+            'roles' => ['array','exists:roles,id', 'required'],
+            /* 'permissions' => ['array','exists:permissions,id', 'required'], */
             'password' => ['required', 'string', 'min:4'],
             'fonction_id' => ['integer','exists:fonctions,id', 'required'],
             'division_id' => ['integer','exists:divisions,id', 'required'],
+            'service_id' => ['integer','exists:services,id', 'required'],
+            'direction_id' => ['integer','exists:directions,id', 'required'],
         ];
     }
 }

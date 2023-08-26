@@ -46,20 +46,13 @@
 
                 <x-select class="inputContainer" id="nature" label="Nature du Document" name="nature_document_id" :value="$natures" elementIdOnEntite="{{ $document->nature_document_id }}" />
 
-                {{-- <x-select class="inputContainer" id="direction" label="Direction" name="direction_id"  :value="$directions" elementIdOnEntite="{{ $document->direction_id }}" />
-
-                <x-select class="inputContainer" id="service" label="Service" name="service_id" :value="$services" elementIdOnEntite="{{ $document->service_id }}" />
-
-                <x-select class="inputContainer" id="division" label="Division" name="division_id" :value="$divisions" elementIdOnEntite="{{ $document->division_id }}" /> --}}
-
-
                 <x-select class="inputContainer" id="categories" label="Catégorie du Document" name="categorie_id" :value="$categories" elementIdOnEntite="{{ $document->categorie_id }}" />
 
                 <x-input class="inputContainer" id="source" label="Source du Document" type="text" name="source" placeholder="Source du Document" readonly="" value="{{ $document->source }}" />
 
                 <x-input class="inputContainer" id="datecreation" label="Date de Création" type="date" name="datecreation" placeholder="12/12/2003"  readonly="" value="{{ $document->datecreation }}" />
 
-                @livewire('dynamic-select', [
+                @livewire('document-dynamic-select', [
                     'directions' => $directions,
                     'divisions' => $divisions,
                     'document' => $document,

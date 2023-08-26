@@ -4,7 +4,11 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\RoleFormRequest;
-use Spatie\Permission\Models\Permission;
+use App\Models\HelpPermission;
+use App\Models\HelpSousPermission;
+use App\Models\TypeRole;
+use App\Models\Permission;
+use App\Models\SousPermission;
 use Spatie\Permission\Models\Role;
 
 class RoleController extends Controller
@@ -14,9 +18,7 @@ class RoleController extends Controller
      */
     public function index()
     {
-        return view('admin.role.roles',[
-            // 'roles' => Role::all()
-        ]);
+        return view('admin.role.roles');
     }
 
     /**
@@ -24,9 +26,12 @@ class RoleController extends Controller
      */
     public function create()
     {
+        $firstTypeRole = TypeRole::orderBy('id', 'asc')->take(1)->get()->toArray();
+        $firstTypeRoleId = $firstTypeRole[0]['id'];
         return view('admin.role.role-form', [
             'role' => new Role(),
-            'permissions' => Permission::all()->pluck('name', 'id')->toArray()
+            'typeroles' => TypeRole::all()->pluck('libelle', 'id'),
+            'permissions' => Permission::where('type_role_id', $firstTypeRoleId)->get()->toArray()
         ]);
     }
 
@@ -41,7 +46,7 @@ class RoleController extends Controller
             ->givePermissionTo($request->permissions);
         return redirect()
             ->route('admin.role.index')
-            ->with('success', 'Le Role a bien été crée');
+            ->with('success', 'Le Rôle a bien été crée');
     }
 
     /**
@@ -49,14 +54,12 @@ class RoleController extends Controller
      */
     public function edit(Role $role)
     {
-        /* $ids = [];
-        foreach($role->permissions->toArray() as $p){
-            $ids[] = $p['id'];
-        }
-        dd($ids); */
+        $firstTypeRole = TypeRole::orderBy('id', 'asc')->take(1)->get()->toArray();
+        $firstTypeRoleId = $firstTypeRole[0]['id'];
         return view('admin.role.role-form', [
             'role' => $role,
-            'permissions' => Permission::all()->pluck('name', 'id')->toArray()
+            'typeroles' => TypeRole::all()->pluck('libelle', 'id'),
+            'permissions' => Permission::where('type_role_id', $firstTypeRoleId)->with('granulariesPermissions')->get()->toArray()
         ]);
     }
 
@@ -71,7 +74,7 @@ class RoleController extends Controller
         $role->syncPermissions($request->permissions);
         return redirect()
             ->route('admin.role.index')
-            ->with('success', 'Le Role a bien été modifié');
+            ->with('success', 'Le Rôle a bien été modifié');
     }
 
     /**
@@ -82,6 +85,6 @@ class RoleController extends Controller
         $role->delete();
         return redirect()
             ->route('admin.role.index')
-            ->with('success', 'Le Role a bien été supprimé');
+            ->with('success', 'Le Rôle a bien été supprimé');
     }
 }

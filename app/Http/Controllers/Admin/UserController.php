@@ -3,13 +3,16 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\User;
+use App\Models\Service;
 use App\Models\Division;
 use App\Models\Fonction;
+use App\Models\Direction;
+use App\Models\Permission;
+use Spatie\Permission\Models\Role;
 use Illuminate\Contracts\View\View;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;
 use App\Http\Requests\Admin\UserFormRequest;
-use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
 {
@@ -37,9 +40,12 @@ class UserController extends Controller
         ]);
         return view('admin.user.user-form', [
             'user' => $user,
+            'services' => Service::getAllServices(),
             'fonctions' => Fonction::getAllFonctions(),
             'divisions' => Division::getAllDivisions(),
-            'roles' => Role::all()->pluck('name', 'id')
+            'roles' => Role::all()->pluck('name', 'id'),
+            'directions' => Direction::getAllDirections(),
+            'permissions' => Permission::all(),
         ]);
     }
 
@@ -48,7 +54,11 @@ class UserController extends Controller
      */
     public function store(UserFormRequest $request): RedirectResponse
     {
-        User::create($request->validated());
+        $data = $request->validated();
+        unset($data['service_id']);
+        unset($data['direction_id']);
+        $user = User::create($data);
+        $user->roles()->sync($request->roles);
         return redirect()
             ->route('admin.user.index')
             ->with('success', 'L\'utilisateur à bien été créé');

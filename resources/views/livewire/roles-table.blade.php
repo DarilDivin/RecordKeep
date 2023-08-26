@@ -1,4 +1,4 @@
-<div class="main">
+<div class="main" x-data = "{ rolesChecked : @entangle('rolesChecked').defer }">
     <div class="title">
         <p>Manage Role</p>
         <ion-icon name="business"></ion-icon>
@@ -6,30 +6,23 @@
 
     <div class="optional">
         <div class="buttons">
-            <button class="filter">
+            <button class="filter" x-show="rolesChecked.length > 0" x-on:click="$wire.deletedRoles(rolesChecked)">
                 <ion-icon name="filter"></ion-icon>
-                Filtrer
+                Supprimer
             </button>
-            {{-- @if (!empty($rolesChecked))
-                <button class="filter" wire:click="deletedRoles($rolesChecked)">
-                    <ion-icon name="filter"></ion-icon>
-                    Supprimer
-                </button>
-            @endif --}}
             <button class="add">
                 <ion-icon name="add"></ion-icon>
                 <a href="{{ route('admin.role.create') }}">Add Role</a>
             </button>
         </div>
 
-        @livewire('counter')
-
-        <form action="">
-            <div class="search-box">
-                <input type="text" name="search" wire:model="search">
-                <ion-icon name="search"></ion-icon>
-            </div>
-        </form>
+        <div class="search-box" style="margin-right: 17px;">
+            <input type="text" name="search" wire:model="role" placeholder="Nom du rôle">
+            <ion-icon name="search"></ion-icon>
+            @error('role')
+                <span style="color: red; font-size: 0.7rem">{{ $message }}</span>
+            @enderror
+        </div>
     </div>
 
     @if (session('success'))
@@ -38,14 +31,12 @@
         </div>
     @endif
 
-    {{-- @dump($rolesChecked) --}}
-
     <div class="tableau">
         <table class="table">
             <thead>
                 <tr>
                     <td></td>
-                    <x-table-header label="N°" :direction="$orderDirection" name="id" :field="$orderField">Rôle</x-table-header>
+                    <x-table-header label="N°" :direction="$orderDirection" name="id" :field="$orderField"></x-table-header>
                     <x-table-header label="Rôle" :direction="$orderDirection" name="name" :field="$orderField"></x-table-header>
                     <x-table-header label="Date de Création" :direction="$orderDirection" name="created_at" :field="$orderField"></x-table-header>
                     <td>Actions</td>
@@ -55,7 +46,7 @@
                 @forelse ($roles as $role)
                     <tr>
                         <td>
-                            <input type="checkbox" name="rolesSelected[]" wire:model="rolesChecked" value="{{ $role->id }}">
+                            <input type="checkbox" x-model="rolesChecked" value="{{ $role->id }}">
                         </td>
                         <td>{{ $role->id }}</td>
                         <td>{{ $role->name }}</td>
@@ -84,5 +75,6 @@
                 @endforelse
             </tbody>
         </table>
+        {{-- {{ $roles->links("shared.pagination") }} --}}
     </div>
 </div>

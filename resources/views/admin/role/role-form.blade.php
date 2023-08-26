@@ -36,23 +36,10 @@
 
                 <x-input class="inputContainer fonction" id="role" label="Libellé du Rôle" type="text" name="name" placeholder="Rôle"  readonly="" value="{{ $roleName }}" />
 
-                <div class="inputContainer TomSelect" style="grid-column: 1 / span 3;">
-                    <label for="permissions">Permissions</label>
-                    <select name="permissions[]" id="permissions" multiple placeholder="Choisissez quelques permissions...">
-                        @if ($routeName === 'admin.role.edit' && !is_null($role->permissions->toArray())))
-                            @foreach ($permissions as $id => $permission)
-                                <option @if(in_array($id, $role->permissions->pluck('id')->toArray())) selected @endif value="{{ $id }}">{{ $permission }}</option>
-                            @endforeach
-                        @else
-                            @foreach ($permissions as $id => $permission)
-                                <option value="{{ $id }}" {{ in_array($id, old('permissions', [])) ? 'selected' : '' }} >{{ $permission }}</option>
-                            @endforeach
-                        @endif
-                    </select>
-                    @error('roles')
-                        <span style="color: red; font-size: 0.7rem">{{ $message }}</span>
-                    @enderror
-                </div>
+                @livewire('role-dynamic-select', [
+                    'typeroles' => $typeroles,
+                    'permissions' => $permissions,
+                ])
 
                 <div class="inputContainer button">
                     <button type="submit">

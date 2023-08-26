@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\TypeRole;
 use Spatie\Permission\Models\Role;
 use App\Http\Controllers\Controller;
 use Spatie\Permission\Models\Permission;
@@ -14,9 +15,7 @@ class PermissionController extends Controller
      */
     public function index()
     {
-        return view('admin.permission.permissions',[
-            'permissions' => Permission::all()
-        ]);
+        return view('admin.permission.permissions');
     }
 
     /**
@@ -26,6 +25,7 @@ class PermissionController extends Controller
     {
         return view('admin.permission.permission-form', [
             'permission' => new Permission(),
+            'typeroles' => TypeRole::all()->pluck('libelle', 'id'),
             'roles' => Role::all()->pluck('name', 'id')->toArray()
         ]);
     }
