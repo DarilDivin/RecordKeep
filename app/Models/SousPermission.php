@@ -14,8 +14,8 @@ class SousPermission extends Model
 
     protected $guarded = [];
 
-    public function mainPermission(): BelongsTo
+    /* public function mainPermission(): BelongsTo
     {
         return $this->belongsTo(Permission::class, 'permission_id', 'id');
-    }
+    } */
 }

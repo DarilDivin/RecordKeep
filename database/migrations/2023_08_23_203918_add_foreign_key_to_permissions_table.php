@@ -13,7 +13,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('permissions', function (Blueprint $table) {
-            $table->foreignIdFor(TypeRole::class)->nullable();
+            $table->foreignIdFor(TypeRole::class)->constrained()->cascadeOnDelete();
         });
     }
 

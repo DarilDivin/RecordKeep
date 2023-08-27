@@ -4,11 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\RoleFormRequest;
-use App\Models\HelpPermission;
-use App\Models\HelpSousPermission;
 use App\Models\TypeRole;
 use App\Models\Permission;
-use App\Models\SousPermission;
 use Spatie\Permission\Models\Role;
 
 class RoleController extends Controller
@@ -59,7 +56,7 @@ class RoleController extends Controller
         return view('admin.role.role-form', [
             'role' => $role,
             'typeroles' => TypeRole::all()->pluck('libelle', 'id'),
-            'permissions' => Permission::where('type_role_id', $firstTypeRoleId)->with('granulariesPermissions')->get()->toArray()
+            'permissions' => Permission::where('type_role_id', $firstTypeRoleId)->get()->toArray()
         ]);
     }
 

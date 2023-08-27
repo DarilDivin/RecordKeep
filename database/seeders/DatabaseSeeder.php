@@ -15,6 +15,7 @@ use App\Models\ChemiseDossier;
 use App\Models\NatureDocument;
 use App\Models\RayonRangement;
 use App\Models\TypeRole;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 
@@ -26,7 +27,7 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
 
-        \App\Models\User::factory(10)->create();
+        /* \App\Models\User::factory(10)->create(); */
 
         Categorie::factory()->count(11)->create();
         NatureDocument::factory()->count(10)->create();
@@ -58,6 +59,11 @@ class DatabaseSeeder extends Seeder
                         'service_id' => $service->id,
                         'direction_id' => $direction->id
                     ]);
+                    User::factory()->count(rand(2, 3))->create([
+                        'division_id' => $division->id,
+                        'service_id' => $service->id,
+                        'direction_id' => $direction->id
+                    ]);
                 });
             });
         });
@@ -68,7 +74,10 @@ class DatabaseSeeder extends Seeder
         \App\Models\User::factory()->create([
             'nom' => 'Jonh',
             'email' => 'jonh@doe.fr',
-            'password' => Hash::make('jonhdoefr')
+            'password' => Hash::make('jonhdoefr'),
+            'division_id' => 1,
+            'service_id' => 1,
+            'direction_id' => 1
         ])->assignRole(['Administrateur', 'Gestionnaire']);
 
     }

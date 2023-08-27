@@ -14,10 +14,10 @@ class Permission extends OriginalModelPermission
 
     /* My Personnals Methods */
 
-    public function granulariesPermissions(): HasMany
+    /* public function granulariesPermissions(): HasMany
     {
         return $this->hasMany(SousPermission::class, 'permission_id', 'id');
-    }
+    } */
 
     public function typerole(): BelongsTo
     {

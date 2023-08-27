@@ -1,7 +1,10 @@
-<div x-data = "{ documentsChecked : @entangle('documentsChecked').defer }">
+<div x-data = "{
+    documentsChecked : @entangle('documentsChecked').defer,
+    showModal : 0
+    }">
     <div class="optional">
         <div class="buttons">
-            <button class="filter" x-show="documentsChecked.length > 0" x-on:click="$wire.destroyDocuments(documentsChecked)">
+            <button class="filter deleteMultiple" x-show="documentsChecked.length > 0" x-on:click="showModal = 1">
                 <ion-icon name="filter"></ion-icon>
                 Supprimer
             </button>
@@ -102,4 +105,16 @@
         </table>
     </div>
 </div>
-
+<div class="warningMessageContainer" id="Formdeletemultiple" x-show="showModal = 1">
+    <div class="overlay"></div>
+    <div class="warning">
+        <ion-icon name="alert-circle"></ion-icon>
+        <h3>Est vous sur de vouloir supprimer cet élément ??</h3>
+        <form action="" class="deleteFormMultiple" method="POST">
+            @csrf
+            @method('delete')
+            <button type="button" class="closeWarning" x-on:click="showModal=0">Annuler</button>
+            <button type="submit" class="submitdeleteFormMultiple" x-on:click="$wire.destroyDocuments(documentsChecked), showModal=0">Supprimer</button>
+        </form>
+    </div>
+</div>
