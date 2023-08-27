@@ -67,7 +67,6 @@
 
                 @livewire('user-dynamic-select', [
                     'roles' => $roles,
-                    'permissions' => $permissions
                 ])
 
                 <div class="inputContainer button">

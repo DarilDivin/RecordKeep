@@ -6,22 +6,23 @@
                 <option value="{{ $id }}">{{ $role }}</option>
             @endforeach
         </select>
-        @error('role')
+        @error('roles')
             <span style="color: red;">{{ $message }}</span>
         @enderror
     </div>
 
-    <hr>
-
-    <h3>Accorder les permissions</h3>
-    <div class="permissionsContainer">
-        @foreach ($permissions as $permission)
-        <div class="permission">
-            <div class="permissionName">
-                <input type="checkbox" name="" id="permission{{ $permission->id }}" value="{{ $permission->id }}" checked>
-                <label for="permission{{ $permission->id }}">{{ $permission->name }}</label>
+    @if (!empty($permissions))
+        <hr>
+        <h3>Les permissions disponibles</h3>
+        <div class="permissionsContainer">
+            @foreach ($permissions as $permission)
+            <div class="permission">
+                <div class="permissionName">
+                    <input type="checkbox" name="permissions[]" id="permission{{ $permission['id'] }}" value="{{ $permission['id'] }}" checked>
+                    <label for="permission{{ $permission['id'] }}">{{ $permission['name'] }}</label>
+                </div>
             </div>
+            @endforeach
         </div>
-        @endforeach
-    </div>
+    @endif
 </div>

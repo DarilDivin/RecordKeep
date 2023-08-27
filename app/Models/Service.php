@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\User;
 use App\Models\Division;
 use App\Models\Document;
 use App\Models\Direction;
@@ -37,6 +38,11 @@ class Service extends Model
     public function documents(): HasMany
     {
         return $this->hasMany(Document::class);
+    }
+
+    public function users():HasMany
+    {
+        return $this->hasMany(User::class);
     }
 
     /* Pluck Methods */

@@ -2,8 +2,9 @@
 
 namespace App\Http\Requests\Admin;
 
-use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
+use App\Rules\CustomValidationRule;
+use Illuminate\Foundation\Http\FormRequest;
 
 class UserFormRequest extends FormRequest
 {
@@ -29,7 +30,7 @@ class UserFormRequest extends FormRequest
             'email' => ['required', 'email', Rule::unique('users')->ignore($this->route()->parameter('user'))],
             'datenaissance' => ['required', 'date'],
             'sexe' => ['required', 'string'],
-            'roles' => ['array','exists:roles,id', 'required'],
+            'roles' => ['array','exists:roles,id', 'required', new CustomValidationRule()],
             /* 'permissions' => ['array','exists:permissions,id', 'required'], */
             'password' => ['required', 'string', 'min:4'],
             'fonction_id' => ['integer','exists:fonctions,id', 'required'],

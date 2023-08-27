@@ -1,11 +1,12 @@
 <?php
 
+use App\Models\Direction;
 use App\Models\Division;
 use App\Models\Fonction;
+use App\Models\Service;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use Spatie\Permission\Models\Role;
 
 return new class extends Migration
 {
@@ -15,9 +16,10 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->foreignIdFor(Division::class)->nullable();
-            $table->foreignIdFor(Fonction::class)->nullable();
-            $table->foreignIdFor(Role::class)->nullable();
+            $table->foreignIdFor(Division::class)->constrained()->cascadeOnDelete();
+            $table->foreignIdFor(Service::class)->constrained()->cascadeOnDelete();
+            $table->foreignIdFor(Direction::class)->constrained()->cascadeOnDelete();
+            $table->foreignIdFor(Fonction::class)->nullable()->constrained()->cascadeOnDelete();
         });
     }
 
@@ -28,8 +30,9 @@ return new class extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->dropColumn('division_id');
+            $table->dropColumn('service_id');
+            $table->dropColumn('direction_id');
             $table->dropColumn('fonction_id');
-            $table->dropColumn('role_id');
         });
     }
 };

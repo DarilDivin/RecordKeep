@@ -45,24 +45,30 @@ class UserController extends Controller
             'divisions' => Division::getAllDivisions(),
             'roles' => Role::all()->pluck('name', 'id'),
             'directions' => Direction::getAllDirections(),
-            'permissions' => Permission::all(),
         ]);
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(UserFormRequest $request): RedirectResponse
+    /* public function store(UserFormRequest $request): RedirectResponse
     {
         $data = $request->validated();
-        unset($data['service_id']);
-        unset($data['direction_id']);
+        $fusion = [];
+        array_reduce($fusion, function ($carry, $item) {
+            if($carry === null){
+                return $item;
+            }
+            return array_merge($carry, $item);
+        });
+        unset($data['fusion']);
         $user = User::create($data);
         $user->roles()->sync($request->roles);
+        $user->permissions()->sync($request->permissions);
         return redirect()
             ->route('admin.user.index')
             ->with('success', 'L\'utilisateur à bien été créé');
-    }
+    } */
 
     /**
      * Show the form for editing the specified resource.
@@ -71,9 +77,12 @@ class UserController extends Controller
     {
         return view('admin.user.user-form', [
             'user' => $user,
-            'fonctions' => Fonction::pluck('fonction', 'id'),
-            'divisions' => Division::pluck('division', 'id'),
-            'roles' => Role::all()->pluck('name', 'id')
+            'services' => Service::getAllServices(),
+            'fonctions' => Fonction::getAllFonctions(),
+            'divisions' => Division::getAllDivisions(),
+            'roles' => Role::all()->pluck('name', 'id'),
+            'directions' => Direction::getAllDirections(),
+            'permissions' => Permission::all(),
         ]);
     }
 

@@ -3,9 +3,10 @@
 namespace App\Actions\Fortify;
 
 use App\Models\User;
+use Illuminate\Validation\Rule;
+use App\Rules\CustomValidationRule;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Validation\Rule;
 use Laravel\Fortify\Contracts\CreatesNewUsers;
 
 class CreateNewUser implements CreatesNewUsers
@@ -24,7 +25,6 @@ class CreateNewUser implements CreatesNewUsers
             'nom' => ['required', 'string', 'max:255'],
             'prenoms' => ['required', 'string'],
             'email' => [
-
                 'required',
                 'string',
                 'email',
@@ -33,12 +33,17 @@ class CreateNewUser implements CreatesNewUsers
             ],
             'datenaissance' => ['required', 'date'],
             'sexe' => ['required', 'string'],
-            // 'role_id' => ['integer','exists:roles,id', 'required'],
-            'roles' => ['array', 'exists:roles,id', 'required'],
-
             'password' => $this->passwordRules(),
+            'fonction_id' => ['integer','exists:fonctions,id', 'required'],
+            'division_id' => ['integer','exists:divisions,id', 'required'],
+            'service_id' => ['integer','exists:services,id', 'required'],
+            'direction_id' => ['integer','exists:directions,id', 'required'],
+            /* 'permissions' => ['array','exists:permissions,id', 'required'], */
+            'roles' => ['array','exists:roles,id', 'required', new CustomValidationRule()]
         ])->validate();
+
         // dd($input);
+
         $user = User::create([
             'matricule' => $input['matricule'],
             'nom' => $input['nom'],
@@ -46,12 +51,14 @@ class CreateNewUser implements CreatesNewUsers
             'email' => $input['email'],
             'datenaissance' => $input['datenaissance'],
             'sexe' => $input['sexe'],
-            // 'role_id' => $input['role_id'],
             'password' => Hash::make($input['password']),
             'fonction_id' => $input['fonction_id'],
-            'division_id' => $input['division_id']
+            'division_id' => $input['division_id'],
+            'service_id' => $input['service_id'],
+            'direction_id' => $input['direction_id']
         ]);
         $user->roles()->sync($input['roles']);
+        $user->permissions()->sync($input['permissions']);
         return $user;
     }
 }

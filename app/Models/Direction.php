@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\User;
 use App\Models\Service;
 use App\Models\Document;
 use Illuminate\Support\Collection;
@@ -29,6 +30,11 @@ class Direction extends Model
     public function documents(): HasMany
     {
         return $this->hasMany(Document::class);
+    }
+
+    public function users():HasMany
+    {
+        return $this->hasMany(User::class);
     }
 
     /* Pluck Methods */
