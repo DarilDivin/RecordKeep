@@ -10,30 +10,57 @@
 
         <div class="main">
             <div class="title">
-                <p>General Statistics</p>
+                <p>Statistiques Génerales</p>
                 <ion-icon name="stats-chart"></ion-icon>
             </div>
             <div class="content">
 
                 <div class="website-infos">
+
                     <div class="infos-bloc">
-                        <div class="gauge" id="1"></div>
+                        <div class="infos-title">
+                            Documents
+                        </div>
                         <div class="infos">
-                            <h6>Users Connected</h6>
-                            <p id="userConnected"></p>
+                            <div class="info info-total">
+                                <p>Total</p>
+                                <h5>300</h5>
+                            </div>
+                            <div class="info">
+                                <h5>Archivé</h5>
+                                <div class="gauge" id="1"></div>
+                            </div>
+                            <div class="info">
+                                <h5>Prêté</h5>
+                                <div class="gauge" id="2"></div>
+                            </div>
+                            <div class="info">
+                                <h5>Téléchargé</h5>
+                                <div class="gauge" id="3"></div>
+                            </div>
+                            <div class="info">
+                                <h5>Disponible</h5>
+                                <div class="gauge" id="4"></div>
+                            </div>
                         </div>
                     </div>
                     <div class="infos-bloc">
-                        <div class="gauge" id="2"></div>
-                        <p>Lorem, ipsum dolor.</p>
-                    </div>
-                    <div class="infos-bloc">
-                        <div class="gauge" id="3"></div>
-                        <p>Lorem, ipsum dolor.</p>
-                    </div>
-                    <div class="infos-bloc">
-                        <div class="gauge" id="4"></div>
-                        <p>Lorem, ipsum dolor.</p>
+                        <div class="infos-title">
+                            Utilisateurs
+                        </div>
+                        <div class="infos">
+                            <div class="info info-total">
+                                <p>Total</p>
+                                <h5>300</h5>
+                            </div>
+                            <div class="info donut">
+                                <canvas id="donut"></canvas>
+                            </div>
+                            <div class="info">
+                                <h5>Connecté</h5>
+                                <div class="gauge" id="5"></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="statistics-chart">
@@ -47,7 +74,7 @@
                             Lorem ipsum dolor sit amet consectetur, adipisicing elit.
                         </p>
                         </div>
-                        <canvas id="donut"></canvas>
+                        <canvas id="donuto"></canvas>
                     </div>
                 </div>
             </div>

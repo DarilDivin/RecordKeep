@@ -1,52 +1,120 @@
 .content {
     width: 100%;
     padding: 15px;
+    /* background: #f0f; */
+    /* overflow-y: scroll; */
+    /* overflow-x: hidden; */
 }
 
 .content .website-infos {
     width: 100%;
-    height: 150px;
-    /* background: #fff; */
+    height: 395px;
+    /* background: #ff0; */
     margin: 15px 0;
     padding: 15px;
     border-radius: 10px;
     display: grid;
-    grid-template-columns: repeat(4, 250px);
+    grid-template-columns: repeat(2, 1fr);
     gap: 15px;
     justify-content: space-evenly;
+    overflow: hidden;
 }
 
 .content .website-infos .infos-bloc {
     width: 100%;
-    height: 100%;
-    padding: 15px;
+    max-height: 95%;
+    padding: 10px;
     background: #ffffff68;
+    background: linear-gradient(45deg, #6363ff 0%, #fff 10%);
     border-radius: 10px;
     color: #333;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    align-items: center;
-    backdrop-filter: blur(100px);
-    box-shadow: 4px 4px 20px 2px rgba(196,202,255,0.5);
-    -webkit-box-shadow: 4px 4px 20px 2px rgba(196,202,255,0.5);
-    -moz-box-shadow: 4px 4px 20px 2px rgba(196,202,255,0.5);
-}
-
-.content .website-infos .infos-bloc .infos {
-    width: 100%;
-    height: 100%;
     display: flex;
     flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    transition: all .5s ease;
+    box-shadow: var(--box-shadow-normal);
+}
+
+.content .website-infos .infos-bloc:hover {
+    /* background: linear-gradient(135deg, #6363ff 0%, #fff 10%, #fff 80%, #6363ff 100%); */
+    /* background: #6363ff; */
+    transform: scale(1.02);
+}
+
+.content .website-infos .infos-bloc .infos-title {
+    width: 100%;
+    height: 35px;
+    padding: 10px;
+    /* background: #333; */
+    color: var(--text-color-light);
+    letter-spacing: 3px;
+    font-weight: 600;
+    font-size: 18px;
+    display: flex;
+    flex-direction: row;
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: space-between;
 }
 
-.content .website-infos .infos-bloc .infos h6 {
-    font-size: 0.8em;
-    font-weight: 400;
+.content .website-infos .infos-bloc .infos{
+    width: 100%;
+    height: 100%;
+    padding: 10px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    /* background: #0ff; */
 }
 
-.content .website-infos .infos-bloc .gauge {
+.content .website-infos .infos-bloc .infos .info {
+    width: 100%;
+    height: auto;
+    /* background: #ff0; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.content .website-infos .infos-bloc .infos .info.info-total {
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.content .website-infos .infos-bloc .infos .info.info-total p {
+    height: 50%;
+    font-size: 1.5rem;
+    display: flex;
+    letter-spacing: 5px;
+    align-items: center;
+    font-style: italic;
+    color: var(--text-color-light);
+}
+
+.content .website-infos .infos-bloc .infos .info.info-total h5 {
+    height: 25%;
+    font-size: 2rem;
+    display: flex;
+    align-items: center;
+    font-style: italic;
+    color: var(--text-color-light)
+}
+
+.content .website-infos .infos-bloc .infos .info.donut {
+    height: 100%;
+    overflow: hidden;
+    grid-column: 2 / 4;
+    grid-row: 1 / span 2;
+}
+
+.content .website-infos .infos-bloc .infos .info.donut canvas#donut {
+    width: 300px!important;
+    height: 300px!important;
+}
+
+
+.content .website-infos .infos-bloc .infos .info .gauge {
     width: 110px;
     height: 90px;
     overflow: hidden;

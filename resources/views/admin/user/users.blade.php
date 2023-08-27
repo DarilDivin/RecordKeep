@@ -72,7 +72,7 @@
                                             Editer
                                         </a>
                                     </button>
-                                    <button class="delete">
+                                    {{-- <button class="delete">
                                         <a href="{{ route('admin.user.destroy', ['user' => $user->id]) }}"
                                            onclick="event.preventDefault();
                                            document.getElementById('deleteForm{{ $user->id }}').submit();">
@@ -82,6 +82,13 @@
                                             @csrf
                                             @method('delete')
                                         </form>
+                                    </button> --}}
+                                    <button
+                                    class="delete"
+                                    routeForDeleting="{{ route('admin.user.destroy', ['user' => $user->id]) }}">
+                                        <a href="" onclick="event.preventDefault()">
+                                            Supprimer
+                                        </a>
                                     </button>
                                 </td>
                             </tr>
@@ -101,9 +108,11 @@
         <div class="warning">
             <ion-icon name="alert-circle"></ion-icon>
             <h3>Est vous sur de vouloir supprimer cet élément ??</h3>
-            <form action="{{ route('admin.user.destroy', ['user' => $user->id]) }}">
+            <form action="" class="deleteForm" method="POST">
+                @csrf
+                @method('delete')
                 <button type="button" class="closeWarning">Annuler</button>
-                <button type="submit" class="delete">Supprimer</button>
+                <button type="submit" class="submitdeleteForm">Supprimer</button>
             </form>
         </div>
     </div>

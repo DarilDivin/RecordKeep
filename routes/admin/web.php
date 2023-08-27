@@ -20,6 +20,7 @@ use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\ServiceController;
 use App\Http\Controllers\Admin\SousPermissionController;
 use App\Http\Controllers\Admin\TypeRoleController;
+use App\Http\Controllers\StatistiquesController;
 
 $idRegex = '[0-9]+';
 $slugRegex = '[0-9a-z\-]+';
@@ -65,6 +66,7 @@ Route::get('downloadPdf/{rapport}', [RapportDepartController::class, 'pdf'])->wh
 Route::get('admin/demandes-de-pret/encours', [DemandePretController::class, 'indexEncours'])->name('demande-de-prets-encours');
 Route::get('admin/demandes-de-pret/validé', [DemandePretController::class, 'indexValidé'])->name('demande-de-prets-validé');
 
+Route::get('admin/statistiques', [StatistiquesController::class, 'stat'])->name('admin.statistique');
 
 
 
