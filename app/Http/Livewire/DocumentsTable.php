@@ -79,6 +79,11 @@ class DocumentsTable extends Component
         }
     }
 
+    public function paginationView()
+    {
+        return 'shared.pagination';
+    }
+
     public function render()
     {
         $this->validate();
@@ -97,7 +102,7 @@ class DocumentsTable extends Component
             'documents' => $documents
                 ->where('demande_transfert_id', null)
                 ->orderBy($this->orderField, $this->orderDirection)
-                ->get(),
+                ->paginate(20),
         ]);
     }
 }

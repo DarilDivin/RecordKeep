@@ -1,9 +1,3 @@
-
-
-
-
-{{-- <script src="../js/Dashboard-Document-Management.js"></script> --}}
-{{-- <script src="../js/secretary-Dashboard.js"></script> --}}
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <!-- Raphael must be included before justgage -->
@@ -12,15 +6,6 @@
 <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 <script>
-
-    new TomSelect('select[multiple]', {
-        create: false,
-        plugins: {
-            remove_button:{
-                title:'Remove this item',
-            }
-        },
-    })
     new TomSelect('#motclefs', {
         create: true,
         plugins: {
@@ -28,9 +13,19 @@
                 title:'Remove this item',
             }
         },
-    })
+    });
+    document.querySelectorAll('select[multiple]').forEach((el)=>{
+        new TomSelect(el, {
+            create: false,
+            plugins: {
+                remove_button:{
+                    title:'Remove this item',
+                }
+            },
+        })
+    });
 </script>
 
-    @livewireScripts()
+@livewireScripts()
 </body>
 </html>

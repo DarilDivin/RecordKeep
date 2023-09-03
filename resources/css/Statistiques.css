@@ -1,6 +1,11 @@
 .content {
     width: 100%;
     padding: 15px;
+    overflow-y: scroll;
+}
+
+.content::-webkit-scrollbar {
+    display: none;
 }
 
 .content .website-infos {

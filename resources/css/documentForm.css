@@ -130,6 +130,10 @@ label {
     scrollbar-color: var(--color-primary);
 }
 
+textarea::-webkit-scrollbar {
+    display: none;
+}
+
 textarea::-webkit-scrollbar-track {
     background: transparent;
     width: 5px;
@@ -327,6 +331,11 @@ h1 {
     height: 125px;
     background: var(--color-primary-light);
     border: none!important;
+    overflow-y: scroll;
+}
+
+.ts-control::-webkit-scrollbar{
+    display: none;
 }
 
 .TomSelect.role .ts-control {
@@ -378,10 +387,6 @@ h3 {
     align-items: center;
     width: 100%;
     padding: 0 10px;
-}
-
-.permissionsContainer .permission .permissionName {
-
 }
 
 .permissionsContainer .permission .sousPermission {
@@ -444,6 +449,10 @@ h3 {
     transform: translate(-50%, -60%);
     transition: opacity 0.4s ease-out, transform 0.4s ease-out, height .4s;
     overflow-y: scroll;
+}
+
+.warning::-webkit-scrollbar{
+    display: none;
 }
 
 .warning ion-icon {

@@ -4,12 +4,12 @@
     }">
     <div class="optional">
         <div class="buttons">
-            <button class="filter deleteMultiple" x-show="documentsChecked.length > 0" x-on:click="showModal = 1">
-                <ion-icon name="trash-outline"></ion-icon>
+            <button class="filter deleteMultiple" x-show="documentsChecked.length > 0" x-on:click="$wire.destroyDocuments(documentsChecked)">
+                <ion-icon name="trash"></ion-icon>
                 Supprimer
             </button>
             <button class="filter" x-show="documentsChecked.length > 0" x-on:click="$wire.createTransfertDocuments(documentsChecked)">
-                <ion-icon name="filter"></ion-icon>
+                <ion-icon name="send"></ion-icon>
                 Transférer
             </button>
             <button class="add">
@@ -81,6 +81,7 @@
                 @endforelse
             </tbody>
         </table>
+        {{ $documents->onEachSide(0)->links() }}
     </div>
 </div>
 {{-- <div class="warningMessageContainer" id="Formdeletemultiple" x-show="showModal = 1">

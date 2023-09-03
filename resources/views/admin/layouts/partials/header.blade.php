@@ -13,7 +13,7 @@
     @vite([
         'resources/css/app.css',
 
-        'ressources/js/quickv.js',
+        'resources/js/app.js',
         'resources/js/Dashboard-Statistiques.js',
         'resources/js/Dashboard.js',
         'resources/js/sidebar.js',

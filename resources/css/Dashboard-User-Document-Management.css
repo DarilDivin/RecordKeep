@@ -248,7 +248,7 @@
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-    overflow-y: scroll;
+    overflow-y: hidden;
     overflow-x: hidden;
 }
 
@@ -439,14 +439,13 @@
 
 
 .message {
-    width: 94%;
     align-self: center;
-    padding: 10px;
+    padding: 10px 45px;
     display: flex;
     justify-content: center;
     align-items: center;
     border-radius: 5px;
-    margin: 5px 0;
+    margin: 5px 45px;
 }
 
 .message.success {

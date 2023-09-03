@@ -1,6 +1,3 @@
-/* @import './connexion.css';
-@import './Homepage.css'; */
-
 @import './body.css';
 @import './Dashboard-User-Document-Management.css';
 @import './DemandePrêt.css';
@@ -9,9 +6,7 @@
 @import './Footer.css';
 @import './HomePage.css';
 @import './navbar.css';
-/* @import './secretary-Dashboard.css'; */
 @import './Statistiques.css';
 @import './style.css';
 @import './Utilité.css';
 @import './pagination.css';
-

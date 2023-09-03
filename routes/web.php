@@ -27,5 +27,5 @@ Route::get('/home', [HomeController::class, 'index'])->name('home')->middleware(
 // })->name('login');
 
 Route::post( '/user-register', [AdminRegisteredUserController::class, 'store'])
-            ->middleware(['auth'])
+            // ->middleware(['auth'])
             ->name('user.register');
