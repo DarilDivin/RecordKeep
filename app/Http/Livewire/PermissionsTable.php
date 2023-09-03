@@ -19,12 +19,6 @@ class PermissionsTable extends Component
 
     public array $permissionsChecked = [];
 
-    protected $queryString = [
-        'permission' => ['except' => ''],
-        'orderField' => ['except' => 'name'],
-        'orderDirection' => ['except' => 'ASC']
-    ];
-
     protected $rules = [
         'permission' => 'nullable|string'
     ];
@@ -36,7 +30,6 @@ class PermissionsTable extends Component
 
     public function deletedPermissions(array $ids)
     {
-        dd($ids);
         Permission::destroy($ids);
         $this->permissionsChecked = [];
         session()->flash('success', 'Les Permissions ont bien été supprimé');

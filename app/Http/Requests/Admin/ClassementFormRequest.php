@@ -38,7 +38,7 @@ class ClassementFormRequest extends FormRequest
             'boite_archive_id' => ['required', 'exists:boite_archives,id', 'integer'],
             'rayon_rangement_id' => ['required', 'exists:rayon_rangements,id', 'integer'],
             'motclefs' => ['required'/* , 'array' */],
-            'archive' => ['required', Rule::in([1])],
+            /* 'archive' => ['required', Rule::in([1])], */
         ];
     }
 }

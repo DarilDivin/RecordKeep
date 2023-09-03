@@ -14,9 +14,11 @@
     <div class="addDocumentFormContainer showForm">
         <div class="overlay"></div>
         <div class="addDocumentForm">
-            <span class="closeDocumentForm">
-                <ion-icon name="arrow-back"></ion-icon>
-            </span>
+            <a href="{{ route('admin.permission.index') }}">
+                <span class="closeDocumentForm">
+                    <ion-icon name="arrow-back"></ion-icon>
+                </span>
+            </a>
             <h1> {{ $permission->exists ? 'Éditer une Permission' : 'Ajouter une Permission' }} </h1>
             @if ($errors->any())
                 <div class="message error">
@@ -35,25 +37,11 @@
 
                 <x-input class="inputContainer fonction" id="permission" label="Libellé de la Permission" type="text" name="name" placeholder="Permission"  readonly="" value="{{ $permission->name }}" />
 
-                <x-select class="inputContainer fonction" id="typerole" label="Type de Rôle" name="type_role_id" :value="$typeroles" elementIdOnEntite="{{-- {{ $document->division_id }} --}}" />
-
-                <div class="inputContainer TomSelect" style="grid-column: 1 / span 3;">
-                    <label for="roles">Rôles</label>
-                    <select name="roles[]" id="roles" multiple placeholder="Entrer quelques rôles...">
-                        @if ($routeName === 'admin.permission.edit' && !empty($permission->roles))
-                            @foreach ($roles as $id => $role)
-                                <option @if(in_array($id, $permission->roles->pluck('id')->toArray())) selected @endif value="{{ $id }}">{{ $role }}</option>
-                            @endforeach
-                        @else
-                            @foreach ($roles as $id => $role)
-                                <option value="{{ $id }}" {{ in_array($id, old('roles', [])) ? 'selected' : '' }} >{{ $role }}</option>
-                            @endforeach
-                        @endif
-                    </select>
-                    @error('roles')
-                        <span style="color: red; font-size: 0.7rem">{{ $message }}</span>
-                    @enderror
-                </div>
+                @livewire('permission-dynamic-select', [
+                    'permission' => $permission,
+                    'typeroles' => $typeroles,
+                    'roles' => $roles,
+                ])
 
                 <div class="inputContainer button">
                     <button type="submit">

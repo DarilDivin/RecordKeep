@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\BoiteArchive;
 use App\Models\ChemiseDossier;
 use Illuminate\Contracts\View\View;
 use App\Http\Controllers\Controller;
@@ -15,9 +16,7 @@ class ChemiseDossierController extends Controller
      */
     public function index(): View
     {
-        return view('admin.chemise-dossier.chemises', [
-            'chemises' => ChemiseDossier::all()
-        ]);
+        return view('admin.chemise-dossier.chemises');
     }
 
     /**
@@ -26,7 +25,8 @@ class ChemiseDossierController extends Controller
     public function create(): View
     {
         return view('admin.chemise-dossier.chemise-form', [
-            'chemise' => new ChemiseDossier()
+            'chemise' => new ChemiseDossier(),
+            'boites' => BoiteArchive::getAllBoites()
         ]);
     }
 
@@ -35,7 +35,11 @@ class ChemiseDossierController extends Controller
      */
     public function store(ChemiseDossierFormRequest $request): RedirectResponse
     {
-        ChemiseDossier::create($request->validated());
+        $data = $request->validated();
+        $ch = ChemiseDossier::create($data);
+        $ch->update([
+            'code' => BoiteArchive::find($data['boite_archive_id'])->code . 'CH' . $ch->id
+        ]);
         return redirect()
             ->route('admin.chemise.index')
             ->with('success', 'La Chemise de Dossier a bien été créé');
@@ -47,7 +51,8 @@ class ChemiseDossierController extends Controller
     public function edit(ChemiseDossier $chemise): View
     {
         return view('admin.chemise-dossier.chemise-form', [
-            'chemise' => $chemise
+            'chemise' => $chemise,
+            'boites' => BoiteArchive::getAllBoites()
         ]);
     }
 
@@ -56,7 +61,12 @@ class ChemiseDossierController extends Controller
      */
     public function update(ChemiseDossierFormRequest $request, ChemiseDossier $chemise): RedirectResponse
     {
-        $chemise->update($request->validated());
+        $data = $request->validated();
+        $chemise->update(array_merge(
+            $data, [
+                'code' => BoiteArchive::find($data['boite_archive_id'])->code . 'CH' . $chemise->id
+            ]
+        ));
         return redirect()
             ->route('admin.chemise.index')
             ->with('success', 'La Chemise de Dossier a bien été modifiée');

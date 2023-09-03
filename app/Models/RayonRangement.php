@@ -13,7 +13,14 @@ class RayonRangement extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $guarded = [];
+    protected $fillable = [
+        'libelle',
+        'code'
+    ];
+
+    protected $casts = [
+        'created_at' => 'datetime'
+    ];
 
     public function boitearchives(): HasMany
     {

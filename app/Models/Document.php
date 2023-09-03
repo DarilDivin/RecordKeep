@@ -23,10 +23,31 @@ class Document extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $guarded = [];
+    protected $fillable = [
+        'nom',
+        'signature',
+        'code',
+        'objet',
+        'source',
+        'emetteur',
+        'recepteur',
+        'motclefs',
+        'dua',
+        'datecreation',
+        'disponibilite',
+        'archive',
+        'document',
+        'division_id',
+        'service_id',
+        'direction_id',
+        'categorie_id',
+        'chemise_dossier_id',
+        'nature_document_id',
+        'demande_transfert_id'
+    ];
 
     protected $casts = [
-        'datecreation' => 'datetime',
+        /* 'datecreation' => 'datetime', */
         'created_at' => 'datetime'
     ];
 
@@ -91,6 +112,16 @@ class Document extends Model
     public static function getAllDocuments(): Collection
     {
         return self::all()->pluck('nom', 'id');
+    }
+
+    public static function getDocumentsNotHaveTransfer(): Collection
+    {
+        return self::where('demande_transfert_id', null)->pluck('nom', 'id');
+    }
+
+    public static function getDocumentsNotHaveTransferAndArchivnt(): Collection
+    {
+        return self::where('demande_transfert_id', null)->where('archive', 0)->pluck('nom', 'id');
     }
 
 }

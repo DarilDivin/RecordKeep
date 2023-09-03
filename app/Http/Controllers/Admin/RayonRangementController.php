@@ -15,9 +15,7 @@ class RayonRangementController extends Controller
      */
     public function index(): View
     {
-        return view('admin.rayon-rangement.rayons', [
-            'rayons' => RayonRangement::all()
-        ]);
+        return view('admin.rayon-rangement.rayons');
     }
 
     /**
@@ -35,10 +33,10 @@ class RayonRangementController extends Controller
      */
     public function store(RayonRangementFormRequest $request): RedirectResponse
     {
-        $lastRayonId = RayonRangement::latest()->take(1)->get()->toArray();
-        RayonRangement::create(array_merge($request->validated(), [
-            'code' => 'R' . $lastRayonId[0]['id'] + 1
-        ]));
+        $r = RayonRangement::create($request->validated());
+        $r->update([
+            'code' => 'R' . $r->id
+        ]);
         return redirect()
             ->route('admin.rayon.index')
             ->with('success', 'Le Rayon de Rangement a bien été créé');

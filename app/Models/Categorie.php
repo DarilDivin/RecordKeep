@@ -12,7 +12,9 @@ class Categorie extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $guarded = [];
+    protected $fillable = [
+        'categorie'
+    ];
 
     public function documents(): HasMany
     {

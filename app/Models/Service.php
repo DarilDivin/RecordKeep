@@ -17,12 +17,14 @@ class Service extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $guarded = [];
-
     protected $fillable = [
         'service',
         'sigle',
         'direction_id',
+    ];
+
+    protected $casts = [
+        'created_at' => 'datetime'
     ];
 
     public function direction(): BelongsTo

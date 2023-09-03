@@ -10,9 +10,11 @@
     <div class="addDocumentFormContainer showForm">
         <div class="overlay"></div>
         <div class="addDocumentForm">
-            <span class="closeDocumentForm">
-                <ion-icon name="arrow-back"></ion-icon>
-            </span>
+            <a href="{{ route('admin.service.index') }}">
+                <span class="closeDocumentForm">
+                    <ion-icon name="arrow-back"></ion-icon>
+                </span>
+            </a>
             <h1> {{ $service->exists ? 'Éditer un Service' : 'Ajouter un Service' }} </h1>
             @if ($errors->any())
                 <div class="message error">

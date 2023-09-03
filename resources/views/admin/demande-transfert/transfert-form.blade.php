@@ -6,13 +6,14 @@
 
     @section('content')
 
-
     <div class="addDocumentFormContainer showForm">
         <div class="overlay"></div>
         <div class="addDocumentForm">
-            <span class="closeDocumentForm">
-                <ion-icon name="arrow-back"></ion-icon>
-            </span>
+            <a href="{{ route('admin.transfert.index') }}">
+                <span class="closeDocumentForm">
+                    <ion-icon name="arrow-back"></ion-icon>
+                </span>
+            </a>
             <h1> {{ $transfert->exists ? 'Éditer votre Demande de Transfert' : 'Créer votre Demande de Transfert' }} </h1>
             @if ($errors->any())
                 <div class="message error">
@@ -35,7 +36,7 @@
                     <label for="documents">Documents</label>
                     <select name="documents[]" id="documents" multiple placeholder="Choisissez quelques documents à transférer...">
                         @foreach ($documents as $id => $document)
-                            <option value="{{ $id }}">{{ $document }}</option>
+                            <option value="{{ $id }}" @if(in_array($id, $transfert->documents->pluck('id')->toArray()) || in_array($id, old('documents', []))) selected @endif>{{ $document }}</option>
                         @endforeach
                     </select>
                     @error('documents')

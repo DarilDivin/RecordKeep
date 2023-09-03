@@ -27,7 +27,8 @@ class ChemiseDossierFormRequest extends FormRequest
                 Rule::unique('chemise_dossiers')
                 ->ignore($this->route()->parameter('chemise'))
                 ->withoutTrashed()
-            ]
+        ],
+        'boite_archive_id' => ['required', 'exists:boite_archives,id', 'integer'],
         ];
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Admin;
 
+use App\Rules\UniqueMotCleRule;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
@@ -59,7 +60,7 @@ class DocumentFormRequest extends FormRequest
             'direction_id' => ['required', 'exists:directions,id', 'integer'],
             'document' => $documentRule,
             'fonction' => ['required', 'array', 'exists:fonctions,id'],
-            'motclefs' => ['required', 'array']
+            'motclefs' => ['required', 'array', new UniqueMotCleRule()]
         ];
     }
 }

@@ -19,12 +19,6 @@ class RolesTable extends Component
 
     public array $rolesChecked = [];
 
-    protected $queryString = [
-        'role' => ['except' => ''],
-        'orderField' => ['except' => 'name'],
-        'orderDirection' => ['except' => 'ASC']
-    ];
-
     protected $rules = [
         'role' => 'nullable|string'
     ];

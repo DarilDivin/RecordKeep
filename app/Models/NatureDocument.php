@@ -13,7 +13,13 @@ class NatureDocument extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $guarded = [];
+    protected $fillable = [
+        'nature'
+    ];
+
+    protected $casts = [
+        'created_at' => 'datetime'
+    ];
 
     public function documents(): HasMany
     {

@@ -15,10 +15,12 @@ class Fonction extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $guarded = [];
-
     protected $fillable = [
         'fonction'
+    ];
+
+    protected $casts = [
+        'created_at' => 'datetime'
     ];
 
     public function documents(): BelongsToMany

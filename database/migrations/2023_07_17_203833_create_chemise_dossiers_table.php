@@ -15,7 +15,7 @@ return new class extends Migration
         Schema::create('chemise_dossiers', function (Blueprint $table) {
             $table->id();
             $table->string('libelle');
-            $table->string('code');
+            $table->string('code')->nullable();
             $table->foreignIdFor(BoiteArchive::class)->constrained()->cascadeOnDelete();
             $table->timestamps();
             $table->softDeletes();

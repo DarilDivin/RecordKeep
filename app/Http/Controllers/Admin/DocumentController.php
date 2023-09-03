@@ -14,6 +14,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\Admin\DocumentFormRequest;
+use App\Models\DemandeTransfert;
 
 class DocumentController extends Controller
 {
@@ -22,10 +23,7 @@ class DocumentController extends Controller
      */
     public function index(): View
     {
-        return view('admin.document.documents', [
-            'services' => Service::getAllServices(),
-            'divisions' => Division::getAllDivisions(),
-        ]);
+        return view('admin.document.documents');
     }
 
      /**
@@ -75,7 +73,7 @@ class DocumentController extends Controller
         if(array_key_exists('document', $data))
         {
             $documentCollection = $data['document'];
-            $data['document'] = $documentCollection->store('documents', 'public');
+            $data['document'] = $documentCollection->storeAs('documents', $request->file('document')->getClientOriginalName(), 'public');
             $documentpath = 'public/' . $document->document;
             if(Storage::exists($documentpath)) Storage::delete('public/' . $document->document);
         }
@@ -124,6 +122,27 @@ class DocumentController extends Controller
         return redirect()
             ->route('admin.document.index')
             ->with('success', 'Le Document a bien été supprimé');
+    }
+
+
+    public function removeForStandardTranfer(Document $document, DemandeTransfert $transfert): RedirectResponse
+    {
+        $document->update([
+            'demande_transfert_id' => null
+        ]);
+        return redirect()
+            ->route('admin.transfert.show', ['slug' => $transfert->getSlug(), 'transfert' => $transfert])
+            ->with('success', 'Le Document a bien été retiré de la Demande de Transfert');
+    }
+
+    public function removeForCentralTranfer(Document $document, DemandeTransfert $transfert): RedirectResponse
+    {
+        $document->update([
+            'demande_transfert_id' => null
+        ]);
+        return redirect()
+            ->route('admin.all-transferts.show', ['slug' => $transfert->getSlug(), 'transfert' => $transfert])
+            ->with('success', 'Le Document a bien été retiré de la Demande de Transfert');
     }
 
 }

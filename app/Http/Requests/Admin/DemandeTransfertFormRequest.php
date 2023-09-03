@@ -28,7 +28,7 @@ class DemandeTransfertFormRequest extends FormRequest
                 ->ignore($this->route()->parameter('transfert'))
                 ->withoutTrashed()
             ],
-            'documents' => ['required', 'array', 'exists:documents,id']
+            'documents' => ['nullable', 'array', 'exists:documents,id']
         ];
     }
 }

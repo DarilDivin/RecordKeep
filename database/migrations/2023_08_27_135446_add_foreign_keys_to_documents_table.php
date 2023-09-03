@@ -23,9 +23,9 @@ return new class extends Migration
             $table->foreignIdFor(Service::class)->constrained()->cascadeOnDelete();
             $table->foreignIdFor(Direction::class)->constrained()->cascadeOnDelete();
             $table->foreignIdFor(Categorie::class)->constrained()->cascadeOnDelete();
+            $table->foreignIdFor(NatureDocument::class)->constrained()->cascadeOnDelete();
             $table->foreignIdFor(DemandeTransfert::class)->nullable()->constrained()->cascadeOnDelete();
             $table->foreignIdFor(ChemiseDossier::class)->nullable()->constrained()->cascadeOnDelete();
-            $table->foreignIdFor(NatureDocument::class)->nullable()->constrained()->cascadeOnDelete();
         });
     }
 
@@ -39,9 +39,9 @@ return new class extends Migration
             $table->dropColumn('division_id');
             $table->dropColumn('direction_id');
             $table->dropColumn('categorie_id');
+            $table->dropColumn('nature_document_id');
             $table->dropColumn('demande_transfert_id');
             $table->dropColumn('chemise_dossier_id');
-            $table->dropColumn('nature_document_id');
         });
     }
 };

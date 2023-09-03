@@ -50,7 +50,7 @@
 
                 <x-input class="inputContainer" id="source" label="Source du Document" type="text" name="source" placeholder="Source du Document" readonly="" value="{{ $document->source }}" />
 
-                <x-input class="inputContainer" id="datecreation" label="Date de Création" type="date" name="datecreation" placeholder="12/12/2003"  readonly="" value="{{ $document->datecreation }}" />
+                <x-input class="inputContainer" id="datecreation" label="Date de Création" type="date" name="datecreation" placeholder=""  readonly="" value="{{ $document->datecreation/* ->format('d/F/Y') */ }}" />
 
                 @livewire('document-dynamic-select', [
                     'directions' => $directions,
@@ -65,7 +65,7 @@
                     <h4>Acorder l'accès à :</h4>
 
                     @foreach ($fonctions as $id => $fonction)
-                        <x-checkbox class="checkboxContainer" :id="$fonction" :label="$fonction" type="checkbox" name="fonction" :value="$id"  :ex="$document->fonctions->pluck('id')->toArray()" />
+                        <x-checkbox class="checkboxContainer" :id="$fonction" :label="$fonction" type="checkbox" name="fonction" :value="$id"  :ex="$document->fonctions->pluck('id')->toArray()" :fonction="$fonction" />
                     @endforeach
                     @error('fonction')
                         <span style="color: red;">{{ $message }}</span>

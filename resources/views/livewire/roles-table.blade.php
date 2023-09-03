@@ -7,7 +7,7 @@
     <div class="optional">
         <div class="buttons">
             <button class="filter" x-show="rolesChecked.length > 0" x-on:click="$wire.deletedRoles(rolesChecked)">
-                <ion-icon name="filter"></ion-icon>
+                <ion-icon name="trash-outline"></ion-icon>
                 Supprimer
             </button>
             <button class="add">
@@ -19,9 +19,6 @@
         <div class="search-box" style="margin-right: 17px;">
             <input type="text" name="search" wire:model="role" placeholder="Nom du rôle">
             <ion-icon name="search"></ion-icon>
-            @error('role')
-                <span style="color: red; font-size: 0.7rem">{{ $message }}</span>
-            @enderror
         </div>
     </div>
 
@@ -57,24 +54,32 @@
                                     Editer
                                 </a>
                             </button>
-                            <button class="delete">
-                                <a href="{{ route('admin.role.destroy', ['role' => $role->id]) }}"
-                                   onclick="event.preventDefault();
-                                   document.getElementById('deleteForm{{ $role->id }}').submit();">
+                            <button
+                                class="delete"
+                                routeForDeleting="{{ route('admin.role.destroy', ['role' => $role->id]) }}">
+                                <a href="" onclick="event.preventDefault()">
                                     Supprimer
                                 </a>
-                                <form action="{{ route('admin.role.destroy', ['role' => $role->id]) }}" method="POST" style="" id="deleteForm{{ $role->id }}">
-                                    @csrf
-                                    @method('delete')
-                                </form>
                             </button>
                         </td>
                     </tr>
                 @empty
-                    Aucune rôle en base de données
+                    Aucun rôle en base de données
                 @endforelse
             </tbody>
         </table>
-        {{-- {{ $roles->links("shared.pagination") }} --}}
+        <div class="warningMessageContainer">
+            <div class="overlay"></div>
+            <div class="warning">
+                <ion-icon name="alert-circle"></ion-icon>
+                <h3>Voulez-vous vraiment supprimer ce rôle ?</h3>
+                <form action="" class="deleteForm" method="POST">
+                    @csrf
+                    @method('delete')
+                    <button type="button" class="closeWarning">Annuler</button>
+                    <button type="submit" class="submitdeleteForm">Supprimer</button>
+                </form>
+            </div>
+        </div>
     </div>
 </div>

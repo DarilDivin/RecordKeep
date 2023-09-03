@@ -7,6 +7,8 @@ use App\Models\Permission;
 
 class RoleDynamicSelect extends Component
 {
+    public $role;
+
     public $typeroles;
 
     public $permissions;
@@ -16,6 +18,17 @@ class RoleDynamicSelect extends Component
     public $selectedPermissions;
 
     public $alwaysPermissions;
+
+    public function mount()
+    {
+        /* if(old('type_role_id')){
+            $this->selectedTypeRole = old('type_role_id');
+        }
+        if(old('permissions')){
+            $this->selectedPermissions = old('permissions');
+        } */
+        $this->selectedTypeRole = $this->role->type_role_id;
+    }
 
     public function updatedSelectedTypeRole($typeRole)
     {

@@ -15,9 +15,7 @@ class NatureDocumentController extends Controller
      */
     public function index(): View
     {
-        return view('admin.nature-document.natures',[
-            'natures' => NatureDocument::all()
-        ]);
+        return view('admin.nature-document.natures');
     }
 
     /**

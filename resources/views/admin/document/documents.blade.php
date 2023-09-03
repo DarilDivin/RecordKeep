@@ -25,17 +25,14 @@
                     </div>
                 </div>
             </div>
-            @livewire('documents-table', [
-                'services' => $services,
-                'divisions' => $divisions
-            ])
+            @livewire('documents-table')
         </div>
     </div>
     <div class="warningMessageContainer">
         <div class="overlay"></div>
         <div class="warning">
             <ion-icon name="alert-circle"></ion-icon>
-            <h3>Est vous sur de vouloir supprimer cet élément ??</h3>
+            <h3>Voulez-vous vraiment supprimer ce document ?</h3>
             <form action="" class="deleteForm" method="POST">
                 @csrf
                 @method('delete')

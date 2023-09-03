@@ -13,7 +13,13 @@ class TypeRole extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $guarded = [];
+    protected $fillable = [
+        'libelle'
+    ];
+
+    protected $casts = [
+        'created_at' => 'datetime'
+    ];
 
     public function severalpermissions(): HasMany
     {

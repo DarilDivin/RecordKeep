@@ -15,7 +15,11 @@ class BoiteArchive extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $guarded = [];
+    protected $fillable = [
+        'libelle',
+        'code',
+        'rayon_rangement_id'
+    ];
 
     public function rayonrangement(): BelongsTo
     {

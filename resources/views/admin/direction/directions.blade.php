@@ -11,6 +11,4 @@
 
         @livewire('directions-table')
     </div>
-
-
 @endsection

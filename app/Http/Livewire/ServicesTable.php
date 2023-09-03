@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Direction;
 use DateTime;
 use App\Models\Service;
 use Livewire\Component;
@@ -11,7 +12,11 @@ class ServicesTable extends Component
 {
     use WithPagination;
 
+    public $sigle = '';
+
     public $service = '';
+
+    public $selectedDirection;
 
     public $orderField = 'service';
 
@@ -19,15 +24,14 @@ class ServicesTable extends Component
 
     public array $servicesChecked = [];
 
-    protected $queryString = [
-        'service' => ['except' => ''],
-        'orderField' => ['except' => 'name'],
-        'orderDirection' => ['except' => 'ASC']
-    ];
-
     protected $rules = [
         'service' => 'nullable|string'
     ];
+
+    public function updatedSigle()
+    {
+        $this->resetPage();
+    }
 
     public function updatedService()
     {
@@ -59,13 +63,22 @@ class ServicesTable extends Component
         $services = Service::query();
 
         if(!empty($this->service)){
-            $services = $services->where('name', 'LIKE', "%{$this->service}%");
+            $services = $services->where('service', 'LIKE', "%{$this->service}%");
+        }
+
+        if(!empty($this->sigle)){
+            $services = $services->where('sigle', 'LIKE', "%{$this->sigle}%");
+        }
+
+        if($this->selectedDirection){
+            $services = $services->where('direction_id', $this->selectedDirection);
         }
 
         return view('livewire.services-table', [
             'services' => $services
                 ->orderBy($this->orderField, $this->orderDirection)
-                ->get()
+                ->get(),
+            'directions' => Direction::getAllDirections()
         ]);
     }
 

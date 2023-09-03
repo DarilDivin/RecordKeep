@@ -14,6 +14,10 @@ class SousPermission extends Model
 
     protected $guarded = [];
 
+    protected $casts = [
+        'created_at' => 'datetime'
+    ];
+
     /* public function mainPermission(): BelongsTo
     {
         return $this->belongsTo(Permission::class, 'permission_id', 'id');

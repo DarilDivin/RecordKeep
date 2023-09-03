@@ -10,9 +10,11 @@
     <div class="addDocumentFormContainer showForm">
         <div class="overlay"></div>
         <div class="addDocumentForm">
-            <span class="closeDocumentForm">
-                <ion-icon name="arrow-back"></ion-icon>
-            </span>
+            <a href="{{ route('admin.categorie.index') }}">
+                <span class="closeDocumentForm">
+                    <ion-icon name="arrow-back"></ion-icon>
+                </span>
+            </a>
             <h1> {{ $categorie->exists ? 'Éditer une Catégorie' : 'Ajouter une Catégorie' }} </h1>
             @if ($errors->any())
                 <div class="message error">
@@ -28,7 +30,7 @@
             <form method="POST" action="{{ route($categorie->exists ? 'admin.categorie.update' : 'admin.categorie.store', ['categorie' => $categorie->id]) }}">
                 @csrf
                 @method($categorie->exists ? 'put' : 'post')
-                <x-input class="inputContainer categorie" id="categorie" label="Catégorie" type="text" name="categorie" placeholder="Catégorie"  readonly="" value="{{ $categorie->categorie }}" />
+                <x-input class="inputContainer fonction" id="categorie" label="Catégorie" type="text" name="categorie" placeholder="Catégorie"  readonly="" value="{{ $categorie->categorie }}" />
 
                 <div class="inputContainer button">
                     <button type="submit">

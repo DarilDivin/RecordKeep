@@ -15,9 +15,7 @@ class CategorieController extends Controller
      */
     public function index(): View
     {
-        return view('admin.categorie.categories',[
-            'categories' => Categorie::all()
-        ]);
+        return view('admin.categorie.categories');
     }
 
     /**

@@ -15,11 +15,13 @@ class Direction extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $guarded = [];
-
     protected $fillable = [
         'direction',
         'sigle',
+    ];
+
+    protected $casts = [
+        'created_at' => 'datetime'
     ];
 
     public function services(): HasMany

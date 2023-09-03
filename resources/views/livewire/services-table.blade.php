@@ -7,7 +7,7 @@
     <div class="optional">
         <div class="buttons">
             <button class="filter" x-show="servicesChecked.length > 0" x-on:click="$wire.deletedServices(servicesChecked)">
-                <ion-icon name="filter"></ion-icon>
+                <ion-icon name="trash-outline"></ion-icon>
                 Supprimer
             </button>
             <button class="add">
@@ -15,16 +15,26 @@
                 <a href="{{ route('admin.service.create') }}">Add Service</a>
             </button>
         </div>
-        <form action="">
-            <div class="search-box" style="margin-right: 17px;">
-                <input type="text" name="service" wire:model="service" placeholder="Nom du service">
-                <ion-icon name="search"></ion-icon>
-            </div>
-        </form>
+        <div class="check-categorie-documents" style="width: 26%;">
+            <select class="inputContainer" id="direction" wire:model="selectedDirection" name="direction_id" style="height: 35px;">
+                <option value="">Sélectionnez une direction</option>
+                @foreach ($directions as $id => $direction)
+                    <option value="{{ $id }}">{{ $direction }}</option>
+                @endforeach
+            </select>
+        </div>
+        <div class="search-box" style="width: 26%;">
+            <input type="text" name="service" wire:model="service" placeholder="Nom du service" style="height: 35px;">
+            <ion-icon name="search"></ion-icon>
+        </div>
+        <div class="search-box" style="margin-right: 17px; width: 26%;">
+            <input type="text" name="sigle" wire:model="sigle" placeholder="Sigle du service" style="height: 35px;">
+            <ion-icon name="search"></ion-icon>
+        </div>
     </div>
 
     @if (session('success'))
-        <div class="success">
+        <div class="message success">
             {{ session('success') }}
         </div>
     @endif
@@ -57,16 +67,12 @@
                                     Editer
                                 </a>
                             </button>
-                            <button class="delete">
-                                <a href="{{ route('admin.service.destroy', ['service' => $service->id]) }}"
-                                   onclick="event.preventDefault();
-                                   document.getElementById('deleteForm{{ $service->id }}').submit();">
+                            <button
+                                class="delete"
+                                routeForDeleting="{{ route('admin.service.destroy', ['service' => $service->id]) }}">
+                                <a href="" onclick="event.preventDefault()">
                                     Supprimer
                                 </a>
-                                <form action="{{ route('admin.service.destroy', ['service' => $service->id]) }}" method="POST" style="" id="deleteForm{{ $service->id }}">
-                                    @csrf
-                                    @method('delete')
-                                </form>
                             </button>
                         </td>
                     </tr>
@@ -75,5 +81,18 @@
                 @endforelse
             </tbody>
         </table>
+        <div class="warningMessageContainer">
+            <div class="overlay"></div>
+            <div class="warning">
+                <ion-icon name="alert-circle"></ion-icon>
+                <h3>Voulez-vous vraiment supprimer ce service ?</h3>
+                <form action="" class="deleteForm" method="POST">
+                    @csrf
+                    @method('delete')
+                    <button type="button" class="closeWarning">Annuler</button>
+                    <button type="submit" class="submitdeleteForm">Supprimer</button>
+                </form>
+            </div>
+        </div>
     </div>
 </div>

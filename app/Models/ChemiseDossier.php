@@ -15,7 +15,11 @@ class ChemiseDossier extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $guarded = [];
+    protected $fillable = [
+        'libelle',
+        'code',
+        'boite_archive_id'
+    ];
 
     public function boitearchive(): BelongsTo
     {

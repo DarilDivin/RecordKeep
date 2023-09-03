@@ -27,6 +27,7 @@
 
 
         'resources/js/app.js',
+        'ressources/js/quickv.js',
         'resources/js/script.js',
         'resources/js/home.js',
         'resources/js/secretary-Dashboard.js',
