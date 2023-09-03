@@ -144,4 +144,6 @@ return [
         ]),
     ],
 
+    // 'responses' => ['register' => \App\Http\Responses\CustomRegisterResponse::class],
+
 ];

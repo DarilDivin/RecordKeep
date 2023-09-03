@@ -27,7 +27,7 @@
                     </ul>
                 </div>
             @endif
-            <form method="POST" action="{{ route($user->exists ? 'admin.user.update' : 'register', ['user' => $user->id]) }}" enctype="multipart/form-data">
+            <form method="POST" action="{{ route($user->exists ? 'admin.user.update' : 'user.register', ['user' => $user->id]) }}" enctype="multipart/form-data">
                 @csrf
                 @method($user->exists ? 'put' : 'post')
                 <x-input class="inputContainer" id="matricule" label="Matricule" type="text" name="matricule" placeholder="Matricule"  readonly="" value="{{ $user->matricule }}" />

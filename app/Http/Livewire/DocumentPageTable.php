@@ -24,13 +24,8 @@ class DocumentPageTable extends Component
 
     public function filesdownload(array $ids)
     {
-        // $selectedCheckboxes = $request->input('document', []);
-
-        // $documents[] = Document::where('id', $request->input('document', []))->get();
-
-        // foreach($request->input('document', []) as $id) {
         foreach($ids as $id) {
-        $documents[] = Document::where('id', $id)->get();
+            $documents[] = Document::where('id', $id)->get();
         }
 
         // dd($documents);
@@ -57,11 +52,13 @@ class DocumentPageTable extends Component
         if ($zip->open($zipFilePath, ZipArchive::CREATE) === true) {
             // $files = File::files($sourcePath);
             // dd(count($documents));
-            $a = [];
+            // $a = [];
             foreach ($documents as $doc) {
                 for($i = 0; $i < count($doc); $i++){
                     $zip->addFile(public_path('storage/'). $doc[$i]->document, $doc[$i]->nom . '.pdf');
-                    // array_push($a, public_path('storage/'). $doc[0]->document);
+                    $doc[$i]->update([
+                        'nbrdownload' => ++$doc[$i]->nbrdownload
+                    ]);
                 }
             }
             // dd($a);
@@ -71,6 +68,13 @@ class DocumentPageTable extends Component
         // Renvoyez le fichier compressé à l'utilisateur
         return Response::download($zipFilePath, $zipFileName)->deleteFileAfterSend();
 
+    }
+
+    public function incrementConsult(Document $document)
+    {
+        $document->update([
+            'nbrconsult' => ++$document->nbrconsult
+        ]);
     }
 
     public function render()

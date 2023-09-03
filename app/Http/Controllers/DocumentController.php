@@ -97,6 +97,10 @@ class DocumentController extends Controller
         $documentPath = 'public/'. $document->document;
         // $documentPath = public_path($document->document);
         // dd($documentPath);
+
+        $document->update([
+            'nbrdownload' => ++$document->nbrdownload,
+        ]);
         $time = time();
         $documentName = "$time"."$document->name";
         return Storage::download($documentPath, $documentName);

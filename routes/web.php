@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminRegisteredUserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Manager\DocumentController;
@@ -25,3 +26,6 @@ Route::get('/home', [HomeController::class, 'index'])->name('home')->middleware(
 //     return view('auth.login');
 // })->name('login');
 
+Route::post( '/user-register', [AdminRegisteredUserController::class, 'store'])
+            ->middleware(['auth'])
+            ->name('user.register');

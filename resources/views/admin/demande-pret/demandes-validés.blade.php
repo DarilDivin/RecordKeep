@@ -5,13 +5,24 @@
 @endsection
 
 @section('content')
-    <div class="container">
+    <div class="container develop">
         @include('admin.layouts.partials.sidebar')
 
         <div class="main">
             <div class="title">
                 <p>Manage Users</p>
                 <ion-icon name="person"></ion-icon>
+            </div>
+
+            <div class="sidebarOptions">
+                <div class="sidebarOptionContainerOverlay"></div>
+                <div class="sidebarOptionContainer">
+                    <div class="optionContainer">
+                        <a href="Document-classé.html">
+                            <ion-icon name="archive"></ion-icon>
+                        </a>
+                    </div>
+                </div>
             </div>
 
             <div class="optional">

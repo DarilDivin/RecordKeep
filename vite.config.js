@@ -30,7 +30,7 @@ export default defineConfig({
                 'resources/js/DocumentPage.js',
                 'resources/js/DemandePrêt.js',
                 'resources/js/Dashboard.js',
-
+                'resources/js/sidebar.js',
             ],
             refresh: true,
         }),

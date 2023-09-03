@@ -37,7 +37,9 @@
             <ion-icon name="grid" class="grid-icon"></ion-icon>
         </div>
     </div>
-    <div class="documents" x-data="{ documentChecked : [] }">
+    <div class="documents" x-data="{
+        documentChecked : []
+    }">
         <button x-show="documentChecked.length > 0" class="btndownload" x-on:click="$wire.filesdownload(documentChecked)">Télécharger</button>
         {{-- <span x-html="JSON.stringify(documentChecked)"></span> --}}
         {{-- <div class="documentLine">
@@ -69,7 +71,7 @@
             </div>
         </div> --}}
         @foreach ($documents as $document)
-            <div class="document">
+            <div class="document" >
                 <div class="documentLine" data-aos="zoom-out" data-aos-once="true">
                     <input type="checkbox" name="document[]" id="{{ $document->id }}" value="{{ $document->id }}" x-model="documentChecked">
 
@@ -86,7 +88,7 @@
                         <p>250ko</p>
                     </div>
                     <div class="documentOptions">
-                        <button class="consult" data-document-link="storage/{{ $document->document }}" type="button">
+                        <button class="consult" data-document-link="storage/{{ $document->document }}" type="button" x-on:click="$wire.incrementConsult({{ $document }})">
                             <ion-icon name="eye-outline"></ion-icon>
                             <p>Consulter</p>
                         </button>

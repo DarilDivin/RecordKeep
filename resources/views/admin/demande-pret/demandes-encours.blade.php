@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-    <div class="container">
+    <div class="container develop">
         @include('admin.layouts.partials.sidebar')
 
         <div class="main">
@@ -14,16 +14,23 @@
                 <ion-icon name="person"></ion-icon>
             </div>
 
+            <div class="sidebarOptions">
+                <div class="sidebarOptionContainerOverlay"></div>
+                <div class="sidebarOptionContainer">
+                    <div class="optionContainer">
+                        <a href="Document-classé.html">
+                            <ion-icon name="archive"></ion-icon>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
             <div class="optional">
                 <div class="buttons">
                     <button class="filter">
                         <ion-icon name="filter"></ion-icon>
                         Filtrer
                     </button>
-                    {{-- <button class="add">
-                        <ion-icon name="add"></ion-icon>
-                        <a href="">Add User</a>
-                    </button> --}}
                 </div>
                 <form action="">
                     <div class="search-box">
@@ -39,7 +46,7 @@
                 </div>
             @endif
 
-            <div class="tableau">
+            {{-- <div class="tableau">
                 <table class="table">
                     <thead>
                         <tr>
@@ -73,7 +80,7 @@
                         @endforelse
                     </tbody>
                 </table>
-            </div>
+            </div> --}}
 
             <div class="cardContainer">
                 <div class="card">

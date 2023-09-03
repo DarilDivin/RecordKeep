@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-    <div class="container">
+    <div class="container develop">
         @include('admin.layouts.partials.sidebar')
 
         <div class="main">
@@ -13,6 +13,18 @@
                 <p>Statistiques Génerales</p>
                 <ion-icon name="stats-chart"></ion-icon>
             </div>
+
+            <div class="sidebarOptions">
+                <div class="sidebarOptionContainerOverlay"></div>
+                <div class="sidebarOptionContainer">
+                    <div class="optionContainer">
+                        <a href="Document-classé.html">
+                            <ion-icon name="archive"></ion-icon>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
             <div class="content">
 
                 <div class="website-infos">
@@ -24,23 +36,23 @@
                         <div class="infos">
                             <div class="info info-total">
                                 <p>Total</p>
-                                <h5>300</h5>
+                                <h5>{{ $nbrdocument }}</h5>
                             </div>
                             <div class="info">
                                 <h5>Archivé</h5>
-                                <div class="gauge" id="1"></div>
+                                <div class="gauge" id="1" data-pourcentage-archive="{{ json_encode($pourcentagedocumentArchivé) }}"></div>
                             </div>
                             <div class="info">
                                 <h5>Prêté</h5>
-                                <div class="gauge" id="2"></div>
+                                <div class="gauge" id="2" data-pourcentage-prete="{{ json_encode($pourcentagedocumentPreté) }}"></div>
                             </div>
                             <div class="info">
                                 <h5>Téléchargé</h5>
-                                <div class="gauge" id="3"></div>
+                                <div class="gauge" id="3" data-pourcentage-telecharge="{{ json_encode($pourcentagedocumentTéléchargé) }}"></div>
                             </div>
                             <div class="info">
                                 <h5>Disponible</h5>
-                                <div class="gauge" id="4"></div>
+                                <div class="gauge" id="4" data-pourcentage-dispo="{{ json_encode($pourcentagedocumentDispo) }}"></div>
                             </div>
                         </div>
                     </div>
@@ -51,30 +63,21 @@
                         <div class="infos">
                             <div class="info info-total">
                                 <p>Total</p>
-                                <h5>300</h5>
+                                <h5>{{ $nbruser }}</h5>
                             </div>
-                            <div class="info donut">
+                            <div class="info donut" data-user-donut="{{ json_encode($UserDonut) }}" id="donutContainer">
                                 <canvas id="donut"></canvas>
                             </div>
                             <div class="info">
-                                <h5>Connecté</h5>
-                                <div class="gauge" id="5"></div>
+                                <h5>Authentifié</h5>
+                                <div class="gauge" id="5" data-pourcentage-utilisateur-auth="{{ json_encode($pourcentageUtilisateursAuthentifies) }}"></div>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="statistics-chart">
-                    <div class="member-connected-per-month">
+                    <div class="member-connected-per-month" data="{{ json_encode($formattedData) }}" id="chart">
                         <canvas id="member-connected-per-month"></canvas>
-                    </div>
-                    <div class="donut-graph">
-                        <div class="descript">
-                        <h5>Rprésentation des Utilisateurs</h5>
-                        <p>
-                            Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                        </p>
-                        </div>
-                        <canvas id="donuto"></canvas>
                     </div>
                 </div>
             </div>

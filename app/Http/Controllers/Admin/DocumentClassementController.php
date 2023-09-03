@@ -8,6 +8,7 @@ use App\Models\BoiteArchive;
 use App\Models\ChemiseDossier;
 use App\Models\Document;
 use App\Models\RayonRangement;
+use Carbon\Carbon;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 
@@ -42,7 +43,8 @@ class DocumentClassementController extends Controller
 
         $document->update(array_merge($request->validated(), [
             'archive' => 1,
-            'code' => $ch_code . $document->id
+            'code' => $ch_code . $document->id,
+            'archived_at' => Carbon::now(),
         ]));
 
         return redirect()->route('admin.document.index')->with('success', 'Le document a bien été classé');

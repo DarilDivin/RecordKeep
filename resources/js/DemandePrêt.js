@@ -8,7 +8,6 @@ const overlay = document.querySelector('.overlay');
 consultBtn.addEventListener('click', (event) => {
     const documentLink = element.getAttribute("data-document-link");
     embed.setAttribute("src", documentLink);
-    // console.log(documentLink);
     documentView.classList.add('show');
 });
 

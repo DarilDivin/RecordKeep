@@ -1,13 +1,13 @@
-// const menuHamburgerbtn = document.querySelector('.menuHamburger')
-// const menuHamburger = document.querySelector('.nav_menu')
+const menuHamburgerbtn = document.querySelector('.menuHamburger')
+const menuHamburger = document.querySelector('.nav_menu')
 
-// menuHamburgerbtn.addEventListener('click', () => {
-//     menuHamburger.classList.toggle('displayMenu')
-// })
+menuHamburgerbtn.addEventListener('click', () => {
+    menuHamburger.classList.toggle('displayMenu')
+})
 
-// menuHamburgerbtn.addEventListener('click', () => {
-//     menuHamburger.classList.toggle('displayMenu')
-// })
+menuHamburgerbtn.addEventListener('click', () => {
+    menuHamburger.classList.toggle('displayMenu')
+})
 
 const progressCircle = document.querySelector(".autoplay-progress svg");
 const progressContent = document.querySelector(".autoplay-progress span");

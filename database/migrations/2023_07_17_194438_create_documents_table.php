@@ -25,7 +25,11 @@ return new class extends Migration
             $table->date('datecreation')->nullable();
             $table->boolean('disponibilite')->default(0);
             $table->boolean('archive')->default(0);
+            $table->boolean('prete')->default(0);
             $table->string('document')->nullable();
+            $table->integer('nbrdownload')->default(0);
+            $table->integer('nbrconsult')->default(0);
+            $table->dateTime('archived_at')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
