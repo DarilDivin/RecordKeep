@@ -23,7 +23,7 @@ class CustomValidationRule implements ValidationRule
         }
         foreach(array_count_values($typeroleIds) as $k => $v){
             if($v > 1){
-                $fail('Le champ :attribute ne doit pas contenir deux rôles de mêmes type.');
+                $fail('Le champ :attribute ne doit pas contenir deux rôles de même type.');
             }
         }
     }

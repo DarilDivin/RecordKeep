@@ -13,16 +13,16 @@ return new class extends Migration
     {
         Schema::create('documents', function (Blueprint $table) {
             $table->id();
-            $table->string('nom')->nullable();
-            $table->string('signature')->nullable();
+            $table->string('nom');
+            $table->string('signature');
             $table->string('code')->nullable();
-            $table->string('objet')->nullable();
-            $table->string('source')->nullable();
-            $table->string('emetteur')->nullable();
-            $table->string('recepteur')->nullable();
-            $table->string('motclefs')->nullable();
-            $table->integer('dua')->nullable();
-            $table->date('datecreation')->nullable();
+            $table->string('objet');
+            $table->string('source');
+            $table->string('emetteur');
+            $table->string('recepteur');
+            $table->string('motclefs');
+            $table->integer('dua');
+            $table->date('datecreation');
             $table->boolean('disponibilite')->default(0);
             $table->boolean('archive')->default(0);
             $table->boolean('prete')->default(0);

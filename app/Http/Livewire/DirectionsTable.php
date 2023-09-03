@@ -11,6 +11,8 @@ class DirectionsTable extends Component
 {
     use WithPagination;
 
+    public $sigle = '';
+
     public $direction = '';
 
     public $orderField = 'direction';
@@ -19,15 +21,15 @@ class DirectionsTable extends Component
 
     public array $directionsChecked = [];
 
-    protected $queryString = [
-        'direction' => ['except' => ''],
-        'orderField' => ['except' => 'direction'],
-        'orderDirection' => ['except' => 'ASC']
-    ];
-
     protected $rules = [
+        'sigle' => 'nullable|string',
         'direction' => 'nullable|string'
     ];
+
+    public function updatedSigle()
+    {
+        $this->resetPage();
+    }
 
     public function updatedDirection()
     {
@@ -57,6 +59,10 @@ class DirectionsTable extends Component
         $this->validate();
 
         $directions = Direction::query();
+
+        if(!empty($this->sigle)){
+            $directions = $directions->where('sigle', 'LIKE', "%{$this->sigle}%");
+        }
 
         if(!empty($this->direction)){
             $directions = $directions->where('direction', 'LIKE', "%{$this->direction}%");

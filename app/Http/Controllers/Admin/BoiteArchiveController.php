@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\BoiteArchive;
+use App\Models\RayonRangement;
 use Illuminate\Contracts\View\View;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;
@@ -15,9 +16,7 @@ class BoiteArchiveController extends Controller
      */
     public function index(): View
     {
-        return view('admin.boite-archive.boites', [
-            'boites' => BoiteArchive::all()
-        ]);
+        return view('admin.boite-archive.boites');
     }
 
     /**
@@ -26,7 +25,8 @@ class BoiteArchiveController extends Controller
     public function create(): View
     {
         return view('admin.boite-archive.boite-form', [
-            'boite' => new BoiteArchive()
+            'boite' => new BoiteArchive(),
+            'rayons' => RayonRangement::getAllRayons()
         ]);
     }
 
@@ -35,7 +35,11 @@ class BoiteArchiveController extends Controller
      */
     public function store(BoiteArchiveFormRequest $request): RedirectResponse
     {
-        BoiteArchive::create($request->validated());
+        $data = $request->validated();
+        $b = BoiteArchive::create($data);
+        $b->update([
+            'code' => RayonRangement::find($data['rayon_rangement_id'])->code . 'B' . $b->id
+        ]);
         return redirect()
             ->route('admin.boite.index')
             ->with('success', 'La Boîte Archive a bien été créé');
@@ -47,7 +51,8 @@ class BoiteArchiveController extends Controller
     public function edit(BoiteArchive $boite): View
     {
         return view('admin.boite-archive.boite-form', [
-            'boite' => $boite
+            'boite' => $boite,
+            'rayons' => RayonRangement::getAllRayons()
         ]);
     }
 
@@ -56,7 +61,13 @@ class BoiteArchiveController extends Controller
      */
     public function update(BoiteArchiveFormRequest $request, BoiteArchive $boite): RedirectResponse
     {
-        $boite->update($request->validated());
+        $data = $request->validated();
+        $boite->update(array_merge(
+            $data, [
+                'code' => RayonRangement::find($data['rayon_rangement_id'])->code . 'B' . $boite->id
+            ]
+        ));
+
         return redirect()
             ->route('admin.boite.index')
             ->with('success', 'La Boîte Archive a bien été modifiée');

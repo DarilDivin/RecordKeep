@@ -16,10 +16,6 @@ class DocumentsTable extends Component
 
     public $nom = '';
 
-    public $services;
-
-    public $divisions;
-
     public $datecreation = '';
 
     public $selectedService;
@@ -31,15 +27,6 @@ class DocumentsTable extends Component
     public $orderDirection = 'ASC';
 
     public array $documentsChecked = [];
-
-    protected $queryString = [
-        'nom' => ['except' => ''],
-        'selectedService' => ['except' => ''],
-        'selectedDivision' => ['except' => ''],
-        'datecreation' => ['except' => ''],
-        'orderField' => ['except' => 'nom'],
-        'orderDirection' => ['except' => 'ASC']
-    ];
 
     protected $rules = [
         'nom' => 'nullable|string',
@@ -56,16 +43,6 @@ class DocumentsTable extends Component
         $this->resetPage();
     }
 
-    public function updatedSelectedService($service_id)
-    {
-        $this->divisions = Division::where('service_id', $service_id)->pluck('division', 'id');
-    }
-
-    public function updatedSelectedDivision($division_id)
-    {
-        $this->selectedService = Division::find($division_id)->service_id;
-    }
-
     public function destroyDocuments(array $ids)
     {
         Document::destroy($ids);
@@ -75,7 +52,7 @@ class DocumentsTable extends Component
 
     public function createTransfertDocuments(array $ids)
     {
-        $demandeTransfert = DemandeTransfert::orderBy('created_at', 'desc')->limit(1)->get()->toArray();
+        $demandeTransfert = DemandeTransfert::where('transfere', 0)->get()->toArray();
         if(empty($demandeTransfert)){
             return session()->flash('error', "Vous n'avez aucune Demande de Transfert de crée !");
         }
@@ -88,7 +65,7 @@ class DocumentsTable extends Component
             }
         }
         $this->documentsChecked = [];
-        return session()->flash('success', 'Les Documents ont bien été ajouté à votre Demande de Transfert');
+        return session()->flash('success', 'Le(s) Document(s) ont bien été ajouté à votre Demande de Transfert');
     }
 
     public function setOrderField(string | int | DateTime  $field)
@@ -108,14 +85,6 @@ class DocumentsTable extends Component
 
         $documents = Document::query();
 
-        if($this->selectedService){
-            $documents = $documents->where('service_id', $this->selectedService);
-        }
-
-        if($this->selectedDivision){
-            $documents = $documents->where('division_id', $this->selectedDivision);
-        }
-
         if(!empty($this->nom)){
             $documents = $documents->where('nom', 'LIKE', "%{$this->nom}%");
         }
@@ -126,8 +95,9 @@ class DocumentsTable extends Component
 
         return view('livewire.documents-table', [
             'documents' => $documents
-                    ->orderBy($this->orderField, $this->orderDirection)
-                    ->get(),
+                ->where('demande_transfert_id', null)
+                ->orderBy($this->orderField, $this->orderDirection)
+                ->get(),
         ]);
     }
 }

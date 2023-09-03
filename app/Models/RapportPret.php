@@ -14,6 +14,10 @@ class RapportPret extends Model
 
     protected $guarded = [];
 
+    protected $casts = [
+        'created_at' => 'datetime'
+    ];
+
     public function demandePret() : BelongsTo
     {
         return $this->belongsTo(DemandePret::class, 'demande_pret_id', 'id');

@@ -7,7 +7,6 @@
     @section('content')
 
     @php
-        // $roleName = str_replace("&#039;", "\'", $role->name );
         $routeName = request()->route()->getName();
     @endphp
 
@@ -15,9 +14,11 @@
     <div class="addDocumentFormContainer showForm">
         <div class="overlay"></div>
         <div class="addDocumentForm">
-            <span class="closeDocumentForm">
-                <ion-icon name="arrow-back"></ion-icon>
-            </span>
+            <a href="{{ route('admin.type-role.index') }}">
+                <span class="closeDocumentForm">
+                    <ion-icon name="arrow-back"></ion-icon>
+                </span>
+            </a>
             <h1> {{ $typerole->exists ? 'Éditer un Type de Rôle' : 'Ajouter un Type de Rôle' }} </h1>
             @if ($errors->any())
                 <div class="message error">
@@ -37,6 +38,24 @@
                 <x-input class="inputContainer fonction" id="typerole" label="Libellé du Type de Rôle" type="text" name="libelle" placeholder="Type de Rôle"  readonly="" value="{{ $typerole->libelle }}" />
 
                 <div class="inputContainer TomSelect" style="grid-column: 1 / span 3;">
+                    <label for="roles">Rôles</label>
+                    <select name="roles[]" id="roles" multiple placeholder="Choisissez quelques rôles...">
+                        @if ($routeName === 'admin.type-role.edit' && !is_null($typerole->severalroles->toArray())))
+                            @foreach ($roles as $id => $role)
+                                <option @if(in_array($id, $typerole->severalroles->pluck('id')->toArray())) selected @endif value="{{ $id }}">{{ $role }}</option>
+                            @endforeach
+                        @else
+                            @foreach ($roles as $id => $role)
+                                <option value="{{ $id }}" {{ in_array($id, old('roles', [])) ? 'selected' : '' }} >{{ $role }}</option>
+                            @endforeach
+                        @endif
+                    </select>
+                    @error('roles')
+                        <span style="color: red; font-size: 0.7rem">{{ $message }}</span>
+                    @enderror
+                </div>
+
+                <div class="inputContainer TomSelect" style="grid-column: 1 / span 3;">
                     <label for="permissions">Permissions</label>
                     <select name="permissions[]" id="permissions" multiple placeholder="Choisissez quelques permissions...">
                         @if ($routeName === 'admin.type-role.edit' && !is_null($typerole->severalpermissions->toArray())))
@@ -49,7 +68,7 @@
                             @endforeach
                         @endif
                     </select>
-                    @error('roles')
+                    @error('permissions')
                         <span style="color: red; font-size: 0.7rem">{{ $message }}</span>
                     @enderror
                 </div>

@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\DivisionFormRequest;
-use App\Models\Division;
 use App\Models\Service;
+use App\Models\Division;
 use Illuminate\Contracts\View\View;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;
+use App\Http\Requests\Admin\DivisionFormRequest;
 
 class DivisionController extends Controller
 {
@@ -16,9 +16,7 @@ class DivisionController extends Controller
      */
     public function index(): View
     {
-        return view('admin.division.divisions', [
-            'divisions' => Division::all()
-        ]);
+        return view('admin.division.divisions');
     }
 
     /**

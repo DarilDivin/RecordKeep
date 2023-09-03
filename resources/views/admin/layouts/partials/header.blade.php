@@ -12,12 +12,8 @@
     @livewireStyles()
     @vite([
         'resources/css/app.css',
-        // 'resources/css/body.css',
-        // 'resources/css/Dashboard-User-Document-Management.css',
-        // 'resources/css/Statistiques.css',
-        // 'resources/css/style.css',
-        // 'resources/css/Utilité.css',
 
+        'ressources/js/quickv.js',
         'resources/js/Dashboard-Statistiques.js',
         'resources/js/Dashboard.js',
         'resources/js/sidebar.js',

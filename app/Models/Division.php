@@ -17,12 +17,14 @@ class Division extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $guarded = [];
-
     protected $fillable = [
         'division',
         'sigle',
         'service_id',
+    ];
+
+    protected $casts = [
+        'created_at' => 'datetime'
     ];
 
     public function service(): BelongsTo

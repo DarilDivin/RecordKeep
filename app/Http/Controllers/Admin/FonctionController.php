@@ -15,9 +15,7 @@ class FonctionController extends Controller
      */
     public function index(): View
     {
-        return view('admin.fonction.fonctions', [
-            'fonctions' => Fonction::all()
-        ]);
+        return view('admin.fonction.fonctions');
     }
 
     /**

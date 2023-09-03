@@ -13,7 +13,11 @@ class DemandeTransfert extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $guarded = [];
+    protected $fillable = [
+        'libelle',
+        'user_id',
+        'transfere'
+    ];
 
     protected $casts = [
         'created_at' => 'datetime'

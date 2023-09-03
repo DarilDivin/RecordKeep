@@ -27,7 +27,8 @@ class BoiteArchiveFormRequest extends FormRequest
                 Rule::unique('boite_archives')
                 ->ignore($this->route()->parameter('boite'))
                 ->withoutTrashed()
-            ]
+        ],
+        'rayon_rangement_id' => ['required', 'exists:rayon_rangements,id', 'integer'],
         ];
     }
 }

@@ -8,16 +8,17 @@
 
     @php
         $roleName = str_replace("&#039;", "\'", $role->name );
-        $routeName = request()->route()->getName();
     @endphp
 
 
     <div class="addDocumentFormContainer showForm">
         <div class="overlay"></div>
         <div class="addDocumentForm">
-            <span class="closeDocumentForm">
-                <ion-icon name="arrow-back"></ion-icon>
-            </span>
+            <a href="{{ route('admin.role.index') }}">
+                <span class="closeDocumentForm">
+                    <ion-icon name="arrow-back"></ion-icon>
+                </span>
+            </a>
             <h1> {{ $role->exists ? 'Éditer un Rôle' : 'Ajouter un Rôle' }} </h1>
             @if ($errors->any())
                 <div class="message error">
@@ -37,6 +38,7 @@
                 <x-input class="inputContainer fonction" id="role" label="Libellé du Rôle" type="text" name="name" placeholder="Rôle"  readonly="" value="{{ $roleName }}" />
 
                 @livewire('role-dynamic-select', [
+                    'role' => $role,
                     'typeroles' => $typeroles,
                     'permissions' => $permissions,
                 ])

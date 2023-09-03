@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\RoleFormRequest;
+use App\Models\Role;
 use App\Models\TypeRole;
 use App\Models\Permission;
-use Spatie\Permission\Models\Role;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\RoleFormRequest;
 
 class RoleController extends Controller
 {
@@ -51,12 +51,10 @@ class RoleController extends Controller
      */
     public function edit(Role $role)
     {
-        $firstTypeRole = TypeRole::orderBy('id', 'asc')->take(1)->get()->toArray();
-        $firstTypeRoleId = $firstTypeRole[0]['id'];
         return view('admin.role.role-form', [
             'role' => $role,
             'typeroles' => TypeRole::all()->pluck('libelle', 'id'),
-            'permissions' => Permission::where('type_role_id', $firstTypeRoleId)->get()->toArray()
+            'permissions' => $role->typerole->severalPermissions->toArray()
         ]);
     }
 

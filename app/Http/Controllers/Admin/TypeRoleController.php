@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Role;
 use App\Models\TypeRole;
 use App\Models\Permission;
 use Illuminate\Contracts\View\View;
@@ -16,9 +17,7 @@ class TypeRoleController extends Controller
      */
     public function index(): View
     {
-        return view('admin.type-role.typeroles', [
-            'typeroles' => TypeRole::all()
-        ]);
+        return view('admin.type-role.typeroles');
     }
 
     /**
@@ -28,6 +27,7 @@ class TypeRoleController extends Controller
     {
         return view('admin.type-role.typerole-form', [
             'typerole' => new TypeRole(),
+            'roles' => Role::all()->pluck('name', 'id'),
             'permissions' => Permission::all()->pluck('name', 'id')
         ]);
     }
@@ -38,8 +38,15 @@ class TypeRoleController extends Controller
     public function store(TypeRoleFormRequest $request): RedirectResponse
     {
         $data = $request->validated();
+        unset($data['roles']);
         unset($data['permissions']);
         $typerole = TypeRole::create($data);
+        foreach($request->roles as $roleId){
+            $role = Role::find($roleId);
+            $role->update([
+                'type_role_id' => $typerole->id
+            ]);
+        }
         foreach($request->permissions as $permissionId){
             $permission = Permission::find($permissionId);
             $permission->update([
@@ -58,6 +65,7 @@ class TypeRoleController extends Controller
     {
         return view('admin.type-role.typerole-form', [
             'typerole' => $typeRole,
+            'roles' => Role::all()->pluck('name', 'id'),
             'permissions' => Permission::all()->pluck('name', 'id')
         ]);
     }
@@ -68,11 +76,21 @@ class TypeRoleController extends Controller
     public function update(TypeRoleFormRequest $request, TypeRole $typeRole): RedirectResponse
     {
         $data = $request->validated();
+        unset($data['roles']);
         unset($data['permissions']);
         $typeRole->update($data);
+        $typeRole->severalRoles()->update([
+            'type_role_id' => null
+        ]);
         $typeRole->severalpermissions()->update([
             'type_role_id' => null
         ]);
+        foreach($request->roles as $roleId){
+            $role = Role::find($roleId);
+            $role->update([
+                'type_role_id' => $typeRole->id
+            ]);
+        }
         foreach($request->permissions as $permissionId){
             $permission = Permission::find($permissionId);
             $permission->update([

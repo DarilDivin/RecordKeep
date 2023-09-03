@@ -17,17 +17,20 @@ class ClassementDynamicSelect extends Component
 
     public $rayons;
 
-    public $selectedRayon = null;
+    public $selectedRayon;
 
-    public $selectedBoite = null;
+    public $selectedBoite;
 
-    public $selectedChemise = null;
+    public $selectedChemise;
 
     public function updatedSelectedRayon($rayon_id)
     {
         $this->boites = BoiteArchive::where('rayon_rangement_id', $rayon_id)->pluck('libelle', 'id');
         if(!empty(array_key_first($this->boites->toArray()))){
             $this->chemises = ChemiseDossier::where('boite_archive_id', array_key_first($this->boites->toArray()))->pluck('libelle', 'id');
+        }
+        else {
+            $this->chemises = [];
         }
     }
 
@@ -39,7 +42,8 @@ class ClassementDynamicSelect extends Component
 
     public function updatedSelectedChemise($chemise_id)
     {
-
+        $this->selectedBoite = ChemiseDossier::find($chemise_id)->boite_archive_id;
+        $this->selectedRayon = BoiteArchive::find($this->selectedBoite)->rayon_rangement_id;
     }
 
     public function render()

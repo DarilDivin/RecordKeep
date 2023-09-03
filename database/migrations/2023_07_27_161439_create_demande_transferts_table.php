@@ -15,6 +15,7 @@ return new class extends Migration
         Schema::create('demande_transferts', function (Blueprint $table) {
             $table->id();
             $table->string('libelle');
+            $table->boolean('transfere')->default(0);
             $table->foreignIdFor(User::class)->constrained()->cascadeOnDelete();
             $table->timestamps();
             $table->softDeletes();

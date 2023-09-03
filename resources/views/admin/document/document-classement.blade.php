@@ -9,9 +9,11 @@
     <div class="addDocumentFormContainer showForm">
         <div class="overlay"></div>
         <div class="addDocumentForm">
-            <span class="closeDocumentForm">
-                <ion-icon name="close-outline"></ion-icon>
-            </span>
+            <a href="{{-- {{ route('admin.document.index') }} --}}">
+                <span class="closeDocumentForm">
+                    <ion-icon name="arrow-back"></ion-icon>
+                </span>
+            </a>
             <h1> Classement du document N°{{ $document->id }}</h1>
             @if ($errors->any())
                 <div class="message error">
@@ -24,7 +26,7 @@
                     </ul>
                 </div>
             @endif
-            <form method="POST" action="{{ route('admin.document.classement', ['document' => $document->id]) }}" enctype="multipart/form-data">
+            <form method="POST" action="{{ route('admin.document.classement', ['document' => $document->id, 'transfert' => $transfert]) }}" enctype="multipart/form-data">
                 @csrf
                 @method('put')
                 <x-input class="inputContainer" id="signature" label="Signature" type="text" name="signature" placeholder="Signature"  readonly="readonly" value="{{ $document->signature }}" />
@@ -39,20 +41,12 @@
 
                 <x-input class="inputContainer" id="recepteur" label="Récepteur" type="text" name="recepteur" placeholder="Récepeteur"  readonly="readonly" value="{{ $document->recepteur }}" />
 
-                {{-- <x-select class="inputContainer" id="chemise" label="Chemise Dossier" name="chemise_dossier_id" :value="$chemises" elementIdOnEntite="{{ $document->chemise_dossier_id }}" />
-
-                <x-select class="inputContainer" id="boite" label="Boîte Archive" name="boite_archive_id" :value="$boites" elementIdOnEntite="{{ $document->chemisedossier->boitearchive->id  }}" />
-
-                <x-select class="inputContainer" id="rayon" label="Rayon de Rangement" name="rayon_rangement_id" :value="$rayons" elementIdOnEntite="{{ $document->chemisedossier->boitearchive->rayonrangement->id }}" /> --}}
-
                 @livewire('classement-dynamic-select', [
                     'chemises' => $chemises,
                     'boites' => $boites,
                     'rayons' => $rayons,
                     'document' => $document
                 ])
-
-                <x-input class="inputContainer" id="archive" label="" type="hidden" name="archive" placeholder="Archive"  readonly="readonly" value="1" />
 
                 <div class="inputContainer button">
                     <button type="submit">Classer</button>

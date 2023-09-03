@@ -5,7 +5,7 @@
     <div class="optional">
         <div class="buttons">
             <button class="filter deleteMultiple" x-show="documentsChecked.length > 0" x-on:click="showModal = 1">
-                <ion-icon name="filter"></ion-icon>
+                <ion-icon name="trash-outline"></ion-icon>
                 Supprimer
             </button>
             <button class="filter" x-show="documentsChecked.length > 0" x-on:click="$wire.createTransfertDocuments(documentsChecked)">
@@ -17,36 +17,17 @@
                 <a href="{{ route('admin.document.create') }}">Ajouter Document</a>
             </button>
         </div>
-        <form action="">
-            <div class="check-categorie-documents">
-                <select class="inputContainer" id="service" wire:model="selectedService" name="service_id">
-                    @foreach ($services as $id => $service)
-                        <option value="{{ $id }}">{{ $service }}</option>
-                    @endforeach
-                </select>
-            </div>
-            <div class="check-categorie-documents">
-                <select class="inputContainer" id="division" wire:model="selectedDivision" name="division_id">
-                    @foreach ($divisions as $id => $division)
-                        <option value="{{ $id }}">{{ $division }}</option>
-                    @endforeach
-                </select>
-            </div>
-            <div class="search-box" style="margin-right: 17px;">
-                <input type="text" name="nom" placeholder="Nom du document" wire:model="nom">
-                <ion-icon name="search"></ion-icon>
-                @error('nom')
-                    <span style="color: red; font-size: 0.7rem">{{ $message }}</span>
-                @enderror
-            </div>
-            {{-- <div class="search-box">
-                <input type="text" name="datecreation" placeholder="12-12-2023" wire:model="datecreation">
-                <ion-icon name="search"></ion-icon>
-                @error('datecreation')
-                    <span style="color: red; font-size: 0.7rem">{{ $message }}</span>
-                @enderror
-            </div> --}}
-        </form>
+        <div class="search-box" style="margin-right: 17px;">
+            <input type="text" name="nom" placeholder="Nom du document" wire:model="nom">
+            <ion-icon name="search"></ion-icon>
+        </div>
+        {{-- <div class="search-box">
+            <input type="text" name="datecreation" placeholder="12-12-2023" wire:model="datecreation">
+            <ion-icon name="search"></ion-icon>
+            @error('datecreation')
+                <span style="color: red; font-size: 0.7rem">{{ $message }}</span>
+            @enderror
+        </div> --}}
     </div>
 
     @if (session('success'))
@@ -81,11 +62,11 @@
                     </td>
                     <td>{{ $document->signature }}</td>
                     <td>{{ $document->nom }}</td>
-                    <td>{{ $document->datecreation->translatedFormat('d F Y') }}</td>
+                    <td>{{ $document->datecreation/* ->translatedFormat('d F Y') */ }}</td>
                     <td>{{ $document->dua }}ans</td>
                     <td>
+                        <button class=""><a href="">Infos</a></button>
                         <button class="edit"><a href="{{ route('admin.document.edit', ['document' => $document->id]) }}">Éditer</a></button>
-
                         <button
                         class="delete"
                         routeForDeleting="{{ route('admin.document.destroy', ['document' => $document->id]) }}">
@@ -93,9 +74,6 @@
                                 Supprimer
                             </a>
                         </button>
-                        <button class=""><a href="">Infos</a></button>
-                        <button class="classer"><a href="{{ route('admin.document.classement', ['document' => $document->id]) }}">Classer</a></button>
-
                     </td>
                 </tr>
                 @empty
@@ -105,11 +83,11 @@
         </table>
     </div>
 </div>
-<div class="warningMessageContainer" id="Formdeletemultiple" x-show="showModal = 1">
+{{-- <div class="warningMessageContainer" id="Formdeletemultiple" x-show="showModal = 1">
     <div class="overlay"></div>
     <div class="warning">
         <ion-icon name="alert-circle"></ion-icon>
-        <h3>Est vous sur de vouloir supprimer cet élément ??</h3>
+        <h3>Voulez-vous vraiment supprimer ces document ?</h3>
         <form action="" class="deleteFormMultiple" method="POST">
             @csrf
             @method('delete')
@@ -117,4 +95,4 @@
             <button type="submit" class="submitdeleteFormMultiple" x-on:click="$wire.destroyDocuments(documentsChecked), showModal=0">Supprimer</button>
         </form>
     </div>
-</div>
+</div> --}}

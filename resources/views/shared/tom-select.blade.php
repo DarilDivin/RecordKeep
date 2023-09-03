@@ -19,7 +19,7 @@
             @endforeach
         @else
             @foreach ($tabs as $k => $tab)
-                <option value="{{ $tab }}" {{ in_array($tab, old('motclefs', [])) ? 'selected' : '' }}>{{ $tab }}</option>
+                <option {{ in_array($tab, old('motclefs', [])) ? 'selected' : '' }} value="{{ $tab }}">{{ $tab }}</option>
             @endforeach
         @endif
     </select>

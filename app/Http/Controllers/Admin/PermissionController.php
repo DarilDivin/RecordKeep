@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Role;
 use App\Models\TypeRole;
-use Spatie\Permission\Models\Role;
+use App\Models\Permission;
 use App\Http\Controllers\Controller;
-use Spatie\Permission\Models\Permission;
 use App\Http\Requests\Admin\PermissionFormRequest;
 
 class PermissionController extends Controller
@@ -23,10 +23,12 @@ class PermissionController extends Controller
      */
     public function create()
     {
+        $firstTypeRole = TypeRole::orderBy('id', 'asc')->take(1)->get()->toArray();
+        $firstTypeRoleId = $firstTypeRole[0]['id'];
         return view('admin.permission.permission-form', [
             'permission' => new Permission(),
             'typeroles' => TypeRole::all()->pluck('libelle', 'id'),
-            'roles' => Role::all()->pluck('name', 'id')->toArray()
+            'roles' => Role::where('type_role_id', $firstTypeRoleId)->get()->toArray()
         ]);
     }
 
@@ -51,7 +53,8 @@ class PermissionController extends Controller
     {
         return view('admin.permission.permission-form', [
             'permission' => $permission,
-            'roles' => Role::all()->pluck('name', 'id')->toArray()
+            'typeroles' => TypeRole::all()->pluck('libelle', 'id'),
+            'roles' => $permission->typerole->severalRoles->toArray()
         ]);
     }
 

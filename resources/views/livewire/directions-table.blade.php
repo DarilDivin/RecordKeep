@@ -18,7 +18,7 @@
     <div class="optional">
         <div class="buttons">
             <button class="filter" x-show="directionsChecked.length > 0" x-on:click="$wire.deletedDirections(directionsChecked)">
-                <ion-icon name="filter"></ion-icon>
+                <ion-icon name="trash-outline"></ion-icon>
                 Supprimer
             </button>
             <button class="add">
@@ -26,12 +26,14 @@
                 <a href="{{ route('admin.direction.create') }}">Add Direction</a>
             </button>
         </div>
-        <form action="">
-            <div class="search-box" style="margin-right: 17px;">
-                <input type="text" name="direction" wire:model="direction" placeholder="Nom de la direction">
-                <ion-icon name="search"></ion-icon>
-            </div>
-        </form>
+        <div class="search-box" style="margin-right: 17px;">
+            <input type="text" name="direction" wire:model="direction" placeholder="Nom de la direction">
+            <ion-icon name="search"></ion-icon>
+        </div>
+        <div class="search-box" style="margin-right: 17px;">
+            <input type="text" name="sigle" wire:model="sigle" placeholder="Sigle de la direction">
+            <ion-icon name="search"></ion-icon>
+        </div>
     </div>
 
     @if (session('success'))
@@ -66,16 +68,12 @@
                                     Editer
                                 </a>
                             </button>
-                            <button class="delete">
-                                <a href="{{ route('admin.direction.destroy', ['direction' => $direction->id]) }}"
-                                   onclick="event.preventDefault();
-                                   document.getElementById('deleteForm{{ $direction->id }}').submit();">
+                            <button
+                                class="delete"
+                                routeForDeleting="{{ route('admin.direction.destroy', ['direction' => $direction->id]) }}">
+                                <a href="" onclick="event.preventDefault()">
                                     Supprimer
                                 </a>
-                                <form action="{{ route('admin.direction.destroy', ['direction' => $direction->id]) }}" method="POST" style="" id="deleteForm{{ $direction->id }}">
-                                    @csrf
-                                    @method('delete')
-                                </form>
                             </button>
                         </td>
                     </tr>
@@ -84,5 +82,18 @@
                 @endforelse
             </tbody>
         </table>
+        <div class="warningMessageContainer">
+            <div class="overlay"></div>
+            <div class="warning">
+                <ion-icon name="alert-circle"></ion-icon>
+                <h3>Voulez-vous vraiment supprimer cette direction ?</h3>
+                <form action="" class="deleteForm" method="POST">
+                    @csrf
+                    @method('delete')
+                    <button type="button" class="closeWarning">Annuler</button>
+                    <button type="submit" class="submitdeleteForm">Supprimer</button>
+                </form>
+            </div>
+        </div>
     </div>
 </div>

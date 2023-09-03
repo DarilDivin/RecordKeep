@@ -18,7 +18,7 @@
     <div class="optional">
         <div class="buttons">
             <button class="filter" x-show="permissionsChecked.length > 0" x-on:click="$wire.deletedPermissions(permissionsChecked)">
-                <ion-icon name="filter"></ion-icon>
+                <ion-icon name="trash-outline"></ion-icon>
                 Supprimer
             </button>
             <button class="add">
@@ -26,16 +26,10 @@
                 <a href="{{ route('admin.permission.create') }}">Add Permission</a>
             </button>
         </div>
-        <form action="">
-            <div class="search-box" style="margin-right: 17px;">
-                <input type="text" name="permission" wire:model="permission" placeholder="Nom de la permission">
-                <ion-icon name="search"></ion-icon>
-
-                @error('permission')
-                    <span style="color: red; font-size: 0.7rem">{{ $message }}</span>
-                @enderror
-            </div>
-        </form>
+        <div class="search-box" style="margin-right: 17px;">
+            <input type="text" name="permission" wire:model="permission" placeholder="Nom de la permission">
+            <ion-icon name="search"></ion-icon>
+        </div>
     </div>
 
     @if (session('success'))
@@ -70,16 +64,12 @@
                                     Editer
                                 </a>
                             </button>
-                            <button class="delete">
-                                <a href="{{ route('admin.permission.destroy', ['permission' => $permission->id]) }}"
-                                   onclick="event.preventDefault();
-                                   document.getElementById('deleteForm{{ $permission->id }}').submit();">
+                            <button
+                                class="delete"
+                                routeForDeleting="{{ route('admin.permission.destroy', ['permission' => $permission->id]) }}">
+                                <a href="" onclick="event.preventDefault()">
                                     Supprimer
                                 </a>
-                                <form action="{{ route('admin.permission.destroy', ['permission' => $permission->id]) }}" method="POST" style="" id="deleteForm{{ $permission->id }}">
-                                    @csrf
-                                    @method('delete')
-                                </form>
                             </button>
                         </td>
                     </tr>
@@ -88,5 +78,18 @@
                 @endforelse
             </tbody>
         </table>
+        <div class="warningMessageContainer">
+            <div class="overlay"></div>
+            <div class="warning">
+                <ion-icon name="alert-circle"></ion-icon>
+                <h3>Voulez-vous vraiment supprimer cette permission ?</h3>
+                <form action="" class="deleteForm" method="POST">
+                    @csrf
+                    @method('delete')
+                    <button type="button" class="closeWarning">Annuler</button>
+                    <button type="submit" class="submitdeleteForm">Supprimer</button>
+                </form>
+            </div>
+        </div>
     </div>
 </div>
