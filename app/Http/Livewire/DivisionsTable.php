@@ -56,6 +56,11 @@ class DivisionsTable extends Component
         }
     }
 
+    public function paginationView()
+    {
+        return 'shared.pagination';
+    }
+
     public function render()
     {
         $this->validate();
@@ -77,7 +82,7 @@ class DivisionsTable extends Component
         return view('livewire.divisions-table', [
             'divisions' => $divisions
                 ->orderBy($this->orderField, $this->orderDirection)
-                ->get(),
+                ->paginate(20),
             'services' => Service::getAllServices()
         ]);
     }

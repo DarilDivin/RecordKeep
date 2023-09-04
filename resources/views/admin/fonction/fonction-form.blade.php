@@ -1,7 +1,7 @@
 @extends('admin.layouts.template')
 
     @section('title')
-        Admin-Fonction-Management
+        {{ $fonction->exists ? 'Éditer une Fonction' : 'Ajouter une Fonction' }}
     @endsection
 
     @section('content')
@@ -16,17 +16,6 @@
                 </span>
             </a>
             <h1> {{ $fonction->exists ? 'Éditer une Fonction' : 'Ajouter une Fonction' }} </h1>
-            @if ($errors->any())
-                <div class="message error">
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                            <li>
-                                {{ $error }}
-                            </li>
-                        @endforeach
-                    </ul>
-                </div>
-            @endif
             <form method="POST" action="{{ route($fonction->exists ? 'admin.fonction.update' : 'admin.fonction.store', ['fonction' => $fonction->id]) }}">
                 @csrf
                 @method($fonction->exists ? 'put' : 'post')

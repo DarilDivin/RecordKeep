@@ -1,7 +1,7 @@
 @extends('admin.layouts.template')
 
     @section('title')
-        Admin-User-Management
+        {{ $user->exists ? 'Éditer un Utilisateur' : 'Ajouter un Utilisateur' }}
     @endsection
 
     @section('content')
@@ -16,17 +16,6 @@
                 </span>
             </a>
             <h1> {{ $user->exists ? 'Éditer un Utilisateur' : 'Ajouter un Utilisateur' }} </h1>
-            @if ($errors->any())
-                <div class="message error">
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                            <li>
-                                {{ $error }}
-                            </li>
-                        @endforeach
-                    </ul>
-                </div>
-            @endif
             <form method="POST" action="{{ route($user->exists ? 'admin.user.update' : 'user.register', ['user' => $user->id]) }}" enctype="multipart/form-data">
                 @csrf
                 @method($user->exists ? 'put' : 'post')

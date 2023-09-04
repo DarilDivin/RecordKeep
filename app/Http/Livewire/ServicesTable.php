@@ -56,6 +56,11 @@ class ServicesTable extends Component
         }
     }
 
+    public function paginationView()
+    {
+        return 'shared.pagination';
+    }
+
     public function render()
     {
         $this->validate();
@@ -77,7 +82,7 @@ class ServicesTable extends Component
         return view('livewire.services-table', [
             'services' => $services
                 ->orderBy($this->orderField, $this->orderDirection)
-                ->get(),
+                ->paginate(20),
             'directions' => Direction::getAllDirections()
         ]);
     }

@@ -1,6 +1,6 @@
 <div class="main" x-data = "{ documentsChecked : @entangle('documentsChecked').defer }">
     <div class="title">
-        <p>Manage Transfer Documents</p>
+        <p>Liste des Documents de la Demande de Transfert</p>
         <ion-icon name="document-text"></ion-icon>
     </div>
 
@@ -23,7 +23,7 @@
             </button>
             <button class="add">
                 <ion-icon name="create-outline"></ion-icon>
-                <a href="{{ route('admin.transfert.edit', ['transfert' => $currentTransfert[0]['id']]) }}">Demande Transfert</a>
+                <a href="{{ route('manager.transfert.edit', ['transfert' => $currentTransfert[0]['id']]) }}">Demande Transfert</a>
             </button>
         </div>
         <div class="search-box"  style="margin-right: 17px;">
@@ -66,7 +66,7 @@
                     <td>
                         <button
                             class="delete"
-                            routeForDeleting="{{ route('admin.document.sremove', ['document' => $document->id, 'transfert' => $currentTransfert[0]['id']]) }}">
+                            routeForDeleting="{{ route('manager.document.sremove', ['document' => $document->id, 'transfert' => $currentTransfert[0]['id']]) }}">
                             <a href="" onclick="event.preventDefault()">
                                 Retirez le document de la demande de transfert
                             </a>
@@ -78,18 +78,6 @@
                 @endforelse
             </tbody>
         </table>
-        <div class="warningMessageContainer">
-            <div class="overlay"></div>
-            <div class="warning">
-                <ion-icon name="alert-circle"></ion-icon>
-                <h3>Voulez-vous vraiment retirez ce document de la demande de transfert ?</h3>
-                <form action="" class="deleteForm" method="POST">
-                    @csrf
-                    @method('put')
-                    <button type="button" class="closeWarning">Annuler</button>
-                    <button type="submit" class="submitdeleteForm">Retirer</button>
-                </form>
-            </div>
-        </div>
+        {{ $documents->onEachSide(0)->links() }}
     </div>
 </div>

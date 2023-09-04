@@ -1,6 +1,6 @@
 <div class="main" x-data = "{ chemisesChecked : @entangle('chemisesChecked').defer }">
     <div class="title">
-        <p>Manage Chemises Dossiers</p>
+        <p>Gestion des Chemises Dossiers</p>
         <ion-icon name="person"></ion-icon>
     </div>
 
@@ -23,7 +23,7 @@
             </button>
             <button class="add">
                 <ion-icon name="add"></ion-icon>
-                <a href="{{ route('admin.chemise.create') }}">Add Chemise Dossier</a>
+                <a href="{{ route('manager.chemise.create') }}">Add Chemise Dossier</a>
             </button>
         </div>
         <div class="check-categorie-documents" style="width: 26%;">
@@ -76,13 +76,13 @@
                         <td>{{ $chemise->boitearchive?->rayonrangement?->libelle }}</td>
                         <td>
                             <button class="edit">
-                                <a href="{{ route('admin.chemise.edit', ['chemise' => $chemise->id]) }}">
+                                <a href="{{ route('manager.chemise.edit', ['chemise' => $chemise->id]) }}">
                                     Editer
                                 </a>
                             </button>
                             <button
                                 class="delete"
-                                routeForDeleting="{{ route('admin.chemise.destroy', ['chemise' => $chemise->id]) }}">
+                                routeForDeleting="{{ route('manager.chemise.destroy', ['chemise' => $chemise->id]) }}">
                                 <a href="" onclick="event.preventDefault()">
                                     Supprimer
                                 </a>
@@ -94,18 +94,6 @@
                 @endforelse
             </tbody>
         </table>
-        <div class="warningMessageContainer">
-            <div class="overlay"></div>
-            <div class="warning">
-                <ion-icon name="alert-circle"></ion-icon>
-                <h3>Voulez-vous vraiment supprimer cette chemise ?</h3>
-                <form action="" class="deleteForm" method="POST">
-                    @csrf
-                    @method('delete')
-                    <button type="button" class="closeWarning">Annuler</button>
-                    <button type="submit" class="submitdeleteForm">Supprimer</button>
-                </form>
-            </div>
-        </div>
+        {{ $chemises->onEachSide(0)->links() }}
     </div>
 </div>

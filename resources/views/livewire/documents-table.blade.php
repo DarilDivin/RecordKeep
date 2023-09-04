@@ -14,7 +14,7 @@
             </button>
             <button class="add">
                 <ion-icon name="add"></ion-icon>
-                <a href="{{ route('admin.document.create') }}">Ajouter Document</a>
+                <a href="{{ route('manager.document.create') }}">Ajouter Document</a>
             </button>
         </div>
         <div class="search-box" style="margin-right: 17px;">
@@ -47,6 +47,7 @@
             <thead>
                 <tr>
                     <td></td>
+                    <x-table-header label="N°" :direction="$orderDirection" name="id" :field="$orderField"></x-table-header>
                     <x-table-header label="Signature" :direction="$orderDirection" name="signature" :field="$orderField"></x-table-header>
                     <x-table-header label="Nom du Document" :direction="$orderDirection" name="nom" :field="$orderField"></x-table-header>
                     <x-table-header label="Date de Création" :direction="$orderDirection" name="datecreation" :field="$orderField"></x-table-header>
@@ -60,16 +61,17 @@
                     <td>
                         <input type="checkbox" x-model="documentsChecked" value="{{ $document->id }}">
                     </td>
+                    <td>{{ $document->id }}</td>
                     <td>{{ $document->signature }}</td>
                     <td>{{ $document->nom }}</td>
                     <td>{{ $document->datecreation/* ->translatedFormat('d F Y') */ }}</td>
                     <td>{{ $document->dua }}ans</td>
                     <td>
                         <button class=""><a href="">Infos</a></button>
-                        <button class="edit"><a href="{{ route('admin.document.edit', ['document' => $document->id]) }}">Éditer</a></button>
+                        <button class="edit"><a href="{{ route('manager.document.edit', ['document' => $document->id]) }}">Éditer</a></button>
                         <button
                         class="delete"
-                        routeForDeleting="{{ route('admin.document.destroy', ['document' => $document->id]) }}">
+                        routeForDeleting="{{ route('manager.document.destroy', ['document' => $document->id]) }}">
                             <a href="" onclick="event.preventDefault()">
                                 Supprimer
                             </a>

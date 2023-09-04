@@ -1,7 +1,7 @@
 @extends('admin.layouts.template')
 
     @section('title')
-        Admin-Permission-Management
+        {{ $permission->exists ? 'Éditer une Permission' : 'Ajouter une Permission' }}
     @endsection
 
     @section('content')
@@ -20,17 +20,6 @@
                 </span>
             </a>
             <h1> {{ $permission->exists ? 'Éditer une Permission' : 'Ajouter une Permission' }} </h1>
-            @if ($errors->any())
-                <div class="message error">
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                            <li>
-                                {{ $error }}
-                            </li>
-                        @endforeach
-                    </ul>
-                </div>
-            @endif
             <form method="POST" action="{{ route($permission->exists ? 'admin.permission.update' : 'admin.permission.store', ['permission' => $permission->id]) }}">
                 @csrf
                 @method($permission->exists ? 'put' : 'post')

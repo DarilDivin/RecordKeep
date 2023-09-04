@@ -1,7 +1,7 @@
 @extends('admin.layouts.template')
 
 @section('title')
-    Dashboard-Permission-Management
+    Gestion des Permissions
 @endsection
 
 
@@ -11,5 +11,17 @@
 
         @livewire('permissions-table')
     </div>
-
+    <div class="warningMessageContainer">
+        <div class="overlay"></div>
+        <div class="warning">
+            <ion-icon name="alert-circle"></ion-icon>
+            <h3>Voulez-vous vraiment supprimer cette permission ?</h3>
+            <form action="" class="deleteForm" method="POST">
+                @csrf
+                @method('delete')
+                <button type="button" class="closeWarning">Annuler</button>
+                <button type="submit" class="submitdeleteForm">Supprimer</button>
+            </form>
+        </div>
+    </div>
 @endsection

@@ -1,7 +1,7 @@
 @extends('admin.layouts.template')
 
     @section('title')
-        Admin-Role-Management
+        {{ $role->exists ? 'Éditer un Rôle' : 'Ajouter un Rôle' }}
     @endsection
 
     @section('content')
@@ -20,17 +20,6 @@
                 </span>
             </a>
             <h1> {{ $role->exists ? 'Éditer un Rôle' : 'Ajouter un Rôle' }} </h1>
-            @if ($errors->any())
-                <div class="message error">
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                            <li>
-                                {{ $error }}
-                            </li>
-                        @endforeach
-                    </ul>
-                </div>
-            @endif
             <form method="POST" action="{{ route($role->exists ? 'admin.role.update' : 'admin.role.store', ['role' => $role->id]) }}">
                 @csrf
                 @method($role->exists ? 'put' : 'post')

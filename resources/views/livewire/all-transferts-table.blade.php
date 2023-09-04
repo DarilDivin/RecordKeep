@@ -1,6 +1,6 @@
 <div class="main">
     <div class="title">
-        <p>Manage All Transferts</p>
+        <p>Gestion des Demandes de Transferts</p>
         <ion-icon name="person"></ion-icon>
     </div>
 
@@ -44,16 +44,20 @@
                 </div>
                 <div class="body">
                     <div class="info">
-                        <p>Nombre de Documents</p>
+                        <p>Nombre de Documents non archivés</p>
+                        <span>{{ $transfert->documents->count() }}</span>
+                    </div>
+                    <div class="info">
+                        <p>Nombre de Documents archivés</p>
                         <span>{{ $transfert->documents->count() }}</span>
                     </div>
                 </div>
                 <div class="foot">
-                    <a href="{{ route('admin.all-transferts.show', ['slug' => $transfert->getSlug(), 'transfert' => $transfert->id]) }}">Consulter</a>
+                    <a href="{{ route('manager.all-transferts.show', ['slug' => $transfert->getSlug(), 'transfert' => $transfert->id]) }}">Consulter</a>
                     <a href="">Accepter</a>
                     <button
                         class="delete"
-                        routeForDeleting="{{ route('admin.all-transferts.destroy', ['transfert' => $transfert->id]) }}">
+                        routeForDeleting="{{ route('manager.all-transferts.destroy', ['transfert' => $transfert->id]) }}">
                         <a href="" onclick="event.preventDefault()">
                             Supprimer
                         </a>
@@ -62,18 +66,6 @@
             </div>
         @endforeach
     </div>
-    <div class="warningMessageContainer">
-        <div class="overlay"></div>
-        <div class="warning">
-            <ion-icon name="alert-circle"></ion-icon>
-            <h3>Confirmer la suppression définitive de cette demande de transfert ?</h3>
-            <form action="" class="deleteForm" method="POST">
-                @csrf
-                @method('delete')
-                <button type="button" class="closeWarning">Annuler</button>
-                <button type="submit" class="submitdeleteForm">Supprimer</button>
-            </form>
-        </div>
-    </div>
+    {{ $transferts->onEachSide(0)->links() }}
 </div>
 

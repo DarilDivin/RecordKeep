@@ -64,7 +64,7 @@ class RolesTable extends Component
         return view('livewire.roles-table', [
             'roles' => $roles
                 ->orderBy($this->orderField, $this->orderDirection)
-                ->get()
+                ->paginate(20)
         ]);
     }
 }

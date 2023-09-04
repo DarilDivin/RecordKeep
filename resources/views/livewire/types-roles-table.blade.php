@@ -1,6 +1,6 @@
 <div class="main" x-data = "{ typesChecked : @entangle('typesChecked').defer }">
     <div class="title">
-        <p>Manage Type Of Role</p>
+        <p>Gestion des Types de Rôles</p>
         <ion-icon name="person"></ion-icon>
     </div>
 
@@ -76,18 +76,6 @@
                 @endforelse
             </tbody>
         </table>
-        <div class="warningMessageContainer">
-            <div class="overlay"></div>
-            <div class="warning">
-                <ion-icon name="alert-circle"></ion-icon>
-                <h3>Voulez-vous vraiment supprimer ce type de rôle ?</h3>
-                <form action="" class="deleteForm" method="POST">
-                    @csrf
-                    @method('delete')
-                    <button type="button" class="closeWarning">Annuler</button>
-                    <button type="submit" class="submitdeleteForm">Supprimer</button>
-                </form>
-            </div>
-        </div>
+       {{ $typeroles->onEachSide(0)->links() }}
     </div>
 </div>

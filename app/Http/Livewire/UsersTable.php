@@ -54,6 +54,11 @@ class UsersTable extends Component
         }
     }
 
+    public function paginationView()
+    {
+        return 'shared.pagination';
+    }
+
     public function render()
     {
         $this->validate();
@@ -71,7 +76,7 @@ class UsersTable extends Component
         return view('livewire.users-table', [
             'users' => $users
                 ->orderBy($this->orderField, $this->orderDirection)
-                ->get()
+                ->paginate(20)
         ]);
     }
 

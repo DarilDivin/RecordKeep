@@ -4,10 +4,23 @@ namespace App\Http\Livewire;
 
 use App\Models\DemandeTransfert;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class AllTransfertsTable extends Component
 {
+    use WithPagination;
+
     public $libelle;
+
+    public function updatedLibelle()
+    {
+        $this->resetPage();
+    }
+
+    public function paginationView()
+    {
+        return 'shared.pagination';
+    }
 
     public function render()
     {
@@ -19,9 +32,9 @@ class AllTransfertsTable extends Component
 
         return view('livewire.all-transferts-table', [
             'transferts' => $transferts
-                    ->where('transfere', 1)
-                    ->latest()
-                    ->get()
+                ->where('transfere', 1)
+                ->latest()
+                ->paginate(18)
         ]);
     }
 }

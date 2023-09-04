@@ -1,6 +1,6 @@
 <div class="main" x-data = "{ rayonsChecked : @entangle('rayonsChecked').defer }">
     <div class="title">
-        <p>Manage Rayon Rangement</p>
+        <p>Gestion des Rayons de Rangement</p>
         <ion-icon name="person"></ion-icon>
     </div>
 
@@ -23,7 +23,7 @@
             </button>
             <button class="add">
                 <ion-icon name="add"></ion-icon>
-                <a href="{{ route('admin.rayon.create') }}">Add Rangement Rayon</a>
+                <a href="{{ route('manager.rayon.create') }}">Add Rangement Rayon</a>
             </button>
         </div>
         <div class="search-box" style="margin-right: 17px;">
@@ -64,13 +64,13 @@
                         <td>{{ $rayon->code }}</td>
                         <td>
                             <button class="edit">
-                                <a href="{{ route('admin.rayon.edit', ['rayon' => $rayon->id]) }}">
+                                <a href="{{ route('manager.rayon.edit', ['rayon' => $rayon->id]) }}">
                                     Editer
                                 </a>
                             </button>
                             <button
                                 class="delete"
-                                routeForDeleting="{{ route('admin.rayon.destroy', ['rayon' => $rayon->id]) }}">
+                                routeForDeleting="{{ route('manager.rayon.destroy', ['rayon' => $rayon->id]) }}">
                                 <a href="" onclick="event.preventDefault()">
                                     Supprimer
                                 </a>
@@ -82,18 +82,6 @@
                 @endforelse
             </tbody>
         </table>
-        <div class="warningMessageContainer">
-            <div class="overlay"></div>
-            <div class="warning">
-                <ion-icon name="alert-circle"></ion-icon>
-                <h3>Voulez-vous vraiment supprimer ce rayon ?</h3>
-                <form action="" class="deleteForm" method="POST">
-                    @csrf
-                    @method('delete')
-                    <button type="button" class="closeWarning">Annuler</button>
-                    <button type="submit" class="submitdeleteForm">Supprimer</button>
-                </form>
-            </div>
-        </div>
+        {{ $rayons->onEachSide(0)->links() }}
     </div>
 </div>

@@ -1,6 +1,6 @@
 <div class="main" x-data = "{ naturesChecked : @entangle('naturesChecked').defer }">
     <div class="title">
-        <p>Manage Document Nature</p>
+        <p>Gestion des Natures de Documents</p>
         <ion-icon name="person"></ion-icon>
     </div>
 
@@ -23,7 +23,7 @@
             </button>
             <button class="add">
                 <ion-icon name="add"></ion-icon>
-                <a href="{{ route('admin.nature.create') }}">Add Document Nature</a>
+                <a href="{{ route('manager.nature.create') }}">Add Document Nature</a>
             </button>
         </div>
         <div class="search-box" style="margin-right: 17px;">
@@ -58,13 +58,13 @@
                         <td>{{ $nature->nature }}</td>
                         <td>
                             <button class="edit">
-                                <a href="{{ route('admin.nature.edit', ['nature' => $nature->id]) }}">
+                                <a href="{{ route('manager.nature.edit', ['nature' => $nature->id]) }}">
                                     Editer
                                 </a>
                             </button>
                             <button
                                 class="delete"
-                                routeForDeleting="{{ route('admin.nature.destroy', ['nature' => $nature->id]) }}">
+                                routeForDeleting="{{ route('manager.nature.destroy', ['nature' => $nature->id]) }}">
                                 <a href="" onclick="event.preventDefault()">
                                     Supprimer
                                 </a>
@@ -76,18 +76,6 @@
                 @endforelse
             </tbody>
         </table>
-        <div class="warningMessageContainer">
-            <div class="overlay"></div>
-            <div class="warning">
-                <ion-icon name="alert-circle"></ion-icon>
-                <h3>Voulez-vous vraiment supprimer cette nature ?</h3>
-                <form action="" class="deleteForm" method="POST">
-                    @csrf
-                    @method('delete')
-                    <button type="button" class="closeWarning">Annuler</button>
-                    <button type="submit" class="submitdeleteForm">Supprimer</button>
-                </form>
-            </div>
-        </div>
+        {{ $natures->onEachSide(0)->links() }}
     </div>
 </div>

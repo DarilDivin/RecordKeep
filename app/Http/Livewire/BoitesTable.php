@@ -56,6 +56,11 @@ class BoitesTable extends Component
         }
     }
 
+    public function paginationView()
+    {
+        return 'shared.pagination';
+    }
+
     public function render()
     {
         $this->validate();
@@ -77,7 +82,7 @@ class BoitesTable extends Component
         return view('livewire.boites-table', [
             'boites' => $boites
                 ->orderBy($this->orderField, $this->orderDirection)
-                ->get(),
+                ->paginate(20),
             'rayons' => RayonRangement::getAllRayons()
         ]);
     }

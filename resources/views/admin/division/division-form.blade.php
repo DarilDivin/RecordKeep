@@ -1,7 +1,7 @@
 @extends('admin.layouts.template')
 
     @section('title')
-        Admin-Division-Management
+        {{ $division->exists ? 'Éditer une Division ' : 'Ajouter une Division ' }}
     @endsection
 
     @section('content')
@@ -16,17 +16,6 @@
                 </span>
             </a>
             <h1> {{ $division->exists ? 'Éditer une Division ' : 'Ajouter une Division ' }} </h1>
-            @if ($errors->any())
-                <div class="message error">
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                            <li>
-                                {{ $error }}
-                            </li>
-                        @endforeach
-                    </ul>
-                </div>
-            @endif
             <form method="POST" action="{{ route($division->exists ? 'admin.division.update' : 'admin.division.store', ['division' => $division->id]) }}">
                 @csrf
                 @method($division->exists ? 'put' : 'post')

@@ -48,6 +48,11 @@ class RayonsTable extends Component
         }
     }
 
+    public function paginationView()
+    {
+        return 'shared.pagination';
+    }
+
     public function render()
     {
         $this->validate();
@@ -65,7 +70,7 @@ class RayonsTable extends Component
         return view('livewire.rayons-table', [
             'rayons' => $rayons
                 ->orderBy($this->orderField, $this->orderDirection)
-                ->get()
+                ->paginate(20)
         ]);
     }
 
