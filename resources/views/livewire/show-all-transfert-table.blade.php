@@ -1,6 +1,6 @@
 <div class="main" x-data = "{ documentsChecked : @entangle('documentsChecked').defer }">
     <div class="title">
-        <p>Manage Transfer Documents</p>
+        <p>Liste des Documents de la Demande de Transfert</p>
         <ion-icon name="document-text"></ion-icon>
     </div>
 
@@ -60,10 +60,10 @@
                     <td>{{ $document->created_at }}</td>
                     <td>{{ $document->dua }}ans</td>
                     <td>
-                        <button class="classer"><a href="{{ route('admin.document.classement', ['document' => $document->id, 'transfert' => $transfert->id]) }}">Classer</a></button>
+                        <button class="classer"><a href="{{ route('manager.document.classement', ['document' => $document->id, 'transfert' => $transfert->id]) }}">Classer</a></button>
                         <button
                             class="delete"
-                            routeForDeleting="{{ route('admin.document.cremove', ['document' => $document->id, 'transfert' => $transfert->id]) }}">
+                            routeForDeleting="{{ route('manager.document.cremove', ['document' => $document->id, 'transfert' => $transfert->id]) }}">
                             <a href="" onclick="event.preventDefault()">
                                 Retirez
                             </a>
@@ -75,18 +75,6 @@
                 @endforelse
             </tbody>
         </table>
-        <div class="warningMessageContainer">
-            <div class="overlay"></div>
-            <div class="warning">
-                <ion-icon name="alert-circle"></ion-icon>
-                <h3>Voulez-vous vraiment retirez ce document de la demande de transfert ?</h3>
-                <form action="" class="deleteForm" method="POST">
-                    @csrf
-                    @method('put')
-                    <button type="button" class="closeWarning">Annuler</button>
-                    <button type="submit" class="submitdeleteForm">Retirer</button>
-                </form>
-            </div>
-        </div>
+        {{ $documents->onEachSide(0)->links() }}
     </div>
 </div>

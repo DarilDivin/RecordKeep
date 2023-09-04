@@ -1,7 +1,7 @@
 @extends('admin.layouts.template')
 
     @section('title')
-        Admin-Type-Of-Role-Management
+        {{ $typerole->exists ? 'Éditer un Type de Rôle' : 'Ajouter un Type de Rôle' }}
     @endsection
 
     @section('content')
@@ -20,17 +20,6 @@
                 </span>
             </a>
             <h1> {{ $typerole->exists ? 'Éditer un Type de Rôle' : 'Ajouter un Type de Rôle' }} </h1>
-            @if ($errors->any())
-                <div class="message error">
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                            <li>
-                                {{ $error }}
-                            </li>
-                        @endforeach
-                    </ul>
-                </div>
-            @endif
             <form method="POST" action="{{ route($typerole->exists ? 'admin.type-role.update' : 'admin.type-role.store', ['type_role' => $typerole->id]) }}">
                 @csrf
                 @method($typerole->exists ? 'put' : 'post')

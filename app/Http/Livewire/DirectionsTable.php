@@ -54,6 +54,11 @@ class DirectionsTable extends Component
         }
     }
 
+    public function paginationView()
+    {
+        return 'shared.pagination';
+    }
+
     public function render()
     {
         $this->validate();
@@ -71,7 +76,7 @@ class DirectionsTable extends Component
         return view('livewire.directions-table', [
             'directions' => $directions
                 ->orderBy($this->orderField, $this->orderDirection)
-                ->get()
+                ->paginate(20)
         ]);
     }
 

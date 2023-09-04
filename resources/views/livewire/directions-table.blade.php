@@ -1,6 +1,6 @@
 <div class="main" x-data = "{ directionsChecked : @entangle('directionsChecked').defer }">
     <div class="title">
-        <p>Manage Directions</p>
+        <p>Gestion des Directions</p>
         <ion-icon name="business"></ion-icon>
     </div>
 
@@ -82,18 +82,6 @@
                 @endforelse
             </tbody>
         </table>
-        <div class="warningMessageContainer">
-            <div class="overlay"></div>
-            <div class="warning">
-                <ion-icon name="alert-circle"></ion-icon>
-                <h3>Voulez-vous vraiment supprimer cette direction ?</h3>
-                <form action="" class="deleteForm" method="POST">
-                    @csrf
-                    @method('delete')
-                    <button type="button" class="closeWarning">Annuler</button>
-                    <button type="submit" class="submitdeleteForm">Supprimer</button>
-                </form>
-            </div>
-        </div>
+        {{ $directions->onEachSide(0)->links() }}
     </div>
 </div>

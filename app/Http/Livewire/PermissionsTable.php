@@ -46,6 +46,11 @@ class PermissionsTable extends Component
         }
     }
 
+    public function paginationView()
+    {
+        return 'shared.pagination';
+    }
+
     public function render()
     {
         $this->validate();
@@ -58,8 +63,8 @@ class PermissionsTable extends Component
 
         return view('livewire.permissions-table', [
             'permissions' => $permissions
-                    ->orderBy($this->orderField, $this->orderDirection)
-                    ->get()
+                ->orderBy($this->orderField, $this->orderDirection)
+                ->paginate(20)
         ]);
     }
 }

@@ -14,6 +14,8 @@ class ClassedDocumentsTable extends Component
 
     public $nom = '';
 
+    public $code = '';
+
     public $orderField = 'nom';
 
     public $orderDirection = 'ASC';
@@ -40,6 +42,11 @@ class ClassedDocumentsTable extends Component
         }
     }
 
+    public function paginationView()
+    {
+        return 'shared.pagination';
+    }
+
     public function render()
     {
         $this->validate();
@@ -50,11 +57,15 @@ class ClassedDocumentsTable extends Component
             $documents = $documents->where('nom', 'LIKE', "%{$this->nom}%");
         }
 
+        if(!empty($this->code)){
+            $documents = $documents->where('code', 'LIKE', "%{$this->code}%");
+        }
+
         return view('livewire.classed-documents-table', [
             'documents' => $documents
                 ->where('archive', 1)
                 ->orderBy($this->orderField, $this->orderDirection)
-                ->get(),
+                ->paginate(20)
         ]);
     }
 }

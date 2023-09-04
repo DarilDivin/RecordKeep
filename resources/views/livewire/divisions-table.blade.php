@@ -1,6 +1,6 @@
 <div class="main" x-data = "{ divisionsChecked : @entangle('divisionsChecked').defer }">
     <div class="title">
-        <p>Manage Division</p>
+        <p>Gestion des Divisions</p>
         <ion-icon name="business"></ion-icon>
     </div>
 
@@ -94,18 +94,6 @@
                 @endforelse
             </tbody>
         </table>
-        <div class="warningMessageContainer">
-            <div class="overlay"></div>
-            <div class="warning">
-                <ion-icon name="alert-circle"></ion-icon>
-                <h3>Voulez-vous vraiment supprimer cette division ?</h3>
-                <form action="" class="deleteForm" method="POST">
-                    @csrf
-                    @method('delete')
-                    <button type="button" class="closeWarning">Annuler</button>
-                    <button type="submit" class="submitdeleteForm">Supprimer</button>
-                </form>
-            </div>
-        </div>
+        {{ $divisions->onEachSide(0)->links() }}
     </div>
 </div>

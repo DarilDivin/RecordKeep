@@ -1,7 +1,7 @@
 @extends('admin.layouts.template')
 
 @section('title')
-    Dashboard-User-Management
+    Gestion des Utilisateurs
 @endsection
 
 {{-- @section('style')
@@ -14,5 +14,18 @@
         @include('admin.layouts.partials.sidebar')
 
         @livewire('users-table')
+    </div>
+    <div class="warningMessageContainer">
+        <div class="overlay"></div>
+        <div class="warning">
+            <ion-icon name="alert-circle"></ion-icon>
+            <h3>Voulez-vous supprimer cet utilisateur ?</h3>
+            <form action="" class="deleteForm" method="POST">
+                @csrf
+                @method('delete')
+                <button type="button" class="closeWarning">Annuler</button>
+                <button type="submit" class="submitdeleteForm">Supprimer</button>
+            </form>
+        </div>
     </div>
 @endsection

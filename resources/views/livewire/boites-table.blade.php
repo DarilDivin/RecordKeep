@@ -1,6 +1,6 @@
 <div class="main" x-data = "{ boitesChecked : @entangle('boitesChecked').defer }">
     <div class="title">
-        <p>Manage Archives Boites</p>
+        <p>Gestion des Boîtes d'Archives</p>
         <ion-icon name="person"></ion-icon>
     </div>
 
@@ -23,7 +23,7 @@
             </button>
             <button class="add">
                 <ion-icon name="add"></ion-icon>
-                <a href="{{ route('admin.boite.create') }}">Add Archive Boite</a>
+                <a href="{{ route('manager.boite.create') }}">Add Archive Boite</a>
             </button>
         </div>
         <div class="check-categorie-documents" style="width: 26%;">
@@ -74,13 +74,13 @@
                         <td>{{ $boite->rayonrangement?->libelle }}</td>
                         <td>
                             <button class="edit">
-                                <a href="{{ route('admin.boite.edit', ['boite' => $boite->id]) }}">
+                                <a href="{{ route('manager.boite.edit', ['boite' => $boite->id]) }}">
                                     Editer
                                 </a>
                             </button>
                             <button
                                 class="delete"
-                                routeForDeleting="{{ route('admin.boite.destroy', ['boite' => $boite->id]) }}">
+                                routeForDeleting="{{ route('manager.boite.destroy', ['boite' => $boite->id]) }}">
                                 <a href="" onclick="event.preventDefault()">
                                     Supprimer
                                 </a>
@@ -92,18 +92,6 @@
                 @endforelse
             </tbody>
         </table>
-        <div class="warningMessageContainer">
-            <div class="overlay"></div>
-            <div class="warning">
-                <ion-icon name="alert-circle"></ion-icon>
-                <h3>Voulez-vous vraiment supprimer cette boite ?</h3>
-                <form action="" class="deleteForm" method="POST">
-                    @csrf
-                    @method('delete')
-                    <button type="button" class="closeWarning">Annuler</button>
-                    <button type="submit" class="submitdeleteForm">Supprimer</button>
-                </form>
-            </div>
-        </div>
+        {{ $boites->onEachSide(0)->links() }}
     </div>
 </div>

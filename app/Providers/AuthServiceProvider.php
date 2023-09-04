@@ -43,7 +43,7 @@ class AuthServiceProvider extends ServiceProvider
         NatureDocument::class => NatureDocumentPolicy::class,
         ChemiseDossier::class => ChemiseDossierPolicy::class,
         RayonRangement::class => RayonRangementPolicy::class,
-        oiteArchive::class => BoiteArchivePolicy::class,
+        BoiteArchive::class => BoiteArchivePolicy::class,
         DemandePret::class => DemandePretPolicy::class,
         Transfert::class => TransfertPolicy::class,
         Categorie::class => CategoriePolicy::class,

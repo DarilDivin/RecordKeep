@@ -38,11 +38,6 @@ class DocumentsTable extends Component
         $this->resetPage();
     }
 
-    public function updatedDateCreation()
-    {
-        $this->resetPage();
-    }
-
     public function destroyDocuments(array $ids)
     {
         Document::destroy($ids);

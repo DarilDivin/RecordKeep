@@ -1,7 +1,7 @@
 @extends('admin.layouts.template')
 
     @section('title')
-        Admin-Direction-Management
+        {{ $direction->exists ? 'Éditer une Direction' : 'Ajouter une Direction' }}
     @endsection
 
     @section('content')
@@ -16,17 +16,6 @@
                 </span>
             </a>
             <h1> {{ $direction->exists ? 'Éditer une Direction' : 'Ajouter une Direction' }} </h1>
-            @if ($errors->any())
-                <div class="message error">
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                            <li>
-                                {{ $error }}
-                            </li>
-                        @endforeach
-                    </ul>
-                </div>
-            @endif
             <form method="POST" action="{{ route($direction->exists ? 'admin.direction.update' : 'admin.direction.store', ['direction' => $direction->id]) }}">
                 @csrf
                 @method($direction->exists ? 'put' : 'post')

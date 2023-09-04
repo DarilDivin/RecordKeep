@@ -46,6 +46,11 @@ class NaturesTable extends Component
         }
     }
 
+    public function paginationView()
+    {
+        return 'shared.pagination';
+    }
+
     public function render()
     {
         $this->validate();
@@ -59,7 +64,7 @@ class NaturesTable extends Component
         return view('livewire.natures-table', [
             'natures' => $natures
                 ->orderBy($this->orderField, $this->orderDirection)
-                ->get()
+                ->paginate(20)
         ]);
     }
 

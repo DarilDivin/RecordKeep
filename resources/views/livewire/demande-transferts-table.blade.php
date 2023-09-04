@@ -1,6 +1,6 @@
 <div class="main">
     <div class="title">
-        <p>Manage Demande Transfert</p>
+        <p>Gestion des Demandes de Transferts</p>
         <ion-icon name="person"></ion-icon>
     </div>
 
@@ -20,12 +20,12 @@
             @if (!empty($showButton))
                 <button class="add">
                     <ion-icon name="create-outline"></ion-icon>
-                    <a href="{{ route('admin.transfert.edit', ['transfert' => $currentTransfert[0]['id']]) }}">Demande Transfert</a>
+                    <a href="{{ route('manager.transfert.edit', ['transfert' => $currentTransfert[0]['id']]) }}">Demande Transfert</a>
                 </button>
             @else
                 <button class="add">
                     <ion-icon name="add"></ion-icon>
-                    <a href="{{ route('admin.transfert.create') }}">Demande Transfert</a>
+                    <a href="{{ route('manager.transfert.create') }}">Demande Transfert</a>
                 </button>
             @endif
         </div>
@@ -64,11 +64,11 @@
                     </div>
                 </div>
                 <div class="foot">
-                    <a href="{{ route('admin.transfert.show', ['slug' => $transfert->getSlug(), 'transfert' => $transfert->id]) }}">Consulter</a>
-                    <a href="{{ route('admin.transfert.valid', ['transfert' => $transfert->id]) }}">Transférer</a>
+                    <a href="{{ route('manager.transfert.show', ['slug' => $transfert->getSlug(), 'transfert' => $transfert->id]) }}">Consulter</a>
+                    <a href="{{ route('manager.transfert.valid', ['transfert' => $transfert->id]) }}">Transférer</a>
                     <button
                         class="delete"
-                        routeForDeleting="{{ route('admin.transfert.destroy', ['transfert' => $transfert->id]) }}">
+                        routeForDeleting="{{ route('manager.transfert.destroy', ['transfert' => $transfert->id]) }}">
                         <a href="" onclick="event.preventDefault()">
                             Annuler
                         </a>
@@ -79,17 +79,5 @@
             Aucune Demande de Transfert en base de données
         @endforelse
     </div>
-    <div class="warningMessageContainer">
-        <div class="overlay"></div>
-        <div class="warning">
-            <ion-icon name="alert-circle"></ion-icon>
-            <h3>Confirmer l'annulation de cette demande de transfert ?</h3>
-            <form action="" class="deleteForm" method="POST">
-                @csrf
-                @method('delete')
-                <button type="button" class="closeWarning">Annuler</button>
-                <button type="submit" class="submitdeleteForm">Confirmer</button>
-            </form>
-        </div>
-    </div>
+    {{ $transferts->onEachSide(0)->links() }}
 </div>

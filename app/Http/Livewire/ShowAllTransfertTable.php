@@ -53,6 +53,11 @@ class ShowAllTransfertTable extends Component
         }
     }
 
+    public function paginationView()
+    {
+        return 'shared.pagination';
+    }
+
     public function render()
     {
         $this->validate();
@@ -67,7 +72,7 @@ class ShowAllTransfertTable extends Component
             'documents' => $documents
                 ->where('archive', 0)
                 ->orderBy($this->orderField, $this->orderDirection)
-                ->get()
+                ->paginate(20)
         ]);
     }
 

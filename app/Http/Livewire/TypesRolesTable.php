@@ -46,6 +46,11 @@ class TypesRolesTable extends Component
         }
     }
 
+    public function paginationView()
+    {
+        return 'shared.pagination';
+    }
+
     public function render()
     {
         $this->validate();
@@ -59,7 +64,7 @@ class TypesRolesTable extends Component
         return view('livewire.types-roles-table', [
             'typeroles' => $typeroles
                 ->orderBy($this->orderField, $this->orderDirection)
-                ->get()
+                ->paginate(20)
         ]);
     }
 

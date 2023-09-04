@@ -54,6 +54,11 @@ class ShowTransfertTable extends Component
         }
     }
 
+    public function paginationView()
+    {
+        return 'shared.pagination';
+    }
+
     public function render()
     {
         $this->validate();
@@ -67,7 +72,7 @@ class ShowTransfertTable extends Component
         return view('livewire.show-transfert-table', [
             'documents' => $documents
                 ->orderBy($this->orderField, $this->orderDirection)
-                ->get(),
+                ->paginate(20),
             'currentTransfert' => DemandeTransfert::where('transfere', 0)->get()->toArray()
         ]);
     }

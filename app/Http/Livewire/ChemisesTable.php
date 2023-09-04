@@ -58,6 +58,11 @@ class ChemisesTable extends Component
         }
     }
 
+    public function paginationView()
+    {
+        return 'shared.pagination';
+    }
+
     public function render()
     {
         $this->validate();
@@ -79,7 +84,7 @@ class ChemisesTable extends Component
         return view('livewire.chemises-table', [
             'chemises' => $chemises
                 ->orderBy($this->orderField, $this->orderDirection)
-                ->get(),
+                ->paginate(20),
             'boites' => BoiteArchive::getAllBoites(),
         ]);
     }

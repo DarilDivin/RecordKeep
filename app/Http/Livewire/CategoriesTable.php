@@ -46,6 +46,11 @@ class CategoriesTable extends Component
         }
     }
 
+    public function paginationView()
+    {
+        return 'shared.pagination';
+    }
+
     public function render()
     {
         $this->validate();
@@ -59,7 +64,7 @@ class CategoriesTable extends Component
         return view('livewire.categories-table', [
             'categories' => $categories
                 ->orderBy($this->orderField, $this->orderDirection)
-                ->get()
+                ->paginate(20)
         ]);
     }
 

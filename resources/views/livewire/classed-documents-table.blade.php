@@ -23,7 +23,11 @@
             </button>
         </div>
         <div class="search-box" style="margin-right: 17px;">
-            <input type="text" name="nom" placeholder="Nom du document" wire:model="nom">
+            <input type="text" name="nom" wire:model="nom" placeholder="Nom du document">
+            <ion-icon name="search"></ion-icon>
+        </div>
+        <div class="search-box" style="margin-right: 17px;">
+            <input type="text" name="code" wire:model="code" placeholder="Code du document">
             <ion-icon name="search"></ion-icon>
         </div>
     </div>
@@ -45,10 +49,13 @@
             <thead>
                 <tr>
                     <td></td>
+                    <x-table-header label="N°" :direction="$orderDirection" name="id" :field="$orderField"></x-table-header>
                     <x-table-header label="Signature" :direction="$orderDirection" name="signature" :field="$orderField"></x-table-header>
                     <x-table-header label="Nom du Document" :direction="$orderDirection" name="nom" :field="$orderField"></x-table-header>
+                    <x-table-header label="Code du Document" :direction="$orderDirection" name="code" :field="$orderField"></x-table-header>
                     <x-table-header label="Date de Création" :direction="$orderDirection" name="datecreation" :field="$orderField"></x-table-header>
                     <x-table-header label="DUA" :direction="$orderDirection" name="dua" :field="$orderField"></x-table-header>
+                    <td>Actions</td>
                 </tr>
             </thead>
             <tbody>
@@ -57,16 +64,21 @@
                     <td>
                         <input type="checkbox" x-model="documentsChecked" value="{{ $document->id }}">
                     </td>
+                    <td>{{ $document->id }}</td>
                     <td>{{ $document->signature }}</td>
                     <td>{{ $document->nom }}</td>
+                    <td>{{ $document->code }}</td>
                     <td>{{ $document->datecreation/* ->translatedFormat('d F Y') */ }}</td>
                     <td>{{ $document->dua }}ans</td>
-
+                    <td>
+                        <button class="classer"><a href="{{-- {{ route('admin.document.classement', ['document' => $document->id, 'transfert' => $transfert->id]) }} --}}">Reclasser</a></button>
+                    </td>
                 </tr>
                 @empty
                     AUCUN DOCUMENT EN BASE DE DONNÉES
                 @endforelse
             </tbody>
         </table>
+        {{ $documents->onEachSide(0)->links() }}
     </div>
 </div>

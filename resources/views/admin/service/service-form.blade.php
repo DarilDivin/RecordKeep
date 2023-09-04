@@ -1,7 +1,7 @@
 @extends('admin.layouts.template')
 
     @section('title')
-        Admin-Service-Management
+        {{ $service->exists ? 'Éditer un Service' : 'Ajouter un Service' }}
     @endsection
 
     @section('content')
@@ -16,17 +16,6 @@
                 </span>
             </a>
             <h1> {{ $service->exists ? 'Éditer un Service' : 'Ajouter un Service' }} </h1>
-            @if ($errors->any())
-                <div class="message error">
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                            <li>
-                                {{ $error }}
-                            </li>
-                        @endforeach
-                    </ul>
-                </div>
-            @endif
             <form method="POST" action="{{ route($service->exists ? 'admin.service.update' : 'admin.service.store', ['service' => $service->id]) }}">
                 @csrf
                 @method($service->exists ? 'put' : 'post')
