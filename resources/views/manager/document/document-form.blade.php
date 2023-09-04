@@ -1,4 +1,4 @@
-@extends('manager.layouts.template')
+@extends('admin.layouts.template')
 
     @section('title')
         {{ $document->exists ? 'Modifier un document' : 'Créer un document' }}

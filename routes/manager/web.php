@@ -2,13 +2,14 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Manager\DocumentController;
+use App\Http\Controllers\Admin\DemandePretController;
 use App\Http\Controllers\Manager\CategorieController;
 use App\Http\Controllers\Manager\BoiteArchiveController;
 use App\Http\Controllers\Manager\AllTransfertsController;
 use App\Http\Controllers\Manager\RapportDepartController;
 use App\Http\Controllers\Manager\ChemiseDossierController;
-use App\Http\Controllers\Manager\RayonRangementController;
 use App\Http\Controllers\Manager\NatureDocumentController;
+use App\Http\Controllers\Manager\RayonRangementController;
 use App\Http\Controllers\Manager\DemandeTransfertController;
 use App\Http\Controllers\Manager\DocumentClassementController;
 
@@ -126,6 +127,32 @@ Route::get('manager/rapport-preview/{rapport}', [RapportDepartController::class,
     ->where([
         'rapport' => $idRegex
     ]);
+
+/* ------------------------------------------------------------------------------------------------------------------------------------- */
+
+// Route::get('manager/rapport-de-depart-de-pret', [RapportDepartController::class, 'index'])->name('rapport-depart-list');
+// Route::get('manager/rapport-de-depart-de-pret/create/{demande}', [RapportDepartController::class, 'create'])
+//     ->name('rapport-depart-create')
+//     ->where([
+//         'demande' => $idRegex
+//     ]);
+// Route::post('manager/rapport-de-depart-de-pret/store/', [RapportDepartController::class, 'store'])
+//     ->name('rapport-depart-store');
+
+// Route::get('manager/rapport-preview/{rapport}', [RapportDepartController::class, 'show'])
+//     ->name('rapport-show')
+//     ->where([
+//         'rapport' => $idRegex
+//     ]);
+
+/* ------------------------------------------------------------------------------------------------------------------------------------- */
+
+Route::get('downloadPdf/{rapport}', [RapportDepartController::class, 'pdf'])->where(['rapport' => $idRegex]);
+
+/* ------------------------------------------------------------------------------------------------------------------------------------- */
+
+Route::get('manager/demandes-de-pret/encours', [DemandePretController::class, 'indexEncours'])->name('demande-de-prets-encours');
+Route::get('manager/demandes-de-pret/validé', [DemandePretController::class, 'indexValidé'])->name('demande-de-prets-validé');
 
 
 /* ------------------------------------------------------------------------------------------------------------------------------------- */

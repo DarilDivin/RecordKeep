@@ -1,4 +1,4 @@
-@extends('manager.layouts.template')
+@extends('admin.layouts.template')
 
     @section('title')
         {{ $rayon->exists ? 'Éditer un Rayon de Rangement' : 'Ajouter un Rayon de Rangement' }}

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Manager;
 
 use App\Models\Document;
 use App\Models\DemandePret;
@@ -8,18 +8,18 @@ use App\Models\RapportPret;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Contracts\View\View;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\RapportPretFormRequest;
+use App\Http\Requests\Manager\RapportPretFormRequest;
 
 class RapportDepartController extends Controller
 {
     public function index() : View
     {
-        return view('admin.rapports.depart-de-pret');
+        return view('manager.rapports.depart-de-pret');
     }
 
     public function create(DemandePret $demande)
     {
-        return view('admin.rapports.depart-de-pret', [
+        return view('manager.rapports.depart-de-pret', [
             'demande' => $demande
         ]);
     }
@@ -35,7 +35,7 @@ class RapportDepartController extends Controller
 
     public function show(RapportPret $rapport)
     {
-        return view('admin.rapports.rapport-preview', [
+        return view('manager.rapports.rapport-preview', [
             'rapport' => $rapport
         ]);
     }
@@ -49,7 +49,7 @@ class RapportDepartController extends Controller
         //     'debugLayout' => true,
         // ]);
 
-        $pdf = Pdf::loadView('admin.rapports.rapport-preview', ['rapport' => $rapport]);
+        $pdf = Pdf::loadView('manager.rapports.rapport-preview', ['rapport' => $rapport]);
 
         $pdf->setOption([
             'dpi' => 150,

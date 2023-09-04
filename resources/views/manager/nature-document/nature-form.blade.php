@@ -1,4 +1,4 @@
-@extends('manager.layouts.template')
+@extends('admin.layouts.template')
 
     @section('title')
         {{ $nature->exists ? 'Éditer une Nature de Document' : 'Ajouter une Nature de Document' }}

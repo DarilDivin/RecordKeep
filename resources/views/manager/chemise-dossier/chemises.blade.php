@@ -1,4 +1,4 @@
-@extends('manager.layouts.template')
+@extends('admin.layouts.template')
 
 @section('title')
     Gestion des Chemises Dossiers
@@ -7,7 +7,7 @@
 
 @section('content')
     <div class="container develop">
-        @include('manager.layouts.partials.sidebar')
+        @include('admin.layouts.partials.sidebar')
 
         @livewire('chemises-table')
     </div>

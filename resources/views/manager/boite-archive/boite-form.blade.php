@@ -1,4 +1,4 @@
-@extends('manager.layouts.template')
+@extends('admin.layouts.template')
 
     @section('title')
         {{ $boite->exists ? 'Éditer une Boite d\'Archive' : 'Ajouter une Boite d\'Archive' }}

@@ -1,10 +1,9 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Manager;
 
 use App\Http\Controllers\Controller;
 use App\Models\DemandePret;
-use Illuminate\Http\Request;
 
 class DemandePretController extends Controller
 {
@@ -12,7 +11,7 @@ class DemandePretController extends Controller
     {
         $demandes = DemandePret::whereEtat('validé')->get();
 
-        return view('admin.demande-pret.demandes-validés', [
+        return view('manager.demande-pret.demandes-validés', [
             'demandes' => $demandes,
         ]);
     }
@@ -21,7 +20,7 @@ class DemandePretController extends Controller
     {
         $demandes = DemandePret::where('etat', '=', 'encour')->get();
 
-        return view('admin.demande-pret.demandes-encours', [
+        return view('manager.demande-pret.demandes-encours', [
             'demandes' => $demandes,
         ]);
     }

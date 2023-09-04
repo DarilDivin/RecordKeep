@@ -11,8 +11,6 @@ use App\Http\Controllers\Admin\TypeRoleController;
 use App\Http\Controllers\Admin\FonctionController;
 use App\Http\Controllers\Admin\DirectionController;
 use App\Http\Controllers\Admin\PermissionController;
-use App\Http\Controllers\Admin\DemandePretController;
-use App\Http\Controllers\Admin\RapportDepartController;
 
 $idRegex = '[0-9]+';
 $slugRegex = '[0-9a-z\-]+';
@@ -32,10 +30,5 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
 
 /* ------------------------------------------------------------------------------------------------------------------------------------- */
-
-Route::get('downloadPdf/{rapport}', [RapportDepartController::class, 'pdf'])->where(['rapport' => $idRegex]);
-
-Route::get('admin/demandes-de-pret/encours', [DemandePretController::class, 'indexEncours'])->name('demande-de-prets-encours');
-Route::get('admin/demandes-de-pret/validé', [DemandePretController::class, 'indexValidé'])->name('demande-de-prets-validé');
 
 Route::get('admin/statistiques', [StatistiquesController::class, 'stat'])->name('admin.statistique');

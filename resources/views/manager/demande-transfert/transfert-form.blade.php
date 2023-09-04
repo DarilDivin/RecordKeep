@@ -1,4 +1,4 @@
-@extends('manager.layouts.template')
+@extends('admin.layouts.template')
 
     @section('title')
         @if (request()->route()->getName() === 'manager.transfert.create')

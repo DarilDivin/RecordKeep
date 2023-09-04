@@ -1,7 +1,7 @@
 @extends('admin.layouts.template')
 
     @section('title')
-        Admin-Document-Management
+        Validation de prêt
     @endsection
 
     @section('content')
