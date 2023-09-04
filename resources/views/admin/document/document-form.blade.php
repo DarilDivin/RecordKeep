@@ -80,4 +80,15 @@
         </div>
     </div>
 
+    <script>
+        new TomSelect('#motclefs', {
+            create: true,
+            plugins: {
+                remove_button:{
+                    title:'Remove this item',
+                }
+            },
+        });
+    </script>
+
 @endsection

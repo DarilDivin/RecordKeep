@@ -42,8 +42,20 @@ class RapportDepartController extends Controller
 
     public function pdf(RapportPret $rapport)
     {
+        // Pdf::setOption([
+        //     'dpi' => 150,
+        //     'defaultFont' => 'Poppins',
+        //     'debugCss' => true,
+        //     'debugLayout' => true,
+        // ]);
 
         $pdf = Pdf::loadView('admin.rapports.rapport-preview', ['rapport' => $rapport]);
+
+        $pdf->setOption([
+            'dpi' => 150,
+            'defaultFont' => 'Poppins',
+        ]);
+
         return $pdf->stream();
     }
 }
