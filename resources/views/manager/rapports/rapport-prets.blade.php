@@ -100,7 +100,7 @@
 
             <div class="cardContainer">
                 @forelse ($rapports as $rapport)
-                    <div class="card">
+                    <div class="card" data-label="{{ $rapport->demandepret->etat }}">
                         <div class="head">
                             <div class="titleInfos ">
                                 <h3>Validation de prêt </h3>
@@ -119,11 +119,7 @@
                             </div>
                             <div class="info">
                                 <p>Nom de l'utilisateur</p>
-                                <span>{{ $rapport->demandepret->user->nom }}</span>
-                            </div>
-                            <div class="info">
-                                <p>Nom de l'utilisateur</p>
-                                <span>{{ $rapport->demandepret->user->prenoms }}</span>
+                                <span>{{ $rapport->demandepret->user->nom }} {{ $rapport->demandepret->user->prenoms }}</span>
                             </div>
                         </div>
                         <div class="foot">

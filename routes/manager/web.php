@@ -147,7 +147,7 @@ Route::get('manager/rapport-preview/{rapport}', [RapportDepartController::class,
 
 /* ------------------------------------------------------------------------------------------------------------------------------------- */
 
-// Route::get('manager/rapport-de-depart-de-pret', [RapportDepartController::class, 'index'])->name('rapport-depart-list');
+Route::get('manager/pret', [RapportDepartController::class, 'index'])->name('rapport-depart-list');
 Route::get('manager/rapport-de-retour-de-pret/create/{rapportDepart}', [RapportRetourController::class, 'create'])
     ->name('rapport-retour-create')
     ->where([
@@ -168,8 +168,8 @@ Route::get('downloadPdf/{rapport}', [RapportDepartController::class, 'pdf'])->wh
 
 /* ------------------------------------------------------------------------------------------------------------------------------------- */
 
-Route::get('manager/demandes-de-pret/encours', [DemandePretController::class, 'indexEncours'])->name('demande-de-prets-encours');
-Route::get('manager/demandes-de-pret/validé', [DemandePretController::class, 'indexValidé'])->name('demande-de-prets-validé');
+// Route::get('manager/demandes-de-pret/encours', [DemandePretController::class, 'indexEncours'])->name('demande-de-prets-encours');
+// Route::get('manager/demandes-de-pret/validé', [DemandePretController::class, 'indexValidé'])->name('demande-de-prets-validé');
 
 
 /* ------------------------------------------------------------------------------------------------------------------------------------- */
