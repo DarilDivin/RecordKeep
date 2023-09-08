@@ -1,7 +1,7 @@
 <div class="main" x-data = "{ rolesChecked : @entangle('rolesChecked').defer }">
     <div class="title">
         <p>Gestion des Rôles</p>
-        <ion-icon name="business"></ion-icon>
+        <ion-icon name="git-compare-outline"></ion-icon>
     </div>
 
     <div class="optional">

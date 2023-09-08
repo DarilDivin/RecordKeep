@@ -18,14 +18,14 @@
         <h3 class="title">Tableau de bord</h3>
     </div>
     <ul>
-        @hasallroles(['Administrateur', 'Gestionnaire-Central'])
+        @hasanyrole(['Administrateur', 'Gestionnaire-Central'])
             <li @class(['list', 'active' => str_contains($route_name, 'statistique')])>
                 <a href="{{ route('admin.statistique') }}">
                     <span class="icon"><ion-icon name="stats-chart-outline"></ion-icon></span>
                     <span class="title">Statistiques</span>
                 </a>
             </li>
-        @endhasallroles
+        @endhasanyrole
 
         @hasrole('Administrateur')
             <li @class(['list', 'active' => str_contains($route_name, 'user')])>

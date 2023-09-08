@@ -1,7 +1,7 @@
 <div class="main" x-data = "{ fonctionsChecked : @entangle('fonctionsChecked').defer }">
     <div class="title">
         <p>Gestion des Fonctions</p>
-        <ion-icon name="person"></ion-icon>
+        <ion-icon name="briefcase-outline"></ion-icon>
     </div>
 
     <div class="optional">

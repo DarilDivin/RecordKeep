@@ -39,7 +39,7 @@
                 <ion-icon name="person-circle-outline"></ion-icon>
             </div>
             <div class="profil_username">
-                <p>{{ Auth::user()->nom }}</p>
+                <p>Euvince</p>
             </div>
         </div>
     </div>

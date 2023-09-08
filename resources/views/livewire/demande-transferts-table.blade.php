@@ -38,7 +38,7 @@
 
     <div class="cardContainer">
         @forelse ($transferts as $transfert)
-            <div class="card" data-label="">
+            <div class="card" data-label="In Progress">
                 <div class="head">
                     <div class="titleInfos ">
                         <h3 title="{{ $transfert->libelle }}">{{ $transfert->libelle }}  <strong>@if($transfert->transfere) {{ 'V' }} @endif</strong>  </h3>
