@@ -5,9 +5,8 @@
     Documents
 @endsection
 
-@include('user.layouts.partials.navbar')
-
 @section('content')
+    @include('user.layouts.partials.navbar')
     <section>
         @livewire('document-page-table')
     </section>

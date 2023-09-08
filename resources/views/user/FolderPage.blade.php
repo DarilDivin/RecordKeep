@@ -8,9 +8,9 @@
     @vite(['resources/css/FolderPage.css', 'resources/js/DocumentPage.js'])
 @endsection
 
-@include('user.layouts.partials.navbar')
 
 @section('content')
+    @include('user.layouts.partials.navbar')
     <section class="documentList list">
         <div class="sectionIndication">
             <h3>Document List</h3>

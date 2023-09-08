@@ -6,7 +6,7 @@
 
 @section('content')
 
-    <div class="container develop">
+    <div class="container">
         @include('admin.layouts.partials.sidebar')
 
         @livewire('show-all-transfert-table', [

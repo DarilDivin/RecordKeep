@@ -4,8 +4,6 @@
         <ion-icon name="person"></ion-icon>
     </div>
 
-    @include('admin.layouts.partials.options')
-
     <div class="optional">
         <div class="buttons">
             <button class="filter" x-show="naturesChecked.length > 0" x-on:click="$wire.deletedNatures(naturesChecked)">

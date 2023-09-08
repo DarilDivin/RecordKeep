@@ -37,7 +37,7 @@
             <button x-show="documentChecked.length > 0" class="btndownload" x-on:click="$wire.filesdownload(documentChecked)" x-cloak>Télécharger</button>
             @forelse ($documents as $document)
                 <div class="document" >
-                    <div class="documentLine" data-aos="zoom-out" data-aos-once="true">
+                    <div class="documentLine">
 
                         <input type="checkbox" name="document[]" id="{{ $document->id }}" value="{{ $document->id }}" x-model="documentChecked">
 

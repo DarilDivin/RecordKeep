@@ -4,8 +4,6 @@
         <ion-icon name="business"></ion-icon>
     </div>
 
-    @include('admin.layouts.partials.options')
-
     <div class="optional">
         <div class="buttons">
             <button class="add">

@@ -8,9 +8,8 @@
 @vite(['resources/css/app.css', 'resources/js/home.js'])
 @endsection
 
-@include('user.layouts.partials.navbar')
-
 @section('content')
+    @include('user.layouts.partials.navbar')
     <section class="settings">
         <div class="connexion-message">
 

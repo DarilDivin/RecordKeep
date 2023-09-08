@@ -4,9 +4,10 @@
     Présentation
 @endsection
 
-@include('user.layouts.partials.navbar')
+
 
 @section('content')
+    @include('user.layouts.partials.navbar')
     <div class="description-container" data-aos="zoom-in-up" data-aos-delay="500">
         <div class="description_msg" data-aos="fade-right" data-aos-delay="1000">
             <h2>Accédez à tous les documents de la direction en un clic</h2>
@@ -14,7 +15,7 @@
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta, quaerat illum quo qui dolore earum dolores obcaecati minus, consectetur totam suscipit dignissimos, consequuntur nobis eaque impedit ratione ab odit laborum!
             </p>
             <button class="btn-signin">
-                <a href="connexion.html">Se connecter</a>
+                <a href="{{ route('login') }}">Se connecter</a>
             </button>
         </div>
         <div class="description_img">

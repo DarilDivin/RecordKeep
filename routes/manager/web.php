@@ -12,6 +12,7 @@ use App\Http\Controllers\Manager\NatureDocumentController;
 use App\Http\Controllers\Manager\RayonRangementController;
 use App\Http\Controllers\Manager\DemandeTransfertController;
 use App\Http\Controllers\Manager\DocumentClassementController;
+use App\Http\Controllers\Manager\RapportRetourController;
 
 $idRegex = '[0-9]+';
 $slugRegex = '[0-9a-z\-]+';
@@ -147,19 +148,19 @@ Route::get('manager/rapport-preview/{rapport}', [RapportDepartController::class,
 /* ------------------------------------------------------------------------------------------------------------------------------------- */
 
 // Route::get('manager/rapport-de-depart-de-pret', [RapportDepartController::class, 'index'])->name('rapport-depart-list');
-// Route::get('manager/rapport-de-depart-de-pret/create/{demande}', [RapportDepartController::class, 'create'])
-//     ->name('rapport-depart-create')
-//     ->where([
-//         'demande' => $idRegex
-//     ]);
-// Route::post('manager/rapport-de-depart-de-pret/store/', [RapportDepartController::class, 'store'])
-//     ->name('rapport-depart-store');
+Route::get('manager/rapport-de-retour-de-pret/create/{rapportDepart}', [RapportRetourController::class, 'create'])
+    ->name('rapport-retour-create')
+    ->where([
+        'rapportDepart' => $idRegex
+    ]);
+Route::post('manager/rapport-de-retour-de-pret/store/', [RapportRetourController::class, 'store'])
+    ->name('rapport-retour-store');
 
-// Route::get('manager/rapport-preview/{rapport}', [RapportDepartController::class, 'show'])
-//     ->name('rapport-show')
-//     ->where([
-//         'rapport' => $idRegex
-//     ]);
+Route::get('manager/rapport-preview/{rapport}', [RapportDepartController::class, 'show'])
+    ->name('rapport-show')
+    ->where([
+        'rapport' => $idRegex
+    ]);
 
 /* ------------------------------------------------------------------------------------------------------------------------------------- */
 

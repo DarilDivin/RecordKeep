@@ -4,8 +4,6 @@
         <ion-icon name="business"></ion-icon>
     </div>
 
-    @include('admin.layouts.partials.options')
-
     <div class="optional">
         <div class="buttons">
             <button class="filter" x-show="rolesChecked.length > 0" x-on:click="$wire.deletedRoles(rolesChecked)">
@@ -18,7 +16,7 @@
             </button>
         </div>
 
-        <div class="search-box" style="margin-right: 17px;">
+        <div class="search-box" style="margin-right: 17px; width: 24%">
             <input type="text" name="search" wire:model="role" placeholder="Nom du rôle">
             <ion-icon name="search"></ion-icon>
         </div>

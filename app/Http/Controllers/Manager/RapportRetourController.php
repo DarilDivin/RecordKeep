@@ -3,9 +3,31 @@
 namespace App\Http\Controllers\Manager;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Http\Requests\Manager\RapportPretFormRequest;
+use App\Models\RapportPret;
 
 class RapportRetourController extends Controller
 {
-    //
+    public function create(RapportPret $rapportDepart)
+    {
+        return view('manager.rapports.retour-de-pret', [
+            'rapportDepart' => $rapportDepart,
+        ]);
+    }
+
+    public function store(RapportPretFormRequest $request)
+    {
+        $rapport = RapportPret::create(array_merge($request->validated(), [
+            'type' => 'Retour'
+        ]));
+
+        return redirect(route('rapport-show', ['rapport' => $rapport->id]));
+    }
+
+    public function show(RapportPret $rapport)
+    {
+        return view('manager.rapports.rapport-preview', [
+            'rapport' =>$rapport
+        ]);
+    }
 }

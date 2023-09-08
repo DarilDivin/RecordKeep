@@ -4,8 +4,6 @@
         <ion-icon name="business"></ion-icon>
     </div>
 
-    @include('admin.layouts.partials.options')
-
     <div class="optional">
         <div class="buttons">
             <button class="filter" x-show="directionsChecked.length > 0" x-on:click="$wire.deletedDirections(directionsChecked)">
@@ -17,11 +15,11 @@
                 <a href="{{ route('admin.direction.create') }}">Add Direction</a>
             </button>
         </div>
-        <div class="search-box" style="margin-right: 17px;">
+        <div class="search-box" style="width: 22%;">
             <input type="text" name="direction" wire:model="direction" placeholder="Nom de la direction">
             <ion-icon name="search"></ion-icon>
         </div>
-        <div class="search-box" style="margin-right: 17px;">
+        <div class="search-box" style="margin-right: 17px; width: 22%">
             <input type="text" name="sigle" wire:model="sigle" placeholder="Sigle de la direction">
             <ion-icon name="search"></ion-icon>
         </div>

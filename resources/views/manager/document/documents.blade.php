@@ -6,7 +6,7 @@
 
 @section('content')
 
-    <div class="container develop">
+    <div class="container">
         @include('admin.layouts.partials.sidebar')
 
         <div class="main">
@@ -15,7 +15,6 @@
                 <ion-icon name="document-text"></ion-icon>
             </div>
 
-            @include('admin.layouts.partials.options')
             @livewire('documents-table')
         </div>
     </div>

@@ -4,8 +4,6 @@
         <ion-icon name="person"></ion-icon>
     </div>
 
-    @include('admin.layouts.partials.options')
-
     <div class="optional">
         <div class="buttons">
             <button class="filter" x-show="fonctionsChecked.length > 0" x-on:click="$wire.deletedFonctions(fonctionsChecked)">
@@ -17,7 +15,7 @@
                 <a href="{{ route('admin.fonction.create') }}">Add Fonction</a>
             </button>
         </div>
-        <div class="search-box" style="margin-right: 17px;">
+        <div class="search-box" style="margin-right: 17px; width: 22%;">
             <input type="text" name="fonction" wire:model="fonction" placeholder="Nom de la fonction">
             <ion-icon name="search"></ion-icon>
         </div>

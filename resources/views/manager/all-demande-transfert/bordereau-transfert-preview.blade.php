@@ -71,14 +71,7 @@
 <body>
     <div class="rapportContainer">
         <div class="rapport">
-            <h1>
-                @if ($rapport->type == 'Depart')
-                    Validation de prêt
-                @else
-                    Retour de prêt
-                @endif
-
-            </h1>
+            <h1>Bordereau de transfert </h1>
 
             <div class="line">
                 <p><strong>Signature du document :</strong></p>
@@ -98,7 +91,8 @@
             </div>
             <div class="bigtextarea">
                 <p><strong>Observation :</strong></p>
-                <p style="font-size: .9rem;">{{ $rapport->observation }}</p>
+                <p style="font-size: .9rem;">{{ $rapport->observation }} Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt molestiae nobis placeat, dolore pariatur ipsa dignissimos tempora id quibusdam tenetur officiis ducimus corrupti. Possimus hic culpa omnis magni. Sint, ducimus. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Optio doloremque eligendi, doloribus itaque numquam laborum officiis explicabo deleniti facilis nobis assumenda repudiandae animi, totam in! Nisi sed nihil veritatis quae! Lorem ipsum dolor sit amet consectetur, adipisicing elit. Maiores aspernatur ex sequi error rerum tempora. Molestias modi similique aliquam ipsam sequi blanditiis enim distinctio, quis quasi corporis aut fugiat nesciunt? Lorem ipsum dolor sit amet consectetur adipisicing elit. At quod minus similique esse saepe ex excepturi consequuntur omnis nam repellendus aperiam quibusdam culpa, modi fugiat laborum voluptatum reiciendis, molestias natus?Lorem ipsum dolor sit amet consectetur, adipisicing elit. Numquam eaque sequi modi quibusdam, fuga natus cum omnis, excepturi perferendis alias ab delectus asperiores nostrum ducimus quae amet dolorem cumque quo!lorem
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos quis aliquid natus repellat itaque rem maiores a eum in architecto. Sequi cumque nemo provident modi unde, libero quod consequuntur corrupti.</p>
             </div>
             <div class="line">
                 <p><strong>Etat du doc :</strong></p>

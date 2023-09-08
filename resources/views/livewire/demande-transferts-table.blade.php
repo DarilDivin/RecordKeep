@@ -4,8 +4,6 @@
         <ion-icon name="person"></ion-icon>
     </div>
 
-    @include('admin.layouts.partials.options')
-
     <div class="optional">
         <div class="buttons">
             @if (!empty($showButton))
@@ -40,10 +38,10 @@
 
     <div class="cardContainer">
         @forelse ($transferts as $transfert)
-            <div class="card">
+            <div class="card" data-label="">
                 <div class="head">
                     <div class="titleInfos ">
-                        <h3>{{ $transfert->libelle }}  <strong>@if($transfert->transfere) {{ 'V' }} @endif</strong>  </h3>
+                        <h3 title="{{ $transfert->libelle }}">{{ $transfert->libelle }}  <strong>@if($transfert->transfere) {{ 'V' }} @endif</strong>  </h3>
                         <span>DPAF</span>
                     </div>
                     <span>{{ $transfert->created_at->translatedFormat('d/F/Y') }}</span>
@@ -60,9 +58,7 @@
                     <button
                         class="delete"
                         routeForDeleting="{{ route('manager.transfert.destroy', ['transfert' => $transfert->id]) }}">
-                        <a href="" onclick="event.preventDefault()">
                             Annuler
-                        </a>
                     </button>
                 </div>
             </div>

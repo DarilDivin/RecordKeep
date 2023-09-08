@@ -1,7 +1,7 @@
 @php
     $route_name = request()->route()->getName();
 @endphp
-<div class="navigation locked">
+<div class="navigation locked close">
     <div class="sidebar-title">
         <div class="lock_container">
             <span class="lock close"><ion-icon name="lock-closed-outline"></ion-icon></span>
@@ -36,7 +36,7 @@
             </li>
         @endhasrole
 
-        {{-- @hasrole('Administrateur')
+        @hasrole('Administrateur')
             <li @class(['list', 'active' => str_contains($route_name, 'fonction')])>
                 <a href="{{ route('admin.fonction.index') }}">
                     <span class="icon"><ion-icon name="briefcase-outline"></ion-icon></span>
@@ -79,7 +79,7 @@
                     <span class="title">Divisions</span>
                 </a>
             </li>
-        @endhasrole --}}
+        @endhasrole
 
         @hasrole('Gestionnaire-Standard')
             <li @class(['list', 'active' => str_contains($route_name, 'document')])>
@@ -90,7 +90,7 @@
             </li>
         @endhasrole
 
-        {{-- @hasrole('Gestionnaire-Standard')
+        @hasrole('Gestionnaire-Standard')
             <li @class(['list', 'active' => str_contains($route_name, 'categorie')])>
                 <a href="{{ route('manager.categorie.index') }}">
                     <span class="icon"><ion-icon name="grid-outline"></ion-icon></span>
@@ -151,7 +151,7 @@
                     <span class="title">Demande de Prêt</span>
                 </a>
             </li>
-        @endhasrole --}}
+        @endhasrole
 
         <li class="list">
             <a href="{{ route('home') }}">

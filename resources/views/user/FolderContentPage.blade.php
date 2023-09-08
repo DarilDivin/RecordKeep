@@ -4,13 +4,8 @@
     Contenu dossier
 @endsection
 
-@section('style')
-    @vite(['resources/css/FolderContentPage.css', 'resources/js/DocumentPage.js'])
-@endsection
-
-@include('user.layouts.partials.navbar')
-
 @section('content')
+    @include('user.layouts.partials.navbar')
     <section class="documentList list">
         <div class="sectionIndication">
             <h3>Dossier > Sous-Dossier > </h3>

@@ -14,7 +14,10 @@ class RapportDepartController extends Controller
 {
     public function index() : View
     {
-        return view('manager.rapports.depart-de-pret');
+        // dd(RapportPret::where('type', 'depart')->get());
+        return view('manager.rapports.rapport-prets', [
+            'rapports' => RapportPret::where('type', '=', 'depart')->get(),
+        ]);
     }
 
     public function create(DemandePret $demande)
@@ -42,13 +45,6 @@ class RapportDepartController extends Controller
 
     public function pdf(RapportPret $rapport)
     {
-        // Pdf::setOption([
-        //     'dpi' => 150,
-        //     'defaultFont' => 'Poppins',
-        //     'debugCss' => true,
-        //     'debugLayout' => true,
-        // ]);
-
         $pdf = Pdf::loadView('manager.rapports.rapport-preview', ['rapport' => $rapport]);
 
         $pdf->setOption([
