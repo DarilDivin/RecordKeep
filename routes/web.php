@@ -18,7 +18,7 @@ use App\Http\Controllers\Manager\DocumentController;
 
 Route::get('/', function () {
     return view('index');
-});
+})->middleware('guest');
 
 Route::get('/home', [HomeController::class, 'index'])->name('home')->middleware(['auth', 'verified']);
 

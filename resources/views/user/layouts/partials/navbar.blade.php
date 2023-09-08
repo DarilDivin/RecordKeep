@@ -17,31 +17,35 @@
             <li @class(['nav_links', 'active' => str_contains($route, 'home')])><a href="{{ route('home') }}">Accueil</a></li>
 
             <li @class(['nav_links', 'active' => str_contains($route, 'document.index')])><a href="{{ route('document.index') }}">Documenthèque</a></li>
+            @auth
+                <li class="nav_links"><a href="{{ route('settings') }}">Paramètres</a></li>
 
-            <li class="nav_links"><a href="{{ route('settings') }}">Paramètres</a></li>
+                <li class="nav_links">
+                    <a
+                        href="{{ route('logout') }}"
+                        onclick="event.preventDefault();
+                        document.getElementById('logout-form').submit();">
+                            Logout
+                    </a>
+                </li>
 
-            <li class="nav_links">
-                <a
-                    href="{{ route('logout') }}"
-                    onclick="event.preventDefault();
-                    document.getElementById('logout-form').submit();">
-                        Logout
-                </a>
-            </li>
+                <form action="{{ route('logout') }}" method="post" id="logout-form" style="display: none">
+                    @csrf
+                </form>
+            @endauth
 
-            <form action="{{ route('logout') }}" method="post" id="logout-form" style="display: none">
-                @csrf
-            </form>
         </ul>
 
-        <div class="profil_user">
-            <div class="profil">
-                <ion-icon name="person-circle-outline"></ion-icon>
+        @auth
+            <div class="profil_user">
+                <div class="profil">
+                    <ion-icon name="person-circle-outline"></ion-icon>
+                </div>
+                <div class="profil_username">
+                    <p>Euvince</p>
+                </div>
             </div>
-            <div class="profil_username">
-                <p>Euvince</p>
-            </div>
-        </div>
+        @endauth
     </div>
 
     <div class="menuHamburger">

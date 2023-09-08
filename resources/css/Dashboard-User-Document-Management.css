@@ -496,6 +496,10 @@
     gap: 15px;
 }
 
+.cardContainer::-webkit-scrollbar {
+    display: none;
+}
+
 .cardContainer .card {
     background: var(--bg-color);
     height: 250px;
