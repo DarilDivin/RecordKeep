@@ -1,8 +1,7 @@
 @php
     $route_name = request()->route()->getName();
-    // @dd($route_name)
 @endphp
-<div class="navigation locked">
+<div class="navigation locked close">
     <div class="sidebar-title">
         <div class="lock_container">
             <span class="lock close"><ion-icon name="lock-closed-outline"></ion-icon></span>

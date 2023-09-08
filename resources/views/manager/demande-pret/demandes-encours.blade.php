@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-    <div class="container develop">
+    <div class="container">
         @include('admin.layouts.partials.sidebar')
 
         <div class="main">

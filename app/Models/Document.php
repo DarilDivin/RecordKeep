@@ -47,7 +47,7 @@ class Document extends Model
     ];
 
     protected $casts = [
-        /* 'datecreation' => 'datetime', */
+        'datecreation' => 'datetime',
         'created_at' => 'datetime'
     ];
 

@@ -4,9 +4,9 @@
     {{ $document->nom }}
 @endsection
 
-@include('user.layouts.partials.navbar')
-
 @section('content')
+
+    @include('user.layouts.partials.navbar')
     <section class="voir">
         <section class="voirInfosDoc">
             <div class="voirDoc">
@@ -123,6 +123,13 @@
 
         <section class="loanRequest">
             <div class="formContainer">
+
+                @if (session('success'))
+                    <div class="message success">
+                        {{ session('success') }}
+                    </div>
+                @endif
+
                 <h1>{{ $document->disponibilite ? "Procéder à une demande pour ce document" : "Impossible de procéder à une demande pour ce document" }}</h1>
                 <form action="{{ route('document.demande', $document) }}" method="POST" @class(['loanForm', 'disabled' => !$document->disponibilite]) )>
                     @csrf
@@ -159,6 +166,16 @@
                     <button type="submit">Soumettre</button>
                 </form>
             </div>
+        </section>
+
+        <section
+            style="
+                width: 100%;
+                height: 110Vh;
+                /* background: #0ff; */
+            "
+        >
+            <embed src="storage/documents/Machine Learning with TensorFlow.pdf" width="800" height="600" type="application/pdf" id="" >
         </section>
 
         <div class="documentView">

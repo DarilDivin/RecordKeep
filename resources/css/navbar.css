@@ -8,7 +8,8 @@ nav {
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
     padding: 20px 7.5%;
-    background: transparent;
+    /* background: transparent; */
+    background: linear-gradient(45deg, #16223320 35%, #6363ff20 100%);
     backdrop-filter: blur(100px);
     color: var(--color-primary);
     position: fixed;
@@ -22,9 +23,23 @@ nav.scrolled {
     color: var(--text-color-white);
 }
 
+nav.scrolled .black {
+    display: none;
+}
+
+nav:not(.scrolled) .white {
+    display: none;
+}
+
 nav .logo {
     font-size: 1.5rem;
     font-weight: 500;
+}
+
+nav img {
+    width: 120px;
+    height: 90%;
+    /* background: red; */
 }
 
 nav.scrolled .logo {
@@ -52,7 +67,6 @@ nav .nav_menu ul li {
 
 nav .nav_menu ul li a {
     text-decoration: none;
-    /* color: var(--text-color); */
     color: inherit;
     transition: color .4s ease;
 }
@@ -105,6 +119,26 @@ nav .nav_menu ul li:hover::before {
     opacity: 1;
     width: 5%;
     transition: width .4s ease;
+}
+
+nav .nav_menu .profil_user {
+    /* background: #162233; */
+    /* width: 250px; */
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 10px;
+}
+
+nav .nav_menu .profil_user .profil {
+    width: 35px;
+    /* height: 100%; */
+    aspect-ratio: 1 / 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* background: yellow; */
+    font-size: 2rem;
 }
 
 nav .menuHamburger {

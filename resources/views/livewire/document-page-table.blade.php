@@ -82,7 +82,7 @@
                         <p><a href="{{ route('document.show', ['slug' => $document->getSlug(), 'document' => $document]) }}">{{ $document->nom }}</a></p>
                     </div>
                     <div class="documentCreationDate">
-                        <p>{{ $document->datecreation }}</p>
+                        <p>{{ $document->datecreation->translatedFormat('d F Y') }}</p>
                     </div>
                     <div class="documentSize">
                         <p>250ko</p>

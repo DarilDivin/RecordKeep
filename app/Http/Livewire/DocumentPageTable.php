@@ -80,7 +80,7 @@ class DocumentPageTable extends Component
     public function render()
     {
         return view('livewire.document-page-table', [
-            'documents' => Document::paginate(20)
+            'documents' => Document::paginate(20),
         ]);
     }
 }

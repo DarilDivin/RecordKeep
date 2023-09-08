@@ -1,17 +1,17 @@
 @extends('admin.layouts.template')
 
 @section('title')
-    Dashboard-User-Management
+    Dashboard-rapport-Management
 @endsection
 
 @section('content')
-    <div class="container develop">
+    <div class="container">
         @include('admin.layouts.partials.sidebar')
 
         <div class="main">
             <div class="title">
                 <p>Rapports</p>
-                <ion-icon name="person"></ion-icon>
+                <ion-icon name="document"></ion-icon>
             </div>
 
             <div class="sidebarOptions">
@@ -50,7 +50,7 @@
                 </div>
             @endif
 
-            <div class="tableau">
+            {{-- <div class="tableau">
                 <table class="table">
                     <thead>
                         <tr>
@@ -62,29 +62,29 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @forelse ($users as $user)
+                        @forelse ($rapports as $rapport)
                             <tr>
-                                <td>{{ $user->matricule }}</td>
-                                <td>{{ $user->nom }}</td>
-                                <td>{{ $user->prenoms }}</td>
+                                <td>{{ $rapport->type }}</td>
+                                <td>{{ $rapport->nom }}</td>
+                                <td>{{ $rapport->prenoms }}</td>
                                 <td>
                                     <div class="text-cut">
-                                        {{ $user->role }}
+                                        {{ $rapport->role }}
                                     </div>
                                 </td>
                                 <td>
                                     <button class="edit">
-                                        <a href="{{ route('admin.user.edit', ['user' => $user->id]) }}">
+                                        <a href="{{ route('admin.rapport.edit', ['rapport' => $rapport->id]) }}">
                                             Editer
                                         </a>
                                     </button>
                                     <button class="delete">
-                                        <a href="{{ route('admin.user.destroy', ['user' => $user->id]) }}"
+                                        <a href="{{ route('admin.rapport.destroy', ['rapport' => $rapport->id]) }}"
                                            onclick="event.preventDefault();
-                                           document.getElementById('deleteForm{{ $user->id }}').submit();">
+                                           document.getElementById('deleteForm{{ $rapport->id }}').submit();">
                                             Supprimer
                                         </a>
-                                        <form action="{{ route('admin.user.destroy', ['user' => $user->id]) }}" method="POST" style="" id="deleteForm{{ $user->id }}">
+                                        <form action="{{ route('admin.rapport.destroy', ['rapport' => $rapport->id]) }}" method="POST" style="" id="deleteForm{{ $rapport->id }}">
                                             @csrf
                                             @method('delete')
                                         </form>
@@ -92,10 +92,48 @@
                                 </td>
                             </tr>
                         @empty
-                            Aucun utilisateur en base de données
+                            Aucun rapport en base de données
                         @endforelse
                     </tbody>
                 </table>
+            </div> --}}
+
+            <div class="cardContainer">
+                @forelse ($rapports as $rapport)
+                    <div class="card">
+                        <div class="head">
+                            <div class="titleInfos ">
+                                <h3>Validation de prêt </h3>
+                                <span>{{ $rapport->demandepret->duree }} jours</span>
+                            </div>
+                            <span>{{ $rapport->created_at }}</span>
+                        </div>
+                        <div class="body">
+                            <div class="info">
+                                <p>Signature du Document</p>
+                                <span>{{ $rapport->demandepret->document->signature }}</span>
+                            </div>
+                            <div class="info">
+                                <p>Nom du Document</p>
+                                <span>{{ $rapport->demandepret->document->nom }}</span>
+                            </div>
+                            <div class="info">
+                                <p>Nom de l'utilisateur</p>
+                                <span>{{ $rapport->demandepret->user->nom }}</span>
+                            </div>
+                            <div class="info">
+                                <p>Nom de l'utilisateur</p>
+                                <span>{{ $rapport->demandepret->user->prenoms }}</span>
+                            </div>
+                        </div>
+                        <div class="foot">
+                            <a href="{{ route('rapport-retour-create', ['rapportDepart' => $rapport->id]) }}">Générer un retour de prêt</a>
+                        </div>
+                    </div>
+                @empty
+
+                @endforelse
+
             </div>
         </div>
     </div>

@@ -1,18 +1,25 @@
 @php
     $route = request()->route()->getName();
 @endphp
-<nav id="navbar">
+<nav id="navbar" class="">
     <div class="logo">
-        <span>D</span>
+        {{-- <span>D</span>
         <span>S</span>
-        <span>I</span>
+        <span>I</span> --}}
+        {{-- <img src="storage/images/Logo-recordkeep-white.png" alt="" class="white">
+        <img src="storage/images/Logo-recordkeep-black.png" alt="" class="black"> --}}
+        <img src="storage/images/RecordKeepFichier 7.svg" alt="" class="white">
+        <img src="storage/images/RecordKeepFichier 8.svg" alt="" class="black">
     </div>
     <div class="nav_menu">
         <ul>
-        {{-- <li @class(['list', 'active' => str_contains($route_name, 'statistiques')])> --}}
 
             <li @class(['nav_links', 'active' => str_contains($route, 'home')])><a href="{{ route('home') }}">Accueil</a></li>
+
             <li @class(['nav_links', 'active' => str_contains($route, 'document.index')])><a href="{{ route('document.index') }}">Documenthèque</a></li>
+
+            <li class="nav_links"><a href="{{ route('settings') }}">Paramètre</a></li>
+
             <li class="nav_links">
                 <a
                     href="{{ route('logout') }}"
@@ -25,9 +32,16 @@
             <form action="{{ route('logout') }}" method="post" id="logout-form" style="display: none">
                 @csrf
             </form>
-            {{-- <li class="nav_links"><a href="">Demande de prêt</a></li> --}}
-            <li class="nav_links"><a href="{{ route('settings') }}"><ion-icon name="settings-outline"></ion-icon></a></li>
         </ul>
+
+        <div class="profil_user">
+            <div class="profil">
+                <ion-icon name="person-circle-outline"></ion-icon>
+            </div>
+            <div class="profil_username">
+                <p>Daril DJODJOKOUTON</p>
+            </div>
+        </div>
     </div>
 
     <div class="menuHamburger">

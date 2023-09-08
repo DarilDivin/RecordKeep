@@ -49,10 +49,10 @@
 
     <div class="cardContainer">
         @forelse ($transferts as $transfert)
-            <div class="card">
+            <div class="card" data-label="In Progress">
                 <div class="head">
                     <div class="titleInfos ">
-                        <h3>{{ $transfert->libelle }}</h3>
+                        <h3 title="{{ $transfert->libelle }}">{{ $transfert->libelle }}</h3>
                         <span>DPAF</span>
                     </div>
                     <span>{{ $transfert->created_at->translatedFormat('d/F/Y') }}</span>
@@ -69,9 +69,9 @@
                     <button
                         class="delete"
                         routeForDeleting="{{ route('manager.transfert.destroy', ['transfert' => $transfert->id]) }}">
-                        <a href="" onclick="event.preventDefault()">
+                        {{-- <a href="" onclick="event.preventDefault()"> --}}
                             Annuler
-                        </a>
+                        {{-- </a> --}}
                     </button>
                 </div>
             </div>

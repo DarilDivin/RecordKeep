@@ -95,8 +95,6 @@ class DocumentController extends Controller
     public function download(Document $document)
     {
         $documentPath = 'public/'. $document->document;
-        // $documentPath = public_path($document->document);
-        // dd($documentPath);
 
         $document->update([
             'nbrdownload' => ++$document->nbrdownload,

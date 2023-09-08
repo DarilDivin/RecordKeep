@@ -5,9 +5,9 @@
     Documents
 @endsection
 
-@include('user.layouts.partials.navbar')
-
 @section('content')
+
+    @include('user.layouts.partials.navbar')
 
     {{-- <section class="search-zone">
         <h3>Rechercher un document</h3>
@@ -35,9 +35,6 @@
     </section> --}}
     <section>
         @livewire('document-page-table')
-        {{-- , [
-            'documents' => $documents,
-        ] --}}
     </section>
     <div class="documentView">
         <div class="overlay"></div>

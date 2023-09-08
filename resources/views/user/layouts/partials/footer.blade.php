@@ -21,7 +21,8 @@
             © 2023 DSI. All right reserved
         </div> --}}
         <div class="infoStructure" data-aos="zoom-out-down" data-aos-delay="500">
-            <img src="storage/images/logo-Misp2.png" alt="">
+            <img src="storage/images/logo-Misp2.png" alt="Logo-MISP">
+            {{-- <img src="{{ storage_path('images/logo-Misp2.png') }}" alt=""> --}}
         </div>
         <div class="navLinks">
             <ul>
@@ -30,11 +31,32 @@
                 <li class="nav_links" data-aos="fade-left" data-aos-delay="700"><a href="#">Se déconnecter</a></li>
                 <li class="nav_links" data-aos="fade-left" data-aos-delay="800"><a href="#">Paramètres</a></li>
             </ul>
+            <div class="socials" >
+                <a href="" data-aos="fade-left" data-aos-delay="900">
+                    <ion-icon name="logo-facebook" ></ion-icon>
+                </a>
+                <a href="" data-aos="fade-left" data-aos-delay="1000">
+                    <ion-icon name="logo-google" ></ion-icon>
+                </a>
+                <a href="" data-aos="fade-left" data-aos-delay="1100">
+                    <ion-icon name="logo-twitter" ></ion-icon>
+                </a>
+                <a href="" data-aos="fade-left" data-aos-delay="1200">
+                    <ion-icon name="logo-linkedin" ></ion-icon>
+                </a>
+            </div>
         </div>
+
     </div>
     <div class="copyright">
         <p>© 2023-DSI. All rigth reserved</p>
         <p>Ministère de l'Intérieur et de la Sécurité Publique</p>
+    </div>
+
+    <div class="flagsborderbottom">
+        <span></span>
+        <span></span>
+        <span></span>
     </div>
 </footer>
 

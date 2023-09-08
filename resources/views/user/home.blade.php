@@ -8,77 +8,8 @@
 @vite(['resources/css/app.css', 'resources/js/home.js'])
 @endsection
 
-@include('user.layouts.partials.navbar')
-
 @section('content')
-    {{-- <div class="connexion-message">
-
-        @if (! auth()->user()->two_factor_secret )
-            <div class="twofa-message error">
-                <h3>
-                    La double authentification n'est pas activée
-                </h3>
-                <form
-                    action="{{ url('user/two-factor-authentication') }}"
-                    method="POST">
-                    @csrf
-                    <button type="submit"
-                            style="background: #31dc01;
-                                color: #fff;
-                                border: none;
-                                border-radius: 8px;
-                                padding: 10px 20px;
-                                cursor: pointer;
-                                font-weight: bold;">
-                        Enable
-                    </button>
-                </form>
-            </div>
-        @else
-            <div class="twofa-message success">
-                <h3>
-                    La double authentification est activée
-                </h3>
-                <form
-                action="{{ url('user/two-factor-authentication') }}"
-                method="POST">
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit"
-                            style="background: #ff0000;
-                                color: #fff;
-                                border: none;
-                                border-radius: 8px;
-                                padding: 10px 20px;
-                                cursor: pointer;
-                                font-weight: bold;">
-                        Disable
-                    </button>
-                </form>
-            </div>
-        @endif
-
-
-
-
-        @if (session('status') == 'two-factor-authentication-enabled')
-            <div class="recovery-container">
-                <p>Scanner le code Qr pour terminer la configuration de la double authentification</p>
-
-                <div class="Qrcode">
-                    {{!! auth()->user()->twoFactorQrCodeSvg() !!}}
-                </div>
-
-                <p>Conserver ces codes de récupérations au cas où.</p> <br>
-                <ul>
-                    @foreach (json_decode(decrypt(auth()->user()->two_factor_recovery_codes, true)) as $code)
-                        <li>{{ trim($code) }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
-    </div> --}}
-
+    @include('user.layouts.partials.navbar')
     <section class="search-zone">
         <h3>Rechercher un document</h3>
         <form action="" method="post" class="search-form">
@@ -104,16 +35,6 @@
         </form>
     </section>
 
-    {{-- <section class="infos-zone">
-        <div class="info-container">
-            <h3 class="info-title">This is the information title</h3>
-            <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odit ipsum laudantium vero delectus iure corrupti itaque aperiam quibusdam. Numquam molestiae aut magnam facere nesciunt, quod a dicta nostrum dolorem facilis vero possimus provident tempore sint assumenda laborum? At illo quod libero officia fugit quisquam, deleniti expedita adipisci eligendi cum! Eaque. <br>
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Facilis, iste in expedita consequuntur sed voluptate qui doloremque placeat quae animi necessitatibus adipisci facere quas. Expedita incidunt at aperiam culpa vitae tenetur. Nam, voluptates nobis similique necessitatibus aperiam, sit fugit adipisci illo, eum porro beatae animi? Aut ratione quod eos nostrum.
-            </p>
-        </div>
-    </section> --}}
-
     <section class="recent">
         <div class="recent-title">
             <h3> Accès rapide </h3>
@@ -122,8 +43,7 @@
 
             @foreach ($documents as $document)
                 <div class="recent-element">
-                    {{-- <a href="#"><ion-icon name="document-text-outline"></ion-icon></a> --}}
-                    <a href="#"><img src="storage/images/pdf-1.png" alt=""></a>
+                    <a href="{{ route('document.show', ['slug' => $document->getSlug(), 'document' => $document]) }}"><img src="storage/images/pdf-1.png" alt=""></a>
                     <p>{{ $document->nom }}</p>
                 </div>
             @endforeach

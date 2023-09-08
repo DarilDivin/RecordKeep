@@ -20,14 +20,14 @@
 
             <div class="checkbox-container">
                 <input type="checkbox" name="remember" id="remember" class="checkbox">
-                <label for="remember"><p>Remenber me</p></label>
+                <label for="remember"><p>Me rappeler</p></label>
             </div>
 
             <button type="submit">Se connecter</button>
         </form>
         <div class="connexion connexion-option">
-            <a href="{{ route('password.request') }}"><small>Forgot password?</small></a>
-            <p>Don't have an account? <a href=" {{ route('register') }}">Register</a></p>
+            <a href="{{ route('password.request') }}"><small>Mot de passe oublié?</small></a>
+            {{-- <p>Don't have an account? <a href=" {{ route('register') }}">Register</a></p> --}}
         </div>
     </div>
 @endsection

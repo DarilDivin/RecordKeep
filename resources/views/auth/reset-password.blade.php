@@ -24,7 +24,7 @@
         </form>
 
         <div class="connexion connexion-option">
-            <p>Don't have an account? <a href="{{ route('register') }}">Register</a></p>
+            {{-- <p>Don't have an account? <a href="{{ route('register') }}">Register</a></p> --}}
         </div>
     </div>
 @endsection
