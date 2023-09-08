@@ -113,7 +113,7 @@
 
 .navigation ul {
     position: absolute;
-    top: 49%;
+    top: 55%;
     left: 0;
     transform: translate(0, -50%);
     width: 100%;
@@ -498,7 +498,7 @@
 
 .cardContainer .card {
     background: var(--bg-color);
-    height: 230px;
+    height: 250px;
     border-radius: 5px;
     padding: 5px 10px;
     box-shadow: var(--box-shadow-normal);
@@ -575,9 +575,10 @@
 .cardContainer .card .body {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-end;
     align-items: center;
-    height: 65%;
+    /* height: 55%; */
+    margin: 35px 0;
 }
 
 .cardContainer .card .body .info {
@@ -605,7 +606,7 @@
     justify-content: flex-end;
     align-items: center;
     gap: 35px;
-    margin: 0 0 10px;
+    margin: 0 0 20px;
     height: 15%;
 }
 

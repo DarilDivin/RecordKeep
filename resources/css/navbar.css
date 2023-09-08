@@ -15,6 +15,7 @@ nav {
     position: fixed;
     transition: all .6s .2s ease;
     z-index: 1;
+    box-shadow: var(--box-shadow-normal-dark);
 }
 
 nav.scrolled {
