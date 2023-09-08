@@ -44,7 +44,7 @@
                 </div>
                 <div class="body">
                     <div class="info">
-                        <p>Nombre de Documents non archivés</p>
+                        <p>Nombre de Documents total</p>
                         <span>{{ $transfert->documents->count() }}</span>
                     </div>
                     <div class="info">

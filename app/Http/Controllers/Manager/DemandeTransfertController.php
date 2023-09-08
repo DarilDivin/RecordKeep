@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Manager\DemandeTransfertFormRequest;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Auth;
 
 class DemandeTransfertController extends Controller
 {
@@ -18,6 +19,12 @@ class DemandeTransfertController extends Controller
     /**
      * Display a listing of the resource.
      */
+
+    public function __construct()
+    {
+        $this->authorizeResource(DemandeTransfert::class, 'transfert');
+    }
+
     public function index(): View
     {
         return view('manager.demande-transfert.transferts', [
@@ -48,7 +55,7 @@ class DemandeTransfertController extends Controller
     public function store(DemandeTransfertFormRequest $request): RedirectResponse
     {
         $demande = DemandeTransfert::create([
-            'user_id' => 2,
+            'user_id' => Auth::user()->id,
             'transfere' => 0,
             'libelle' => $request->validated('libelle')
         ]);
@@ -83,6 +90,17 @@ class DemandeTransfertController extends Controller
         return redirect()->route('manager.transfert.index');
     }
 
+    public function removeForStandardTranfer(Document $document, DemandeTransfert $transfert): RedirectResponse
+    {
+        $this->authorize('removeForStandardTranfer', $transfert);
+        $document->update([
+            'demande_transfert_id' => null
+        ]);
+        return redirect()
+            ->route('manager.transfert.show', ['slug' => $transfert->getSlug(), 'transfert' => $transfert])
+            ->with('success', 'Le Document a bien été retiré de la Demande de Transfert');
+    }
+
     /**
      * Show the form for editing the specified resource.
      */
@@ -94,7 +112,7 @@ class DemandeTransfertController extends Controller
         if(empty(DemandeTransfert::where('transfere', 0)->get()->toArray())){
             return redirect()
                 ->route('manager.transfert.index')
-                ->with('error', 'Créer une nouvelle Demande de Transfert pour pouvoir procéder à son édition');
+                ->with('error', 'Créer une nouvelle Demande de Transfert pour pouvoir éffectuer cette action');
         }
         return view('manager.demande-transfert.transfert-form', [
             'transfert' => $transfert,
@@ -150,12 +168,13 @@ class DemandeTransfertController extends Controller
         return redirect()->route('manager.transfert.index');
     }
 
-    public function valid(DemandeTransfert $transfert): RedirectResponse
+    public function sending(DemandeTransfert $transfert): RedirectResponse
     {
+        $this->authorize('sending', $transfert);
         if(empty($transfert->documents->toArray())){
             return redirect()
                 ->route('manager.transfert.index')
-                ->with('error', 'Votre Demande de transfert ne contenant aucun document, il vous est impossible de valider le transfert');
+                ->with('error', 'Impossible de valider un transfert vide.');
         }
         self::alertAfterTransfert($transfert);
         if(!$transfert->transfere && !empty($transfert->documents->toArray())){
@@ -164,7 +183,7 @@ class DemandeTransfertController extends Controller
             ]);
             return redirect()
                 ->route('manager.transfert.index')
-                ->with('success', 'Les Documents ont bien transféré');
+                ->with('success', 'Les Documents ont bien été transféré');
         }
         return redirect()->route('manager.transfert.index');
     }

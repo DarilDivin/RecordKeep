@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Policies\Admin;
+namespace App\Policies\Manager;
 
 use App\Models\BoiteArchive;
 use App\Models\User;
@@ -13,7 +13,7 @@ class BoiteArchivePolicy
      */
     public function viewAny(User $user): bool
     {
-        //
+        return in_array('Gestionnaire-Standard', $user->roles->pluck('name')->toArray());
     }
 
     /**
@@ -21,7 +21,7 @@ class BoiteArchivePolicy
      */
     public function view(User $user, BoiteArchive $boiteArchive): bool
     {
-        //
+        return in_array('Gestionnaire-Standard', $user->roles->pluck('name')->toArray());
     }
 
     /**
@@ -29,7 +29,7 @@ class BoiteArchivePolicy
      */
     public function create(User $user): bool
     {
-        //
+        return in_array('Gestionnaire-Standard', $user->roles->pluck('name')->toArray());
     }
 
     /**
@@ -37,7 +37,7 @@ class BoiteArchivePolicy
      */
     public function update(User $user, BoiteArchive $boiteArchive): bool
     {
-        //
+        return in_array('Gestionnaire-Standard', $user->roles->pluck('name')->toArray());
     }
 
     /**
@@ -45,7 +45,7 @@ class BoiteArchivePolicy
      */
     public function delete(User $user, BoiteArchive $boiteArchive): bool
     {
-        //
+        return in_array('Gestionnaire-Standard', $user->roles->pluck('name')->toArray());
     }
 
     /**
@@ -53,7 +53,7 @@ class BoiteArchivePolicy
      */
     public function restore(User $user, BoiteArchive $boiteArchive): bool
     {
-        //
+        return in_array('Gestionnaire-Standard', $user->roles->pluck('name')->toArray());
     }
 
     /**
@@ -61,6 +61,6 @@ class BoiteArchivePolicy
      */
     public function forceDelete(User $user, BoiteArchive $boiteArchive): bool
     {
-        //
+        return in_array('Gestionnaire-Standard', $user->roles->pluck('name')->toArray());
     }
 }

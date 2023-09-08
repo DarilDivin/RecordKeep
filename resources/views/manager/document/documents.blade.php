@@ -15,16 +15,7 @@
                 <ion-icon name="document-text"></ion-icon>
             </div>
 
-            <div class="sidebarOptions">
-                <div class="sidebarOptionContainerOverlay"></div>
-                <div class="sidebarOptionContainer">
-                    <div class="optionContainer">
-                        <a href="Document-classé.html">
-                            <ion-icon name="archive"></ion-icon>
-                        </a>
-                    </div>
-                </div>
-            </div>
+            @include('admin.layouts.partials.options')
             @livewire('documents-table')
         </div>
     </div>

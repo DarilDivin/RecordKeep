@@ -2,16 +2,15 @@
 
 namespace App\Policies\Admin;
 
+use App\Models\Role;
 use App\Models\User;
-use App\Models\Direction;
 use Illuminate\Auth\Access\Response;
 
-class DirectionPolicy
+class RolePolicy
 {
     /**
      * Determine whether the user can view any models.
      */
-
     public function viewAny(User $user): bool
     {
         return in_array('Administrateur', $user->roles->pluck('name')->toArray());
@@ -20,7 +19,7 @@ class DirectionPolicy
     /**
      * Determine whether the user can view the model.
      */
-    public function view(User $user, Direction $direction): bool
+    public function view(User $user, Role $role): bool
     {
         return in_array('Administrateur', $user->roles->pluck('name')->toArray());
     }
@@ -36,7 +35,7 @@ class DirectionPolicy
     /**
      * Determine whether the user can update the model.
      */
-    public function update(User $user, Direction $direction): bool
+    public function update(User $user, Role $role): bool
     {
         return in_array('Administrateur', $user->roles->pluck('name')->toArray());
     }
@@ -44,7 +43,7 @@ class DirectionPolicy
     /**
      * Determine whether the user can delete the model.
      */
-    public function delete(User $user, Direction $direction): bool
+    public function delete(User $user, Role $role): bool
     {
         return in_array('Administrateur', $user->roles->pluck('name')->toArray());
     }
@@ -52,7 +51,7 @@ class DirectionPolicy
     /**
      * Determine whether the user can restore the model.
      */
-    public function restore(User $user, Direction $direction): bool
+    public function restore(User $user, Role $role): bool
     {
         return in_array('Administrateur', $user->roles->pluck('name')->toArray());
     }
@@ -60,7 +59,7 @@ class DirectionPolicy
     /**
      * Determine whether the user can permanently delete the model.
      */
-    public function forceDelete(User $user, Direction $direction): bool
+    public function forceDelete(User $user, Role $role): bool
     {
         return in_array('Administrateur', $user->roles->pluck('name')->toArray());
     }

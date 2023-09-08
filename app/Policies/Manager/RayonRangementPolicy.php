@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Policies\Admin;
+namespace App\Policies\Manager;
 
 use App\Models\RayonRangement;
 use App\Models\User;
@@ -13,7 +13,7 @@ class RayonRangementPolicy
      */
     public function viewAny(User $user): bool
     {
-        //
+        return in_array('Gestionnaire-Standard', $user->roles->pluck('name')->toArray());
     }
 
     /**
@@ -21,7 +21,7 @@ class RayonRangementPolicy
      */
     public function view(User $user, RayonRangement $rayonRangement): bool
     {
-        //
+        return in_array('Gestionnaire-Standard', $user->roles->pluck('name')->toArray());
     }
 
     /**
@@ -29,7 +29,7 @@ class RayonRangementPolicy
      */
     public function create(User $user): bool
     {
-        //
+        return in_array('Gestionnaire-Standard', $user->roles->pluck('name')->toArray());
     }
 
     /**
@@ -37,7 +37,7 @@ class RayonRangementPolicy
      */
     public function update(User $user, RayonRangement $rayonRangement): bool
     {
-        //
+        return in_array('Gestionnaire-Standard', $user->roles->pluck('name')->toArray());
     }
 
     /**
@@ -45,7 +45,7 @@ class RayonRangementPolicy
      */
     public function delete(User $user, RayonRangement $rayonRangement): bool
     {
-        //
+        return in_array('Gestionnaire-Standard', $user->roles->pluck('name')->toArray());
     }
 
     /**
@@ -53,7 +53,7 @@ class RayonRangementPolicy
      */
     public function restore(User $user, RayonRangement $rayonRangement): bool
     {
-        //
+        return in_array('Gestionnaire-Standard', $user->roles->pluck('name')->toArray());
     }
 
     /**
@@ -61,6 +61,6 @@ class RayonRangementPolicy
      */
     public function forceDelete(User $user, RayonRangement $rayonRangement): bool
     {
-        //
+        return in_array('Gestionnaire-Standard', $user->roles->pluck('name')->toArray());
     }
 }

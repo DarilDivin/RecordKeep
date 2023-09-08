@@ -14,13 +14,18 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\Manager\DocumentFormRequest;
-use App\Models\DemandeTransfert;
 
 class DocumentController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
+
+    public function __construct()
+    {
+        $this->authorizeResource(Document::class, 'document');
+    }
+
     public function index(): View
     {
         return view('manager.document.documents');
@@ -122,27 +127,6 @@ class DocumentController extends Controller
         return redirect()
             ->route('manager.document.index')
             ->with('success', 'Le Document a bien été supprimé');
-    }
-
-
-    public function removeForStandardTranfer(Document $document, DemandeTransfert $transfert): RedirectResponse
-    {
-        $document->update([
-            'demande_transfert_id' => null
-        ]);
-        return redirect()
-            ->route('manager.transfert.show', ['slug' => $transfert->getSlug(), 'transfert' => $transfert])
-            ->with('success', 'Le Document a bien été retiré de la Demande de Transfert');
-    }
-
-    public function removeForCentralTranfer(Document $document, DemandeTransfert $transfert): RedirectResponse
-    {
-        $document->update([
-            'demande_transfert_id' => null
-        ]);
-        return redirect()
-            ->route('manager.all-transferts.show', ['slug' => $transfert->getSlug(), 'transfert' => $transfert])
-            ->with('success', 'Le Document a bien été retiré de la Demande de Transfert');
     }
 
 }

@@ -14,6 +14,12 @@ class BoiteArchiveController extends Controller
     /**
      * Display a listing of the resource.
      */
+
+    public function __construct()
+    {
+        $this->authorizeResource(BoiteArchive::class, 'boite');
+    }
+
     public function index(): View
     {
         return view('manager.boite-archive.boites');

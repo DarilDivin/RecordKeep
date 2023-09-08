@@ -4,16 +4,7 @@
         <ion-icon name="business"></ion-icon>
     </div>
 
-    <div class="sidebarOptions">
-        <div class="sidebarOptionContainerOverlay"></div>
-        <div class="sidebarOptionContainer">
-            <div class="optionContainer">
-                <a href="Document-classé.html">
-                    <ion-icon name="archive"></ion-icon>
-                </a>
-            </div>
-        </div>
-    </div>
+    @include('admin.layouts.partials.options')
 
     <div class="optional">
         <div class="buttons">
@@ -56,7 +47,7 @@
                 <tr>
                     <td></td>
                     <x-table-header label="N°" :direction="$orderDirection" name="id" :field="$orderField"></x-table-header>
-                    <x-table-header label="Division" :direction="$orderDirection" name="division_id" :field="$orderField"></x-table-header>
+                    <x-table-header label="Division" :direction="$orderDirection" name="division" :field="$orderField"></x-table-header>
                     <x-table-header label="Sigle" :direction="$orderDirection" name="sigle" :field="$orderField"></x-table-header>
                     <x-table-header label="Service" :direction="$orderDirection" name="service_id" :field="$orderField"></x-table-header>
                     <td>Direction</td>

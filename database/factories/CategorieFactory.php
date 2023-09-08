@@ -19,15 +19,8 @@ class CategorieFactory extends Factory
         $categories = [
             'Administratif',
             'Économique',
-            'Commerciale',
-            'Organisationnelle',
-            'Évènementielle',
             'Diplomatique',
-            'Cartographique',
-            'Informatique',
-            'Marketing',
             'Ressources Humaines',
-            'Logistique',
         ];
 
         return [

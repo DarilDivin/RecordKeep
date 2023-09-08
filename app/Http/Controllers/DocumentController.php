@@ -6,7 +6,6 @@ use ZipArchive;
 use App\Models\Document;
 use App\Models\DemandePret;
 use App\Jobs\DemandePretJob;
-use Illuminate\Http\Request;
 use App\Mail\AcceptDemandeMail;
 use App\Mail\RejectDemandeMail;
 use App\Events\DemandePretEvent;
@@ -17,32 +16,14 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Response;
-use App\Http\Requests\SearchDocumentRequest;
 use App\Http\Requests\DocumentDemandeRequest;
+use Illuminate\Contracts\View\View;
 
 class DocumentController extends Controller
 {
-    public function index(SearchDocumentRequest $request)
+    public function index(): View
     {
-        $documents = Document::query()->orderBy('created_at', 'desc');
-
-        if ($nom = $request->validated('nom')) {
-            $documents = $documents->where('nom', 'like', "%{$nom}%");
-        }
-        if ($dateDébut = $request->validated('dateDébut')) {
-            $documents = $documents->where('datecreation', '>=', $dateDébut);
-        }
-        if ($dateFin = $request->validated('dateFin')) {
-            $documents = $documents->where('datecreation', '<=', $dateFin);
-        }
-        if ($motclé = $request->validated('motclé')) {
-            $documents = $documents->where('motclefs', 'like', "%{$motclé}%");
-        }
-
-        return view('user.DocumentPage', [
-            // 'documents' => $documents->get(),
-            'input' => $request->validated()
-        ]);
+        return view('user.DocumentPage');
     }
 
     public function show(string $slug, Document $document)

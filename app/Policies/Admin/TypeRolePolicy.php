@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Policies;
+namespace App\Policies\Admin;
 
 use App\Models\TypeRole;
 use App\Models\User;
@@ -13,7 +13,7 @@ class TypeRolePolicy
      */
     public function viewAny(User $user): bool
     {
-        //
+         return in_array('Administrateur', $user->roles->pluck('name')->toArray());
     }
 
     /**
@@ -21,7 +21,7 @@ class TypeRolePolicy
      */
     public function view(User $user, TypeRole $typeRole): bool
     {
-        //
+         return in_array('Administrateur', $user->roles->pluck('name')->toArray());
     }
 
     /**
@@ -29,7 +29,7 @@ class TypeRolePolicy
      */
     public function create(User $user): bool
     {
-        //
+         return in_array('Administrateur', $user->roles->pluck('name')->toArray());
     }
 
     /**
@@ -37,7 +37,7 @@ class TypeRolePolicy
      */
     public function update(User $user, TypeRole $typeRole): bool
     {
-        //
+         return in_array('Administrateur', $user->roles->pluck('name')->toArray());
     }
 
     /**
@@ -45,7 +45,7 @@ class TypeRolePolicy
      */
     public function delete(User $user, TypeRole $typeRole): bool
     {
-        //
+         return in_array('Administrateur', $user->roles->pluck('name')->toArray());
     }
 
     /**
@@ -53,7 +53,7 @@ class TypeRolePolicy
      */
     public function restore(User $user, TypeRole $typeRole): bool
     {
-        //
+         return in_array('Administrateur', $user->roles->pluck('name')->toArray());
     }
 
     /**
@@ -61,6 +61,6 @@ class TypeRolePolicy
      */
     public function forceDelete(User $user, TypeRole $typeRole): bool
     {
-        //
+         return in_array('Administrateur', $user->roles->pluck('name')->toArray());
     }
 }

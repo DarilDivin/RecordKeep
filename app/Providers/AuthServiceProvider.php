@@ -4,32 +4,39 @@ namespace App\Providers;
 
 // use Illuminate\Support\Facades\Gate;
 
-use App\Models\BoiteArchive;
-use App\Models\Categorie;
-use App\Models\ChemiseDossier;
-use App\Models\DemandePret;
-use App\Models\Direction;
+use App\Models\User;
+use App\Models\Role;
+use App\Models\Service;
+use App\Models\TypeRole;
 use App\Models\Division;
 use App\Models\Document;
 use App\Models\Fonction;
+use App\Models\Categorie;
+use App\Models\Direction;
+use App\Models\Permission;
+use App\Models\DemandePret;
+use App\Models\BoiteArchive;
+use App\Models\ChemiseDossier;
 use App\Models\NatureDocument;
 use App\Models\RayonRangement;
-use App\Models\Service;
-use App\Models\Transfert;
-use App\Models\User;
-use App\Policies\Admin\BoiteArchivePolicy;
-use App\Policies\Admin\CategoriePolicy;
-use App\Policies\Admin\ChemiseDossierPolicy;
-use App\Policies\Admin\DemandePretPolicy;
-use App\Policies\Admin\DirectionPolicy;
-use App\Policies\Admin\DivisionPolicy;
-use App\Policies\Admin\DocumentPolicy;
-use App\Policies\Admin\FonctionPolicy;
-use App\Policies\Admin\NatureDocumentPolicy;
-use App\Policies\Admin\RayonRangementPolicy;
-use App\Policies\Admin\ServicePolicy;
-use App\Policies\Admin\TransfertPolicy;
+use App\Models\DemandeTransfert;
 use App\Policies\Admin\UserPolicy;
+use App\Policies\Admin\RolePolicy;
+use App\Policies\Admin\ServicePolicy;
+use App\Policies\Admin\DivisionPolicy;
+use App\Policies\Admin\FonctionPolicy;
+use App\Policies\Admin\TypeRolePolicy;
+use App\Policies\Admin\DirectionPolicy;
+use App\Policies\Admin\PermissionPolicy;
+use App\Policies\Manager\DocumentPolicy;
+use App\Policies\Admin\DemandePretPolicy;
+use App\Policies\Manager\CategoriePolicy;
+use App\Policies\Manager\AllTransfertPolicy;
+use App\Policies\Manager\BoiteArchivePolicy;
+use App\Policies\Manager\ChemiseDossierPolicy;
+use App\Policies\Manager\NatureDocumentPolicy;
+use App\Policies\Manager\RayonRangementPolicy;
+use App\Policies\Manager\DemandeTransfertPolicy;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
 class AuthServiceProvider extends ServiceProvider
@@ -40,19 +47,23 @@ class AuthServiceProvider extends ServiceProvider
      * @var array<class-string, class-string>
      */
     protected $policies = [
-        NatureDocument::class => NatureDocumentPolicy::class,
-        ChemiseDossier::class => ChemiseDossierPolicy::class,
-        RayonRangement::class => RayonRangementPolicy::class,
-        BoiteArchive::class => BoiteArchivePolicy::class,
-        DemandePret::class => DemandePretPolicy::class,
-        Transfert::class => TransfertPolicy::class,
-        Categorie::class => CategoriePolicy::class,
-        Direction::class => DirectionPolicy::class,
+        User::class => UserPolicy::class,
+        Role::class => RolePolicy::class,
+        Service::class => ServicePolicy::class,
         Division::class => DivisionPolicy::class,
         Document::class => DocumentPolicy::class,
         Fonction::class => FonctionPolicy::class,
-        Service::class => ServicePolicy::class,
-        User::class => UserPolicy::class,
+        TypeRole::class => TypeRolePolicy::class,
+        Categorie::class => CategoriePolicy::class,
+        Direction::class => DirectionPolicy::class,
+        Permission::class => PermissionPolicy::class,
+        DemandePret::class => DemandePretPolicy::class,
+        BoiteArchive::class => BoiteArchivePolicy::class,
+        NatureDocument::class => NatureDocumentPolicy::class,
+        ChemiseDossier::class => ChemiseDossierPolicy::class,
+        RayonRangement::class => RayonRangementPolicy::class,
+        DemandeTransfert::class => AllTransfertPolicy::class,
+        DemandeTransfert::class => DemandeTransfertPolicy::class
     ];
 
     /**
@@ -60,6 +71,6 @@ class AuthServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        $this->registerPolicies();
     }
 }

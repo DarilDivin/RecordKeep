@@ -4,16 +4,7 @@
         <ion-icon name="document-text"></ion-icon>
     </div>
 
-    <div class="sidebarOptions">
-        <div class="sidebarOptionContainerOverlay"></div>
-        <div class="sidebarOptionContainer">
-            <div class="optionContainer">
-                <a href="Document-classé.html">
-                    <ion-icon name="archive"></ion-icon>
-                </a>
-            </div>
-        </div>
-    </div>
+    @include('admin.layouts.partials.options')
 
     <div class="optional">
         <div class="buttons">
@@ -46,6 +37,7 @@
             <thead>
                 <tr>
                     <td></td>
+                    <x-table-header label="N°" :direction="$orderDirection" name="id" :field="$orderField"></x-table-header>
                     <x-table-header label="Signature" :direction="$orderDirection" name="signature" :field="$orderField"></x-table-header>
                     <x-table-header label="Nom du Document" :direction="$orderDirection" name="nom" :field="$orderField"></x-table-header>
                     <x-table-header label="Date de Création" :direction="$orderDirection" name="datecreation" :field="$orderField"></x-table-header>
@@ -59,6 +51,7 @@
                     <td>
                         <input type="checkbox" x-model="documentsChecked" value="{{ $document->id }}">
                     </td>
+                    <td>{{ $document->id }}</td>
                     <td>{{ $document->signature }}</td>
                     <td>{{ $document->nom }}</td>
                     <td>{{ $document->created_at }}</td>
@@ -68,7 +61,7 @@
                             class="delete"
                             routeForDeleting="{{ route('manager.document.sremove', ['document' => $document->id, 'transfert' => $currentTransfert[0]['id']]) }}">
                             <a href="" onclick="event.preventDefault()">
-                                Retirez le document de la demande de transfert
+                                Retirer
                             </a>
                         </button>
                     </td>

@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use Laravel\Fortify\Features;
-use App\Http\Middleware\IsAdmin;
 use App\Http\Controllers\Controller;
 use Illuminate\Auth\Events\Registered;
 use App\Http\Responses\CustomRegisterResponse;

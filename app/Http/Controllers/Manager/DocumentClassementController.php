@@ -15,13 +15,16 @@ use Illuminate\Http\RedirectResponse;
 
 class DocumentClassementController extends Controller
 {
+
     public function index(): View
     {
+        $this->authorize('showClassementForm');
         return view('manager.document.classed-documents');
     }
 
     public function showClassementForm(Document $document, DemandeTransfert $transfert): View
     {
+        $this->authorize('showClassementForm', $document);
         $motclefsArray = explode('#', $document->motclefs);
         unset($motclefsArray[0]);
         $motclefsString = implode(', ', $motclefsArray);
@@ -37,6 +40,7 @@ class DocumentClassementController extends Controller
 
     public function doClassement(ClassementFormRequest $request, Document $document, DemandeTransfert $transfert): RedirectResponse
     {
+        $this->authorize('doClassement', $document);
         $data = $request->validated();
         $document->update([
             'archive' => 1,

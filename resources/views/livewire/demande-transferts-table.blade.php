@@ -4,16 +4,7 @@
         <ion-icon name="person"></ion-icon>
     </div>
 
-    <div class="sidebarOptions">
-        <div class="sidebarOptionContainerOverlay"></div>
-        <div class="sidebarOptionContainer">
-            <div class="optionContainer">
-                <a href="Document-classé.html">
-                    <ion-icon name="archive"></ion-icon>
-                </a>
-            </div>
-        </div>
-    </div>
+    @include('admin.layouts.partials.options')
 
     <div class="optional">
         <div class="buttons">
@@ -52,7 +43,7 @@
             <div class="card">
                 <div class="head">
                     <div class="titleInfos ">
-                        <h3>{{ $transfert->libelle }}</h3>
+                        <h3>{{ $transfert->libelle }}  <strong>@if($transfert->transfere) {{ 'V' }} @endif</strong>  </h3>
                         <span>DPAF</span>
                     </div>
                     <span>{{ $transfert->created_at->translatedFormat('d/F/Y') }}</span>
@@ -65,7 +56,7 @@
                 </div>
                 <div class="foot">
                     <a href="{{ route('manager.transfert.show', ['slug' => $transfert->getSlug(), 'transfert' => $transfert->id]) }}">Consulter</a>
-                    <a href="{{ route('manager.transfert.valid', ['transfert' => $transfert->id]) }}">Transférer</a>
+                    <a href="{{ route('manager.transfert.sending', ['transfert' => $transfert->id]) }}">Transférer</a>
                     <button
                         class="delete"
                         routeForDeleting="{{ route('manager.transfert.destroy', ['transfert' => $transfert->id]) }}">

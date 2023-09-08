@@ -27,12 +27,10 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
 
-        /* \App\Models\User::factory(10)->create(); */
-
-        Categorie::factory()->count(11)->create();
+        Categorie::factory()->count(4)->create();
         NatureDocument::factory()->count(10)->create();
         Fonction::factory()->count(4)->create();
-        TypeRole::factory()->count(3)->create();
+        TypeRole::factory()->count(4)->create();
 
 
         RayonRangement::factory()->count(10)->create()->each(function ($rayon) {
@@ -72,13 +70,43 @@ class DatabaseSeeder extends Seeder
         $this->call(PermissionSeeder::class);
 
         \App\Models\User::factory()->create([
-            'nom' => 'Jonh',
+            'nom' => 'Doe',
+            'prenoms' => 'Jonh',
             'email' => 'jonh@doe.fr',
             'password' => Hash::make('jonhdoefr'),
-            'division_id' => 1,
-            'service_id' => 1,
-            'direction_id' => 1
-        ])->assignRole(['Administrateur', 'Gestionnaire']);
+        ])->assignRole([
+            'Utilisateur',
+            'Administrateur',
+            'Gestionnaire-Central',
+            'Gestionnaire-Standard'
+        ]);
+
+        \App\Models\User::factory()->create([
+            'nom' => 'Lawson',
+            'prenoms' => 'Tony',
+            'email' => 'tony@lawson.fr',
+            'password' => Hash::make('tonylawson'),
+        ])->assignRole([
+            'Administrateur',
+        ]);
+
+        \App\Models\User::factory()->create([
+            'nom' => 'Lossin',
+            'prenoms' => 'lobert',
+            'email' => 'lossin@lobert.fr',
+            'password' => Hash::make('lossinlobert'),
+        ])->assignRole([
+            'Gestionnaire-Standard',
+        ]);
+
+        \App\Models\User::factory()->create([
+            'nom' => 'Jackson',
+            'prenoms' => 'jinard',
+            'email' => 'jin@jack.fr',
+            'password' => Hash::make('jackjinard'),
+        ])->assignRole([
+            'Gestionnaire-Central',
+        ]);
 
     }
 }

@@ -19,13 +19,13 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('documents', function (Blueprint $table) {
-            $table->foreignIdFor(Division::class)->constrained()->cascadeOnDelete();
-            $table->foreignIdFor(Service::class)->constrained()->cascadeOnDelete();
-            $table->foreignIdFor(Direction::class)->constrained()->cascadeOnDelete();
-            $table->foreignIdFor(Categorie::class)->constrained()->cascadeOnDelete();
-            $table->foreignIdFor(NatureDocument::class)->constrained()->cascadeOnDelete();
-            $table->foreignIdFor(DemandeTransfert::class)->nullable()->constrained()->cascadeOnDelete();
-            $table->foreignIdFor(ChemiseDossier::class)->nullable()->constrained()->cascadeOnDelete();
+            $table->foreignIdFor(Division::class);
+            $table->foreignIdFor(Service::class);
+            $table->foreignIdFor(Direction::class);
+            $table->foreignIdFor(Categorie::class);
+            $table->foreignIdFor(NatureDocument::class);
+            $table->foreignIdFor(DemandeTransfert::class)->nullable();
+            $table->foreignIdFor(ChemiseDossier::class)->nullable();
         });
     }
 

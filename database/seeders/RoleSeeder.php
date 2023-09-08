@@ -14,19 +14,10 @@ class RoleSeeder extends Seeder
      */
     public function run(): void
     {
-        /* $roles = [
-            'Utilisateur',
-            'Gestionnaire',
-            'Administrateur',
-            'Gestionnaire-Utilisateur',
-            'Administrateur-Utilisateur',
-            'Administrateur-Gestionnaire',
-            'Tout-Rôle',
-        ]; */
-
         $userTypeRole = TypeRole::where('libelle', 'Utilisateur')->first();
         $adminTypeRole = TypeRole::where('libelle', 'Administrateur')->first();
-        $managerTypeRole = TypeRole::where('libelle', 'Gestionnaire')->first();
+        $standardManagerTypeRole = TypeRole::where('libelle', 'Gestionnaire-Standard')->first();
+        $centralManagerTypeRole = TypeRole::where('libelle', 'Gestionnaire-Central')->first();
 
         Role::create([
             'name' => 'Utilisateur',
@@ -39,8 +30,13 @@ class RoleSeeder extends Seeder
         ]);
 
         Role::create([
-            'name' => 'Gestionnaire',
-            'type_role_id' => $managerTypeRole->id
+            'name' => 'Gestionnaire-Standard',
+            'type_role_id' => $standardManagerTypeRole->id
+        ]);
+
+        Role::create([
+            'name' => 'Gestionnaire-Central',
+            'type_role_id' => $centralManagerTypeRole->id
         ]);
 
     }

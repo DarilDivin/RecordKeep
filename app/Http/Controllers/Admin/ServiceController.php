@@ -14,6 +14,12 @@ class ServiceController extends Controller
     /**
      * Display a listing of the resource.
      */
+
+    public function __construct()
+    {
+        $this->authorizeResource(Service::class, 'service');
+    }
+
     public function index(): View
     {
         return view('admin.service.services');

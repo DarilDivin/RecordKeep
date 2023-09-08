@@ -16,9 +16,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->foreignIdFor(Division::class)->constrained()->cascadeOnDelete();
-            $table->foreignIdFor(Service::class)->constrained()->cascadeOnDelete();
-            $table->foreignIdFor(Direction::class)->constrained()->cascadeOnDelete();
+            $table->foreignIdFor(Division::class)->nullable()->constrained()->cascadeOnDelete();
+            $table->foreignIdFor(Service::class)->nullable()->constrained()->cascadeOnDelete();
+            $table->foreignIdFor(Direction::class)->nullable()->constrained()->cascadeOnDelete();
             $table->foreignIdFor(Fonction::class)->nullable()->constrained()->cascadeOnDelete();
         });
     }

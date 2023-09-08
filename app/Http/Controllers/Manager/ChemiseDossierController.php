@@ -14,6 +14,12 @@ class ChemiseDossierController extends Controller
     /**
      * Display a listing of the resource.
      */
+
+    public function __construct()
+    {
+        $this->authorizeResource(ChemiseDossier::class, 'chemise');
+    }
+
     public function index(): View
     {
         return view('manager.chemise-dossier.chemises');

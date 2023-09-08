@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Manager\DocumentController;
-use App\Http\Controllers\Admin\DemandePretController;
+use App\Http\Controllers\Manager\DemandePretController;
 use App\Http\Controllers\Manager\CategorieController;
 use App\Http\Controllers\Manager\BoiteArchiveController;
 use App\Http\Controllers\Manager\AllTransfertsController;
@@ -17,7 +17,7 @@ $idRegex = '[0-9]+';
 $slugRegex = '[0-9a-z\-]+';
 $mailRegex = '[^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$]';
 
-Route::prefix('manager')->name('manager.')->group(function () {
+Route::group(['middleware' => ['auth', 'role:Gestionnaire-Standard'], 'prefix' => 'manager', 'as' => 'manager.'], function () {
     Route::resource('document', DocumentController::class)->except(['show']);
     Route::resource('boite', BoiteArchiveController::class)->except(['show']);
     Route::resource('categorie', CategorieController::class)->except(['show']);
@@ -27,19 +27,26 @@ Route::prefix('manager')->name('manager.')->group(function () {
     Route::resource('transfert', DemandeTransfertController::class)->except(['show', 'edit', 'update']);
 });
 
+Route::group(['middleware' => ['auth', 'role:Gestionnaire-Central'], 'prefix' => 'manager', 'as' => 'manager.'], function () {
+    Route::resource('transfert', DemandeTransfertController::class)->except(['show', 'edit', 'update']);
+});
+
 /* ------------------------------------------------------------------------------------------------------------------------------------- */
 
-Route::get('manager/document/classement', [DocumentClassementController::class, 'index'])
+Route::middleware(['auth', 'role:Gestionnaire-Central'])
+    ->get('manager/document/classement', [DocumentClassementController::class, 'index'])
     ->name('manager.document.classed');
 
-Route::get('manager/document/{document}/{transfert}/classement', [DocumentClassementController::class, 'showClassementForm'])
+Route::middleware(['auth', 'role:Gestionnaire-Central'])
+    ->get('manager/document/{document}/{transfert}/classement', [DocumentClassementController::class, 'showClassementForm'])
     ->name('manager.document.classement')
     ->where([
         'document' => $idRegex,
         'transfert' => $idRegex
     ]);
 
-Route::put('manager/document/{document}/{transfert}/classement', [DocumentClassementController::class, 'doClassement'])
+Route::middleware(['auth', 'role:Gestionnaire-Central'])
+    ->put('manager/document/{document}/{transfert}/classement', [DocumentClassementController::class, 'doClassement'])
     ->where([
         'document' => $idRegex,
         'transfert' => $idRegex
@@ -50,32 +57,37 @@ Route::put('manager/document/{document}/{transfert}/classement', [DocumentClasse
 /* FOR STANDARDS MANAGER */
 
 
-Route::get('manager/transfert/{slug}/{transfert}', [DemandeTransfertController::class, 'show'])
+Route::middleware(['auth', 'role:Gestionnaire-Standard'])
+    ->get('manager/transfert/{slug}/{transfert}', [DemandeTransfertController::class, 'show'])
     ->name('manager.transfert.show')
     ->where([
         'transfert' => $idRegex,
         'slug' => $slugRegex
     ]);
 
-Route::get('manager/transfert/{transfert}/edit', [DemandeTransfertController::class, 'edit'])
+Route::middleware(['auth', 'role:Gestionnaire-Standard'])
+    ->get('manager/transfert/{transfert}/edit', [DemandeTransfertController::class, 'edit'])
     ->name('manager.transfert.edit')
     ->where([
         'transfert' => $idRegex
     ]);
 
-Route::put('manager/transfert/{transfert}', [DemandeTransfertController::class, 'update'])
+Route::middleware(['auth', 'role:Gestionnaire-Standard'])
+    ->put('manager/transfert/{transfert}', [DemandeTransfertController::class, 'update'])
     ->name('manager.transfert.update')
     ->where([
         'transfert' => $idRegex
     ]);
 
-Route::get('manager/transfert/{transfert}', [DemandeTransfertController::class, 'valid'])
-    ->name('manager.transfert.valid')
+Route::middleware(['auth', 'role:Gestionnaire-Standard'])
+    ->get('manager/transfert/{transfert}', [DemandeTransfertController::class, 'sending'])
+    ->name('manager.transfert.sending')
     ->where([
         'transfert' => $idRegex
     ]);
 
-Route::put('manager/document-remove-for-standard-transfer/{document}/{transfert}', [DocumentController::class, 'removeForStandardTranfer'])
+Route::middleware(['auth', 'role:Gestionnaire-Standard'])
+    ->put('manager/document-remove-for-standard-transfer/{document}/{transfert}', [DemandeTransfertController::class, 'removeForStandardTranfer'])
     ->name('manager.document.sremove')
     ->where([
         'document' => $idRegex
@@ -87,23 +99,27 @@ Route::put('manager/document-remove-for-standard-transfer/{document}/{transfert}
 /* FOR CENTRALES MANAGER */
 
 
-Route::get('manager/all-transferts', [AllTransfertsController::class, 'index'])
+Route::middleware(['auth', 'role:Gestionnaire-Central'])
+    ->get('manager/all-transferts', [AllTransfertsController::class, 'all'])
     ->name('manager.all-transferts.index');
 
-Route::get('manager/all-transferts/{slug}/{transfert}', [AllTransfertsController::class, 'show'])
+Route::middleware(['auth', 'role:Gestionnaire-Central'])
+    ->get('manager/all-transferts/{slug}/{transfert}', [AllTransfertsController::class, 'one'])
     ->name('manager.all-transferts.show')
     ->where([
         'transfert' => $idRegex,
         'slug' => $slugRegex
     ]);
 
-Route::delete('manager/all-transferts/{transfert}', [AllTransfertsController::class, 'destroy'])
+Route::middleware(['auth', 'role:Gestionnaire-Central'])
+    ->delete('manager/all-transferts/{transfert}', [AllTransfertsController::class, 'death'])
     ->name('manager.all-transferts.destroy')
     ->where([
         'transfert' => $idRegex
     ]);
 
-Route::put('manager/document-remove-for-central-transfer/{document}/{transfert}', [DocumentController::class, 'removeForCentralTranfer'])
+Route::middleware(['auth', 'role:Gestionnaire-Central'])
+    ->put('manager/document-remove-for-central-transfer/{document}/{transfert}', [AllTransfertsController::class, 'removeForCentralTranfer'])
     ->name('manager.document.cremove')
     ->where([
         'document' => $idRegex

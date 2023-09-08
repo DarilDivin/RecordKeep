@@ -14,6 +14,7 @@ class DirectionFactory extends Factory
      *
      * @return array<string, mixed>
      */
+
     public function definition(): array
     {
         $sigleLength = $this->faker->randomElement([2, 3, 4, 5]);

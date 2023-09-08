@@ -13,6 +13,12 @@ class DirectionController extends Controller
     /**
      * Display a listing of the resource.
      */
+
+    public function __construct()
+    {
+        $this->authorizeResource(Direction::class, 'direction');
+    }
+
     public function index(): View
     {
         return view('admin.direction.directions');

@@ -18,7 +18,8 @@ class TypeRoleFactory extends Factory
     {
         $typeOfRoles = [
             'Utilisateur',
-            'Gestionnaire',
+            'Gestionnaire-Standard',
+            'Gestionnaire-Central',
             'Administrateur',
         ];
 

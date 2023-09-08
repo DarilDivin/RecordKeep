@@ -1,19 +1,10 @@
 <div class="main" x-data = "{ categoriesChecked : @entangle('categoriesChecked').defer }">
     <div class="title">
-        <p>gestion des Catégories</p>
+        <p>Gestion des Catégories</p>
         <ion-icon name="person"></ion-icon>
     </div>
 
-    <div class="sidebarOptions">
-        <div class="sidebarOptionContainerOverlay"></div>
-        <div class="sidebarOptionContainer">
-            <div class="optionContainer">
-                <a href="Document-classé.html">
-                    <ion-icon name="archive"></ion-icon>
-                </a>
-            </div>
-        </div>
-    </div>
+    @include('admin.layouts.partials.options')
 
     <div class="optional">
         <div class="buttons">

@@ -13,6 +13,12 @@ class RayonRangementController extends Controller
     /**
      * Display a listing of the resource.
      */
+
+     public function __construct()
+     {
+        $this->authorizeResource(RayonRangement::class, 'rayon');
+     }
+
     public function index(): View
     {
         return view('manager.rayon-rangement.rayons');

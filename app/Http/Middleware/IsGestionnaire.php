@@ -16,10 +16,14 @@ class IsGestionnaire
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if(Auth::user()->role !== 'Gestionnaire'){
-            abort(403);
-        } else{
-            return $next($request);
+        $userRoles = Auth::user()->roles->pluck('id', 'name')->toArray();
+        foreach ($userRoles as $role => $id) {
+            if (array_key_exists('Gestionnaire', $userRoles)){
+                return $next($request);
+            }
+            else{
+                abort(403);
+            }
         }
     }
 }

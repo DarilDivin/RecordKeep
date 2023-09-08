@@ -49,7 +49,7 @@ class DocumentsTable extends Component
     {
         $demandeTransfert = DemandeTransfert::where('transfere', 0)->get()->toArray();
         if(empty($demandeTransfert)){
-            return session()->flash('error', "Vous n'avez aucune Demande de Transfert de crée !");
+            return session()->flash('error', "Créez une nouvelle Demande de Transfert !");
         }
         else{
             foreach($ids as $id){

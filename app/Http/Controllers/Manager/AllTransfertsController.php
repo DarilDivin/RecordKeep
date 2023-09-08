@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\Manager;
 
+use App\Models\Document;
 use App\Models\DemandeTransfert;
 use Illuminate\Contracts\View\View;
 use App\Http\Controllers\Controller;
+use App\Policies\Manager\AllTransfertPolicy;
 use Illuminate\Http\RedirectResponse;
 
 class AllTransfertsController extends Controller
@@ -13,13 +15,15 @@ class AllTransfertsController extends Controller
 
     /* ------------------------------------------------------------------------------------------------------ */
 
-    public function index(): View
+    public function all(): View
     {
+        /* $this->authorize('all'); */
         return view('manager.all-demande-transfert.transferts');
     }
 
-    public function show(string $slug, DemandeTransfert $transfert): View | RedirectResponse
+    public function one(string $slug, DemandeTransfert $transfert): View | RedirectResponse
     {
+        /* $this->authorize('one', $transfert); */
         if($transfert->transfere){
             if($slug !== $transfert->getSlug()){
                 return to_route('manager.transfert.show', [
@@ -31,10 +35,23 @@ class AllTransfertsController extends Controller
                 'transfert' => $transfert
             ]);
         }
+        return redirect()->route('manager.all-transferts.index');
     }
 
-    public function destroy(DemandeTransfert $transfert): RedirectResponse
+    public function removeForCentralTranfer(Document $document, DemandeTransfert $transfert): RedirectResponse
     {
+        /* $this->authorize('removeForCentralTranfer', $transfert); */
+        $document->update([
+            'demande_transfert_id' => null
+        ]);
+        return redirect()
+            ->route('manager.all-transferts.show', ['slug' => $transfert->getSlug(), 'transfert' => $transfert])
+            ->with('success', 'Le Document a bien été retiré de la Demande de Transfert');
+    }
+
+    public function death(DemandeTransfert $transfert): RedirectResponse
+    {
+        /* $this->authorize('death', $transfert); */
         self::alert($transfert);
         if($transfert->transfere && empty($transfert->documents->toArray())){
             $transfert->delete();
@@ -45,9 +62,9 @@ class AllTransfertsController extends Controller
         return redirect()->route('manager.all-transferts.index');
     }
 
-    public function accept()
+    public function accept(DemandeTransfert $transfert)
     {
-
+        /* $this->authorize('accept', $transfert); */
     }
 
     public static function alert(DemandeTransfert $transfert)

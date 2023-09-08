@@ -13,6 +13,12 @@ class PermissionController extends Controller
     /**
      * Display a listing of the resource.
      */
+
+    public function __construct()
+    {
+        $this->authorizeResource(Permission::class, 'permission');
+    }
+
     public function index()
     {
         return view('admin.permission.permissions');

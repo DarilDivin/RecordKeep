@@ -15,6 +15,12 @@ class TypeRoleController extends Controller
     /**
      * Display a listing of the resource.
      */
+
+    public function __construct()
+    {
+        $this->authorizeResource(TypeRole::class, 'type-role');
+    }
+
     public function index(): View
     {
         return view('admin.type-role.typeroles');

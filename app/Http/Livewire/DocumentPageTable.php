@@ -15,11 +15,20 @@ class DocumentPageTable extends Component
 
     use WithPagination;
 
+    public $nom = '';
+
+    public $motclefs = '';
+
     public $documentChecked = [];
 
-    public function paginationView()
+    public function updatedNom()
     {
-        return 'shared.pagination';
+        $this->resetPage();
+    }
+
+    public function updatedMotclefs()
+    {
+        $this->resetPage();
     }
 
     public function filesdownload(array $ids)
@@ -77,10 +86,30 @@ class DocumentPageTable extends Component
         ]);
     }
 
+    public function paginationView()
+    {
+        return 'shared.pagination';
+    }
+
     public function render()
     {
+        $documents = Document::query();
+
+        if(!empty($this->nom)){
+            $documents = $documents->where('nom', 'LIKE', "%{$this->nom}%");
+        }
+
+        if(!empty($this->motclefs)){
+            $seg = explode(',', $this->motclefs);
+            unset($seg[0]);
+            $arr = '#' . implode('#', $seg);
+            $documents = $documents->where('motclefs', 'LIKE', "%{$arr}%");
+        }
+
         return view('livewire.document-page-table', [
-            'documents' => Document::paginate(20)
+            'documents' => $documents
+                ->orderBy('created_at', 'desc')
+                ->paginate(20)
         ]);
     }
 }

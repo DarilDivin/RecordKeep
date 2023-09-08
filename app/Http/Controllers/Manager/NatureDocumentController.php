@@ -13,6 +13,12 @@ class NatureDocumentController extends Controller
     /**
      * Display a listing of the resource.
      */
+
+    public function __construct()
+    {
+        $this->authorizeResource(NatureDocument::class, 'nature');
+    }
+
     public function index(): View
     {
         return view('manager.nature-document.natures');

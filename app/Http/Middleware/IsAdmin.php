@@ -16,10 +16,14 @@ class IsAdmin
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if(Auth::user()->role !== 'Administrateur'){
-            abort(403);
-        } else{
-            return $next($request);
+        $userRoles = Auth::user()->roles->pluck('id', 'name')->toArray();
+        foreach ($userRoles as $role => $id) {
+            if (array_key_exists('Administrateur', $userRoles)){
+                return $next($request);
+            }
+            else{
+                abort(403);
+            }
         }
     }
 }

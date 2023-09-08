@@ -13,7 +13,7 @@ class FonctionPolicy
      */
     public function viewAny(User $user): bool
     {
-        //
+         return in_array('Administrateur', $user->roles->pluck('name')->toArray());
     }
 
     /**
@@ -21,7 +21,7 @@ class FonctionPolicy
      */
     public function view(User $user, Fonction $fonction): bool
     {
-        //
+         return in_array('Administrateur', $user->roles->pluck('name')->toArray());
     }
 
     /**
@@ -29,7 +29,7 @@ class FonctionPolicy
      */
     public function create(User $user): bool
     {
-        //
+         return in_array('Administrateur', $user->roles->pluck('name')->toArray());
     }
 
     /**
@@ -37,7 +37,7 @@ class FonctionPolicy
      */
     public function update(User $user, Fonction $fonction): bool
     {
-        //
+         return in_array('Administrateur', $user->roles->pluck('name')->toArray());
     }
 
     /**
@@ -45,7 +45,7 @@ class FonctionPolicy
      */
     public function delete(User $user, Fonction $fonction): bool
     {
-        //
+         return in_array('Administrateur', $user->roles->pluck('name')->toArray());
     }
 
     /**
@@ -53,7 +53,7 @@ class FonctionPolicy
      */
     public function restore(User $user, Fonction $fonction): bool
     {
-        //
+         return in_array('Administrateur', $user->roles->pluck('name')->toArray());
     }
 
     /**
@@ -61,6 +61,6 @@ class FonctionPolicy
      */
     public function forceDelete(User $user, Fonction $fonction): bool
     {
-        //
+         return in_array('Administrateur', $user->roles->pluck('name')->toArray());
     }
 }
