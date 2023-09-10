@@ -15,7 +15,7 @@
                 <a href="{{ route('manager.boite.create') }}">Add Archive Boite</a>
             </button>
         </div>
-        <div class="check-categorie-documents" style="width: 26%;">
+        <div class="check-categorie-documents" style="width: 22%;">
             <select class="inputContainer" id="rayon" wire:model="selectedRayon" name="rayon_id" style="height: 35px;">
                 <option value="">Sélectionnez un rayon</option>
                 @foreach ($rayons as $id => $rayon)
@@ -23,11 +23,11 @@
                 @endforeach
             </select>
         </div>
-        <div class="search-box" style="margin-right: 17px;">
+        <div class="search-box" style="width: 22%;">
             <input type="text" name="boite" wire:model="boite" placeholder="Libellé de la boîte">
             <ion-icon name="search"></ion-icon>
         </div>
-        <div class="search-box" style="margin-right: 17px;">
+        <div class="search-box" style="margin-right: 17px; width: 22%;">
             <input type="text" name="code" wire:model="code" placeholder="Code de la boîte">
             <ion-icon name="search"></ion-icon>
         </div>

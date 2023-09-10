@@ -13,7 +13,7 @@ class CategoriePolicy
      */
     public function viewAny(User $user): bool
     {
-        return in_array('Gestionnaire-Standard', $user->roles->pluck('name')->toArray());
+        return $user->can('Gestion des Categories');
     }
 
     /**
@@ -21,7 +21,7 @@ class CategoriePolicy
      */
     public function view(User $user, Categorie $categorie): bool
     {
-        return in_array('Gestionnaire-Standard', $user->roles->pluck('name')->toArray());
+        return $user->can('Gestion des Categories');
     }
 
     /**
@@ -29,7 +29,7 @@ class CategoriePolicy
      */
     public function create(User $user): bool
     {
-        return in_array('Gestionnaire-Standard', $user->roles->pluck('name')->toArray());
+        return $user->can('Gestion des Categories');
     }
 
     /**
@@ -37,7 +37,7 @@ class CategoriePolicy
      */
     public function update(User $user, Categorie $categorie): bool
     {
-        return in_array('Gestionnaire-Standard', $user->roles->pluck('name')->toArray());
+        return $user->can('Gestion des Categories');
     }
 
     /**
@@ -45,7 +45,7 @@ class CategoriePolicy
      */
     public function delete(User $user, Categorie $categorie): bool
     {
-        return in_array('Gestionnaire-Standard', $user->roles->pluck('name')->toArray());
+        return $user->can('Gestion des Categories');
     }
 
     /**
@@ -53,7 +53,7 @@ class CategoriePolicy
      */
     public function restore(User $user, Categorie $categorie): bool
     {
-        return in_array('Gestionnaire-Standard', $user->roles->pluck('name')->toArray());
+        return $user->can('Gestion des Categories');
     }
 
     /**
@@ -61,6 +61,6 @@ class CategoriePolicy
      */
     public function forceDelete(User $user, Categorie $categorie): bool
     {
-        return in_array('Gestionnaire-Standard', $user->roles->pluck('name')->toArray());
+        return $user->can('Gestion des Categories');
     }
 }

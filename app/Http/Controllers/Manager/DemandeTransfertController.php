@@ -163,7 +163,7 @@ class DemandeTransfertController extends Controller
             }
             return redirect()
                 ->route('manager.transfert.index')
-                ->with('success', 'La Demande de Transfert  a bien été supprimé');
+                ->with('success', 'La Demande de Transfert  a bien été annulé');
         }
         return redirect()->route('manager.transfert.index');
     }

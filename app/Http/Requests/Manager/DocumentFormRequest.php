@@ -23,9 +23,9 @@ class DocumentFormRequest extends FormRequest
      */
     public function rules(): array
     {
-        if(request()->routeIs('admin.document.store')){
+        if(request()->routeIs('manager.document.store')){
             $documentRule = 'required|mimes:pdf|max:500000';
-        }elseif(request()->routeIs('admin.document.update')){
+        }elseif(request()->routeIs('manager.document.update')){
             $documentRule = 'sometimes|mimes:pdf|max:500000';
         }
 

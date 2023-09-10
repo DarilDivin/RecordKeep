@@ -13,7 +13,7 @@ class BoiteArchivePolicy
      */
     public function viewAny(User $user): bool
     {
-        return in_array('Gestionnaire-Standard', $user->roles->pluck('name')->toArray());
+        return $user->can('Gestion des Boîtes Archives');
     }
 
     /**
@@ -21,7 +21,7 @@ class BoiteArchivePolicy
      */
     public function view(User $user, BoiteArchive $boiteArchive): bool
     {
-        return in_array('Gestionnaire-Standard', $user->roles->pluck('name')->toArray());
+        return $user->can('Gestion des Boîtes Archives');
     }
 
     /**
@@ -29,7 +29,7 @@ class BoiteArchivePolicy
      */
     public function create(User $user): bool
     {
-        return in_array('Gestionnaire-Standard', $user->roles->pluck('name')->toArray());
+        return $user->can('Gestion des Boîtes Archives');
     }
 
     /**
@@ -37,7 +37,7 @@ class BoiteArchivePolicy
      */
     public function update(User $user, BoiteArchive $boiteArchive): bool
     {
-        return in_array('Gestionnaire-Standard', $user->roles->pluck('name')->toArray());
+        return $user->can('Gestion des Boîtes Archives');
     }
 
     /**
@@ -45,7 +45,7 @@ class BoiteArchivePolicy
      */
     public function delete(User $user, BoiteArchive $boiteArchive): bool
     {
-        return in_array('Gestionnaire-Standard', $user->roles->pluck('name')->toArray());
+        return $user->can('Gestion des Boîtes Archives');
     }
 
     /**
@@ -53,7 +53,7 @@ class BoiteArchivePolicy
      */
     public function restore(User $user, BoiteArchive $boiteArchive): bool
     {
-        return in_array('Gestionnaire-Standard', $user->roles->pluck('name')->toArray());
+        return $user->can('Gestion des Boîtes Archives');
     }
 
     /**
@@ -61,6 +61,6 @@ class BoiteArchivePolicy
      */
     public function forceDelete(User $user, BoiteArchive $boiteArchive): bool
     {
-        return in_array('Gestionnaire-Standard', $user->roles->pluck('name')->toArray());
+        return $user->can('Gestion des Boîtes Archives');
     }
 }

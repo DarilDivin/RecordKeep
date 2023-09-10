@@ -13,7 +13,7 @@ class NatureDocumentPolicy
      */
     public function viewAny(User $user): bool
     {
-        return in_array('Gestionnaire-Standard', $user->roles->pluck('name')->toArray());
+         return $user->can('Gestion des Natures de Documents');
     }
 
     /**
@@ -21,7 +21,7 @@ class NatureDocumentPolicy
      */
     public function view(User $user, NatureDocument $natureDocument): bool
     {
-        return in_array('Gestionnaire-Standard', $user->roles->pluck('name')->toArray());
+         return $user->can('Gestion des Natures de Documents');
     }
 
     /**
@@ -29,7 +29,7 @@ class NatureDocumentPolicy
      */
     public function create(User $user): bool
     {
-        return in_array('Gestionnaire-Standard', $user->roles->pluck('name')->toArray());
+         return $user->can('Gestion des Natures de Documents');
     }
 
     /**
@@ -37,7 +37,7 @@ class NatureDocumentPolicy
      */
     public function update(User $user, NatureDocument $natureDocument): bool
     {
-        return in_array('Gestionnaire-Standard', $user->roles->pluck('name')->toArray());
+         return $user->can('Gestion des Natures de Documents');
     }
 
     /**
@@ -45,7 +45,7 @@ class NatureDocumentPolicy
      */
     public function delete(User $user, NatureDocument $natureDocument): bool
     {
-        return in_array('Gestionnaire-Standard', $user->roles->pluck('name')->toArray());
+         return $user->can('Gestion des Natures de Documents');
     }
 
     /**
@@ -53,7 +53,7 @@ class NatureDocumentPolicy
      */
     public function restore(User $user, NatureDocument $natureDocument): bool
     {
-        return in_array('Gestionnaire-Standard', $user->roles->pluck('name')->toArray());
+         return $user->can('Gestion des Natures de Documents');
     }
 
     /**
@@ -61,6 +61,6 @@ class NatureDocumentPolicy
      */
     public function forceDelete(User $user, NatureDocument $natureDocument): bool
     {
-        return in_array('Gestionnaire-Standard', $user->roles->pluck('name')->toArray());
+         return $user->can('Gestion des Natures de Documents');
     }
 }

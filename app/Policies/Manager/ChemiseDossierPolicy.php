@@ -13,7 +13,7 @@ class ChemiseDossierPolicy
      */
     public function viewAny(User $user): bool
     {
-        return in_array('Gestionnaire-Standard', $user->roles->pluck('name')->toArray());
+         return $user->can('Gestion des Categories');
     }
 
     /**
@@ -21,7 +21,7 @@ class ChemiseDossierPolicy
      */
     public function view(User $user, ChemiseDossier $chemiseDossier): bool
     {
-        return in_array('Gestionnaire-Standard', $user->roles->pluck('name')->toArray());
+         return $user->can('Gestion des Categories');
     }
 
     /**
@@ -29,7 +29,7 @@ class ChemiseDossierPolicy
      */
     public function create(User $user): bool
     {
-        return in_array('Gestionnaire-Standard', $user->roles->pluck('name')->toArray());
+         return $user->can('Gestion des Chemises Dossiers');
     }
 
     /**
@@ -37,7 +37,7 @@ class ChemiseDossierPolicy
      */
     public function update(User $user, ChemiseDossier $chemiseDossier): bool
     {
-        return in_array('Gestionnaire-Standard', $user->roles->pluck('name')->toArray());
+         return $user->can('Gestion des Chemises Dossiers');
     }
 
     /**
@@ -45,7 +45,7 @@ class ChemiseDossierPolicy
      */
     public function delete(User $user, ChemiseDossier $chemiseDossier): bool
     {
-        return in_array('Gestionnaire-Standard', $user->roles->pluck('name')->toArray());
+         return $user->can('Gestion des Chemises Dossiers');
     }
 
     /**
@@ -53,7 +53,7 @@ class ChemiseDossierPolicy
      */
     public function restore(User $user, ChemiseDossier $chemiseDossier): bool
     {
-        return in_array('Gestionnaire-Standard', $user->roles->pluck('name')->toArray());
+         return $user->can('Gestion des Chemises Dossiers');
     }
 
     /**
@@ -61,6 +61,6 @@ class ChemiseDossierPolicy
      */
     public function forceDelete(User $user, ChemiseDossier $chemiseDossier): bool
     {
-        return in_array('Gestionnaire-Standard', $user->roles->pluck('name')->toArray());
+         return $user->can('Gestion des Chemises Dossiers');
     }
 }

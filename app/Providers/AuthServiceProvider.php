@@ -31,7 +31,6 @@ use App\Policies\Admin\PermissionPolicy;
 use App\Policies\Manager\DocumentPolicy;
 use App\Policies\Admin\DemandePretPolicy;
 use App\Policies\Manager\CategoriePolicy;
-use App\Policies\Manager\AllTransfertPolicy;
 use App\Policies\Manager\BoiteArchivePolicy;
 use App\Policies\Manager\ChemiseDossierPolicy;
 use App\Policies\Manager\NatureDocumentPolicy;
@@ -62,7 +61,6 @@ class AuthServiceProvider extends ServiceProvider
         NatureDocument::class => NatureDocumentPolicy::class,
         ChemiseDossier::class => ChemiseDossierPolicy::class,
         RayonRangement::class => RayonRangementPolicy::class,
-        DemandeTransfert::class => AllTransfertPolicy::class,
         DemandeTransfert::class => DemandeTransfertPolicy::class
     ];
 

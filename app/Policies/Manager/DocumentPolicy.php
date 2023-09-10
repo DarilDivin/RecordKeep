@@ -13,7 +13,7 @@ class DocumentPolicy
      */
     public function viewAny(User $user): bool
     {
-        return in_array('Gestionnaire-Standard', $user->roles->pluck('name')->toArray());
+         return $user->can('Gestion des Documents');
     }
 
     /**
@@ -21,7 +21,7 @@ class DocumentPolicy
      */
     public function view(User $user, Document $document): bool
     {
-        return in_array('Gestionnaire-Standard', $user->roles->pluck('name')->toArray());
+         return $user->can('Gestion des Documents');
     }
 
     /**
@@ -29,7 +29,7 @@ class DocumentPolicy
      */
     public function create(User $user): bool
     {
-        return in_array('Gestionnaire-Standard', $user->roles->pluck('name')->toArray());
+         return $user->can('Gestion des Documents');
     }
 
     /**
@@ -37,7 +37,7 @@ class DocumentPolicy
      */
     public function update(User $user, Document $document): bool
     {
-        return in_array('Gestionnaire-Standard', $user->roles->pluck('name')->toArray());
+         return $user->can('Gestion des Documents');
     }
 
     /**
@@ -45,7 +45,7 @@ class DocumentPolicy
      */
     public function delete(User $user, Document $document): bool
     {
-        return in_array('Gestionnaire-Standard', $user->roles->pluck('name')->toArray());
+         return $user->can('Gestion des Documents');
     }
 
     /**
@@ -53,7 +53,7 @@ class DocumentPolicy
      */
     public function restore(User $user, Document $document): bool
     {
-        return in_array('Gestionnaire-Standard', $user->roles->pluck('name')->toArray());
+        return $user->can('Gestion des Documents');
     }
 
     /**
@@ -61,22 +61,22 @@ class DocumentPolicy
      */
     public function forceDelete(User $user, Document $document): bool
     {
-        return in_array('Gestionnaire-Standard', $user->roles->pluck('name')->toArray());
+        return $user->can('Gestion des Documents');
     }
 
 
-    public function indexForDocumentsArchived(User $user, Document $document): bool
+    public function indexForDocumentsArchived(User $user): bool
     {
-        return in_array('Gestionnaire-Central', $user->roles->pluck('name')->toArray());
+        return $user->can('Gestion des Classements');
     }
 
     public function showClassementForm(User $user, Document $document): bool
     {
-        return in_array('Gestionnaire-Central', $user->roles->pluck('name')->toArray());
+        return $user->can('Gestion des Classements');
     }
 
     public function doClassement(User $user, Document $document): bool
     {
-        return in_array('Gestionnaire-Central', $user->roles->pluck('name')->toArray());
+        return $user->can('Gestion des Classements');
     }
 }

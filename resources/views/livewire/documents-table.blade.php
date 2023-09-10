@@ -4,11 +4,16 @@
     }">
     <div class="optional">
         <div class="buttons">
-            <button class="filter deleteMultiple" x-show="documentsChecked.length > 0" x-on:click="$wire.destroyDocuments(documentsChecked)">
+            <style>
+                [x-cloak]{
+                    display: none !important;
+                }
+            </style>
+            <button class="filter deleteMultiple" x-show="documentsChecked.length > 0" x-on:click="$wire.destroyDocuments(documentsChecked)" x-cloak>
                 <ion-icon name="trash"></ion-icon>
                 Supprimer
             </button>
-            <button class="filter" x-show="documentsChecked.length > 0" x-on:click="$wire.createTransfertDocuments(documentsChecked)">
+            <button class="filter" x-show="documentsChecked.length > 0" x-on:click="$wire.createTransfertDocuments(documentsChecked)" x-cloak>
                 <ion-icon name="send"></ion-icon>
                 Transférer
             </button>
@@ -17,7 +22,7 @@
                 <a href="{{ route('manager.document.create') }}">Ajouter Document</a>
             </button>
         </div>
-        <div class="search-box" style="margin-right: 17px;">
+        <div class="search-box" style="margin-right: 17px; width: 22%;">
             <input type="text" name="nom" placeholder="Nom du document" wire:model="nom">
             <ion-icon name="search"></ion-icon>
         </div>

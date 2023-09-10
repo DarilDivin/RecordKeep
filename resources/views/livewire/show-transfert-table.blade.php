@@ -15,7 +15,7 @@
                 <a href="{{ route('manager.transfert.edit', ['transfert' => $currentTransfert[0]['id']]) }}">Demande Transfert</a>
             </button>
         </div>
-        <div class="search-box"  style="margin-right: 17px;">
+        <div class="search-box"  style="margin-right: 17px; width: 22%;">
             <input type="text" name="nom" wire:model="nom" placeholder="Nom du Document">
             <ion-icon name="search"></ion-icon>
         </div>

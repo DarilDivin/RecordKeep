@@ -10,8 +10,12 @@
                 <ion-icon name="trash-outline"></ion-icon>
                 Retirer
             </button>
+            <button class="filter">
+                <ion-icon name="checkmark-circle-outline"></ion-icon>
+                Accepter
+            </button>
         </div>
-        <div class="search-box"  style="margin-right: 17px;">
+        <div class="search-box"  style="margin-right: 17px; width: 22%;">
             <input type="text" name="nom" wire:model="nom" placeholder="Nom du Document">
             <ion-icon name="search"></ion-icon>
         </div>
@@ -31,6 +35,7 @@
             <thead>
                 <tr>
                     <td></td>
+                    <x-table-header label="N°" :direction="$orderDirection" name="id" :field="$orderField"></x-table-header>
                     <x-table-header label="Signature" :direction="$orderDirection" name="signature" :field="$orderField"></x-table-header>
                     <x-table-header label="Nom du Document" :direction="$orderDirection" name="nom" :field="$orderField"></x-table-header>
                     <x-table-header label="Date de Création" :direction="$orderDirection" name="datecreation" :field="$orderField"></x-table-header>
@@ -44,19 +49,22 @@
                     <td>
                         <input type="checkbox" x-model="documentsChecked" value="{{ $document->id }}">
                     </td>
+                    <td>{{ $document->id }}</td>
                     <td>{{ $document->signature }}</td>
                     <td>{{ $document->nom }}</td>
                     <td>{{ $document->created_at }}</td>
                     <td>{{ $document->dua }}ans</td>
                     <td>
                         <button class="classer"><a href="{{ route('manager.document.classement', ['document' => $document->id, 'transfert' => $transfert->id]) }}">Classer</a></button>
+                        @if (!$transfert->valide)
                         <button
                             class="delete"
                             routeForDeleting="{{ route('manager.document.cremove', ['document' => $document->id, 'transfert' => $transfert->id]) }}">
                             <a href="" onclick="event.preventDefault()">
-                                Retirez
+                                Retirer
                             </a>
                         </button>
+                        @endif
                     </td>
                 </tr>
                 @empty

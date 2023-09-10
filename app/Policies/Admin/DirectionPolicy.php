@@ -14,7 +14,7 @@ class DirectionPolicy
 
     public function viewAny(User $user): bool
     {
-        return in_array('Administrateur', $user->roles->pluck('name')->toArray());
+        return $user->can('Gestion des Directions');
     }
 
     /**
@@ -22,7 +22,7 @@ class DirectionPolicy
      */
     public function view(User $user, Direction $direction): bool
     {
-        return in_array('Administrateur', $user->roles->pluck('name')->toArray());
+        return $user->can('Gestion des Directions');
     }
 
     /**
@@ -30,7 +30,7 @@ class DirectionPolicy
      */
     public function create(User $user): bool
     {
-        return in_array('Administrateur', $user->roles->pluck('name')->toArray());
+        return $user->can('Gestion des Directions');
     }
 
     /**
@@ -38,7 +38,7 @@ class DirectionPolicy
      */
     public function update(User $user, Direction $direction): bool
     {
-        return in_array('Administrateur', $user->roles->pluck('name')->toArray());
+        return $user->can('Gestion des Directions');
     }
 
     /**
@@ -46,7 +46,7 @@ class DirectionPolicy
      */
     public function delete(User $user, Direction $direction): bool
     {
-        return in_array('Administrateur', $user->roles->pluck('name')->toArray());
+        return $user->can('Gestion des Directions');
     }
 
     /**
@@ -54,7 +54,7 @@ class DirectionPolicy
      */
     public function restore(User $user, Direction $direction): bool
     {
-        return in_array('Administrateur', $user->roles->pluck('name')->toArray());
+        return $user->can('Gestion des Directions');
     }
 
     /**
@@ -62,6 +62,6 @@ class DirectionPolicy
      */
     public function forceDelete(User $user, Direction $direction): bool
     {
-        return in_array('Administrateur', $user->roles->pluck('name')->toArray());
+        return $user->can('Gestion des Directions');
     }
 }

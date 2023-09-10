@@ -4,7 +4,9 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
+use App\Models\User;
 use App\Models\Service;
+use App\Models\TypeRole;
 use App\Models\Division;
 use App\Models\Document;
 use App\Models\Fonction;
@@ -13,9 +15,9 @@ use App\Models\Direction;
 use App\Models\BoiteArchive;
 use App\Models\ChemiseDossier;
 use App\Models\NatureDocument;
+use App\Models\Permission;
 use App\Models\RayonRangement;
-use App\Models\TypeRole;
-use App\Models\User;
+use App\Models\Role;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 
@@ -27,11 +29,9 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
 
-        Categorie::factory()->count(4)->create();
+        /* Categorie::factory()->count(4)->create();
         NatureDocument::factory()->count(10)->create();
         Fonction::factory()->count(4)->create();
-        TypeRole::factory()->count(4)->create();
-
 
         RayonRangement::factory()->count(10)->create()->each(function ($rayon) {
             BoiteArchive::factory()->count(1)->create([
@@ -64,7 +64,9 @@ class DatabaseSeeder extends Seeder
                     ]);
                 });
             });
-        });
+        }); */
+
+        TypeRole::factory()->count(4)->create();
 
         $this->call(RoleSeeder::class);
         $this->call(PermissionSeeder::class);
@@ -74,12 +76,8 @@ class DatabaseSeeder extends Seeder
             'prenoms' => 'Jonh',
             'email' => 'jonh@doe.fr',
             'password' => Hash::make('jonhdoefr'),
-        ])->assignRole([
-            'Utilisateur',
-            'Administrateur',
-            'Gestionnaire-Central',
-            'Gestionnaire-Standard'
-        ]);
+        ])->assignRole([Role::all()])
+        ->permissions()->sync(Permission::all());
 
         \App\Models\User::factory()->create([
             'nom' => 'Lawson',

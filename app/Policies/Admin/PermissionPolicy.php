@@ -13,7 +13,7 @@ class PermissionPolicy
      */
     public function viewAny(User $user): bool
     {
-        return in_array('Administrateur', $user->roles->pluck('name')->toArray());
+        return $user->can('Gestion des Permissions');
     }
 
     /**
@@ -21,7 +21,7 @@ class PermissionPolicy
      */
     public function view(User $user, Permission $permission): bool
     {
-        return in_array('Administrateur', $user->roles->pluck('name')->toArray());
+        return $user->can('Gestion des Permissions');
     }
 
     /**
@@ -29,7 +29,7 @@ class PermissionPolicy
      */
     public function create(User $user): bool
     {
-        return in_array('Administrateur', $user->roles->pluck('name')->toArray());
+        return $user->can('Gestion des Permissions');
     }
 
     /**
@@ -37,7 +37,7 @@ class PermissionPolicy
      */
     public function update(User $user, Permission $permission): bool
     {
-        return in_array('Administrateur', $user->roles->pluck('name')->toArray());
+        return $user->can('Gestion des Permissions');
     }
 
     /**
@@ -45,7 +45,7 @@ class PermissionPolicy
      */
     public function delete(User $user, Permission $permission): bool
     {
-        return in_array('Administrateur', $user->roles->pluck('name')->toArray());
+        return $user->can('Gestion des Permissions');
     }
 
     /**
@@ -53,7 +53,7 @@ class PermissionPolicy
      */
     public function restore(User $user, Permission $permission): bool
     {
-        return in_array('Administrateur', $user->roles->pluck('name')->toArray());
+        return $user->can('Gestion des Permissions');
     }
 
     /**
@@ -61,6 +61,6 @@ class PermissionPolicy
      */
     public function forceDelete(User $user, Permission $permission): bool
     {
-        return in_array('Administrateur', $user->roles->pluck('name')->toArray());
+        return $user->can('Gestion des Permissions');
     }
 }

@@ -15,7 +15,7 @@
                 <a href="{{ route('admin.permission.create') }}">Add Permission</a>
             </button>
         </div>
-        <div class="search-box" style="margin-right: 17px;">
+        <div class="search-box" style="margin-right: 17px; width: 22%;">
             <input type="text" name="permission" wire:model="permission" placeholder="Nom de la permission">
             <ion-icon name="search"></ion-icon>
         </div>

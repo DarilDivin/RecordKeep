@@ -13,7 +13,7 @@ class ServicePolicy
      */
     public function viewAny(User $user): bool
     {
-        return in_array('Administrateur', $user->roles->pluck('name')->toArray());
+        return $user->can('Gestion des Services');
     }
 
     /**
@@ -21,7 +21,7 @@ class ServicePolicy
      */
     public function view(User $user, Service $service): bool
     {
-        return in_array('Administrateur', $user->roles->pluck('name')->toArray());
+        return $user->can('Gestion des Services');
     }
 
     /**
@@ -29,7 +29,7 @@ class ServicePolicy
      */
     public function create(User $user): bool
     {
-        return in_array('Administrateur', $user->roles->pluck('name')->toArray());
+        return $user->can('Gestion des Services');
     }
 
     /**
@@ -37,7 +37,7 @@ class ServicePolicy
      */
     public function update(User $user, Service $service): bool
     {
-        return in_array('Administrateur', $user->roles->pluck('name')->toArray());
+        return $user->can('Gestion des Services');
     }
 
     /**
@@ -45,7 +45,7 @@ class ServicePolicy
      */
     public function delete(User $user, Service $service): bool
     {
-        return in_array('Administrateur', $user->roles->pluck('name')->toArray());
+        return $user->can('Gestion des Services');
     }
 
     /**
@@ -53,7 +53,7 @@ class ServicePolicy
      */
     public function restore(User $user, Service $service): bool
     {
-        return in_array('Administrateur', $user->roles->pluck('name')->toArray());
+        return $user->can('Gestion des Services');
     }
 
     /**
@@ -61,6 +61,6 @@ class ServicePolicy
      */
     public function forceDelete(User $user, Service $service): bool
     {
-        return in_array('Administrateur', $user->roles->pluck('name')->toArray());
+        return $user->can('Gestion des Services');
     }
 }

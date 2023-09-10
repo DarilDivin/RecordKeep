@@ -18,7 +18,7 @@ class DocumentClassementController extends Controller
 
     public function index(): View
     {
-        $this->authorize('showClassementForm');
+        $this->authorize('indexForDocumentsArchived', Document::class);
         return view('manager.document.classed-documents');
     }
 
@@ -50,7 +50,7 @@ class DocumentClassementController extends Controller
         ]);
 
         return redirect()
-                ->route('manager.all-transferts.show', ['slug' => $transfert->getSlug(), 'transfert' => $transfert])
-                ->with('success', "Le document N° $document->id a bien été classé");
+            ->route('manager.transfert.one', ['slug' => $transfert->getSlug(), 'transfert' => $transfert])
+            ->with('success', "Le document N° $document->id a bien été classé");
     }
 }

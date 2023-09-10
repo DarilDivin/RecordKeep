@@ -1,7 +1,7 @@
 <div class="main" x-data = "{ chemisesChecked : @entangle('chemisesChecked').defer }">
     <div class="title">
         <p>Gestion des Chemises Dossiers</p>
-        <ion-icon name="person"></ion-icon>
+        <ion-icon name="folder-outline"></ion-icon>
     </div>
 
     <div class="optional">
@@ -15,7 +15,7 @@
                 <a href="{{ route('manager.chemise.create') }}">Add Chemise Dossier</a>
             </button>
         </div>
-        <div class="check-categorie-documents" style="width: 26%;">
+        <div class="check-categorie-documents" style="width: 22%;">
             <select class="inputContainer" id="boite" wire:model="selectedBoite" name="boite_id" style="height: 35px;">
                 <option value="">Sélectionnez une boîte</option>
                 @foreach ($boites as $id => $boite)
@@ -23,11 +23,11 @@
                 @endforeach
             </select>
         </div>
-        <div class="search-box">
+        <div class="search-box" style="width: 22%;">
             <input type="text" name="chemise" wire:model="chemise" placeholder="Libellé de la chemise">
             <ion-icon name="search"></ion-icon>
         </div>
-        <div class="search-box" style="margin-right: 17px;">
+        <div class="search-box" style="margin-right: 17px; width: 22%;">
             <input type="text" name="code" wire:model="code" placeholder="Code de la chemise">
             <ion-icon name="search"></ion-icon>
         </div>

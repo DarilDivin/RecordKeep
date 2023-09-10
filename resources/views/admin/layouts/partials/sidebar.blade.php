@@ -27,131 +27,131 @@
             </li>
         @endhasanyrole
 
-        @hasrole('Administrateur')
+        @can('Gestion des Utilisateurs')
             <li @class(['list', 'active' => str_contains($route_name, 'user')])>
                 <a href="{{ route('admin.user.index') }}">
                     <span class="icon"><ion-icon name="people"></ion-icon></span>
                     <span class="title">Utilisateurs</span>
                 </a>
             </li>
-        @endhasrole
+        @endcan
 
-        @hasrole('Administrateur')
+        @can('Gestion des Fonctions')
             <li @class(['list', 'active' => str_contains($route_name, 'fonction')])>
                 <a href="{{ route('admin.fonction.index') }}">
                     <span class="icon"><ion-icon name="briefcase-outline"></ion-icon></span>
                     <span class="title">Fonctions</span>
                 </a>
             </li>
-        @endhasrole
+        @endcan
 
-        @hasrole('Administrateur')
+        @can('Gestion des Rôles')
             <li @class(['list', 'active' => str_contains($route_name, 'role')])>
                 <a href="{{ route('admin.role.index') }}">
                     <span class="icon"><ion-icon name="git-compare-outline"></ion-icon></span>
                     <span class="title">Rôles</span>
                 </a>
             </li>
-        @endhasrole
+        @endcan
 
-        @hasrole('Administrateur')
+        @can('Gestion des Directions')
             <li @class(['list', 'active' => str_contains($route_name, 'direction')])>
                 <a href="{{ route('admin.direction.index') }}">
                     <span class="icon"><ion-icon name="business-outline"></ion-icon></span>
                     <span class="title">Directions</span>
                 </a>
             </li>
-        @endhasrole
+        @endcan
 
-        @hasrole('Administrateur')
+        @can('Gestion des Services')
             <li @class(['list', 'active' => str_contains($route_name, 'service')])>
                 <a href="{{ route('admin.service.index') }}">
                     <span class="icon"><ion-icon name="business-outline"></ion-icon></span>
                     <span class="title">Services</span>
                 </a>
             </li>
-        @endhasrole
+        @endcan
 
-        @hasrole('Administrateur')
+        @can('Gestion des Divisions')
             <li @class(['list', 'active' => str_contains($route_name, 'division')])>
                 <a href="{{ route('admin.division.index') }}">
                     <span class="icon"><ion-icon name="business-outline"></ion-icon></span>
                     <span class="title">Divisions</span>
                 </a>
             </li>
-        @endhasrole
+        @endcan
 
-        @hasrole('Gestionnaire-Standard')
+        @can('Gestion des Documents')
             <li @class(['list', 'active' => str_contains($route_name, 'document')])>
                 <a href="{{ route('manager.document.index') }}">
                     <span class="icon"><ion-icon name="document-text-outline"></ion-icon></span>
                     <span class="title">Documents</span>
                 </a>
             </li>
-        @endhasrole
+        @endcan
 
-        @hasrole('Gestionnaire-Standard')
+        @can('Gestion des Catégories')
             <li @class(['list', 'active' => str_contains($route_name, 'categorie')])>
                 <a href="{{ route('manager.categorie.index') }}">
                     <span class="icon"><ion-icon name="grid-outline"></ion-icon></span>
                     <span class="title">Catégories</span>
                 </a>
             </li>
-        @endhasrole
+        @endcan
 
-        @hasrole('Gestionnaire-Standard')
+        @can('Gestion des Natures de Documents')
             <li @class(['list', 'active' => str_contains($route_name, 'nature')])>
                 <a href="{{ route('manager.nature.index') }}">
                     <span class="icon"><ion-icon name="documents-outline"></ion-icon></span>
                     <span class="title">Nature de Documents</span>
                 </a>
             </li>
-        @endhasrole
+        @endcan
 
-        @hasrole('Gestionnaire-Standard')
+        @can('Gestion des Rayons Rangements')
             <li @class(['list', 'active' => str_contains($route_name, 'rayon')])>
                 <a href="{{ route('manager.rayon.index') }}">
                     <span class="icon"><ion-icon name="file-tray-stacked-outline"></ion-icon></span>
                     <span class="title">Rayons de Rangement</span>
                 </a>
             </li>
-        @endhasrole
+        @endcan
 
-        @hasrole('Gestionnaire-Standard')
+        @can('Gestion des Boîtes Archives')
             <li @class(['list', 'active' => str_contains($route_name, 'boite')])>
                 <a href="{{ route('manager.boite.index') }}">
                     <span class="icon"><ion-icon name="file-tray-full-outline"></ion-icon></span>
                     <span class="title">Boîtes Archives</span>
                 </a>
             </li>
-        @endhasrole
+        @endcan
 
-        @hasrole('Gestionnaire-Standard')
+        @can('Gestion des Chemises Dossiers')
             <li @class(['list', 'active' => str_contains($route_name, 'chemise')])>
                 <a href="{{ route('manager.chemise.index') }}">
                     <span class="icon"><ion-icon name="folder-outline"></ion-icon></span>
-                    <span class="title">Chemise Dossier</span>
+                    <span class="title">Chemises Dossiers</span>
                 </a>
             </li>
-        @endhasrole
+        @endcan
 
-        @hasrole('Gestionnaire-Central')
+        @can('Gestion des Demandes de Transferts')
             <li class="list">
                 <a href="{{ route('manager.transfert.index') }}">
                     <span class="icon"><ion-icon name="arrow-redo"></ion-icon></span>
-                    <span class="title">Demande de transfert</span>
+                    <span class="title">Demandes de transferts</span>
                 </a>
             </li>
-        @endhasrole
+        @endcan
 
-        @hasrole('Gestionnaire-Central')
+        @can('Gestion des Demandes de Prêt')
             <li class="list">
                 <a href="">
                     <span class="icon"><ion-icon name="swap-horizontal"></ion-icon></span>
-                    <span class="title">Demande de Prêt</span>
+                    <span class="title">Demandes de Prêts</span>
                 </a>
             </li>
-        @endhasrole
+        @endcan
 
         <li class="list">
             <a href="{{ route('home') }}">

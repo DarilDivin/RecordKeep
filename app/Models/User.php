@@ -88,4 +88,9 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(DemandePret::class);
     }
 
+    public function demandetransferts(): HasMany
+    {
+        return $this->hasMany(DemandeTransfert::class, 'user_id', 'id');
+    }
+
 }

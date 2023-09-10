@@ -15,11 +15,11 @@
                 <a href="{{ route('manager.rayon.create') }}">Add Rangement Rayon</a>
             </button>
         </div>
-        <div class="search-box" style="margin-right: 17px;">
+        <div class="search-box" style="width: 22%;">
             <input type="text" name="rayon" wire:model="rayon" placeholder="Libellé du rayon">
             <ion-icon name="search"></ion-icon>
         </div>
-        <div class="search-box" style="margin-right: 17px;">
+        <div class="search-box" style="margin-right: 17px; width: 22%;">
             <input type="text" name="code" wire:model="code" placeholder="Code du rayon">
             <ion-icon name="search"></ion-icon>
         </div>

@@ -1,7 +1,7 @@
 <div class="main">
     <div class="title">
         <p>Gestion des Demandes de Transferts</p>
-        <ion-icon name="person"></ion-icon>
+        <ion-icon name="arrow-redo"></ion-icon>
     </div>
 
     <div class="optional">
@@ -14,7 +14,7 @@
                 @endif
             </h3>
         </div>
-        <div class="search-box">
+        <div class="search-box" style="margin-right: 17px; width: 22%;">
             <input type="text" name="libelle" wire:model="libelle" placeholder="Libellé de la Demande">
             <ion-icon name="search"></ion-icon>
         </div>
@@ -34,10 +34,18 @@
 
     <div class="cardContainer">
         @foreach ($transferts as $transfert)
-            <div class="card">
+            <div class="card"
+                 data-label="
+                    @if($transfert->isSend())
+                        En attente
+                    @elseif($transfert->isSend() && $transfert->isValid())
+                        Terminé
+                    @else
+                        Non transféré
+                    @endif">
                 <div class="head">
                     <div class="titleInfos ">
-                        <h3>{{ $transfert->libelle }}</h3>
+                        <h3>{{ Str::limit($transfert->libelle, 30, '...') }}</h3>
                         <span>DPAF</span>
                     </div>
                     <span>{{ $transfert->created_at->translatedFormat('d/F/Y') }}</span>
@@ -48,20 +56,28 @@
                         <span>{{ $transfert->documents->count() }}</span>
                     </div>
                     <div class="info">
+                        <p>Nombre de Documents non archivés</p>
+                        <span>{{ $transfert->documents->where('archive', 0)->count() }}</span>
+                    </div>
+                    <div class="info">
                         <p>Nombre de Documents archivés</p>
-                        <span>{{ $transfert->documents->count() }}</span>
+                        <span>{{ $transfert->documents->where('archive', 1)->count() }}</span>
                     </div>
                 </div>
                 <div class="foot">
-                    <a href="{{ route('manager.all-transferts.show', ['slug' => $transfert->getSlug(), 'transfert' => $transfert->id]) }}">Consulter</a>
-                    <a href="">Accepter</a>
-                    <button
-                        class="delete"
-                        routeForDeleting="{{ route('manager.all-transferts.destroy', ['transfert' => $transfert->id]) }}">
-                        <a href="" onclick="event.preventDefault()">
-                            Supprimer
-                        </a>
-                    </button>
+                    @if ($transfert->documents->where('archive', 0)->count() > 0)
+                        <a href="{{ route('manager.transfert.one', ['slug' => $transfert->getSlug(), 'transfert' => $transfert->id]) }}">Consulter</a>
+                    @endif
+                    @if ($transfert->documents->count() > 0)
+                        <a href="{{ route('manager.transfert.bordereau-form', ['transfert' => $transfert->id]) }}">{{ $transfert->valide ? 'Bordereau' : 'Accepter' }}</a>
+                    @endif
+                    @if (!$transfert->valide)
+                        <button
+                            class="delete"
+                            routeForDeleting="{{ route('manager.transfert.off', ['transfert' => $transfert->id]) }}" style="height: 30px; font-size: 14px;">
+                            Annuler
+                        </button>
+                    @endif
                 </div>
             </div>
         @endforeach

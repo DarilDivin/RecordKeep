@@ -18,27 +18,41 @@ $idRegex = '[0-9]+';
 $slugRegex = '[0-9a-z\-]+';
 $mailRegex = '[^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$]';
 
-Route::group(['middleware' => ['auth', 'role:Gestionnaire-Standard'], 'prefix' => 'manager', 'as' => 'manager.'], function () {
+Route::group(['middleware' => ['auth', 'permission:Gestion des Documents'], 'prefix' => 'manager', 'as' => 'manager.'], function () {
     Route::resource('document', DocumentController::class)->except(['show']);
-    Route::resource('boite', BoiteArchiveController::class)->except(['show']);
-    Route::resource('categorie', CategorieController::class)->except(['show']);
-    Route::resource('rayon', RayonRangementController::class)->except(['show']);
-    Route::resource('nature', NatureDocumentController::class)->except(['show']);
-    Route::resource('chemise', ChemiseDossierController::class)->except(['show']);
-    Route::resource('transfert', DemandeTransfertController::class)->except(['show', 'edit', 'update']);
 });
 
-Route::group(['middleware' => ['auth', 'role:Gestionnaire-Central'], 'prefix' => 'manager', 'as' => 'manager.'], function () {
+Route::group(['middleware' => ['auth', 'permission:Gestion des Categories'], 'prefix' => 'manager', 'as' => 'manager.'], function () {
+    Route::resource('categorie', CategorieController::class)->except(['show']);
+});
+
+Route::group(['middleware' => ['auth', 'permission:Gestion des Boîtes Archives'], 'prefix' => 'manager', 'as' => 'manager.'], function () {
+    Route::resource('boite', BoiteArchiveController::class)->except(['show']);
+});
+
+Route::group(['middleware' => ['auth', 'permission:Gestion des Rayons Rangements'], 'prefix' => 'manager', 'as' => 'manager.'], function () {
+    Route::resource('rayon', RayonRangementController::class)->except(['show']);
+});
+
+Route::group(['middleware' => ['auth', 'permission:Gestion des Chemises Dossiers'], 'prefix' => 'manager', 'as' => 'manager.'], function () {
+    Route::resource('chemise', ChemiseDossierController::class)->except(['show']);
+});
+
+Route::group(['middleware' => ['auth', 'permission:Gestion des Natures de Documents'], 'prefix' => 'manager', 'as' => 'manager.'], function () {
+    Route::resource('nature', NatureDocumentController::class)->except(['show']);
+});
+
+Route::group(['middleware' => ['auth', 'permission:Gestion des Demandes de Transferts'], 'prefix' => 'manager', 'as' => 'manager.'], function () {
     Route::resource('transfert', DemandeTransfertController::class)->except(['show', 'edit', 'update']);
 });
 
 /* ------------------------------------------------------------------------------------------------------------------------------------- */
 
-Route::middleware(['auth', 'role:Gestionnaire-Central'])
+Route::middleware(['auth', 'permission:Gestion des Classements'])
     ->get('manager/document/classement', [DocumentClassementController::class, 'index'])
     ->name('manager.document.classed');
 
-Route::middleware(['auth', 'role:Gestionnaire-Central'])
+Route::middleware(['auth', 'permission:Gestion des Classements'])
     ->get('manager/document/{document}/{transfert}/classement', [DocumentClassementController::class, 'showClassementForm'])
     ->name('manager.document.classement')
     ->where([
@@ -46,7 +60,7 @@ Route::middleware(['auth', 'role:Gestionnaire-Central'])
         'transfert' => $idRegex
     ]);
 
-Route::middleware(['auth', 'role:Gestionnaire-Central'])
+Route::middleware(['auth', 'permission:Gestion des Classements'])
     ->put('manager/document/{document}/{transfert}/classement', [DocumentClassementController::class, 'doClassement'])
     ->where([
         'document' => $idRegex,
@@ -58,7 +72,7 @@ Route::middleware(['auth', 'role:Gestionnaire-Central'])
 /* FOR STANDARDS MANAGER */
 
 
-Route::middleware(['auth', 'role:Gestionnaire-Standard'])
+Route::middleware(['auth', 'permission:Gestion des Demandes de Transferts'])
     ->get('manager/transfert/{slug}/{transfert}', [DemandeTransfertController::class, 'show'])
     ->name('manager.transfert.show')
     ->where([
@@ -66,32 +80,32 @@ Route::middleware(['auth', 'role:Gestionnaire-Standard'])
         'slug' => $slugRegex
     ]);
 
-Route::middleware(['auth', 'role:Gestionnaire-Standard'])
+Route::middleware(['auth', 'permission:Gestion des Demandes de Transferts'])
+    ->put('manager/document-remove-for-standard-transfer/{document}/{transfert}', [DemandeTransfertController::class, 'removeForStandardTranfer'])
+    ->name('manager.document.sremove')
+    ->where([
+        'document' => $idRegex
+    ]);
+
+Route::middleware(['auth', 'permission:Gestion des Demandes de Transferts'])
     ->get('manager/transfert/{transfert}/edit', [DemandeTransfertController::class, 'edit'])
     ->name('manager.transfert.edit')
     ->where([
         'transfert' => $idRegex
     ]);
 
-Route::middleware(['auth', 'role:Gestionnaire-Standard'])
+Route::middleware(['auth', 'permission:Gestion des Demandes de Transferts'])
     ->put('manager/transfert/{transfert}', [DemandeTransfertController::class, 'update'])
     ->name('manager.transfert.update')
     ->where([
         'transfert' => $idRegex
     ]);
 
-Route::middleware(['auth', 'role:Gestionnaire-Standard'])
+Route::middleware(['auth', 'permission:Gestion des Demandes de Transferts'])
     ->get('manager/transfert/{transfert}', [DemandeTransfertController::class, 'sending'])
     ->name('manager.transfert.sending')
     ->where([
         'transfert' => $idRegex
-    ]);
-
-Route::middleware(['auth', 'role:Gestionnaire-Standard'])
-    ->put('manager/document-remove-for-standard-transfer/{document}/{transfert}', [DemandeTransfertController::class, 'removeForStandardTranfer'])
-    ->name('manager.document.sremove')
-    ->where([
-        'document' => $idRegex
     ]);
 
 
@@ -100,30 +114,44 @@ Route::middleware(['auth', 'role:Gestionnaire-Standard'])
 /* FOR CENTRALES MANAGER */
 
 
-Route::middleware(['auth', 'role:Gestionnaire-Central'])
+Route::middleware(['auth', 'permission:Gestion des Demandes de Transferts du MISP'])
     ->get('manager/all-transferts', [AllTransfertsController::class, 'all'])
-    ->name('manager.all-transferts.index');
+    ->name('manager.transfert.all');
 
-Route::middleware(['auth', 'role:Gestionnaire-Central'])
+Route::middleware(['auth', 'permission:Gestion des Demandes de Transferts du MISP'])
     ->get('manager/all-transferts/{slug}/{transfert}', [AllTransfertsController::class, 'one'])
-    ->name('manager.all-transferts.show')
+    ->name('manager.transfert.one')
     ->where([
         'transfert' => $idRegex,
         'slug' => $slugRegex
     ]);
 
-Route::middleware(['auth', 'role:Gestionnaire-Central'])
-    ->delete('manager/all-transferts/{transfert}', [AllTransfertsController::class, 'death'])
-    ->name('manager.all-transferts.destroy')
-    ->where([
-        'transfert' => $idRegex
-    ]);
-
-Route::middleware(['auth', 'role:Gestionnaire-Central'])
+Route::middleware(['auth', 'permission:Gestion des Demandes de Transferts du MISP'])
     ->put('manager/document-remove-for-central-transfer/{document}/{transfert}', [AllTransfertsController::class, 'removeForCentralTranfer'])
     ->name('manager.document.cremove')
     ->where([
         'document' => $idRegex
+    ]);
+
+Route::middleware(['auth', 'permission:Gestion des Demandes de Transferts du MISP'])
+    ->delete('manager/all-transferts/{transfert}', [AllTransfertsController::class, 'off'])
+    ->name('manager.transfert.off')
+    ->where([
+        'transfert' => $idRegex
+    ]);
+
+Route::middleware(['auth', 'permission:Gestion des Demandes de Transferts du MISP'])
+    ->get('manager/all-transferts/{transfert}/bordereau-form', [AllTransfertsController::class, 'showBordereauForm'])
+    ->name('manager.transfert.bordereau-form')
+    ->where([
+        'transfert' => $idRegex
+    ]);
+
+Route::middleware(['auth', 'permission:Gestion des Demandes de Transferts du MISP'])
+    ->post('manager/all-transferts/{transfert}/bordereau-create', [AllTransfertsController::class, 'accept'])
+    ->name('manager.transfert.bordereau-create')
+    ->where([
+        'transfert' => $idRegex
     ]);
 
 

@@ -1,21 +1,21 @@
 <div class="main" x-data = "{ documentsChecked : @entangle('documentsChecked').defer }">
     <div class="title">
         <p>Manage Archives Documents</p>
-        <ion-icon name="business"></ion-icon>
+        <ion-icon name="folder-outline"></ion-icon>
     </div>
 
     <div class="optional">
         <div class="buttons">
             <button class="add">
-                <ion-icon name="add"></ion-icon>
-                <a href="{{ route('admin.document.create') }}">Ajouter Document</a>
+                <ion-icon name="arrow-redo"></ion-icon>
+                <a href="{{ route('manager.transfert.all') }}">Transferts</a>
             </button>
         </div>
-        <div class="search-box" style="margin-right: 17px;">
+        <div class="search-box" style="width: 22%;">
             <input type="text" name="nom" wire:model="nom" placeholder="Nom du document">
             <ion-icon name="search"></ion-icon>
         </div>
-        <div class="search-box" style="margin-right: 17px;">
+        <div class="search-box" style="margin-right: 17px; width: 22%;">
             <input type="text" name="code" wire:model="code" placeholder="Code du document">
             <ion-icon name="search"></ion-icon>
         </div>
@@ -60,7 +60,7 @@
                     <td>{{ $document->datecreation/* ->translatedFormat('d F Y') */ }}</td>
                     <td>{{ $document->dua }}ans</td>
                     <td>
-                        <button class="classer"><a href="{{-- {{ route('admin.document.classement', ['document' => $document->id, 'transfert' => $transfert->id]) }} --}}">Reclasser</a></button>
+                        <button class="classer"><a href="{{ route('manager.document.classement', ['document' => $document->id, 'transfert' => $document->demandetransfert->id]) }}">Reclasser</a></button>
                     </td>
                 </tr>
                 @empty

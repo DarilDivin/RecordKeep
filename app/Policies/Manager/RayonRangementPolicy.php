@@ -13,7 +13,7 @@ class RayonRangementPolicy
      */
     public function viewAny(User $user): bool
     {
-        return in_array('Gestionnaire-Standard', $user->roles->pluck('name')->toArray());
+         return $user->can('Gestion des Rayons Rangements');
     }
 
     /**
@@ -21,7 +21,7 @@ class RayonRangementPolicy
      */
     public function view(User $user, RayonRangement $rayonRangement): bool
     {
-        return in_array('Gestionnaire-Standard', $user->roles->pluck('name')->toArray());
+         return $user->can('Gestion des Rayons Rangements');
     }
 
     /**
@@ -29,7 +29,7 @@ class RayonRangementPolicy
      */
     public function create(User $user): bool
     {
-        return in_array('Gestionnaire-Standard', $user->roles->pluck('name')->toArray());
+         return $user->can('Gestion des Rayons Rangements');
     }
 
     /**
@@ -37,7 +37,7 @@ class RayonRangementPolicy
      */
     public function update(User $user, RayonRangement $rayonRangement): bool
     {
-        return in_array('Gestionnaire-Standard', $user->roles->pluck('name')->toArray());
+         return $user->can('Gestion des Rayons Rangements');
     }
 
     /**
@@ -45,7 +45,7 @@ class RayonRangementPolicy
      */
     public function delete(User $user, RayonRangement $rayonRangement): bool
     {
-        return in_array('Gestionnaire-Standard', $user->roles->pluck('name')->toArray());
+         return $user->can('Gestion des Rayons Rangements');
     }
 
     /**
@@ -53,7 +53,7 @@ class RayonRangementPolicy
      */
     public function restore(User $user, RayonRangement $rayonRangement): bool
     {
-        return in_array('Gestionnaire-Standard', $user->roles->pluck('name')->toArray());
+         return $user->can('Gestion des Rayons Rangements');
     }
 
     /**
@@ -61,6 +61,6 @@ class RayonRangementPolicy
      */
     public function forceDelete(User $user, RayonRangement $rayonRangement): bool
     {
-        return in_array('Gestionnaire-Standard', $user->roles->pluck('name')->toArray());
+         return $user->can('Gestion des Rayons Rangements');
     }
 }

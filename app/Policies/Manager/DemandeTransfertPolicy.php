@@ -5,6 +5,7 @@ namespace App\Policies\Manager;
 use App\Models\DemandeTransfert;
 use App\Models\User;
 use Illuminate\Auth\Access\Response;
+use Illuminate\Http\Request;
 
 class DemandeTransfertPolicy
 {
@@ -16,8 +17,7 @@ class DemandeTransfertPolicy
      */
     public function viewAny(User $user): bool
     {
-        return
-            in_array('Gestionnaire-Standard', $user->roles->pluck('name')->toArray());
+        return $user->can('Gestion des Demandes de Transferts');
     }
 
     /**
@@ -25,12 +25,12 @@ class DemandeTransfertPolicy
      */
     public function view(User $user, DemandeTransfert $demandeTransfert): bool
     {
-        return in_array('Gestionnaire-Standard', $user->roles->pluck('name')->toArray());
+        return $user->can('Gestion des Demandes de Transferts');
     }
 
     public function removeForStandardTranfer(User $user, DemandeTransfert $demandeTransfert): bool
     {
-        return in_array('Gestionnaire-Standard', $user->roles->pluck('name')->toArray());
+        return $user->can('Gestion des Demandes de Transferts');
     }
 
     /**
@@ -38,7 +38,7 @@ class DemandeTransfertPolicy
      */
     public function create(User $user): bool
     {
-        return in_array('Gestionnaire-Standard', $user->roles->pluck('name')->toArray());
+        return $user->can('Gestion des Demandes de Transferts');
     }
 
     /**
@@ -46,7 +46,7 @@ class DemandeTransfertPolicy
      */
     public function update(User $user, DemandeTransfert $demandeTransfert): bool
     {
-        return in_array('Gestionnaire-Standard', $user->roles->pluck('name')->toArray());
+        return $user->can('Gestion des Demandes de Transferts');
     }
 
     /**
@@ -54,7 +54,7 @@ class DemandeTransfertPolicy
      */
     public function delete(User $user, DemandeTransfert $demandeTransfert): bool
     {
-        return in_array('Gestionnaire-Standard', $user->roles->pluck('name')->toArray());
+        return $user->can('Gestion des Demandes de Transferts');
     }
 
     /**
@@ -62,7 +62,7 @@ class DemandeTransfertPolicy
      */
     public function restore(User $user, DemandeTransfert $demandeTransfert): bool
     {
-        return in_array('Gestionnaire-Standard', $user->roles->pluck('name')->toArray());
+        return $user->can('Gestion des Demandes de Transferts');
     }
 
     /**
@@ -70,13 +70,51 @@ class DemandeTransfertPolicy
      */
     public function forceDelete(User $user, DemandeTransfert $demandeTransfert): bool
     {
-        return in_array('Gestionnaire-Standard', $user->roles->pluck('name')->toArray());
+        return $user->can('Gestion des Demandes de Transferts');
     }
 
 
     public function sending(User $user, DemandeTransfert $demandeTransfert): bool
     {
-        return in_array('Gestionnaire-Standard', $user->roles->pluck('name')->toArray());
+        return $user->can('Gestion des Demandes de Transferts');
     }
+
+
+     /* FOR CENTRALES MANAGERS */
+
+     public function all(User $user): bool
+     {
+        return $user->can('Gestion des Demandes de Transferts du MISP');
+     }
+
+     public function one(User $user, DemandeTransfert $demandeTransfert): bool
+     {
+        return $user->can('Gestion des Demandes de Transferts du MISP');
+     }
+
+     public function removeForCentralTranfer(User $user, DemandeTransfert $demandeTransfert): bool
+     {
+        return $user->can('Gestion des Demandes de Transferts du MISP');
+     }
+
+     public function off(User $user, DemandeTransfert $demandeTransfert): bool
+     {
+        return $user->can('Gestion des Demandes de Transferts du MISP');
+     }
+
+     public function death(User $user, DemandeTransfert $demandeTransfert): bool
+     {
+        return $user->can('Gestion des Demandes de Transferts du MISP');
+     }
+
+     public function showBordereauForm(User $user, DemandeTransfert $demandeTransfert): bool
+     {
+        return $user->can('Gestion des Demandes de Transferts du MISP');
+     }
+
+     public function accept(User $user, DemandeTransfert $demandeTransfert): bool
+     {
+        return $user->can('Gestion des Demandes de Transferts du MISP');
+     }
 
 }

@@ -23,6 +23,15 @@ class ClassementDynamicSelect extends Component
 
     public $selectedChemise;
 
+    public function mount()
+    {
+        if(!is_null($this->document->chemisedossier)){
+            $this->selectedChemise = $this->document->chemise_dossier_id;
+            $this->selectedBoite = $this->document->chemisedossier->boite_archive_id;
+            $this->selectedRayon = $this->document->chemisedossier->boitearchive->rayon_rangement_id;
+        }
+    }
+
     public function updatedSelectedRayon($rayon_id)
     {
         $this->boites = BoiteArchive::where('rayon_rangement_id', $rayon_id)->pluck('libelle', 'id');

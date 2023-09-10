@@ -15,6 +15,15 @@ class PermissionSeeder extends Seeder
      */
     public function run(): void
     {
+
+        /* PERMISSIONS DES UTILISATEURS */
+        $userPermissions = [
+            'Demander un Prêt',
+            'Consulter un Document',
+            'Rechercher un Document',
+            'Télécharger un Document',
+        ];
+
         /* PERMISSIONS DES ADMINISTRATEURS */
         $adminPermissions = [
             'Gestion des Services',
@@ -31,21 +40,14 @@ class PermissionSeeder extends Seeder
             'Gestion des Boîtes Archives',
             'Gestion des Rayons Rangements',
             'Gestion des Chemises Dossiers',
-            'Gestion des Natures de Documents'
+            'Gestion des Natures de Documents',
+            'Gestion des Demandes de Transferts'
         ];
 
         $centralManagerPermissions = [
             'Gestion des Classements',
             'Gestion des Demandes de Prêts',
-            'Gestion des Demandes de Transferts'
-        ];
-
-        /* PERMISSIONS DES UTILISATEURS */
-        $userPermissions = [
-            'Demander un Prêt',
-            'Consulter un Document',
-            'Rechercher un Document',
-            'Télécharger un Document',
+            'Gestion des Demandes de Transferts du MISP'
         ];
 
         $userRole = Role::where('name', 'Utilisateur')->first();
@@ -57,21 +59,21 @@ class PermissionSeeder extends Seeder
         $standardManagerTypeRole = TypeRole::where('libelle', 'Gestionnaire-Standard')->first();
         $centralManagerTypeRole = TypeRole::where('libelle', 'Gestionnaire-Central')->first();
 
-        foreach($adminPermissions as $permission){
-            Permission::create([
-                'name' => $permission,
-                'type_role_id' => $adminTypeRole->id,
-            ]);
-            $adminRole->givePermissionTo($permission);
-        }
-        /* ------------------------------------------------------------------------------------------------- */
-
         foreach($userPermissions as $permission){
             Permission::create([
                 'name' => $permission,
                 'type_role_id' => $userTypeRole->id,
             ]);
             $userRole->givePermissionTo($permission);
+        }
+        /* ------------------------------------------------------------------------------------------------- */
+
+        foreach($adminPermissions as $permission){
+            Permission::create([
+                'name' => $permission,
+                'type_role_id' => $adminTypeRole->id,
+            ]);
+            $adminRole->givePermissionTo($permission);
         }
         /* ------------------------------------------------------------------------------------------------- */
 
@@ -82,6 +84,7 @@ class PermissionSeeder extends Seeder
             ]);
             $standardManagerRole->givePermissionTo($permission);
         }
+        /* ------------------------------------------------------------------------------------------------- */
 
         foreach($centralManagerPermissions as $permission){
             Permission::create([

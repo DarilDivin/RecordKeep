@@ -13,7 +13,7 @@ class DivisionPolicy
      */
     public function viewAny(User $user): bool
     {
-         return in_array('Administrateur', $user->roles->pluck('name')->toArray());
+        return $user->can('Gestion des Divisions');
     }
 
     /**
@@ -21,7 +21,7 @@ class DivisionPolicy
      */
     public function view(User $user, Division $division): bool
     {
-         return in_array('Administrateur', $user->roles->pluck('name')->toArray());
+        return $user->can('Gestion des Divisions');
     }
 
     /**
@@ -29,7 +29,7 @@ class DivisionPolicy
      */
     public function create(User $user): bool
     {
-         return in_array('Administrateur', $user->roles->pluck('name')->toArray());
+        return $user->can('Gestion des Divisions');
     }
 
     /**
@@ -37,7 +37,7 @@ class DivisionPolicy
      */
     public function update(User $user, Division $division): bool
     {
-         return in_array('Administrateur', $user->roles->pluck('name')->toArray());
+        return $user->can('Gestion des Divisions');
     }
 
     /**
@@ -45,7 +45,7 @@ class DivisionPolicy
      */
     public function delete(User $user, Division $division): bool
     {
-         return in_array('Administrateur', $user->roles->pluck('name')->toArray());
+        return $user->can('Gestion des Divisions');
     }
 
     /**
@@ -53,7 +53,7 @@ class DivisionPolicy
      */
     public function restore(User $user, Division $division): bool
     {
-         return in_array('Administrateur', $user->roles->pluck('name')->toArray());
+        return $user->can('Gestion des Divisions');
     }
 
     /**
@@ -61,6 +61,6 @@ class DivisionPolicy
      */
     public function forceDelete(User $user, Division $division): bool
     {
-         return in_array('Administrateur', $user->roles->pluck('name')->toArray());
+        return $user->can('Gestion des Divisions');
     }
 }

@@ -9,7 +9,10 @@
     <div class="addDocumentFormContainer showForm">
         <div class="overlay"></div>
         <div class="addDocumentForm">
-            <a href="{{-- {{ route('manager.document.index') }} --}}">
+            @php
+                $previousurl = url()->previous();
+            @endphp
+            <a href="@if(Str::contains($previousurl, 'all-transferts')) {{ route('manager.transfert.all') }} @elseif(Str::contains($previousurl, 'document')) {{ route('manager.document.classed') }} @endif">
                 <span class="closeDocumentForm">
                     <ion-icon name="arrow-back"></ion-icon>
                 </span>

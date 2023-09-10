@@ -13,7 +13,7 @@ class RolePolicy
      */
     public function viewAny(User $user): bool
     {
-        return in_array('Administrateur', $user->roles->pluck('name')->toArray());
+        return $user->can('Gestion des Rôles');
     }
 
     /**
@@ -21,7 +21,7 @@ class RolePolicy
      */
     public function view(User $user, Role $role): bool
     {
-        return in_array('Administrateur', $user->roles->pluck('name')->toArray());
+        return $user->can('Gestion des Rôles');
     }
 
     /**
@@ -29,7 +29,7 @@ class RolePolicy
      */
     public function create(User $user): bool
     {
-        return in_array('Administrateur', $user->roles->pluck('name')->toArray());
+        return $user->can('Gestion des Rôles');
     }
 
     /**
@@ -37,7 +37,7 @@ class RolePolicy
      */
     public function update(User $user, Role $role): bool
     {
-        return in_array('Administrateur', $user->roles->pluck('name')->toArray());
+        return $user->can('Gestion des Rôles');
     }
 
     /**
@@ -45,7 +45,7 @@ class RolePolicy
      */
     public function delete(User $user, Role $role): bool
     {
-        return in_array('Administrateur', $user->roles->pluck('name')->toArray());
+        return $user->can('Gestion des Rôles');
     }
 
     /**
@@ -53,7 +53,7 @@ class RolePolicy
      */
     public function restore(User $user, Role $role): bool
     {
-        return in_array('Administrateur', $user->roles->pluck('name')->toArray());
+        return $user->can('Gestion des Rôles');
     }
 
     /**
@@ -61,6 +61,6 @@ class RolePolicy
      */
     public function forceDelete(User $user, Role $role): bool
     {
-        return in_array('Administrateur', $user->roles->pluck('name')->toArray());
+        return $user->can('Gestion des Rôles');
     }
 }
