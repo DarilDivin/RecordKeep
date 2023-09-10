@@ -59,7 +59,7 @@
                             <input type="checkbox" x-model="divisionsChecked" value="{{ $division->id }}">
                         </td>
                         <td>{{ $division->id }}</td>
-                        <td>{{ $division->division }}</td>
+                        <td>{{ Str::limit($division->division, 40, '...') }}</td>
                         <td>{{ $division->sigle }}</td>
                         <td>{{ $division?->service?->service }}</td>
                         <td>{{ $division?->service?->direction?->direction }}</td>

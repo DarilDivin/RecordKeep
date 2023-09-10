@@ -377,6 +377,7 @@ h3 {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 5px;
+    pointer-events: none;
 }
 
 .permissionsContainer .permission {

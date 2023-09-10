@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\Service;
 use App\Models\Division;
+use App\Models\Direction;
 use Illuminate\Contracts\View\View;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;
@@ -33,6 +34,7 @@ class DivisionController extends Controller
         return view('admin.division.division-form', [
             'division' => new Division(),
             'services' => Service::getAllServices(),
+            'directions' => Direction::getAllDirections(),
         ]);
     }
 

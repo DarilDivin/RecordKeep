@@ -40,4 +40,6 @@ Route::group(['middleware' => ['auth', 'permission:Gestion des Utilisateurs'], '
 
 /* ------------------------------------------------------------------------------------------------------------------------------------- */
 
-Route::get('admin/statistiques', [StatistiquesController::class, 'stat'])->name('admin.statistique');
+Route::get('admin/statistiques', [StatistiquesController::class, 'stat'])
+    ->middleware(['auth', 'permission:Gestion des Classements|Gestion des Utilisateurs'])
+    ->name('admin.statistique');

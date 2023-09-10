@@ -13,7 +13,7 @@ class ChemiseDossierPolicy
      */
     public function viewAny(User $user): bool
     {
-         return $user->can('Gestion des Categories');
+         return $user->can('Gestion des Chemises Dossiers');
     }
 
     /**
@@ -21,7 +21,7 @@ class ChemiseDossierPolicy
      */
     public function view(User $user, ChemiseDossier $chemiseDossier): bool
     {
-         return $user->can('Gestion des Categories');
+         return $user->can('Gestion des Chemises Dossiers');
     }
 
     /**

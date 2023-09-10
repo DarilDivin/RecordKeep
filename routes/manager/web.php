@@ -22,7 +22,7 @@ Route::group(['middleware' => ['auth', 'permission:Gestion des Documents'], 'pre
     Route::resource('document', DocumentController::class)->except(['show']);
 });
 
-Route::group(['middleware' => ['auth', 'permission:Gestion des Categories'], 'prefix' => 'manager', 'as' => 'manager.'], function () {
+Route::group(['middleware' => ['auth', 'permission:Gestion des Catégories'], 'prefix' => 'manager', 'as' => 'manager.'], function () {
     Route::resource('categorie', CategorieController::class)->except(['show']);
 });
 
@@ -175,24 +175,33 @@ Route::get('manager/rapport-preview/{rapport}', [RapportDepartController::class,
 
 /* ------------------------------------------------------------------------------------------------------------------------------------- */
 
-Route::get('manager/pret', [RapportDepartController::class, 'index'])->name('rapport-depart-list');
+Route::get('manager/pret', [RapportDepartController::class, 'index'])
+    ->name('rapport-depart-list')
+    ->middleware(['auth', 'permission:Gestion des Demandes de Prêts']);
+
 Route::get('manager/rapport-de-retour-de-pret/create/{rapportDepart}', [RapportRetourController::class, 'create'])
     ->name('rapport-retour-create')
+    ->middleware(['auth', 'permission:Gestion des Demandes de Prêts'])
     ->where([
         'rapportDepart' => $idRegex
     ]);
+
 Route::post('manager/rapport-de-retour-de-pret/store/', [RapportRetourController::class, 'store'])
-    ->name('rapport-retour-store');
+    ->name('rapport-retour-store')
+    ->middleware(['auth', 'permission:Gestion des Demandes de Prêts']);
 
 Route::get('manager/rapport-preview/{rapport}', [RapportDepartController::class, 'show'])
     ->name('rapport-show')
+    ->middleware(['auth', 'permission:Gestion des Demandes de Prêts'])
     ->where([
         'rapport' => $idRegex
     ]);
 
 /* ------------------------------------------------------------------------------------------------------------------------------------- */
 
-Route::get('downloadPdf/{rapport}', [RapportDepartController::class, 'pdf'])->where(['rapport' => $idRegex]);
+Route::get('downloadPdf/{rapport}', [RapportDepartController::class, 'pdf'])
+    ->middleware(['auth', 'permission:Gestion des Demandes de Prêts'])
+    ->where(['rapport' => $idRegex]);
 
 /* ------------------------------------------------------------------------------------------------------------------------------------- */
 

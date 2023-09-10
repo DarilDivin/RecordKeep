@@ -56,7 +56,11 @@
                         <td>{{ $user->nom }}</td>
                         <td>{{ $user->prenoms }}</td>
                         <td>{{ $user->fonction?->fonction }}</td>
-                        <td> {{ $user->role?->name }}</td>
+                        <td>
+                            @foreach ($user->roles as $role)
+                                {{ $role->name}} <br>
+                            @endforeach
+                        </td>
                         <td>
                             <button class="edit">
                                 <a href="{{ route('admin.user.edit', ['user' => $user->id]) }}">

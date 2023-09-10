@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Policies\Admin;
+namespace App\Policies\Manager;
 
 use App\Models\DemandePret;
 use App\Models\User;
@@ -13,7 +13,7 @@ class DemandePretPolicy
      */
     public function viewAny(User $user): bool
     {
-        //
+        return $user->can('Gestion des Prêts');
     }
 
     /**
@@ -21,7 +21,7 @@ class DemandePretPolicy
      */
     public function view(User $user, DemandePret $demandePret): bool
     {
-        //
+        return $user->can('Gestion des Prêts');
     }
 
     /**
@@ -29,7 +29,7 @@ class DemandePretPolicy
      */
     public function create(User $user): bool
     {
-        //
+        return $user->can('Gestion des Prêts');
     }
 
     /**
@@ -37,7 +37,7 @@ class DemandePretPolicy
      */
     public function update(User $user, DemandePret $demandePret): bool
     {
-        //
+        return $user->can('Gestion des Prêts');
     }
 
     /**
@@ -45,7 +45,7 @@ class DemandePretPolicy
      */
     public function delete(User $user, DemandePret $demandePret): bool
     {
-        //
+        return $user->can('Gestion des Prêts');
     }
 
     /**
@@ -53,7 +53,7 @@ class DemandePretPolicy
      */
     public function restore(User $user, DemandePret $demandePret): bool
     {
-        //
+        return $user->can('Gestion des Prêts');
     }
 
     /**
@@ -61,6 +61,6 @@ class DemandePretPolicy
      */
     public function forceDelete(User $user, DemandePret $demandePret): bool
     {
-        //
+        return $user->can('Gestion des Prêts');
     }
 }

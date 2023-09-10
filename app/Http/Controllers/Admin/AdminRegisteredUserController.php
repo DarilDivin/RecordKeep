@@ -20,8 +20,7 @@ class AdminRegisteredUserController extends RegisteredUserController
     public function __construct()
     {
         if (Features::enabled(Features::registration())) {
-            // $this->middleware(IsAdmin::class);
-            // $this->middleware('auth');
+            $this->middleware(['auth', 'permission:Gestion des Utilisateurs']);
         }
     }
 

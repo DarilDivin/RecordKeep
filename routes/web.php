@@ -20,12 +20,8 @@ Route::get('/', function () {
     return view('index');
 })->middleware('guest');
 
-Route::get('/home', [HomeController::class, 'index'])->name('home')->middleware(['auth', 'verified']);
-
-// Route::get('/login', function () {
-//     return view('auth.login');
-// })->name('login');
+Route::get('/home', [HomeController::class, 'index'])->name('home')->middleware(['auth', 'verified', 'role:Utilisateur']);
 
 Route::post( '/user-register', [AdminRegisteredUserController::class, 'store'])
-            // ->middleware(['auth'])
-            ->name('user.register');
+    ->middleware(['auth', 'permission:Gestion des Utilisateurs'])
+    ->name('user.register');

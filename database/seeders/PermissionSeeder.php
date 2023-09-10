@@ -26,6 +26,7 @@ class PermissionSeeder extends Seeder
 
         /* PERMISSIONS DES ADMINISTRATEURS */
         $adminPermissions = [
+            'Gestion des Rôles',
             'Gestion des Services',
             'Gestion des Fonctions',
             'Gestion des Divisions',

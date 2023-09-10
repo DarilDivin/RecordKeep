@@ -10,48 +10,40 @@
 
 @section('content')
     @include('user.layouts.partials.navbar')
-    <section class="search-zone">
-        <h3>Rechercher un document</h3>
-        <form action="" method="post" class="search-form">
-            <div class="inputcontainer">
-                <label for="">Nom</label>
-                <input type="search"  class="search-bar" placeholder="Rechercher..." minlength="1">
-            </div>
-            <div class="inputcontainer">
-                <label for="">Nom</label>
-                <input type="search"  class="search-bar" placeholder="Rechercher..." minlength="1">
-            </div>
-            <div class="inputcontainer">
-                <label for="">Nom</label>
-                <input type="search"  class="search-bar" placeholder="Rechercher..." minlength="1">
-            </div>
-            <div class="inputcontainer">
-                <label for="">Nom</label>
-                <input type="search"  class="search-bar" placeholder="Rechercher..." minlength="1">
-            </div>
+    @can('Rechercher un Document')
+        <section class="search-zone">
+            <h3>Rechercher un document</h3>
+            <form action="" method="post" class="search-form">
+                <div class="inputcontainer">
+                    <label for="">Nom</label>
+                    <input type="search"  class="search-bar" placeholder="Rechercher..." minlength="1">
+                </div>
+                <div class="inputcontainer">
+                    <label for="">Nom</label>
+                    <input type="search"  class="search-bar" placeholder="Rechercher..." minlength="1">
+                </div>
+                <div class="inputcontainer">
+                    <label for="">Nom</label>
+                    <input type="search"  class="search-bar" placeholder="Rechercher..." minlength="1">
+                </div>
+                <div class="inputcontainer">
+                    <label for="">Nom</label>
+                    <input type="search"  class="search-bar" placeholder="Rechercher..." minlength="1">
+                </div>
 
 
-            <button type="submit">Rechercher</button>
-        </form>
-    </section>
+                <button type="submit">Rechercher</button>
+            </form>
+        </section>
+    @endcan
 
     <section class="recent">
         <div class="recent-title">
             <h3> Accès rapide </h3>
         </div>
         <div class="recent-container">
-
-            {{-- @foreach ($documents as $document)
-                <div class="recent-element">
-                    <a href="{{ route('document.show', ['slug' => $document->getSlug(), 'document' => $document]) }}"><img src="storage/images/pdf-1.png" alt=""></a>
-                    <p>{{ $document->nom }}</p>
-                </div>
-            @endforeach --}}
             @foreach ($documents as $document)
             <div class="recentDocumentCard">
-                {{-- <div class="check">
-                    <input type="checkbox" name="document[]" id="{{ $document->id }}" value="{{ $document->id }}" x-model="documentChecked">
-                </div> --}}
                 <div class="docImage">
                     <div class="image">
                         <img src="storage/images/doc3.png" alt="">
@@ -73,13 +65,16 @@
                         <p><span>{{ $document->nbrdownload }}</span> Téléchargements </p>
                     </div>
                     <div class="docOptions">
-                    {{-- <button class="btn consult" data-document-link="storage/{{ $document->document }}" type="button" x-on:click="$wire.incrementConsult({{ $document }})">Consulter</button> --}}
-                    <button class="btn download">
-                        <a href="{{ route('document.download', ['document' => $document]) }}">Télécharger</a>
-                    </button>
-                    <button class="btn more">
-                        <a href="{{ route('document.show', ['slug' => $document->getSlug(), 'document' => $document]) }}">Plus</a>
-                    </button>
+                    @can('Télécharger un Document')
+                        <button class="btn download">
+                            <a href="{{ route('document.download', ['document' => $document]) }}">Télécharger</a>
+                        </button>
+                    @endcan
+                    @hasrole('Utilisateur')
+                        <button class="btn more">
+                            <a href="{{ route('document.show', ['slug' => $document->getSlug(), 'document' => $document]) }}">Plus</a>
+                        </button>
+                    @endhasrole
                 </div>
                 </div>
 

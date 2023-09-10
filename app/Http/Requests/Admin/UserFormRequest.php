@@ -34,8 +34,8 @@ class UserFormRequest extends FormRequest
             /* 'permissions' => ['array','exists:permissions,id', 'required'], */
             'password' => ['required', 'string', 'min:4'],
             'fonction_id' => ['integer','exists:fonctions,id', 'required'],
-            'division_id' => ['integer','exists:divisions,id', 'required'],
-            'service_id' => ['integer','exists:services,id', 'required'],
+            'division_id' => ['integer','exists:divisions,id', 'nullable'],
+            'service_id' => ['integer','exists:services,id', 'nullable'],
             'direction_id' => ['integer','exists:directions,id', 'required'],
         ];
     }
