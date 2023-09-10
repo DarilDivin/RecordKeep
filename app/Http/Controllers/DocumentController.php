@@ -81,7 +81,7 @@ class DocumentController extends Controller
             'nbrdownload' => ++$document->nbrdownload,
         ]);
         $time = time();
-        $documentName = "$time"."$document->name";
+        $documentName = "$time"."$document->name".".pdf";
         return Storage::download($documentPath, $documentName);
     }
 

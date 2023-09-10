@@ -1,6 +1,6 @@
-const listIcon = document.querySelector('.list-icon');
-const gridIcon = document.querySelector('.grid-icon');
-const documentListContainer = document.querySelector('.documentList');
+// const listIcon = document.querySelector('.list-icon');
+// const gridIcon = document.querySelector('.grid-icon');
+// const documentListContainer = document.querySelector('.documentList');
 
 const consultBtn = document.querySelectorAll('.consult');
 const documentView = document.querySelector('.documentView');
@@ -20,23 +20,23 @@ documentListContainer.classList.toggle('marge')
 })
 
 
-listIcon.addEventListener('click', () => {
-    if(documentListContainer.classList.contains('grid')) {
-        documentListContainer.classList.remove('grid'),
-        documentListContainer.classList.add('list');
-    } else {
-        documentListContainer.classList.add('list');
-    }
-})
+// listIcon.addEventListener('click', () => {
+//     if(documentListContainer.classList.contains('grid')) {
+//         documentListContainer.classList.remove('grid'),
+//         documentListContainer.classList.add('list');
+//     } else {
+//         documentListContainer.classList.add('list');
+//     }
+// })
 
-gridIcon.addEventListener('click', () => {
-    if(documentListContainer.classList.contains('list')) {
-        documentListContainer.classList.remove('list'),
-        documentListContainer.classList.add('grid');
-    } else {
-        documentListContainer.classList.add('grid');
-    }
-})
+// gridIcon.addEventListener('click', () => {
+//     if(documentListContainer.classList.contains('list')) {
+//         documentListContainer.classList.remove('list'),
+//         documentListContainer.classList.add('grid');
+//     } else {
+//         documentListContainer.classList.add('grid');
+//     }
+// })
 
 
 consultBtn.forEach(element =>

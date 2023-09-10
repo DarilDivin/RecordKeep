@@ -41,11 +41,49 @@
         </div>
         <div class="recent-container">
 
-            @foreach ($documents as $document)
+            {{-- @foreach ($documents as $document)
                 <div class="recent-element">
                     <a href="{{ route('document.show', ['slug' => $document->getSlug(), 'document' => $document]) }}"><img src="storage/images/pdf-1.png" alt=""></a>
                     <p>{{ $document->nom }}</p>
                 </div>
+            @endforeach --}}
+            @foreach ($documents as $document)
+            <div class="recentDocumentCard">
+                {{-- <div class="check">
+                    <input type="checkbox" name="document[]" id="{{ $document->id }}" value="{{ $document->id }}" x-model="documentChecked">
+                </div> --}}
+                <div class="docImage">
+                    <div class="image">
+                        <img src="storage/images/doc3.png" alt="">
+                    </div>
+                </div>
+                <div class="docInfos">
+                    <div class="docInfosItem nom">
+                        <p>
+                            <a href="{{ route('document.show', ['slug' => $document->getSlug(), 'document' => $document]) }}">{{ $document->nom }}</a>
+                        </p>
+                    </div>
+                    <div class="docInfosItem">
+                        <p><span>125ko</span></p>
+                    </div>
+                    <div class="docInfosItem">
+                        <p><span>{{ $document->nbrconsult }}</span> Consultations </p>
+                    </div>
+                    <div class="docInfosItem">
+                        <p><span>{{ $document->nbrdownload }}</span> Téléchargements </p>
+                    </div>
+                    <div class="docOptions">
+                    {{-- <button class="btn consult" data-document-link="storage/{{ $document->document }}" type="button" x-on:click="$wire.incrementConsult({{ $document }})">Consulter</button> --}}
+                    <button class="btn download">
+                        <a href="{{ route('document.download', ['document' => $document]) }}">Télécharger</a>
+                    </button>
+                    <button class="btn more">
+                        <a href="{{ route('document.show', ['slug' => $document->getSlug(), 'document' => $document]) }}">Plus</a>
+                    </button>
+                </div>
+                </div>
+
+            </div>
             @endforeach
         </div>
     </section>

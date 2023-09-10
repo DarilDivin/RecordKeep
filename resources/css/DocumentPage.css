@@ -1,6 +1,6 @@
 /*================ Document List ================*/
 
-.documentList {
+/* .documentList {
     width: 100%;
     min-height: 80vh;
     transition: .4s ease;
@@ -90,7 +90,7 @@
 
 /*================ List ================*/
 
-.documentList.list {
+/*.documentList.list {
     width: 100%;
     min-height: 80vh;
     display: flex;
@@ -117,7 +117,7 @@
     justify-content: flex-start;
     align-items: center;
     /* gap: 15px; */
-    margin-bottom: 35px;
+   /* margin-bottom: 35px;
 }
 
 .btndownload {
@@ -132,7 +132,7 @@
     display: flex;
     /* justify-content: center;
     align-items: center; */
-}
+/*}
 
 .documentList.list .document:hover {
     background: var(--color-primary-light);
@@ -178,7 +178,7 @@
     background: #fff;
 } */
 
-.documentList.list .document  .documentLine .documentName {
+/*.documentList.list .document  .documentLine .documentName {
     width: 400px;
     overflow: hidden;
     text-align: center;
@@ -197,7 +197,7 @@
 .documentList.list .document  .documentLine .documentOptions {
     width: 345px;
     /* height: 100%; */
-    display: flex;
+   /* display: flex;
     justify-content: space-around;
     align-items: center;
 }
@@ -235,7 +235,7 @@
 
 /*================ Grid ================*/
 
-.documentList.grid {
+/*.documentList.grid {
     width: 100%;
     min-height: 80vh;
     display: flex;
@@ -267,14 +267,14 @@
     margin-bottom: 35px;
 } */
 
-.documentList.grid .documents .document {
+/*.documentList.grid .documents .document {
     width: 190px;
     height: 260px;
     background: var(--color-primary-light);
     margin: 5px;
     border-radius: 10px;
     /* border-bottom: 1px solid #bbb; */
-    padding: 5px 10px;
+   /* padding: 5px 10px;
     transition: .4s ease;
 }
 
@@ -284,7 +284,7 @@
     margin-bottom: 5px;
 } */
 
-.documentList.grid .document  .documentLine {
+/*.documentList.grid .document  .documentLine {
     width: 100%;
     height: 100%;
     display: flex;
@@ -326,7 +326,7 @@
     background: #fff;
 } */
 
-.documentList.grid .document  .documentLine .documentCreationDate,
+/*.documentList.grid .document  .documentLine .documentCreationDate,
 .documentList.grid .document  .documentLine .documentSize {
     display: none;
 }
@@ -379,7 +379,7 @@
     text-decoration: none;
     color: var(--color-primary);
     gap: 10px;
-}
+} */
 
 /*================ DocumentView ================*/
 
@@ -713,4 +713,146 @@
         gap: 15px;
     }
 
+}
+
+
+
+
+
+
+
+.documentList.list {
+    margin: 25px 0;
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 5px;
+    padding: 0 7.5%;
+}
+
+.documentList.list .documentLine {
+    width: 100%;
+    min-height: 150px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    background: #6363ff10;
+    border-radius: 8px;
+    padding: 10px;
+    transition: all .4s ease;
+}
+
+.documentList.list .documentLine:hover {
+    background: #6363ff20;
+}
+
+.documentList.list .documentLine .check {
+    width: auto;
+    height: 100%!important;
+    padding: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.documentList.list .documentLine .check input {
+    width: 20px;
+    height: 20px;
+}
+
+.documentList.list .documentLine .docImage {
+    width: auto;
+    height: 130px;
+    padding: 0 15px;
+    border-right: 1px solid #333;
+}
+
+.documentList.list .documentLine .docImage .image {
+    width: 100%;
+    height: 100%;
+}
+
+.documentList.list .documentLine .docImage .image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.documentList.list .documentLine .docInfos {
+    width: 500px;
+    height: 100%;
+    padding: 0 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 5px;
+    border-right: 1px solid #333;
+    color: #161622;
+}
+
+.documentList.list .documentLine .docInfos .docInfosItem {
+    font-weight: 400;
+}
+
+.documentList.list .documentLine .docInfos .docInfosItem.nom {
+    margin-bottom: 15px;
+    font-weight: 900;
+    color: #6363ff;
+}
+
+.documentList.list .documentLine .docInfos .docInfosItem.nom a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.documentList.list .documentLine .docInfos .docInfosItem span {
+    font-weight: 600;
+}
+
+.documentList.list .documentLine .docMoreInfos {
+    min-width: 300px;
+    height: 100%;
+    padding: 0 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 5px;
+}
+
+.documentList.list .documentLine .docMoreInfos .docMoreInfosItem {
+    font-weight: 400;
+}
+
+.documentList.list .documentLine .docOptions {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    width: 300px;
+    height: 110px;
+    border-bottom: 5px solid #6363ff;
+}
+
+.documentList.list .documentLine .docOptions button {
+    border: none;
+    font-size: 1.2rem;
+    background: transparent;
+    font-weight: 600;
+    color: #333;
+    padding: 0;
+    transition: all .4s ease;
+}
+
+.documentList.list .documentLine .docOptions button:hover {
+    color: #6363ff;
+
+}
+
+.documentList.list .documentLine .docOptions button a {
+    text-decoration: none;
+    color: inherit
 }

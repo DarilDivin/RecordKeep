@@ -219,12 +219,118 @@ form button:hover {
 .recent .recent-container {
     width: 80%;
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(2 , 1fr);
+    gap: 15px;
     justify-content: center;
     align-items: center;
 }
 
-.recent .recent-container .recent-element {
+.recent .recent-container .recentDocumentCard {
+    width: 100%;
+    height: 200px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    background: #6363ff10;
+    border-radius: 8px;
+    padding: 10px;
+    transition: all .4s ease;
+}
+
+.recent .recent-container .recentDocumentCard .check {
+    width: auto;
+    height: 100%!important;
+    padding: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.recent .recent-container .recentDocumentCard .check input {
+    width: 20px;
+    height: 20px;
+}
+
+.recent .recent-container .recentDocumentCard .docImage {
+    width: 150px;
+    height: 100px;
+    padding: 0 15px;
+    /* border-right: 1px solid #333; */
+}
+
+.recent .recent-container .recentDocumentCard .docImage .image {
+    width: 100%;
+    height: 100%;
+}
+
+.recent .recent-container .recentDocumentCard .docImage .image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.recent .recent-container .recentDocumentCard .docInfos {
+    width: 500px;
+    height: 100%;
+    padding: 0 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 5px;
+    /* border-right: 1px solid #333; */
+    color: #161622;
+}
+
+.recent .recent-container .recentDocumentCard .docInfos .docInfosItem {
+    font-weight: 400;
+}
+
+.recent .recent-container .recentDocumentCard .docInfos .docInfosItem.nom {
+    margin-bottom: 15px;
+    font-weight: 900;
+    color: #6363ff;
+}
+
+.recent .recent-container .recentDocumentCard .docInfos .docInfosItem.nom a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.recent .recent-container .recentDocumentCard .docInfos .docInfosItem span {
+    font-weight: 600;
+}
+
+.recent .recent-container .recentDocumentCard  .docOptions {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    width: 300px;
+    height: 110px;
+    border-bottom: 5px solid #6363ff;
+}
+
+.recent .recent-container .recentDocumentCard  .docOptions button {
+    border: none;
+    font-size: 1.2rem;
+    background: transparent;
+    font-weight: 600;
+    color: #333;
+    padding: 0;
+    transition: all .4s ease;
+}
+
+.recent .recent-container .recentDocumentCard  .docOptions button:hover {
+    color: #6363ff;
+
+}
+
+.recent .recent-container .recentDocumentCard  .docOptions button a {
+    text-decoration: none;
+    color: inherit
+}
+
+/* .recent .recent-container .recent-element {
     width: 100%;
     height: 100%;
     display: flex;
@@ -249,7 +355,7 @@ form button:hover {
 
 .recent .recent-container .recent-element a img{
     width: 50px;
-    /* height: 64px; */
+    /* height: 64px;
 }
 
 .recent .recent-container .recent-element p {
@@ -258,7 +364,7 @@ form button:hover {
     color: #333;
     height: 60px;
     text-align: center;
-}
+} */
 
 
 /*================ Media Queries ================*/
