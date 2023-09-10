@@ -14,6 +14,8 @@
                          0 -4px 8px #d2d2d233;
     --box-shadow-normal-dark: 0 4px 8px #0000001a,
                          0 -4px 8px #0000001a;
+    --box-shadow-thin-dark: 0 2px 4px #0000001a,
+                         0 -2px 4px #0000001a;
     --transition: .4s ease;
     --bg-color: #fff;
     --bg-color-transparent: #ffffff40;

@@ -46,3 +46,7 @@ Route::get('/documents/demande/accept/{demande}', [DocumentController::class, 'a
 Route::get('/settings', function() {
     return view('user.settings');
 })->name('settings');
+
+Route::get('/contact-us', function() {
+    return view('user.ContactUs');
+})->name('contactUs');

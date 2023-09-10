@@ -156,7 +156,7 @@ footer .flagsborderbottom {
     width: 100%;
     height: 8px;
     position: absolute;
-    bottom: 0;
+    top: 0;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
 }
