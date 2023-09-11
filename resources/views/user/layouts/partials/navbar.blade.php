@@ -35,13 +35,13 @@
                     <ion-icon name="person-circle-outline"></ion-icon>
                 </div>
                 <div class="profil_username">
-                    <p>Euvince</p>
+                    <p>{{ Auth::user()->prenoms . ' ' . strtoupper(Auth::user()->nom ) }}</p>
                 </div>
             </div>
         @endauth
     </div>
 
-    <div class="navDropdownContainer" x-show="isNavDropdownContainerOpen">
+    <div class="navDropdownContainer" x-show="isNavDropdownContainerOpen" x-cloak>
         <div class="navDropdownItem logoutLink">
             <a href="{{ route('logout') }}"
             onclick="event.preventDefault();
@@ -50,12 +50,14 @@
                 <p>Logout</p>
             </a>
         </div>
+
         <div class="navDropdownItem dashboardLink">
             <a href="{{ route('admin.statistique') }}">
                 <ion-icon name="analytics-outline"></ion-icon>
                 <p>Dashboard</p>
             </a>
         </div>
+        
     </div>
 
     <div class="menuHamburger">

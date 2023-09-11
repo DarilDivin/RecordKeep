@@ -5,9 +5,10 @@ namespace App\Http\Livewire;
 use ZipArchive;
 use Livewire\Component;
 use App\Models\Document;
+use Livewire\WithPagination;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Response;
-use Livewire\WithPagination;
 
 class DocumentPageTable extends Component
 {
@@ -17,11 +18,25 @@ class DocumentPageTable extends Component
 
     public $nom = '';
 
+    public $dateDeb = '';
+
+    public $dateFin = '';
+
     public $motclefs = '';
 
     public $documentChecked = [];
 
     public function updatedNom()
+    {
+        $this->resetPage();
+    }
+
+    public function updatedDateFin()
+    {
+        $this->resetPage();
+    }
+
+    public function updatedDateDeb()
     {
         $this->resetPage();
     }
@@ -95,15 +110,26 @@ class DocumentPageTable extends Component
     {
         $documents = Document::query();
 
+        // dd($documents);
+
         if(!empty($this->nom)){
             $documents = $documents->where('nom', 'LIKE', "%{$this->nom}%");
         }
 
+        if(!empty($this->dateDeb)){
+            $documents = $documents->where('datecreation', '>=', $this->dateDeb);
+        }
+
+        if(!empty($this->dateFin)){
+            $documents = $documents->where('datecreation', '<=', $this->dateFin);
+        }
+
         if(!empty($this->motclefs)){
-            $seg = explode(',', $this->motclefs);
-            unset($seg[0]);
-            $arr = '#' . implode('#', $seg);
-            $documents = $documents->where('motclefs', 'LIKE', "%{$arr}%");
+            // dd($this->motclefs);
+            // $seg = explode(',', $this->motclefs);
+            // unset($seg[0]);
+            // $arr = '#' . implode('#', $seg);
+            $documents = $documents->where('motclefs', 'LIKE', "%{$this->motclefs}%");
         }
 
         return view('livewire.document-page-table', [

@@ -5,19 +5,19 @@
             <div class="search-form">
                 <div class="inputcontainer">
                     <label for="">Nom</label>
-                    <input type="text" wire:model="nom"  class="search-bar" placeholder="" minlength="1">
+                    <input type="text" wire:model="nom"  class="search-bar" placeholder="Nom du document" minlength="1">
                 </div>
                 <div class="inputcontainer">
                     <label for="">Du</label>
-                    <input type="date"  class="search-bar" placeholder="" minlength="1">
+                    <input type="date" wire:model="dateDeb"  class="search-bar" placeholder="" minlength="1">
                 </div>
                 <div class="inputcontainer">
                     <label for="">Au</label>
-                    <input type="date"  class="search-bar" placeholder="" minlength="1">
+                    <input type="date" wire:model="dateFin"  class="search-bar" placeholder="" minlength="1">
                 </div>
                 <div class="inputcontainer">
-                    <label for="">Mots-clés</label>
-                    <input type="text" wire:model="motclefs" class="search-bar" placeholder="" minlength="1">
+                    <label for="">Mots-clés (Séparés par "#")</label>
+                    <input type="text" wire:model="motclefs" class="search-bar" placeholder="Mot-clé#Mot-clé" minlength="1">
                 </div>
             </div>
         </section>

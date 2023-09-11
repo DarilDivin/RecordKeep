@@ -131,6 +131,7 @@ nav .nav_menu .profil_user {
     gap: 10px;
     border-radius: 5px;
     cursor: pointer;
+    min-width: 180px
 }
 
 nav .nav_menu .profil_user:hover {
