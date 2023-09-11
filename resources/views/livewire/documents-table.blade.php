@@ -4,11 +4,6 @@
     }">
     <div class="optional">
         <div class="buttons">
-            <style>
-                [x-cloak]{
-                    display: none !important;
-                }
-            </style>
             <button class="filter deleteMultiple" x-show="documentsChecked.length > 0" x-on:click="$wire.destroyDocuments(documentsChecked)" x-cloak>
                 <ion-icon name="trash"></ion-icon>
                 Supprimer

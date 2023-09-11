@@ -83,7 +83,7 @@ class ServicesTable extends Component
             'services' => $services
                 ->orderBy($this->orderField, $this->orderDirection)
                 ->paginate(20),
-            'directions' => Direction::getAllDirections()
+            'directions' => Direction::all()
         ]);
     }
 

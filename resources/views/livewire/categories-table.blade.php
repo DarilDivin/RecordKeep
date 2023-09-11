@@ -6,7 +6,7 @@
 
     <div class="optional">
         <div class="buttons">
-            <button class="filter" x-show="categoriesChecked.length > 0" x-on:click="$wire.deletedCategories(categoriesChecked)">
+            <button class="filter" x-show="categoriesChecked.length > 0" x-on:click="$wire.deletedCategories(categoriesChecked)" x-cloak>
                 <ion-icon name="trash-outline"></ion-icon>
                 Supprimer
             </button>
@@ -15,7 +15,7 @@
                 <a href="{{ route('manager.categorie.create') }}">Add Category</a>
             </button>
         </div>
-        <div class="search-box" style="margin-right: 17px;">
+        <div class="search-box" style="margin-right: 17px; width: 22%;">
             <input type="text" name="categorie" wire:model="categorie" placeholder="Nom de la categorie">
             <ion-icon name="search"></ion-icon>
         </div>

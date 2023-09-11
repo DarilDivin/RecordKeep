@@ -7,6 +7,7 @@ use Livewire\Component;
 
 class DivisionDynamicSelect extends Component
 {
+    public $division;
 
     public $directions;
 
@@ -19,17 +20,10 @@ class DivisionDynamicSelect extends Component
 
     public function mount()
     {
-        // $route = request()->route()->getName();
-        // if(Str::contains($route, 'document')){
-        //     $this->selectedService = $this->document->service_id;
-        //     $this->selectedDivision = $this->document->division_id;
-        //     $this->selectedDirection = $this->document->direction_id;
-        // }
-        // elseif(Str::contains($route, 'user')) {
-        //     $this->selectedService = $this->user->service_id;
-        //     $this->selectedDivision = $this->user->division_id;
-        //     $this->selectedDirection = $this->user->direction_id;
-        // }
+        if(!is_null($this->division->service)){
+           $this->selectedService = $this->division->service_id;
+           $this->selectedDirection = $this->division->service->direction_id;
+        }
     }
 
     public function updatedSelectedDirection($direction_id)

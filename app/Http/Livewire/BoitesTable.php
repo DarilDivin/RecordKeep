@@ -83,7 +83,7 @@ class BoitesTable extends Component
             'boites' => $boites
                 ->orderBy($this->orderField, $this->orderDirection)
                 ->paginate(20),
-            'rayons' => RayonRangement::getAllRayons()
+            'rayons' => RayonRangement::all()
         ]);
     }
 

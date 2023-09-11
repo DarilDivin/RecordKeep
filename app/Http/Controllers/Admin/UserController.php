@@ -11,6 +11,7 @@ use App\Models\Permission;
 use Spatie\Permission\Models\Role;
 use Illuminate\Contracts\View\View;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\RedirectResponse;
 use App\Http\Requests\Admin\UserFormRequest;
 
@@ -49,6 +50,7 @@ class UserController extends Controller
             'divisions' => Division::getAllDivisions(),
             'roles' => Role::all()->pluck('name', 'id'),
             'directions' => Direction::getAllDirections(),
+            'userPermissions' => $user->permissions->toArray(),
         ]);
     }
 
@@ -86,7 +88,7 @@ class UserController extends Controller
             'divisions' => Division::getAllDivisions(),
             'roles' => Role::all()->pluck('name', 'id'),
             'directions' => Direction::getAllDirections(),
-            'permissions' => Permission::all(),
+            'userPermissions' => $user->permissions->toArray(),
         ]);
     }
 
@@ -95,7 +97,23 @@ class UserController extends Controller
      */
     public function update(UserFormRequest $request, User $user): RedirectResponse
     {
-        $user->update($request->validated());
+        $user->update([
+            'matricule' => $request['matricule'],
+            'nom' => $request['nom'],
+            'prenoms' => $request['prenoms'],
+            'email' => $request['email'],
+            'datenaissance' => $request['datenaissance'],
+            'sexe' => $request['sexe'],
+            'password' => Hash::make($request['password']),
+            'fonction_id' => $request['fonction_id'],
+            'division_id' => $request['division_id'],
+            'service_id' => $request['service_id'],
+            'direction_id' => $request['direction_id']
+        ]);
+        $user->roles()->sync($request['roles']);
+        foreach($request['roles'] as $role){
+            $user->permissions()->sync(Role::find($role)->permissions);
+        }
         return redirect()
             ->route('admin.user.index')
             ->with('success', 'L\' utilisateur a bien été modifié');

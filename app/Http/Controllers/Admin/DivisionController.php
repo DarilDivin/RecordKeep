@@ -57,6 +57,7 @@ class DivisionController extends Controller
         return view('admin.division.division-form', [
             'division' => $division,
             'services' => Service::getAllServices(),
+            'directions' => Direction::getAllDirections(),
         ]);
     }
 

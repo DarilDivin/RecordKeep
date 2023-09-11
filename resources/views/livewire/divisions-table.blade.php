@@ -6,7 +6,7 @@
 
     <div class="optional">
         <div class="buttons">
-            <button class="filter" x-show="divisionsChecked.length > 0" x-on:click="$wire.deletedDivisions(divisionsChecked)">
+            <button class="filter" x-show="divisionsChecked.length > 0" x-on:click="$wire.deletedDivisions(divisionsChecked)" x-cloak>
                 <ion-icon name="trash-outline"></ion-icon>
                 Supprimer
             </button>
@@ -18,8 +18,8 @@
         <div class="check-categorie-documents" style="width: 26%;">
             <select class="inputContainer" id="direction" wire:model="selectedService" name="service_id" style="height: 35px;">
                 <option value="">Sélectionnez un service</option>
-                @foreach ($services as $id => $service)
-                    <option value="{{ $id }}">{{ $service }}</option>
+                @foreach ($services as $service)
+                    <option value="{{ $service->id }}">{{ $service->service . ' ' . '(' . $service->direction->sigle . ')' }}</option>
                 @endforeach
             </select>
         </div>
@@ -62,7 +62,7 @@
                         <td>{{ Str::limit($division->division, 40, '...') }}</td>
                         <td>{{ $division->sigle }}</td>
                         <td>{{ $division?->service?->service }}</td>
-                        <td>{{ $division?->service?->direction?->direction }}</td>
+                        <td>{{ $division?->service?->direction?->sigle }}</td>
                         <td>
                             <button class="edit">
                                 <a href="{{ route('admin.division.edit', ['division' => $division->id]) }}">

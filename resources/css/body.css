@@ -40,6 +40,9 @@
     --text-color-white: #fff;
 }
 
+[x-cloak]{
+    display: none !important;
+}
 
 * {
     margin: 0;

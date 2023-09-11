@@ -6,7 +6,7 @@
 
     <div class="optional">
         <div class="buttons">
-            <button class="filter" x-show="boitesChecked.length > 0" x-on:click="$wire.deletedBoites(boitesChecked)">
+            <button class="filter" x-show="boitesChecked.length > 0" x-on:click="$wire.deletedBoites(boitesChecked)" x-cloak>
                 <ion-icon name="trash-outline"></ion-icon>
                 Supprimer
             </button>
@@ -18,8 +18,8 @@
         <div class="check-categorie-documents" style="width: 22%;">
             <select class="inputContainer" id="rayon" wire:model="selectedRayon" name="rayon_id" style="height: 35px;">
                 <option value="">Sélectionnez un rayon</option>
-                @foreach ($rayons as $id => $rayon)
-                    <option value="{{ $id }}">{{ $rayon }}</option>
+                @foreach ($rayons as $rayon)
+                    <option value="{{ $rayon->id }}">{{ $rayon->libelle . ' ' . '(' . $rayon->code .')' }}</option>
                 @endforeach
             </select>
         </div>

@@ -6,7 +6,7 @@
 
     <div class="optional">
         <div class="buttons">
-            <button class="filter" x-show="permissionsChecked.length > 0" x-on:click="$wire.deletedPermissions(permissionsChecked)">
+            <button class="filter" x-show="permissionsChecked.length > 0" x-on:click="$wire.deletedPermissions(permissionsChecked)" x-cloak>
                 <ion-icon name="trash-outline"></ion-icon>
                 Supprimer
             </button>

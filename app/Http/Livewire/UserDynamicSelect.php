@@ -7,11 +7,15 @@ use Spatie\Permission\Models\Role;
 
 class UserDynamicSelect extends Component
 {
+    public $user;
+
     public $roles;
 
     public $permissions = [];
 
     public $selectedRole;
+
+    public $userPermissions;
 
     public function updatedSelectedRole(array $rolesIds)
     {

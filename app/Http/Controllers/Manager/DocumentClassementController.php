@@ -46,7 +46,7 @@ class DocumentClassementController extends Controller
             'archive' => 1,
             'archived_at' => Carbon::now(),
             'chemise_dossier_id' => $data['chemise_dossier_id'],
-            'code' => ChemiseDossier::find($data['chemise_dossier_id'])->code . $document->id
+            'code' => ChemiseDossier::find($data['chemise_dossier_id'])->code . 'D' . $document->id
         ]);
 
         return redirect()

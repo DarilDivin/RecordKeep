@@ -77,11 +77,6 @@
     </section> --}}
 
     <section class="documentList list" x-data="{ documentChecked : [] }">
-            <style>
-                [x-cloak]{
-                    display: none !important;
-                }
-            </style>
             @can('Télécharger un Document')
                 <button x-show="documentChecked.length > 0" class="btndownload" x-on:click="$wire.filesdownload(documentChecked)" x-cloak style="align-self: flex-start;">Télécharger</button>
             @endcan
@@ -148,6 +143,7 @@
         @empty
             Aucun Document ne correspond à votre recherche
         @endforelse
+        <br>
 
         {{ $documents->onEachSide(0)->links() }}
 </section>

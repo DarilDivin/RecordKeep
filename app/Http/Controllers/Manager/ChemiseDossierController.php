@@ -8,6 +8,7 @@ use Illuminate\Contracts\View\View;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;
 use App\Http\Requests\Manager\ChemiseDossierFormRequest;
+use App\Models\RayonRangement;
 
 class ChemiseDossierController extends Controller
 {
@@ -32,7 +33,8 @@ class ChemiseDossierController extends Controller
     {
         return view('manager.chemise-dossier.chemise-form', [
             'chemise' => new ChemiseDossier(),
-            'boites' => BoiteArchive::getAllBoites()
+            'boites' => BoiteArchive::getAllBoites(),
+            'rayons' => RayonRangement::getAllRayons()
         ]);
     }
 
@@ -58,7 +60,8 @@ class ChemiseDossierController extends Controller
     {
         return view('manager.chemise-dossier.chemise-form', [
             'chemise' => $chemise,
-            'boites' => BoiteArchive::getAllBoites()
+            'boites' => BoiteArchive::getAllBoites(),
+            'rayons' => RayonRangement::getAllRayons()
         ]);
     }
 

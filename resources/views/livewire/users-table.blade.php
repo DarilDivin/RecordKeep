@@ -6,7 +6,7 @@
 
     <div class="optional">
         <div class="buttons">
-            <button class="filter" x-show="usersChecked.length > 0" x-on:click="$wire.deletedUsers(usersChecked)">
+            <button class="filter" x-show="usersChecked.length > 0" x-on:click="$wire.deletedUsers(usersChecked)" x-cloak>
                 <ion-icon name="trash-outline"></ion-icon>
                 Supprimer
             </button>
@@ -39,9 +39,9 @@
                     <x-table-header label="N°" :direction="$orderDirection" name="id" :field="$orderField"></x-table-header>
                     <x-table-header label="Matricule" :direction="$orderDirection" name="matricule" :field="$orderField"></x-table-header>
                     <x-table-header label="Nom" :direction="$orderDirection" name="nom" :field="$orderField"></x-table-header>
-                    <x-table-header label="Prénom" :direction="$orderDirection" name="prenoms" :field="$orderField"></x-table-header>
+                    <x-table-header label="Prénom(s)" :direction="$orderDirection" name="prenoms" :field="$orderField"></x-table-header>
                     <x-table-header label="Fonction" :direction="$orderDirection" name="fonction_id" :field="$orderField"></x-table-header>
-                    <td>Rôle</td>
+                    <td>Rôle(s)</td>
                     <td>Actions</td>
                 </tr>
             </thead>

@@ -2,9 +2,10 @@
 
 namespace App\Http\Requests\Manager;
 
-use App\Rules\UniqueMotCleRule;
-use Illuminate\Foundation\Http\FormRequest;
+use App\Rules\ForceChoiceDirecteurFonctionRule;
 use Illuminate\Validation\Rule;
+use App\Rules\UniqueAndMaxMotCleRule;
+use Illuminate\Foundation\Http\FormRequest;
 
 class DocumentFormRequest extends FormRequest
 {
@@ -59,8 +60,8 @@ class DocumentFormRequest extends FormRequest
             'service_id' => ['required', 'exists:services,id', 'integer'],
             'direction_id' => ['required', 'exists:directions,id', 'integer'],
             'document' => $documentRule,
-            'fonction' => ['required', 'array', 'exists:fonctions,id'],
-            'motclefs' => ['required', 'array', new UniqueMotCleRule()]
+            'fonctions' => ['required', 'array', 'exists:fonctions,id', new ForceChoiceDirecteurFonctionRule()],
+            'motclefs' => ['required', 'array', new UniqueAndMaxMotCleRule()]
         ];
     }
 }

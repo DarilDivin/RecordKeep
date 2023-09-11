@@ -6,7 +6,7 @@
 
     <div class="optional">
         <div class="buttons">
-            <button class="filter" x-show="naturesChecked.length > 0" x-on:click="$wire.deletedNatures(naturesChecked)">
+            <button class="filter" x-show="naturesChecked.length > 0" x-on:click="$wire.deletedNatures(naturesChecked)" x-cloak>
                 <ion-icon name="trash-outline"></ion-icon>
                 Supprimer
             </button>
@@ -15,7 +15,7 @@
                 <a href="{{ route('manager.nature.create') }}">Add Document Nature</a>
             </button>
         </div>
-        <div class="search-box" style="margin-right: 17px;">
+        <div class="search-box" style="margin-right: 17px; width: 22%;">
             <input type="text" name="nature" wire:model="nature" placeholder="Libellé de la nature">
             <ion-icon name="search"></ion-icon>
         </div>

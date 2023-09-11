@@ -15,10 +15,7 @@
     <div class="inputContainer TomSelect" style="grid-column: 1 / span 3; height: 210px;">
         <label for="permissions">Permissions</label>
         <select name="permissions[]" id="permissions" multiple placeholder="Choisissez quelques permissions..." wire:model="selectedPermissions" style="height: 100%;">
-            @php
-                $routeName = request()->route()->getName();
-            @endphp
-            @if ($routeName === 'admin.role.edit' && !empty($role->permissions->toArray()))
+            @if (request()->route()->getName() === 'admin.role.edit' && !empty($role->permissions->toArray()))
                 @foreach ($permissions as $permission)
                     <option @if(in_array($permission['id'],$role->permissions->pluck('id')->toArray())) selected @endif value="{{ $permission['id'] }}">{{ $permission['name'] }}</option>
                 @endforeach
@@ -33,7 +30,7 @@
         @enderror
     </div> <br>
 
-    @if ($routeName === 'admin.role.edit')
+    @if (request()->route()->getName() === 'admin.role.edit')
         <div class="permissionsContainer">
             @foreach ($permissions as $permission)
                 <div class="permission">

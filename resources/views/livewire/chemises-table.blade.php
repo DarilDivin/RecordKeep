@@ -6,7 +6,7 @@
 
     <div class="optional">
         <div class="buttons">
-            <button class="filter" x-show="chemisesChecked.length > 0" x-on:click="$wire.deletedChemises(chemisesChecked)">
+            <button class="filter" x-show="chemisesChecked.length > 0" x-on:click="$wire.deletedChemises(chemisesChecked)" x-cloak>
                 <ion-icon name="trash-outline"></ion-icon>
                 Supprimer
             </button>

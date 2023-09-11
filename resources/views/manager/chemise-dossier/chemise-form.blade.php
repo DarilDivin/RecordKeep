@@ -21,7 +21,11 @@
                 @method($chemise->exists ? 'put' : 'post')
                 <x-input class="inputContainer fonction" id="chemise" label="Chemise" type="text" name="libelle" placeholder="Chemise"  readonly="" value="{{ $chemise->libelle }}" />
 
-                <x-select class="inputContainer fonction" id="rayon" label="Boîte Archive" name="boite_archive_id" :value="$boites" elementIdOnEntite="{{ $chemise->boite_archive_id }}" />
+                @livewire('chemise-dynamic-select', [
+                    'boites' => $boites,
+                    'rayons' => $rayons,
+                    'chemise' => $chemise,
+                ])
 
                 <div class="inputContainer button">
                     <button type="submit">

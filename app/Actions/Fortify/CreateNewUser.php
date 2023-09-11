@@ -2,9 +2,10 @@
 
 namespace App\Actions\Fortify;
 
+use App\Models\Role;
 use App\Models\User;
+use App\Rules\SameTypeRoleRule;
 use Illuminate\Validation\Rule;
-use App\Rules\CustomValidationRule;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Laravel\Fortify\Contracts\CreatesNewUsers;
@@ -24,13 +25,7 @@ class CreateNewUser implements CreatesNewUsers
             'matricule' => ['required','integer', 'min:6', Rule::unique('users')],
             'nom' => ['required', 'string', 'max:255'],
             'prenoms' => ['required', 'string'],
-            'email' => [
-                'required',
-                'string',
-                'email',
-                'max:255',
-                Rule::unique(User::class),
-            ],
+            'email' => ['required','string','email','max:255',Rule::unique(User::class),],
             'datenaissance' => ['required', 'date'],
             'sexe' => ['required', 'string'],
             'password' => $this->passwordRules(),
@@ -38,11 +33,8 @@ class CreateNewUser implements CreatesNewUsers
             'division_id' => ['integer','exists:divisions,id', 'required'],
             'service_id' => ['integer','exists:services,id', 'required'],
             'direction_id' => ['integer','exists:directions,id', 'required'],
-            /* 'permissions' => ['array','exists:permissions,id', 'required'], */
-            'roles' => ['array','exists:roles,id', 'required', new CustomValidationRule()]
+            'roles' => ['array','exists:roles,id', 'required', new SameTypeRoleRule()]
         ])->validate();
-
-        // dd($input);
 
         $user = User::create([
             'matricule' => $input['matricule'],
@@ -58,7 +50,9 @@ class CreateNewUser implements CreatesNewUsers
             'direction_id' => $input['direction_id']
         ]);
         $user->roles()->sync($input['roles']);
-        $user->permissions()->sync($input['permissions']);
+        foreach($input['roles'] as $role){
+            $user->permissions()->sync(Role::find($role)->permissions);
+        }
         return $user;
     }
 }

@@ -2,8 +2,9 @@
 
 namespace App\Http\Requests\Admin;
 
+use App\Actions\Fortify\PasswordValidationRules;
+use App\Rules\SameTypeRoleRule;
 use Illuminate\Validation\Rule;
-use App\Rules\CustomValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class UserFormRequest extends FormRequest
@@ -11,6 +12,9 @@ class UserFormRequest extends FormRequest
     /**
      * Determine if the user is authorized to make this request.
      */
+
+    use PasswordValidationRules;
+
     public function authorize(): bool
     {
         return true;
@@ -30,9 +34,9 @@ class UserFormRequest extends FormRequest
             'email' => ['required', 'email', Rule::unique('users')->ignore($this->route()->parameter('user'))],
             'datenaissance' => ['required', 'date'],
             'sexe' => ['required', 'string'],
-            'roles' => ['array','exists:roles,id', 'required', new CustomValidationRule()],
+            'roles' => ['array','exists:roles,id', 'required', new SameTypeRoleRule()],
             /* 'permissions' => ['array','exists:permissions,id', 'required'], */
-            'password' => ['required', 'string', 'min:4'],
+            'password' => $this->passwordRules(),
             'fonction_id' => ['integer','exists:fonctions,id', 'required'],
             'division_id' => ['integer','exists:divisions,id', 'nullable'],
             'service_id' => ['integer','exists:services,id', 'nullable'],

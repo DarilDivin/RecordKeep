@@ -2,10 +2,11 @@
 
 namespace App\Rules;
 
+use App\Models\Fonction;
 use Closure;
 use Illuminate\Contracts\Validation\ValidationRule;
 
-class UniqueMotCleRule implements ValidationRule
+class ForceChoiceDirecteurFonctionRule implements ValidationRule
 {
     /**
      * Run the validation rule.
@@ -14,10 +15,10 @@ class UniqueMotCleRule implements ValidationRule
      */
     public function validate(string $attribute, mixed $value, Closure $fail): void
     {
-        foreach(array_count_values(request()->motclefs) as $motclef) {
-            if($motclef > 1){
-                $fail('Le champ :attribute ne doit pas contenir deux mots clés de même valeur.');
-            }
+        $fonction = Fonction::where('fonction', 'Directeur')->get()->toArray();
+        if(!in_array($fonction[0]['id'], request()->fonctions))
+        {
+            $fail('Le Directeur doit avoir accès au document.');
         }
     }
 }

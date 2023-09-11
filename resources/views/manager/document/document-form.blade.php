@@ -54,13 +54,12 @@
                     <h4>Acorder l'accès à :</h4>
 
                     @foreach ($fonctions as $id => $fonction)
-                        <x-checkbox class="checkboxContainer" :id="$fonction" :label="$fonction" type="checkbox" name="fonction" :value="$id"  :ex="$document->fonctions->pluck('id')->toArray()" :fonction="$fonction" />
+                        <x-checkbox class="checkboxContainer" :id="$fonction" :label="$fonction" type="checkbox" name="fonctions" :value="$id"  :ex="$document->fonctions->pluck('id')->toArray()" :fonction="$fonction" />
                     @endforeach
-                    @error('fonction')
+                    @error('fonctions')
                         <span style="color: red;">{{ $message }}</span>
                     @enderror
                 </div>
-
 
                 <div class="inputContainer button">
                     <button type="submit">{{ $document->exits ? 'Éditer' : 'Créer' }}</button>

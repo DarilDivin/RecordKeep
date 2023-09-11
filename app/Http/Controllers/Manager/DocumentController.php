@@ -64,7 +64,7 @@ class DocumentController extends Controller
     public function store(DocumentFormRequest $request): RedirectResponse
     {
         $document = Document::create($this->withDocuments(new Document(), $request));
-        $document->fonctions()->sync($request->fonction);
+        $document->fonctions()->sync($request->fonctions);
         return redirect()
             ->route('manager.document.index')
             ->with('success', 'Le Document a bien été crée');
@@ -74,7 +74,7 @@ class DocumentController extends Controller
     {
         $data = $request->validated();
         $data['motclefs'] = '#' . implode('#', $request->validated('motclefs'));
-        unset($data['fonction']);
+        unset($data['fonctions']);
         if(array_key_exists('document', $data))
         {
             $documentCollection = $data['document'];
@@ -107,7 +107,7 @@ class DocumentController extends Controller
     public function update(DocumentFormRequest $request, Document $document): RedirectResponse
     {
         $document->update($this->withDocuments($document, $request));
-        $document->fonctions()->sync($request->fonction);
+        $document->fonctions()->sync($request->fonctions);
         return redirect()
             ->route('manager.document.index')
             ->with('success', 'Le Document a bien été modifié');

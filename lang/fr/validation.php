@@ -226,5 +226,6 @@ return [
         'permissions'              => 'Permissions',
         'roles'                    => 'Rôles',
         'permission_id'            => 'Permission',
+        'fonctions'                => 'Fonctions'
     ],
 ];

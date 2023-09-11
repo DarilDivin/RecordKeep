@@ -83,7 +83,7 @@ class DivisionsTable extends Component
             'divisions' => $divisions
                 ->orderBy($this->orderField, $this->orderDirection)
                 ->paginate(20),
-            'services' => Service::getAllServices()
+            'services' => Service::all()
         ]);
     }
 

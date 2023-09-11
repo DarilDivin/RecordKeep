@@ -6,7 +6,7 @@ use Closure;
 use App\Models\Role;
 use Illuminate\Contracts\Validation\ValidationRule;
 
-class CustomValidationRule implements ValidationRule
+class SameTypeRoleRule implements ValidationRule
 {
     /**
      * Run the validation rule.

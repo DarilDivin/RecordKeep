@@ -23,7 +23,7 @@
 
                 <x-input class="inputContainer" id="nom" label="Nom" type="text" name="nom" placeholder="Nom" readonly="" value="{{ $user->nom }}" />
 
-                <x-input class="inputContainer" id="prenoms" label="Prénom" type="text" name="prenoms" placeholder="Prénom" readonly="" value="{{ $user->prenoms }}" />
+                <x-input class="inputContainer" id="prenoms" label="Prénom(s)" type="text" name="prenoms" placeholder="Prénom(s)" readonly="" value="{{ $user->prenoms }}" />
 
                 <x-input class="inputContainer" id="email" label="Email" type="email" name="email" placeholder="Email"  readonly="" value="{{ $user->email }}" />
 
@@ -55,7 +55,9 @@
                 ])
 
                 @livewire('user-dynamic-select', [
+                    'user' => $user,
                     'roles' => $roles,
+                    'userPermissions' => $userPermissions
                 ])
 
                 <div class="inputContainer button">
