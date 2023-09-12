@@ -123,19 +123,22 @@ new Chart(donutGraph, {
   data: {
     labels: [
       'Utilisateurs',
-      'Gestionnaires',
+      'Gestionnaire Central',
+      'Gestionnaire Standard',
       'Administrateurs'
     ],
     datasets: [{
-      label: 'My First Dataset',
+      label: 'Nombre total',
       data: [
         userDonut['user'],
-        userDonut['manager'],
+        userDonut['managerStd'],
+        userDonut['managerCtl'],
         userDonut['admin'],
     ],
       backgroundColor: [
         '#6363ff',
         '#4348aa',
+        '#9999ff',
         '#162233'
       ],
       hoverOffset: 10,
