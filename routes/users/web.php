@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ContactUsController;
 use App\Http\Controllers\DocumentController;
 use Illuminate\Support\Facades\Route;
 
@@ -37,6 +38,7 @@ Route::get('/settings', function() {
     return view('user.settings');
 })->name('settings')->middleware(['auth', 'role:Utilisateur|Administrateur|Gestionnaire-Standard|Gestionnaire-Central']);
 
-Route::get('/contact-us', function() {
-    return view('user.ContactUs');
-})->name('contactUs')->middleware(['auth', 'role:Utilisateur|Administrateur|Gestionnaire-Standard|Gestionnaire-Central']);
+Route::get('/contact-us', [ContactUsController::class, 'index'])
+    ->name('contactUs');
+
+Route::post('/contact-us-send', [ContactUsController::class, 'send'])->name('contactUsSend');

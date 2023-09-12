@@ -48,18 +48,25 @@
             </div>
 
             <div class="contactForm">
-                 <form>
+                @if (session('success'))
+                    <div class="message success">
+                        {{ session('success') }}
+                    </div>
+                @endif
+                 <form method="POST" action="{{ route('contactUsSend') }}">
+                    @csrf
+                    @method('POST')
                     <h2>Send Message</h2>
                     <div class="inputCoBox">
-                        <input type="text" name="" required="required">
+                        <input type="text" name="nom" required="required">
                         <span>Nom complet</span>
                     </div>
                     <div class="inputCoBox">
-                        <input type="text" name="" required="required">
+                        <input type="text" name="mail" required="required">
                         <span>Email</span>
                     </div>
                     <div class="inputCoBox">
-                        <textarea required="required"></textarea>
+                        <textarea required="required" name="message"></textarea>
                         <span>Tapez votre Message...</span>
                     </div>
                     <div class="inputCoBox">

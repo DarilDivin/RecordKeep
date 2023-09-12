@@ -19,23 +19,21 @@ class StatistiquesController extends Controller
             fn ($user) => $user->roles->where('name', 'Administrateur')->toArray()
         )->count();
 
-        $ManagerCount = User::with('roles')->get()->filter(
-            fn ($user) => $user->roles->where('name', 'Gestionnaire')->toArray()
+        $ManagerStdCount = User::with('roles')->get()->filter(
+            fn ($user) => $user->roles->where('name', 'Gestionnaire-Standard')->toArray()
+        )->count();
+
+        $ManagerCtlCount = User::with('roles')->get()->filter(
+            fn ($user) => $user->roles->where('name', 'Gestionnaire-Central')->toArray()
         )->count();
 
         $UserCount = User::with('roles')->get()->filter(
             fn ($user) => $user->roles->where('name', 'Utilisateur')->toArray()
         )->count();
 
-        $nombreUtilisateursAuthentifies = 0;
+        $nombreUtilisateursAuthentifies = User::where('email_verified_at', '!=', null)->get()->toArray();
 
-        foreach ($utilisateurs as $utilisateur) {
-            if (Auth::check()) {
-                $nombreUtilisateursAuthentifies++;
-            }
-        }
-
-        $pourcentageUtilisateursAuthentifies = ($nombreUtilisateursAuthentifies * 100) / count($utilisateurs);
+        $pourcentageUtilisateursAuthentifies = (count($nombreUtilisateursAuthentifies) * 100) / count($utilisateurs);
 
         $documents = Document::all();
         $nbrDocument = count($documents);
@@ -74,7 +72,8 @@ class StatistiquesController extends Controller
             'formattedData' => $formattedData,
             'UserDonut' => [
                 'admin' => $AdminCount,
-                'manager' => $ManagerCount,
+                'managerStd' => $ManagerStdCount,
+                'managerCtl' => $ManagerCtlCount,
                 'user' => $UserCount,
             ]
         ]);

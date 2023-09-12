@@ -19,13 +19,15 @@
             <li @class(['nav_links', 'active' => str_contains($route, 'document.index')])><a href="{{ route('document.index') }}">Documenthèque</a></li>
             @auth
                 <li @class(['nav_links', 'active' => str_contains($route, 'settings')])><a href="{{ route('settings') }}">Paramètres</a></li>
+            @endauth
+            <li @class(['nav_links', 'active' => str_contains($route, 'contactUs')])><a href="{{ route('contactUs') }}"> Nous contacter </a></li>
 
-                <li @class(['nav_links', 'active' => str_contains($route, 'contactUs')])><a href="{{ route('contactUs') }}"> Nous contacter </a></li>
-
+            @auth
                 <form action="{{ route('logout') }}" method="post" id="logout-form" style="display: none">
                     @csrf
                 </form>
             @endauth
+
 
         </ul>
 
@@ -57,7 +59,7 @@
                 <p>Dashboard</p>
             </a>
         </div>
-        
+
     </div>
 
     <div class="menuHamburger">
