@@ -7,6 +7,7 @@ use Illuminate\Contracts\View\View;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;
 use App\Http\Requests\Admin\FonctionFormRequest;
+use Illuminate\Support\Facades\Auth;
 
 class FonctionController extends Controller
 {
@@ -19,19 +20,27 @@ class FonctionController extends Controller
         $this->authorizeResource(Fonction::class, 'fonction');
     }
 
-    public function index(): View
+    public function index(): View | RedirectResponse
     {
-        return view('admin.fonction.fonctions');
+        if(Auth::user()->can('Gestion des Fonctions')){
+            return view('admin.fonction.fonctions');
+        }else{
+            return to_route('admin.statistique');
+        }
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create(): View
+    public function create(): View | RedirectResponse
     {
-        return view('admin.fonction.fonction-form', [
-            'fonction' => new Fonction()
-        ]);
+        if(Auth::user()->can('Gestion des Fonctions')){
+            return view('admin.fonction.fonction-form', [
+                'fonction' => new Fonction()
+            ]);
+        }else{
+            return to_route('admin.statistique');
+        }
     }
 
     /**

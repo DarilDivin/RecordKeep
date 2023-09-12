@@ -12,7 +12,7 @@
             </button>
             <button class="add">
                 <ion-icon name="add"></ion-icon>
-                <a href="{{ route('admin.role.create') }}">Add Role</a>
+                <a href="{{ route('admin.role.create') }}">Ajouter Role</a>
             </button>
         </div>
 

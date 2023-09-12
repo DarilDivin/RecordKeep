@@ -12,7 +12,7 @@
             </button>
             <button class="add">
                 <ion-icon name="add"></ion-icon>
-                <a href="{{ route('manager.categorie.create') }}">Add Category</a>
+                <a href="{{ route('manager.categorie.create') }}">Ajouter Catégorie</a>
             </button>
         </div>
         <div class="search-box" style="margin-right: 17px; width: 22%;">

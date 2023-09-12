@@ -12,7 +12,7 @@
             </button>
             <button class="add">
                 <ion-icon name="add"></ion-icon>
-                <a href="{{ route('admin.service.create') }}">Add Service</a>
+                <a href="{{ route('admin.service.create') }}">Ajouter Service</a>
             </button>
         </div>
         <div class="check-categorie-documents" style="width: 26%;">

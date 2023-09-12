@@ -12,7 +12,7 @@
             </button>
             <button class="add">
                 <ion-icon name="add"></ion-icon>
-                <a href="{{ route('manager.rayon.create') }}">Add Rangement Rayon</a>
+                <a href="{{ route('manager.rayon.create') }}">Ajouter Rayon</a>
             </button>
         </div>
         <div class="search-box" style="width: 22%;">

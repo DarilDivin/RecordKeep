@@ -12,7 +12,7 @@
             </button>
             <button class="add">
                 <ion-icon name="add"></ion-icon>
-                <a href="{{ route('manager.nature.create') }}">Add Document Nature</a>
+                <a href="{{ route('manager.nature.create') }}">Ajouter Nature</a>
             </button>
         </div>
         <div class="search-box" style="margin-right: 17px; width: 22%;">

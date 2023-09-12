@@ -12,7 +12,7 @@
             </button>
             <button class="add">
                 <ion-icon name="add"></ion-icon>
-                <a href="{{ route('admin.division.create') }}">Add Division</a>
+                <a href="{{ route('admin.division.create') }}">Ajouter Division</a>
             </button>
         </div>
         <div class="check-categorie-documents" style="width: 26%;">

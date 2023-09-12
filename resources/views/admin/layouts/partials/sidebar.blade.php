@@ -18,14 +18,15 @@
         <h3 class="title">Tableau de bord</h3>
     </div>
     <ul>
-        @hasanyrole(['Administrateur', 'Gestionnaire-Central'])
+
+        @canany(['Gestion des Classements', 'Gestion des Utilisateurs'])
             <li @class(['list', 'active' => str_contains($route_name, 'statistique')])>
                 <a href="{{ route('admin.statistique') }}">
                     <span class="icon"><ion-icon name="stats-chart-outline"></ion-icon></span>
                     <span class="title">Statistiques</span>
                 </a>
             </li>
-        @endhasanyrole
+        @endcanany
 
         @can('Gestion des Utilisateurs')
             <li @class(['list', 'active' => str_contains($route_name, 'user')])>
