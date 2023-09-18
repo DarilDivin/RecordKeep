@@ -39,7 +39,7 @@
 
                 <x-input class="inputContainer" id="source" label="Source du Document" type="text" name="source" placeholder="Source du Document" readonly="" value="{{ $document->source }}" />
 
-                <x-input class="inputContainer" id="datecreation" label="Date de Création" type="date" name="datecreation" placeholder=""  readonly="" value="{{ $document->datecreation/* ->format('d/F/Y') */ }}" />
+                <x-input class="inputContainer" id="datecreation" label="Date de Création" type="date" name="datecreation" placeholder=""  readonly="" value="{{ $document->datecreation }}" />
 
                 @livewire('document-dynamic-select', [
                     'directions' => $directions,

@@ -64,7 +64,7 @@
                     <td>{{ $document->id }}</td>
                     <td>{{ $document->signature }}</td>
                     <td>{{ $document->nom }}</td>
-                    <td>{{ $document->datecreation/* ->translatedFormat('d F Y') */ }}</td>
+                    <td>{{ $document->getDateCreation()->translatedFormat('d F Y') }}</td>
                     <td>{{ $document->dua }}ans</td>
                     <td>
                         <button class="viewInfo"

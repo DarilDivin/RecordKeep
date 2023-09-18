@@ -20,6 +20,7 @@ class DemandeTransfert extends Model
         'user_id',
         'valide',
         'transfere',
+        'sr', 'cr'
     ];
 
     protected $casts = [

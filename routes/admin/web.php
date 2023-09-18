@@ -40,6 +40,6 @@ Route::group(['middleware' => ['auth', 'permission:Gestion des Utilisateurs'], '
 
 /* ------------------------------------------------------------------------------------------------------------------------------------- */
 
-Route::get('admin/statistiques', [StatistiquesController::class, 'stat'])
-    ->middleware(['auth', 'permission:Gestion des Classements|Gestion des Utilisateurs'])
-    ->name('admin.statistique');
+Route::group(['middleware' => ['auth', 'permission:Gestion des Rôles|Gestion des Services|Gestion des Fonctions|Gestion des Divisions|Gestion des Documents|Gestion des Directions|Gestion des Catégories|Gestion des Classements|Gestion des Utilisateurs|Gestion des Boîtes Archives|Gestion des Rayons Rangements|Gestion des Chemises Dossiers|Gestion des Demandes de Prêts|Gestion des Natures de Documents|Gestion des Demandes de Transferts|Gestion des Demandes de Transferts du MISP'], 'as' => 'admin.statistique'], function () {
+    Route::get('admin/statistiques', [StatistiquesController::class, 'stat']);
+});

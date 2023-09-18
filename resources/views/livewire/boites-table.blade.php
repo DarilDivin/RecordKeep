@@ -12,7 +12,7 @@
             </button>
             <button class="add">
                 <ion-icon name="add"></ion-icon>
-                <a href="{{ route('manager.boite.create') }}">Add Archive Boite</a>
+                <a href="{{ route('manager.boite.create') }}">Ajouter Boîte</a>
             </button>
         </div>
         <div class="check-categorie-documents" style="width: 22%;">

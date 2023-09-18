@@ -110,8 +110,6 @@ class DocumentPageTable extends Component
     {
         $documents = Document::query();
 
-        // dd($documents);
-
         if(!empty($this->nom)){
             $documents = $documents->where('nom', 'LIKE', "%{$this->nom}%");
         }
@@ -125,10 +123,6 @@ class DocumentPageTable extends Component
         }
 
         if(!empty($this->motclefs)){
-            // dd($this->motclefs);
-            // $seg = explode(',', $this->motclefs);
-            // unset($seg[0]);
-            // $arr = '#' . implode('#', $seg);
             $documents = $documents->where('motclefs', 'LIKE', "%{$this->motclefs}%");
         }
 

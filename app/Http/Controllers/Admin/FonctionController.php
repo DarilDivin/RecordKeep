@@ -19,7 +19,7 @@ class FonctionController extends Controller
         $this->authorizeResource(Fonction::class, 'fonction');
     }
 
-    public function index(): View
+    public function index(): View | RedirectResponse
     {
         return view('admin.fonction.fonctions');
     }

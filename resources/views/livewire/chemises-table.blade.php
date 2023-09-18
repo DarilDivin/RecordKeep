@@ -12,7 +12,7 @@
             </button>
             <button class="add">
                 <ion-icon name="add"></ion-icon>
-                <a href="{{ route('manager.chemise.create') }}">Add Chemise Dossier</a>
+                <a href="{{ route('manager.chemise.create') }}">Ajouter Chemise</a>
             </button>
         </div>
         <div class="check-categorie-documents" style="width: 22%;">

@@ -6,10 +6,12 @@
 
     <div class="optional">
         <div class="buttons">
-            <button class="filter" x-show="documentsChecked.length > 0" x-on:click="$wire.removeDocuments(documentsChecked)" x-cloak>
-                <ion-icon name="trash-outline"></ion-icon>
-                Retirer
-            </button>
+            @if (!$transfert->valide)
+                <button class="filter" x-show="documentsChecked.length > 0" x-on:click="$wire.removeDocuments(documentsChecked)" x-cloak>
+                    <ion-icon name="trash-outline"></ion-icon>
+                    Retirer
+                </button>
+            @endif
             <button class="filter">
                 <ion-icon name="checkmark-circle-outline"></ion-icon>
                 Accepter
@@ -30,11 +32,19 @@
         </div>
     @endif
 
+    @if (session('error'))
+        <div class="message error">
+            {{ session('error') }}
+        </div>
+    @endif
+
     <div class="tableau">
         <table class="table">
             <thead>
                 <tr>
-                    <td></td>
+                    @if (!$transfert->valide)
+                        <td></td>
+                    @endif
                     <x-table-header label="N°" :direction="$orderDirection" name="id" :field="$orderField"></x-table-header>
                     <x-table-header label="Signature" :direction="$orderDirection" name="signature" :field="$orderField"></x-table-header>
                     <x-table-header label="Nom du Document" :direction="$orderDirection" name="nom" :field="$orderField"></x-table-header>
@@ -46,9 +56,11 @@
             <tbody>
                 @forelse ($documents as $document)
                 <tr>
-                    <td>
-                        <input type="checkbox" x-model="documentsChecked" value="{{ $document->id }}">
-                    </td>
+                    @if (!$transfert->valide)
+                        <td>
+                            <input type="checkbox" x-model="documentsChecked" value="{{ $document->id }}">
+                        </td>
+                    @endif
                     <td>{{ $document->id }}</td>
                     <td>{{ $document->signature }}</td>
                     <td>{{ $document->nom }}</td>

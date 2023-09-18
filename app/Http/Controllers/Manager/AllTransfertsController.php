@@ -24,12 +24,7 @@ class AllTransfertsController extends Controller
     public function one(string $slug, DemandeTransfert $transfert): View | RedirectResponse
     {
         $this->authorize('one', $transfert);
-        if(empty($transfert->documents->where('archive', 0)->toArray())){
-            return redirect()
-                ->route('manager.transfert.all')
-                ->with('error', 'La Demande de Transfert ne contient aucun document non archivé');
-        }
-        if($transfert->transfere && !empty($transfert->documents->toArray())){
+        if($transfert->transfere && $transfert->documents->where('archive', 0)->count() > 0){
             if($slug !== $transfert->getSlug()){
                 return to_route('manager.transfert.show', [
                     'slug' => $transfert->getSlug(),
@@ -111,6 +106,25 @@ class AllTransfertsController extends Controller
             ->route('manager.transfert.all')
             ->with('error', 'La Demande de Transfert ne contient aucun document');
     }
+
+    public function removeOfCentralList(DemandeTransfert $transfert): RedirectResponse
+    {
+        $this->authorize('removeOfCentralList', $transfert);
+        if($transfert->valid && $transfert->documents->where('archive', 0)->count() === 0) {
+            $transfert->update([
+                'cr' => 1
+            ]);
+            return redirect()
+                ->route('manager.transfert.all')
+                ->with('succes', 'La Demande de Transfert a bien été retiré de la Liste');
+        }
+        return redirect()
+            ->route('manager.transfert.index')
+            ->with('error', 'Finalisez les Opérations de cette Demande de Transfert avant tout retrait !');
+    }
+
+
+  /*   ---------------------------------------------------------------------------------------------------------------------------------------------------- */
 
     /* INUTILES */
 

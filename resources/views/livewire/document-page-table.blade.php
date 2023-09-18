@@ -99,7 +99,7 @@
                         </p>
                     </div>
                     <div class="docInfosItem">
-                        <p><span>125ko</span></p>
+                        <p><span>{{ number_format((filesize(public_path('storage/' . $document->document )) / 1024), 2, ',', '') }} ko</span></p>
                     </div>
                     <div class="docInfosItem">
                         <p><span>{{ $document->nbrconsult }}</span> Consultations </p>
@@ -110,7 +110,7 @@
                 </div>
                 <div class="docMoreInfos">
                     <div class="docMoreInfosItem">
-                        <p>{{ $document->datecreation }}</p>
+                        <p>{{ $document->getDateCreation()->translatedFormat('d F Y') }}</p>
                     </div>
                     <div class="docMoreInfosItem">
                         @php

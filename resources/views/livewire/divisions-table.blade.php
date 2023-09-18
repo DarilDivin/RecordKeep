@@ -12,7 +12,7 @@
             </button>
             <button class="add">
                 <ion-icon name="add"></ion-icon>
-                <a href="{{ route('admin.division.create') }}">Add Division</a>
+                <a href="{{ route('admin.division.create') }}">Ajouter Division</a>
             </button>
         </div>
         <div class="check-categorie-documents" style="width: 26%;">
@@ -59,9 +59,9 @@
                             <input type="checkbox" x-model="divisionsChecked" value="{{ $division->id }}">
                         </td>
                         <td>{{ $division->id }}</td>
-                        <td>{{ Str::limit($division->division, 40, '...') }}</td>
+                        <td>{{ $division->division }}</td>
                         <td>{{ $division->sigle }}</td>
-                        <td>{{ $division?->service?->service }}</td>
+                        <td>{{ $division?->service?->service}}</td>
                         <td>{{ $division?->service?->direction?->sigle }}</td>
                         <td>
                             <button class="edit">

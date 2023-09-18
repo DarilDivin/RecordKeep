@@ -56,7 +56,7 @@
                         </p>
                     </div>
                     <div class="docInfosItem">
-                        <p><span>125ko</span></p>
+                        <p><span>{{ number_format((filesize(public_path('storage/' . $document->document )) / 1024), 2, ',', '') }} ko</span></p>
                     </div>
                     <div class="docInfosItem">
                         <p><span>{{ $document->nbrconsult }}</span> Consultations </p>
@@ -70,11 +70,11 @@
                             <a href="{{ route('document.download', ['document' => $document]) }}">Télécharger</a>
                         </button>
                     @endcan
-                    @hasrole('Utilisateur')
-                        <button class="btn more">
-                            <a href="{{ route('document.show', ['slug' => $document->getSlug(), 'document' => $document]) }}">Plus</a>
-                        </button>
-                    @endhasrole
+                    @canany(['Demander un Prêt', 'Consulter un Document', 'Rechercher un Document', 'Télécharger un Document'])
+                    <button class="btn more">
+                        <a href="{{ route('document.show', ['slug' => $document->getSlug(), 'document' => $document]) }}">Plus</a>
+                    </button>
+                    @endcanany
                 </div>
                 </div>
 

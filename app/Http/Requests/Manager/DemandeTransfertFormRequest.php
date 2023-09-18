@@ -23,11 +23,7 @@ class DemandeTransfertFormRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'libelle' => ['required', 'string',
-                Rule::unique('demande_transferts')
-                ->ignore($this->route()->parameter('transfert'))
-                ->withoutTrashed()
-            ],
+            'libelle' => ['required', 'string'],
             'documents' => ['nullable', 'array', 'exists:documents,id']
         ];
     }

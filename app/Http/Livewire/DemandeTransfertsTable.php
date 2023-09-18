@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Models\DemandeTransfert;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -12,9 +13,7 @@ class DemandeTransfertsTable extends Component
 
     public $libelle;
 
-    public $showButton;
-
-    public $currentTransfert;
+    public $userTransfert;
 
     public function updatedLibelle()
     {
@@ -36,6 +35,8 @@ class DemandeTransfertsTable extends Component
 
         return view('livewire.demande-transferts-table', [
             'transferts' => $transferts
+                ->where('user_id', Auth::user()->id)
+                ->where('sr', 0)
                 ->latest()
                 ->paginate(18)
         ]);

@@ -10,8 +10,7 @@
         @include('admin.layouts.partials.sidebar')
 
         @livewire('demande-transferts-table', [
-            'showButton' => $showButton,
-            'currentTransfert' => $currentTransfert
+            'userTransfert' => $userTransfert
         ])
     </div>
     <div class="warningMessageContainer">

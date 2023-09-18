@@ -12,7 +12,7 @@
             </button>
             <button class="add">
                 <ion-icon name="add"></ion-icon>
-                <a href="{{ route('admin.type-role.create') }}">Add Type Role</a>
+                <a href="{{ route('admin.type-role.create') }}">Ajouter Type Role</a>
             </button>
         </div>
         <div class="search-box" style="margin-right: 17px;">

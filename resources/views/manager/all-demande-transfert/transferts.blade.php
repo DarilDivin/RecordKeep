@@ -20,7 +20,7 @@
                 @csrf
                 @method('delete')
                 <button type="button" class="closeWarning">Annuler</button>
-                <button type="submit" class="submitdeleteForm">Supprimer</button>
+                <button type="submit" class="submitdeleteForm">Confirmer</button>
             </form>
         </div>
     </div>

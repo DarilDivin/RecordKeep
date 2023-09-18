@@ -12,7 +12,7 @@
             </button>
             <button class="add">
                 <ion-icon name="add"></ion-icon>
-                <a href="{{ route('admin.role.create') }}">Add Role</a>
+                <a href="{{ route('admin.role.create') }}">Ajouter Role</a>
             </button>
         </div>
 
@@ -47,7 +47,7 @@
                         </td>
                         <td>{{ $role->id }}</td>
                         <td>{{ $role->name }}</td>
-                        <td>{{ $role->created_at->translatedFormat('d M Y') }}</td>
+                        <td>{{ $role->created_at->translatedFormat('d F Y') }}</td>
                         <td>
                             <button class="edit">
                                 <a href="{{ route('admin.role.edit', ['role' => $role->id]) }}">

@@ -12,7 +12,7 @@
             </button>
             <button class="add">
                 <ion-icon name="add"></ion-icon>
-                <a href="{{ route('admin.permission.create') }}">Add Permission</a>
+                <a href="{{ route('admin.permission.create') }}">Ajouter Permission</a>
             </button>
         </div>
         <div class="search-box" style="margin-right: 17px; width: 22%;">

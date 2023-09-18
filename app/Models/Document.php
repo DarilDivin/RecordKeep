@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use App\Models\Service;
 use App\Models\Division;
 use App\Models\Fonction;
@@ -47,7 +48,6 @@ class Document extends Model
     ];
 
     protected $casts = [
-        'datecreation' => 'datetime',
         'created_at' => 'datetime'
     ];
 
@@ -104,6 +104,11 @@ class Document extends Model
     public function getSlug(): string
     {
         return Str::slug($this->nom);
+    }
+
+    public function getDateCreation(): Carbon
+    {
+        return Carbon::parse($this->datecreation);
     }
 
 

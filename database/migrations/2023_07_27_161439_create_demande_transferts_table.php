@@ -15,9 +15,11 @@ return new class extends Migration
         Schema::create('demande_transferts', function (Blueprint $table) {
             $table->id();
             $table->string('libelle');
+            $table->foreignIdFor(User::class)->constrained()->cascadeOnDelete();
             $table->boolean('transfere')->default(0);
             $table->boolean('valide')->default(0);
-            $table->foreignIdFor(User::class)->constrained()->cascadeOnDelete();
+            $table->boolean('sr')->default(0);
+            $table->boolean('cr')->default(0);
             $table->timestamps();
             $table->softDeletes();
         });

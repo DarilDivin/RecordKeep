@@ -4,10 +4,10 @@ namespace App\Http\Livewire;
 
 use DateTime;
 use Livewire\Component;
-use App\Models\Division;
 use App\Models\Document;
 use Livewire\WithPagination;
 use App\Models\DemandeTransfert;
+use Illuminate\Support\Facades\Auth;
 
 class DocumentsTable extends Component
 {
@@ -95,6 +95,7 @@ class DocumentsTable extends Component
 
         return view('livewire.documents-table', [
             'documents' => $documents
+                ->where('direction_id', Auth::user()->direction->id)
                 ->where('demande_transfert_id', null)
                 ->orderBy($this->orderField, $this->orderDirection)
                 ->paginate(20),

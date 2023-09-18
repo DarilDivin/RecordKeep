@@ -12,7 +12,7 @@
             </button>
             <button class="add">
                 <ion-icon name="add"></ion-icon>
-                <a href="{{ route('admin.direction.create') }}">Add Direction</a>
+                <a href="{{ route('admin.direction.create') }}">Ajouter Direction</a>
             </button>
         </div>
         <div class="search-box" style="width: 22%;">

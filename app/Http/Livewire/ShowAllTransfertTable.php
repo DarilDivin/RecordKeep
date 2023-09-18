@@ -32,14 +32,19 @@ class ShowAllTransfertTable extends Component
 
     public function removeDocuments(array $ids)
     {
-        foreach($ids as $id){
-            $document = Document::find($id);
-            $document->update([
-                'demande_transfert_id' => null
-            ]);
+        if(!$this->transfert->valide) {
+            foreach($ids as $id){
+                $document = Document::find($id);
+                $document->update([
+                    'demande_transfert_id' => null
+                ]);
+            }
+            $this->documentsChecked = [];
+            session()->flash('success', 'Les Documents ont bien été retiré de la Demande de Transfert');
         }
-        $this->documentsChecked = [];
-        session()->flash('success', 'Les Documents ont bien été retiré de la Demande de Transfert');
+        else {
+            session()->flash('error', 'La Demande de Transfert a déjà été validé !');
+        }
     }
 
     public function setOrderField(string | int | DateTime  $field)
