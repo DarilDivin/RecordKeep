@@ -27,9 +27,13 @@ class DemandeTransfertController extends Controller
 
     public function index(): View
     {
+        $userTransfert =
+            DemandeTransfert::query()
+            ->where('transfere', 0)
+            ->where('user_id', Auth::user()->id)
+            ->get()->toArray();
         return view('manager.demande-transfert.transferts', [
-            'showButton' => DemandeTransfert::where('transfere', 0)->get()->toArray(),
-            'currentTransfert' => DemandeTransfert::where('transfere', 0)->get()->toArray()
+            'userTransfert' => $userTransfert
         ]);
     }
 
@@ -38,7 +42,12 @@ class DemandeTransfertController extends Controller
      */
     public function create(): View | RedirectResponse
     {
-        if(!empty(DemandeTransfert::where('transfere', 0)->get()->toArray())){
+        $userTransfert =
+            DemandeTransfert::query()
+            ->where('transfere', 0)
+            ->where('user_id', Auth::user()->id)
+            ->get()->toArray();
+        if(!empty($userTransfert)){
             return redirect()
                 ->route('manager.transfert.index')
                 ->with('error', 'Vous avez déjà une Demande de Transfert non validée en attente');
@@ -55,9 +64,9 @@ class DemandeTransfertController extends Controller
     public function store(DemandeTransfertFormRequest $request): RedirectResponse
     {
         $demande = DemandeTransfert::create([
+            'libelle' => $request->validated('libelle'),
             'user_id' => Auth::user()->id,
-            'transfere' => 0,
-            'libelle' => $request->validated('libelle')
+            'transfere' => 0
         ]);
         if(array_key_exists('documents', $request->validated())){
             foreach($request->documents as $documentId){
@@ -75,30 +84,33 @@ class DemandeTransfertController extends Controller
 
     public function show(string $slug, DemandeTransfert $transfert): View | RedirectResponse
     {
-        self::alertAfterTransfert($transfert);
-        if(!$transfert->transfere){
-            if($slug !== $transfert->getSlug()){
-                return to_route('manager.transfert.show', [
-                    'slug' => $transfert->getSlug(),
-                    'transfert' => $transfert
-                ]);
-            }
-            return view('manager.demande-transfert.transfert-show', [
+        if($slug !== $transfert->getSlug()){
+            return to_route('manager.transfert.show', [
+                'slug' => $transfert->getSlug(),
                 'transfert' => $transfert
             ]);
         }
-        return redirect()->route('manager.transfert.index');
+        return view('manager.demande-transfert.transfert-show', [
+            'transfert' => $transfert
+        ]);
     }
 
     public function removeForStandardTranfer(Document $document, DemandeTransfert $transfert): RedirectResponse
     {
         $this->authorize('removeForStandardTranfer', $transfert);
-        $document->update([
-            'demande_transfert_id' => null
+        self::alertAfterTransfert($transfert);
+        if(!$transfert->transfere) {
+            $document->update([
+                'demande_transfert_id' => null
+            ]);
+            return redirect()
+                ->route('manager.transfert.show', ['slug' => $transfert->getSlug(), 'transfert' => $transfert])
+                ->with('success', 'Le Document a bien été retiré de la Demande de Transfert');
+        }
+        return redirect()->route('manager.transfert.show', [
+            'slug' => $transfert->getSlug(),
+            'transfert' => $transfert
         ]);
-        return redirect()
-            ->route('manager.transfert.show', ['slug' => $transfert->getSlug(), 'transfert' => $transfert])
-            ->with('success', 'Le Document a bien été retiré de la Demande de Transfert');
     }
 
     /**
@@ -109,10 +121,15 @@ class DemandeTransfertController extends Controller
         $documents = Document::where('demande_transfert_id', null)
             ->orWhere('demande_transfert_id', $transfert->id)
             ->pluck('nom', 'id');
-        if(empty(DemandeTransfert::where('transfere', 0)->get()->toArray())){
+        $userTransfert =
+            DemandeTransfert::query()
+            ->where('transfere', 0)
+            ->where('user_id', Auth::user()->id)
+            ->get()->toArray();
+        if(empty($userTransfert)){
             return redirect()
                 ->route('manager.transfert.index')
-                ->with('error', 'Créer une nouvelle Demande de Transfert pour pouvoir éffectuer cette action');
+                ->with('error', 'Créer une nouvelle Demande de Transfert pour éffectuer cette action');
         }
         return view('manager.demande-transfert.transfert-form', [
             'transfert' => $transfert,
@@ -163,7 +180,7 @@ class DemandeTransfertController extends Controller
             }
             return redirect()
                 ->route('manager.transfert.index')
-                ->with('success', 'La Demande de Transfert  a bien été annulé');
+                ->with('success', 'La Demande de Transfert a bien été annulé et les documents ont été restitué');
         }
         return redirect()->route('manager.transfert.index');
     }
@@ -174,7 +191,7 @@ class DemandeTransfertController extends Controller
         if(empty($transfert->documents->toArray())){
             return redirect()
                 ->route('manager.transfert.index')
-                ->with('error', 'Impossible de valider un transfert vide.');
+                ->with('error', 'Impossible de valider une Demande de transfert vide.');
         }
         self::alertAfterTransfert($transfert);
         if(!$transfert->transfere && !empty($transfert->documents->toArray())){
@@ -196,5 +213,21 @@ class DemandeTransfertController extends Controller
                 ->route('manager.transfert.index')
                 ->with('error', 'Aucune action n\'est plus possible sur cette Demande de Transfert');
         }
+    }
+
+    public function removeOfStandardList(DemandeTransfert $transfert): RedirectResponse
+    {
+        $this->authorize('removeOfStandardList', $transfert);
+        if($transfert->transfere) {
+            $transfert->update([
+                'sr' => 1
+            ]);
+            return redirect()
+                ->route('manager.transfert.index')
+                ->with('succes', 'La Demande de Transfert a bien été retiré de la Liste');
+        }
+        return redirect()
+            ->route('manager.transfert.index')
+            ->with('error', 'Finalisez les Opérations de cette Demande de Transfert avant tout retrait !');
     }
 }

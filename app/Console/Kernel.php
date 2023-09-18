@@ -14,6 +14,8 @@ class Kernel extends ConsoleKernel
     {
         $schedule->command('app:enregistrer-statistiques-mensuelles')->everyMinute();
         // $schedule->command('app:enregistrer-statistiques-mensuelles')->monthly();
+
+        $schedule->command('app:check-documents-dua')->everyMinute();
     }
 
     /**

@@ -5,7 +5,6 @@ namespace App\Policies\Manager;
 use App\Models\DemandeTransfert;
 use App\Models\User;
 use Illuminate\Auth\Access\Response;
-use Illuminate\Http\Request;
 
 class DemandeTransfertPolicy
 {
@@ -79,6 +78,11 @@ class DemandeTransfertPolicy
         return $user->can('Gestion des Demandes de Transferts');
     }
 
+    public function removeOfStandardList(User $user, DemandeTransfert $demandeTransfert): bool
+    {
+        return $user->can('Gestion des Demandes de Transferts');
+    }
+
 
      /* FOR CENTRALES MANAGERS */
 
@@ -116,5 +120,10 @@ class DemandeTransfertPolicy
      {
         return $user->can('Gestion des Demandes de Transferts du MISP');
      }
+
+     public function removeOfCentralList(User $user, DemandeTransfert $demandeTransfert): bool
+    {
+        return $user->can('Gestion des Demandes de Transferts du MISP');
+    }
 
 }

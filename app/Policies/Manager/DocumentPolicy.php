@@ -2,9 +2,10 @@
 
 namespace App\Policies\Manager;
 
-use App\Models\Document;
 use App\Models\User;
+use App\Models\Document;
 use Illuminate\Auth\Access\Response;
+use Illuminate\Support\Facades\Auth;
 
 class DocumentPolicy
 {
@@ -37,7 +38,8 @@ class DocumentPolicy
      */
     public function update(User $user, Document $document): bool
     {
-         return $user->can('Gestion des Documents');
+         return $user->can('Gestion des Documents') &&
+         Auth::user()->direction->id === $document->direction_id;
     }
 
     /**
@@ -45,7 +47,8 @@ class DocumentPolicy
      */
     public function delete(User $user, Document $document): bool
     {
-         return $user->can('Gestion des Documents');
+         return $user->can('Gestion des Documents') &&
+         Auth::user()->direction->id === $document->direction_id;
     }
 
     /**

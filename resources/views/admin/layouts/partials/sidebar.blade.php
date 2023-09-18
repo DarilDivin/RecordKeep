@@ -19,7 +19,23 @@
     </div>
     <ul>
 
-        @canany(['Gestion des Classements', 'Gestion des Utilisateurs'])
+        @canany(['Gestion des Rôles',
+                'Gestion des Services',
+                'Gestion des Fonctions',
+                'Gestion des Divisions',
+                'Gestion des Documents',
+                'Gestion des Directions',
+                'Gestion des Catégories',
+                'Gestion des Classements',
+                'Gestion des Utilisateurs',
+                'Gestion des Boîtes Archives',
+                'Gestion des Rayons Rangements',
+                'Gestion des Chemises Dossiers',
+                'Gestion des Demandes de Prêts',
+                'Gestion des Natures de Documents',
+                'Gestion des Demandes de Transferts',
+                'Gestion des Demandes de Transferts du MISP'
+            ])
             <li @class(['list', 'active' => str_contains($route_name, 'statistique')])>
                 <a href="{{ route('admin.statistique') }}">
                     <span class="icon"><ion-icon name="stats-chart-outline"></ion-icon></span>
@@ -145,11 +161,29 @@
             </li>
         @endcan
 
-        @can('Gestion des Demandes de Prêt')
+        @can('Gestion des Demandes de Prêts')
             <li class="list">
                 <a href="">
                     <span class="icon"><ion-icon name="swap-horizontal"></ion-icon></span>
                     <span class="title">Demandes de Prêts</span>
+                </a>
+            </li>
+        @endcan
+
+        @can('Gestion des Demandes de Transferts du MISP')
+            <li class="list">
+                <a href="{{ route('manager.transfert.all') }}">
+                    <span class="icon"><ion-icon name="send"></ion-icon></span>
+                    <span class="title">Transferts du MISP</span>
+                </a>
+            </li>
+        @endcan
+
+        @can('Gestion des Classements')
+            <li class="list">
+                <a href="{{ route('manager.document.classed') }}">
+                    <span class="icon"><ion-icon name="document-text-outline"></ion-icon></span>
+                    <span class="title">Gestion des Classements</span>
                 </a>
             </li>
         @endcan

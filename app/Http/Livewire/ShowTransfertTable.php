@@ -7,6 +7,7 @@ use Livewire\Component;
 use App\Models\Document;
 use Livewire\WithPagination;
 use App\Models\DemandeTransfert;
+use Illuminate\Support\Facades\Auth;
 
 class ShowTransfertTable extends Component
 {
@@ -33,14 +34,19 @@ class ShowTransfertTable extends Component
 
     public function removeDocuments(array $ids)
     {
-        foreach($ids as $id){
-            $document = Document::find($id);
-            $document->update([
-                'demande_transfert_id' => null
-            ]);
+        if(!$this->transfert->transfere) {
+            foreach($ids as $id){
+                $document = Document::find($id);
+                $document->update([
+                    'demande_transfert_id' => null
+                ]);
+            }
+            $this->documentsChecked = [];
+            session()->flash('success', 'Les Documents ont bien été retiré de la Demande de Transfert');
         }
-        $this->documentsChecked = [];
-        session()->flash('success', 'Les Documents ont bien été retiré de la Demande de Transfert');
+        else {
+            session()->flash('error', 'Les Documents ont déjà été transféré !');
+        }
     }
 
     public function setOrderField(string | int | DateTime  $field)
@@ -65,6 +71,12 @@ class ShowTransfertTable extends Component
 
         $documents = Document::query()->where('demande_transfert_id', $this->transfert->id);
 
+        $userTransfert =
+            DemandeTransfert::query()
+            ->where('transfere', 0)
+            ->where('user_id', Auth::user()->id)
+            ->get()->toArray();
+
         if(!empty($this->nom)){
             $documents = $documents->where('nom', 'LIKE', "%{$this->nom}%");
         }
@@ -73,7 +85,7 @@ class ShowTransfertTable extends Component
             'documents' => $documents
                 ->orderBy($this->orderField, $this->orderDirection)
                 ->paginate(20),
-            'currentTransfert' => DemandeTransfert::where('transfere', 0)->get()->toArray()
+            'userTransfert' => $userTransfert
         ]);
     }
 

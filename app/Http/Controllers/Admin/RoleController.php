@@ -7,6 +7,8 @@ use App\Models\TypeRole;
 use App\Models\Permission;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\RoleFormRequest;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 
 class RoleController extends Controller
 {
@@ -19,7 +21,7 @@ class RoleController extends Controller
         $this->authorizeResource(Role::class, 'role');
     }
 
-    public function index()
+    public function index(): View
     {
         return view('admin.role.roles');
     }
@@ -27,7 +29,7 @@ class RoleController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(): View
     {
         $firstTypeRole = TypeRole::orderBy('id', 'asc')->take(1)->get()->toArray();
         $firstTypeRoleId = $firstTypeRole[0]['id'];
@@ -41,7 +43,7 @@ class RoleController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(RoleFormRequest $request)
+    public function store(RoleFormRequest $request): RedirectResponse
     {
         $data = $request->validated();
         unset($data['permissions']);
@@ -55,7 +57,7 @@ class RoleController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Role $role)
+    public function edit(Role $role): View | RedirectResponse
     {
         return view('admin.role.role-form', [
             'role' => $role,
@@ -67,7 +69,7 @@ class RoleController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(RoleFormRequest $request, Role $role)
+    public function update(RoleFormRequest $request, Role $role): RedirectResponse
     {
         $data = $request->validated();
         unset($data['permissions']);
@@ -81,7 +83,7 @@ class RoleController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Role $role)
+    public function destroy(Role $role): RedirectResponse
     {
         $role->delete();
         return redirect()

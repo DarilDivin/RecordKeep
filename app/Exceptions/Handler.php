@@ -2,9 +2,10 @@
 
 namespace App\Exceptions;
 
-use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
-use Illuminate\Support\Facades\Auth;
 use Throwable;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Auth\Access\AuthorizationException;
+use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 
 class Handler extends ExceptionHandler
 {
@@ -18,6 +19,14 @@ class Handler extends ExceptionHandler
         'password',
         'password_confirmation',
     ];
+
+    public function render($request, Throwable $e)
+    {
+        if($e instanceof AuthorizationException){
+            return to_route('admin.statistique');
+        }
+        return parent::render($request, $e);
+    }
 
     /**
      * Register the exception handling callbacks for the application.

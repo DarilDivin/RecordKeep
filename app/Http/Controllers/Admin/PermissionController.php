@@ -7,6 +7,8 @@ use App\Models\TypeRole;
 use App\Models\Permission;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\PermissionFormRequest;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 
 class PermissionController extends Controller
 {
@@ -19,7 +21,7 @@ class PermissionController extends Controller
         $this->authorizeResource(Permission::class, 'permission');
     }
 
-    public function index()
+    public function index(): View
     {
         return view('admin.permission.permissions');
     }
@@ -27,7 +29,7 @@ class PermissionController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(): View
     {
         $firstTypeRole = TypeRole::orderBy('id', 'asc')->take(1)->get()->toArray();
         $firstTypeRoleId = $firstTypeRole[0]['id'];
@@ -41,7 +43,7 @@ class PermissionController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(PermissionFormRequest $request)
+    public function store(PermissionFormRequest $request): RedirectResponse
     {
         $data = $request->validated();
         unset($data['roles']);
@@ -55,7 +57,7 @@ class PermissionController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Permission $permission)
+    public function edit(Permission $permission): View
     {
         return view('admin.permission.permission-form', [
             'permission' => $permission,
@@ -67,7 +69,7 @@ class PermissionController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(PermissionFormRequest $request, Permission $permission)
+    public function update(PermissionFormRequest $request, Permission $permission): RedirectResponse
     {
         $data = $request->validated();
         unset($data['roles']);
@@ -81,7 +83,7 @@ class PermissionController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Permission $permission)
+    public function destroy(Permission $permission): RedirectResponse
     {
         $permission->delete();
         return redirect()

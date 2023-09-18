@@ -10,9 +10,9 @@
     @include('user.layouts.partials.navbar')
     <div class="description-container" data-aos="zoom-in-up" data-aos-delay="500">
         <div class="description_msg" data-aos="fade-right" data-aos-delay="1000">
-            <h2>Accédez à tous les documents de la direction en un clic</h2>
+            <h2>Accédez aux documents accessibles en un clic</h2>
             <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta, quaerat illum quo qui dolore earum dolores obcaecati minus, consectetur totam suscipit dignissimos, consequuntur nobis eaque impedit ratione ab odit laborum!
+                Bienvenu sur Record Keep, un tenu de régistre facile du Ministère de l'Intérieur et de la Sécurité Publique de la République du Bénin vous permettant de consulter certains documents accessibles en toute facilté, sécurité et simplicité.
             </p>
             <button class="btn-signin">
                 <a href="{{ route('login') }}">Se connecter</a>
@@ -70,7 +70,7 @@
         <div class="advantage-text">
             <h2 data-aos="fade-right" data-aos-delay="500">Les avantages à utiliser cette application</h2>
             <p data-aos="fade-down" data-aos-delay="500">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod soluta modi iusto obcaecati culpa hic, nihil ut aliquam quaerat recusandae commodi delectus in. Quos maxime sequi possimus doloremque delectus laudantium dolore cumque nemo veritatis explicabo.
+                Bienvenu sur Record Keep, un tenu de régistre facile du Ministère de l'Intérieur et de la Sécurité Publique de la République du Bénin vous permettant de consulter certains documents accessibles en toute facilté, sécurité et simplicité.
             </p>
         </div>
     </div>

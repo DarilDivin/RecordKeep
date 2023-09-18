@@ -64,7 +64,7 @@
                     </td>
                 </tr>
                 @empty
-                    AUCUN DOCUMENT EN BASE DE DONNÉES
+                    AUCUN DOCUMENT CLASSÉ DISPONIBLE
                 @endforelse
             </tbody>
         </table>

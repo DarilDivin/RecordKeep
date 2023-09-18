@@ -4,7 +4,10 @@ namespace App\Actions\Fortify;
 
 use App\Models\Role;
 use App\Models\User;
+use App\Models\Service;
+use App\Models\Division;
 use App\Rules\SameTypeRoleRule;
+use App\Rules\UserBirthDayRule;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -26,7 +29,7 @@ class CreateNewUser implements CreatesNewUsers
             'nom' => ['required', 'string', 'max:255'],
             'prenoms' => ['required', 'string'],
             'email' => ['required','string','email','max:255',Rule::unique(User::class),],
-            'datenaissance' => ['required', 'date'],
+            'datenaissance' => ['required', 'date', new UserBirthDayRule()],
             'sexe' => ['required', 'string'],
             'password' => $this->passwordRules(),
             'fonction_id' => ['integer','exists:fonctions,id', 'required'],
@@ -35,6 +38,13 @@ class CreateNewUser implements CreatesNewUsers
             'direction_id' => ['integer','exists:directions,id', 'required'],
             'roles' => ['array','exists:roles,id', 'required', new SameTypeRoleRule()]
         ])->validate();
+
+        if(Service::find($input['service_id'])->service === 'Aucun') {
+            $input['service_id'] = null;
+        }
+        if(Division::find($input['division_id'])->division === 'Aucune') {
+            $input['division_id'] = null;
+        }
 
         $user = User::create([
             'matricule' => $input['matricule'],

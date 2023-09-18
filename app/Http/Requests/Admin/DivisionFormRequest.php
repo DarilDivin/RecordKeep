@@ -24,9 +24,9 @@ class DivisionFormRequest extends FormRequest
     {
         return [
             'division' => ['required', 'string', 'min:3',
-                // Rule::unique('divisions')
-                // ->ignore($this->route()->parameter('division'))
-                // ->withoutTrashed()
+                /* Rule::unique('divisions')
+                ->ignore($this->route()->parameter('division'))
+                ->withoutTrashed() */
             ],
             'sigle' => ['required', 'string', 'min:2'],
             'service_id' => ['integer','exists:services,id', 'required'],

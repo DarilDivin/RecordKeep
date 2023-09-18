@@ -34,6 +34,7 @@
                     <td></td>
                     <x-table-header label="N°" :direction="$orderDirection" name="id" :field="$orderField"></x-table-header>
                     <x-table-header label="Fonction" :direction="$orderDirection" name="fonction" :field="$orderField"></x-table-header>
+                    <x-table-header label="Date de Création" :direction="$orderDirection" name="created_at" :field="$orderField"></x-table-header>
                     <td>Actions</td>
                 </tr>
             </thead>
@@ -45,6 +46,7 @@
                         </td>
                         <td>{{ $fonction->id }}</td>
                         <td>{{ $fonction->fonction }}</td>
+                        <td>{{ $fonction->created_at->translatedFormat('d F Y') }}</td>
                         <td>
                             <button class="edit">
                                 <a href="{{ route('admin.fonction.edit', ['fonction' => $fonction->id]) }}">

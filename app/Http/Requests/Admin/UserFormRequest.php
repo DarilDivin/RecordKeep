@@ -4,6 +4,7 @@ namespace App\Http\Requests\Admin;
 
 use App\Actions\Fortify\PasswordValidationRules;
 use App\Rules\SameTypeRoleRule;
+use App\Rules\UserBirthDayRule;
 use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -32,7 +33,7 @@ class UserFormRequest extends FormRequest
             'nom' => ['required', 'string'],
             'prenoms' => ['required', 'string'],
             'email' => ['required', 'email', Rule::unique('users')->ignore($this->route()->parameter('user'))],
-            'datenaissance' => ['required', 'date'],
+            'datenaissance' => ['required', 'date', new UserBirthDayRule()],
             'sexe' => ['required', 'string'],
             'roles' => ['array','exists:roles,id', 'required', new SameTypeRoleRule()],
             /* 'permissions' => ['array','exists:permissions,id', 'required'], */

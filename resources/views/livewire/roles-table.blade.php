@@ -47,7 +47,7 @@
                         </td>
                         <td>{{ $role->id }}</td>
                         <td>{{ $role->name }}</td>
-                        <td>{{ $role->created_at->translatedFormat('d M Y') }}</td>
+                        <td>{{ $role->created_at->translatedFormat('d F Y') }}</td>
                         <td>
                             <button class="edit">
                                 <a href="{{ route('admin.role.edit', ['role' => $role->id]) }}">

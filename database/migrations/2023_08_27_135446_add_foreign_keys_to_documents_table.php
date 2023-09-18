@@ -19,8 +19,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('documents', function (Blueprint $table) {
-            $table->foreignIdFor(Division::class);
-            $table->foreignIdFor(Service::class);
+            $table->foreignIdFor(Division::class)->nullable();
+            $table->foreignIdFor(Service::class)->nullable();
             $table->foreignIdFor(Direction::class);
             $table->foreignIdFor(Categorie::class);
             $table->foreignIdFor(NatureDocument::class);

@@ -2,9 +2,10 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Manager\DocumentController;
-use App\Http\Controllers\Manager\DemandePretController;
 use App\Http\Controllers\Manager\CategorieController;
+use App\Http\Controllers\Manager\DemandePretController;
 use App\Http\Controllers\Manager\BoiteArchiveController;
+use App\Http\Controllers\Manager\RapportRetourController;
 use App\Http\Controllers\Manager\AllTransfertsController;
 use App\Http\Controllers\Manager\RapportDepartController;
 use App\Http\Controllers\Manager\ChemiseDossierController;
@@ -12,7 +13,6 @@ use App\Http\Controllers\Manager\NatureDocumentController;
 use App\Http\Controllers\Manager\RayonRangementController;
 use App\Http\Controllers\Manager\DemandeTransfertController;
 use App\Http\Controllers\Manager\DocumentClassementController;
-use App\Http\Controllers\Manager\RapportRetourController;
 
 $idRegex = '[0-9]+';
 $slugRegex = '[0-9a-z\-]+';
@@ -71,7 +71,6 @@ Route::middleware(['auth', 'permission:Gestion des Classements'])
 
 /* FOR STANDARDS MANAGER */
 
-
 Route::middleware(['auth', 'permission:Gestion des Demandes de Transferts'])
     ->get('manager/transfert/{slug}/{transfert}', [DemandeTransfertController::class, 'show'])
     ->name('manager.transfert.show')
@@ -104,6 +103,13 @@ Route::middleware(['auth', 'permission:Gestion des Demandes de Transferts'])
 Route::middleware(['auth', 'permission:Gestion des Demandes de Transferts'])
     ->get('manager/transfert/{transfert}', [DemandeTransfertController::class, 'sending'])
     ->name('manager.transfert.sending')
+    ->where([
+        'transfert' => $idRegex
+    ]);
+
+Route::middleware(['auth', 'permission:Gestion des Demandes de Transferts'])
+    ->get('manager/transfert/{transfert}/rosl', [DemandeTransfertController::class, 'removeOfStandardList'])
+    ->name('manager.transfert.rosl')
     ->where([
         'transfert' => $idRegex
     ]);
@@ -150,6 +156,13 @@ Route::middleware(['auth', 'permission:Gestion des Demandes de Transferts du MIS
 Route::middleware(['auth', 'permission:Gestion des Demandes de Transferts du MISP'])
     ->post('manager/all-transferts/{transfert}/bordereau-create', [AllTransfertsController::class, 'accept'])
     ->name('manager.transfert.bordereau-create')
+    ->where([
+        'transfert' => $idRegex
+    ]);
+
+Route::middleware(['auth', 'permission:Gestion des Demandes de Transferts du MISP'])
+    ->get('manager/all-transferts/{transfert}/rocl', [AllTransfertsController::class, 'removeOfCentralList'])
+    ->name('manager.transfert.rocl')
     ->where([
         'transfert' => $idRegex
     ]);

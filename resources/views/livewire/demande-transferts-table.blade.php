@@ -6,10 +6,10 @@
 
     <div class="optional">
         <div class="buttons">
-            @if (!empty($showButton))
+            @if (!empty($userTransfert))
                 <button class="add">
                     <ion-icon name="create-outline"></ion-icon>
-                    <a href="{{ route('manager.transfert.edit', ['transfert' => $currentTransfert[0]['id']]) }}">Demande Transfert</a>
+                    <a href="{{ route('manager.transfert.edit', ['transfert' => $userTransfert[0]['id']]) }}">Demande Transfert</a>
                 </button>
             @else
                 <button class="add">
@@ -38,7 +38,7 @@
 
     <div class="cardContainer">
         @forelse ($transferts as $transfert)
-            <div class="card" data-label="@if($transfert->transfere) En attente @elseif($transfert->valide) Terminé @else Non transféré @endif">
+            <div class="card" data-label="@if($transfert->transfere && !$transfert->valide) En attente @elseif($transfert->transfere && $transfert->valide) Terminé @else Non transféré @endif">
                 <div class="head">
                     <div class="titleInfos ">
                         <h3 title="{{ $transfert->libelle }}">{{ $transfert->libelle }}</h3>
@@ -52,20 +52,25 @@
                         <span>{{ $transfert->documents->count() }}</span>
                     </div>
                 </div>
-                @if (!$transfert->transfere)
-                    <div class="foot">
-                        <a href="{{ route('manager.transfert.show', ['slug' => $transfert->getSlug(), 'transfert' => $transfert->id]) }}">Consulter</a>
+                <div class="foot">
+                    <a href="{{ route('manager.transfert.show', ['slug' => $transfert->getSlug(), 'transfert' => $transfert->id]) }}">Consulter</a>
+                    @if (!$transfert->transfere)
                         <a href="{{ route('manager.transfert.sending', ['transfert' => $transfert->id]) }}">Transférer</a>
+                    @endif
+                    @if (!$transfert->transfere)
                         <button
                             class="delete"
                             routeForDeleting="{{ route('manager.transfert.destroy', ['transfert' => $transfert->id]) }}" style="height: 32px;">
                                 Annuler
                         </button>
-                    </div>
-                @endif
+                    @endif
+                    @if ($transfert->transfere)
+                        <a href="{{ route('manager.transfert.rosl', ['transfert' => $transfert->id]) }}">Retirer</a>
+                    @endif
+                </div>
             </div>
         @empty
-            Aucune Demande de Transfert en base de données
+            Vous ne posséder aucune Demande de Transfert
         @endforelse
     </div>
     {{ $transferts->onEachSide(0)->links() }}

@@ -34,19 +34,11 @@
 
     <div class="cardContainer">
         @foreach ($transferts as $transfert)
-            <div class="card"
-                 data-label="
-                    @if($transfert->isSend())
-                        En attente
-                    @elseif($transfert->isSend() && $transfert->isValid())
-                        Terminé
-                    @else
-                        Non transféré
-                    @endif">
+            <div class="card"  data-label="@if($transfert->transfere && !$transfert->valide) En attente @elseif($transfert->transfere && $transfert->valide) Terminé @else Non transféré @endif">
                 <div class="head">
                     <div class="titleInfos ">
                         <h3>{{ Str::limit($transfert->libelle, 30, '...') }}</h3>
-                        <span>DPAF</span>
+                        <span>{{ $transfert->user->direction->sigle }}</span>
                     </div>
                     <span>{{ $transfert->created_at->translatedFormat('d/F/Y') }}</span>
                 </div>
@@ -70,6 +62,9 @@
                     @endif
                     @if ($transfert->documents->count() > 0)
                         <a href="{{ route('manager.transfert.bordereau-form', ['transfert' => $transfert->id]) }}">{{ $transfert->valide ? 'Bordereau' : 'Accepter' }}</a>
+                    @endif
+                    @if ($transfert->valide && $transfert->documents->where('archive', 0)->count() === 0)
+                        <a href="{{ route('manager.transfert.rocl', ['transfert' => $transfert->id]) }}">Retirer</a>
                     @endif
                     @if (!$transfert->valide)
                         <button
