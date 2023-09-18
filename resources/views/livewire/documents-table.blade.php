@@ -9,8 +9,8 @@
                 Supprimer
             </button>
             <button class="filter" x-show="documentsChecked.length > 0" x-on:click="$wire.createTransfertDocuments(documentsChecked)" x-cloak>
-                <ion-icon name="send"></ion-icon>
-                Transférer
+                <ion-icon name="add"></ion-icon>
+                Demande Transfert
             </button>
             <button class="add">
                 <ion-icon name="add"></ion-icon>
@@ -77,7 +77,7 @@
                                 data-document-chemise="{{ json_encode($document?->chemisedossier?->code) }}"
                                 data-document-boite="{{ json_encode($document?->chemisedossier?->boitearchive?->code) }}"
                                 data-document-rayon="{{ json_encode($document?->chemisedossier?->boitearchive?->rayonrangement?->code) }}"
-                                data-document-date="{{ json_encode($document->datecreation) }}"
+                                data-document-date="{{ json_encode($document->getDateCreation()->translatedFormat('d F Y')) }}"
                                 >
                             <a href="" onclick="event.preventDefault()">Infos</a>
                         </button>

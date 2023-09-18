@@ -54,7 +54,7 @@ class DemandeTransfertController extends Controller
         }
         return view('manager.demande-transfert.transfert-form', [
             'transfert' => new DemandeTransfert(),
-            'documents' => Document::getDocumentsNotHaveTransfer()
+            'documents' => Document::getUserDirectionDocumentsNotHaveTransfer()
         ]);
     }
 
@@ -119,6 +119,7 @@ class DemandeTransfertController extends Controller
     public function edit(DemandeTransfert $transfert): View | RedirectResponse
     {
         $documents = Document::where('demande_transfert_id', null)
+            ->where('direction_id', Auth::user()->direction->id)
             ->orWhere('demande_transfert_id', $transfert->id)
             ->pluck('nom', 'id');
         $userTransfert =

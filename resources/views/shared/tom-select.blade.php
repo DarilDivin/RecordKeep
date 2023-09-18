@@ -13,7 +13,7 @@
 <div class="inputContainer TomSelect">
     <label for="motclefs">Mots clés</label>
     <select name="motclefs[]" id="motclefs" multiple placeholder="Entrer quelques mots-clés...">
-        @if ($routeName === 'admin.document.edit' && !empty($document->motclefs))
+        @if ($routeName === 'manager.document.edit' && !empty($document->motclefs))
             @foreach ($motclefs as $clef)
                 <option @if(in_array($clef, $motclefs)) selected @endif value="{{ $clef }}">{{ $clef }}</option>
             @endforeach
