@@ -12,7 +12,7 @@
         @enderror
     </div>
 
-    <div class="inputContainer" style="grid-column: 1 / span 3; height: 210px;">
+    <div class="inputContainer TomSelect" style="grid-column: 1 / span 3; height: 210px;">
         <label for="permissions">Permissions</label>
         <select name="permissions[]" id="permissions" multiple placeholder="Choisissez quelques permissions..." wire:model="selectedPermissions" style="height: 100%;">
             @if (request()->route()->getName() === 'admin.role.edit' && !empty($role->permissions->toArray()))

@@ -19,6 +19,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Support\Facades\Auth;
 
 class Document extends Model
 {
@@ -119,14 +120,11 @@ class Document extends Model
         return self::all()->pluck('nom', 'id');
     }
 
-    public static function getDocumentsNotHaveTransfer(): Collection
+    public static function getUserDirectionDocumentsNotHaveTransfer(): Collection
     {
-        return self::where('demande_transfert_id', null)->pluck('nom', 'id');
-    }
-
-    public static function getDocumentsNotHaveTransferAndArchivnt(): Collection
-    {
-        return self::where('demande_transfert_id', null)->where('archive', 0)->pluck('nom', 'id');
+        return self::where('demande_transfert_id', null)
+            ->where('direction_id', Auth::user()->direction->id)
+            ->pluck('nom', 'id');
     }
 
 }
