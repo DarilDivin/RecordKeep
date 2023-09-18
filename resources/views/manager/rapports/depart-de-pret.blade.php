@@ -9,9 +9,11 @@
     <div class="addDocumentFormContainer showForm">
         <div class="overlay"></div>
         <div class="addDocumentForm">
-            <span class="closeDocumentForm">
-                <ion-icon name="arrow-back"></ion-icon>
-            </span>
+            <a href="{{ route('rapport-depart-list') }}">
+                <span class="closeDocumentForm">
+                    <ion-icon name="arrow-back"></ion-icon>
+                </span>
+            </a>
             <h1> Rédiger un rapport de depart de prêt </h1>
 
             <form method="POST" action="{{ route('rapport-depart-store') }}" enctype="multipart/form-data" class="rapport">

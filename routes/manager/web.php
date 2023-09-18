@@ -171,7 +171,7 @@ Route::middleware(['auth', 'permission:Gestion des Demandes de Transferts du MIS
 /* ------------------------------------------------------------------------------------------------------------------------------------- */
 
 
-Route::get('manager/rapport-de-depart-de-pret', [RapportDepartController::class, 'index'])->name('rapport-depart-list');
+// Route::get('manager/rapport-de-depart-de-pret', [RapportDepartController::class, 'index'])->name('rapport-depart-list');
 Route::get('manager/rapport-de-depart-de-pret/create/{demande}', [RapportDepartController::class, 'create'])
     ->name('rapport-depart-create')
     ->where([
@@ -188,7 +188,7 @@ Route::get('manager/rapport-preview/{rapport}', [RapportDepartController::class,
 
 /* ------------------------------------------------------------------------------------------------------------------------------------- */
 
-Route::get('manager/pret', [RapportDepartController::class, 'index'])
+Route::get('manager/rapport-pret', [RapportDepartController::class, 'index'])
     ->name('rapport-depart-list')
     ->middleware(['auth', 'permission:Gestion des Demandes de Prêts']);
 
