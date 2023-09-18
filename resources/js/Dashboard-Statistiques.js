@@ -131,8 +131,8 @@ new Chart(donutGraph, {
       label: 'Nombre total',
       data: [
         userDonut['user'],
-        userDonut['managerStd'],
         userDonut['managerCtl'],
+        userDonut['managerStd'],
         userDonut['admin'],
     ],
       backgroundColor: [

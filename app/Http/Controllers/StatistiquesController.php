@@ -33,14 +33,14 @@ class StatistiquesController extends Controller
 
         $nombreUtilisateursAuthentifies = User::where('email_verified_at', '!=', null)->get()->toArray();
 
-        $pourcentageUtilisateursAuthentifies = (count($nombreUtilisateursAuthentifies) * 100) / count($utilisateurs);
+        $pourcentageUtilisateursAuthentifies = count($utilisateurs) > 0 ? (count($nombreUtilisateursAuthentifies) * 100) / count($utilisateurs) : 0;
 
         $documents = Document::all();
         $nbrDocument = count($documents);
-        $pourcentageDocumentArchivé = (count($documents->where('archive')) * 100) / $nbrDocument;
-        $pourcentageDocumentPreté = (count($documents->where('prete')) * 100) / $nbrDocument;
-        $pourcentageDocumentDispo = (count($documents->where('disponibilite')) * 100) / $nbrDocument;
-        $pourcentageDocumentTéléchargé = (count($documents->where('nbrdownload', '>=', 1)) * 100) / $nbrDocument;
+        $pourcentageDocumentArchivé = $nbrDocument > 0 ? (count($documents->where('archive')) * 100) / $nbrDocument : 0;
+        $pourcentageDocumentPreté = $nbrDocument > 0 ? (count($documents->where('prete')) * 100) / $nbrDocument : 0;
+        $pourcentageDocumentDispo = $nbrDocument > 0 ? (count($documents->where('disponibilite')) * 100) / $nbrDocument : 0;
+        $pourcentageDocumentTéléchargé = $nbrDocument > 0 ? (count($documents->where('nbrdownload', '>=', 1)) * 100) / $nbrDocument : 0;
 
 
 

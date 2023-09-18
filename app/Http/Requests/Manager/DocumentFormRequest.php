@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Manager;
 
 use App\Rules\ForceChoiceDirecteurFonctionRule;
+use App\Rules\ForceChoiceUserDiretionRule;
 use Illuminate\Validation\Rule;
 use App\Rules\UniqueAndMaxMotCleRule;
 use Illuminate\Foundation\Http\FormRequest;
@@ -58,7 +59,7 @@ class DocumentFormRequest extends FormRequest
             'chemise_dossier_id' => ['nullable', 'exists:chemise_dossiers,id'],
             'division_id' => ['required', 'exists:divisions,id', 'integer'],
             'service_id' => ['required', 'exists:services,id', 'integer'],
-            'direction_id' => ['required', 'exists:directions,id', 'integer'],
+            'direction_id' => ['required', 'exists:directions,id', 'integer', new ForceChoiceUserDiretionRule()],
             'document' => $documentRule,
             'fonctions' => ['required', 'array', 'exists:fonctions,id', new ForceChoiceDirecteurFonctionRule()],
             'motclefs' => ['required', 'array', new UniqueAndMaxMotCleRule()]

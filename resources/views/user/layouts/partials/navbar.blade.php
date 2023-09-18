@@ -13,10 +13,14 @@
     </div>
     <div class="nav_menu">
         <ul>
+            @canany(['Consulter un Document', 'Télécharger un Document', 'Rechercher un Document', 'Demander un Prêt'])
+                <li @class(['nav_links', 'active' => str_contains($route, 'home')])><a href="{{ route('home') }}">Accueil</a></li>
+            @endcanany
 
-            <li @class(['nav_links', 'active' => str_contains($route, 'home')])><a href="{{ route('home') }}">Accueil</a></li>
+            @canany(['Consulter un Document', 'Télécharger un Document', 'Rechercher un Document', 'Demander un Prêt'])
+                <li @class(['nav_links', 'active' => str_contains($route, 'document.index')])><a href="{{ route('document.index') }}">Documenthèque</a></li>
+            @endcanany
 
-            <li @class(['nav_links', 'active' => str_contains($route, 'document.index')])><a href="{{ route('document.index') }}">Documenthèque</a></li>
             @auth
                 <li @class(['nav_links', 'active' => str_contains($route, 'settings')])><a href="{{ route('settings') }}">Paramètres</a></li>
             @endauth

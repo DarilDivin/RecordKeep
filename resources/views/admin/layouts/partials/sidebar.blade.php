@@ -188,15 +188,17 @@
             </li>
         @endcan
 
-        <li class="list">
-            <a href="{{ route('home') }}">
-                <span class="icon"><ion-icon name="laptop-outline"></ion-icon></span>
-                <span class="title">Page d'accueil Utilisateur</span>
-            </a>
-        </li>
+        @canany(['Consulter un Document', 'Télécharger un Document', 'Rechercher un Document', 'Demander un Prêt'])
+            <li class="list">
+                <a href="{{ route('home') }}">
+                    <span class="icon"><ion-icon name="laptop-outline"></ion-icon></span>
+                    <span class="title">Page d'accueil Utilisateur</span>
+                </a>
+            </li>
+        @endcan
     </ul>
 
-    <div class="user_profil" title="Utilisateur: Régis AISSI">
+    <div class="user_profil" title="Utilisateur: {{ Auth::user()->prenoms . ' ' . strtoupper(Auth::user()->nom ) }}">
         <div class="profil">
             <ion-icon name="person-circle-outline"></ion-icon>
         </div>

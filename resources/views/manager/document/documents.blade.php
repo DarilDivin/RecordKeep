@@ -33,7 +33,7 @@
     </div>
 
     <div class="addDocumentFormContainer">
-        <div class="overlay"></div>
+        <div class="overlayInfos"></div>
         <div class="addDocumentForm">
             <span class="closeDocumentForm">
                 <ion-icon name="close-outline"></ion-icon>
@@ -131,62 +131,62 @@
                     </div>
                     <div class="info">
                         <h5>Nom :</h5>
-                        <p id="nom">AOF DSI</p>
+                        <p id="nom"></p>
                     </div>
                     <div class="info">
                         <h5>Objet :</h5>
-                        <p id="objet">AOF DSI</p>
+                        <p id="objet"></p>
                     </div>
                     <div class="info">
                         <h5>Source :</h5>
-                        <p id="source">AOF DSI</p>
+                        <p id="source"></p>
                     </div>
                     <div class="info">
                         <h5>Emetteur :</h5>
-                        <p id="emetteur">AOF DSI</p>
+                        <p id="emetteur"></p>
                     </div>
                     <div class="info">
                         <h5>Récepteur :</h5>
-                        <p id="recepteur">AOF DSI</p>
+                        <p id="recepteur"></p>
                     </div>
                     <div class="info">
                         <h5>DUA :</h5>
-                        <p id="dua">AOF DSI</p>
+                        <p id="dua"></p>
                     </div>
                     <div class="info">
                         <h5>Date :</h5>
-                        <p id="date">AOF DSI</p>
+                        <p id="date"></p>
                     </div>
                     <div class="info">
                         <h5>Nature :</h5>
-                        <p id="nature">AOF DSI</p>
+                        <p id="nature"></p>
                     </div>
                     <div class="info">
                         <h5>Catégorie :</h5>
-                        <p id="categorie">AOF DSI</p>
+                        <p id="categorie"></p>
                     </div>
                 </div>
                 <div class="sectionPlus content">
                     <h3>Plus</h3>
                     <div class="info">
                         <h5>Nombre de consultation :</h5>
-                        <p id="consult">12000</p>
+                        <p id="consult"></p>
                     </div>
                     <div class="info">
                         <h5>Nombre de téléchargement :</h5>
-                        <p id="download">25000</p>
+                        <p id="download"></p>
                     </div>
                     <div class="info">
                         <h5>Prêté :</h5>
-                        <p id="pret">Non</p>
+                        <p id="pret"></p>
                     </div>
                     <div class="info">
                         <h5>Archivé :</h5>
-                        <p id="archived">Oui</p>
+                        <p id="archived"></p>
                     </div>
                     <div class="info">
                         <h5>Disponible :</h5>
-                        <p id="disponible">Oui</p>
+                        <p id="disponible"></p>
                     </div>
 
                 </div>
@@ -194,32 +194,32 @@
                     <h3>Structure d'appartenance</h3>
                     <div class="info">
                         <h5>Direction:</h5>
-                        <p id="direction">DSI</p>
+                        <p id="direction"></p>
                     </div>
                     <div class="info">
                         <h5>Service :</h5>
-                        <p id="service">SEPTAE</p>
+                        <p id="service"></p>
                     </div>
                     <div class="info">
                         <h5>Division :</h5>
-                        <p id="division">ARHO</p>
+                        <p id="division"></p>
                     </div>
                 </div>
-                <div class="sectionClassement content">
-                    <h3>Classement</h3>
-                    <div class="info">
-                        <h5>Chemise:</h5>
-                        <p id="chemise">DSI</p>
+                    <div class="sectionClassement content">
+                        <h3>Classement</h3>
+                        <div class="info">
+                            <h5>Chemise:</h5>
+                            <p id="chemise"></p>
+                        </div>
+                        <div class="info">
+                            <h5>Boite :</h5>
+                            <p id="boite"></p>
+                        </div>
+                        <div class="info">
+                            <h5>Rayon :</h5>
+                            <p id="rayon"></p>
+                        </div>
                     </div>
-                    <div class="info">
-                        <h5>Boite :</h5>
-                        <p id="boite">SEPTAE</p>
-                    </div>
-                    <div class="info">
-                        <h5>Rayon :</h5>
-                        <p id="rayon">ARHO</p>
-                    </div>
-                </div>
             </div>
         </div>
     </div>

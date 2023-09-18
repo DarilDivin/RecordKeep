@@ -1,8 +1,8 @@
 
-const addBtn = document.querySelector('.viewInfo');
+const addBtn = document.querySelectorAll('.viewInfo');
 const userFormContainer = document.querySelector('.addUserFormContainer');
 const closeUserForm = document.querySelector('.closeUserForm');
-const overlay = document.querySelector('.overlay');
+const overlay = document.querySelector('.overlayInfos');
 const documentFormContainer = document.querySelector('.addDocumentFormContainer');
 const closeDocumentForm = document.querySelector('.closeDocumentForm');
 
@@ -29,34 +29,35 @@ const boite = document.getElementById('boite');
 const rayon = document.getElementById('rayon');
 
 
-addBtn.addEventListener('click', () => {
-    let document = JSON.parse(addBtn.getAttribute('data-document'));
-console.log(document);
+addBtn.forEach((element) =>
+element.addEventListener('click', () => {
+    const document = JSON.parse(element.getAttribute('data-document'));
+    console.log(document);
     signature.innerText = document.signature;
     nom.innerText = document.nom;
     objet.innerText = document.objet;
     source.innerText = document.source;
     emetteur.innerText = document.emetteur;
     recepteur.innerText = document.recepteur;
-    dua.innerText = document.dua;
-    date.innerText = JSON.parse(addBtn.getAttribute('data-document-date'));
-    nature.innerText = JSON.parse(addBtn.getAttribute('data-document-nature'));
-    categorie.innerText = JSON.parse(addBtn.getAttribute('data-document-categorie'));
+    dua.innerText = document.dua + ' ans';
+    date.innerText = JSON.parse(element.getAttribute('data-document-date'));
+    nature.innerText = JSON.parse(element.getAttribute('data-document-nature'));
+    categorie.innerText = JSON.parse(element.getAttribute('data-document-categorie'));
     consult.innerText = document.nbrconsult;
     download.innerText = document.nbrdownload;
     pret.innerText = document.prete ? 'Oui' : 'Non';
     archived.innerText = document.archive ? 'Oui' : 'Non';
     disponible.innerText = document.disponibilite ? 'Disponible' : 'Indisponible';
-    direction.innerText = JSON.parse(addBtn.getAttribute('data-document-direction'));
-    service.innerText = JSON.parse(addBtn.getAttribute('data-document-service'));
-    division.innerText = JSON.parse(addBtn.getAttribute('data-document-division'));
-    chemise.innerText = JSON.parse(addBtn.getAttribute('data-document-chemise'));
-    boite.innerText = JSON.parse(addBtn.getAttribute('data-document-boite'));
-    rayon.innerText = JSON.parse(addBtn.getAttribute('data-document-rayon'));
+    direction.innerText = JSON.parse(element.getAttribute('data-document-direction'));
+    service.innerText = JSON.parse(element.getAttribute('data-document-service'));
+    division.innerText = JSON.parse(element.getAttribute('data-document-division'));
+    chemise.innerText = JSON.parse(element.getAttribute('data-document-chemise')) === null ? 'Non classé' : JSON.parse(element.getAttribute('data-document-chemise'));
+    boite.innerText = JSON.parse(element.getAttribute('data-document-boite')) === null ? 'Non classé' : JSON.parse(element.getAttribute('data-document-boite'));
+    rayon.innerText = JSON.parse(element.getAttribute('data-document-rayon')) === null ? 'Non classé' : JSON.parse(element.getAttribute('data-document-rayon'));
 
     documentFormContainer.classList.add('showForm')
 
-})
+}))
 
 const closeFormDoc = () => {
     documentFormContainer.classList.remove('showForm');
