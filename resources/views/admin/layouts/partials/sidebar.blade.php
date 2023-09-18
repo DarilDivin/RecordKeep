@@ -169,4 +169,21 @@
             <p>{{ Auth::user()->prenoms . ' ' . strtoupper(Auth::user()->nom ) }}</p>
         </div>
     </div>
+    <div class="userOptions">
+        <a title="Se déconnecter"
+            href="{{ route('logout') }}"
+            onclick="event.preventDefault();
+            document.getElementById('logout-form').submit();"
+        >
+            <ion-icon name="log-out-outline"></ion-icon>
+        </a>
+        @auth
+            <form action="{{ route('logout') }}" method="post" id="logout-form" style="display: none">
+                @csrf
+            </form>
+        @endauth
+        <a href="{{ route('settings') }}" title="Parametres">
+            <ion-icon name="settings-outline"></ion-icon>
+        </a>
+    </div>
 </div>

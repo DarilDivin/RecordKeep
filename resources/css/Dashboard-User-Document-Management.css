@@ -247,6 +247,25 @@
     transition: all .2s ease;
 }
 
+.navigation .userOptions {
+    width: 100%;
+    /* background: #283593; */
+    position: absolute;
+    bottom: 75px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 20px;
+}
+
+.navigation.close .userOptions {
+    padding: 0;
+}
+
+.navigation .userOptions ion-icon {
+    font-size: 1.8rem;
+    color: var(--color-primary);
+}
 
 
 .main {

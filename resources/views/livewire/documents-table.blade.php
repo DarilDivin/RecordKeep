@@ -67,7 +67,20 @@
                     <td>{{ $document->datecreation/* ->translatedFormat('d F Y') */ }}</td>
                     <td>{{ $document->dua }}ans</td>
                     <td>
-                        <button class=""><a href="">Infos</a></button>
+                        <button class="viewInfo"
+                                data-document="{{ json_encode($document) }}"
+                                data-document-nature="{{ json_encode($document->naturedocument->nature) }}"
+                                data-document-categorie="{{ json_encode($document->categorie->categorie) }}"
+                                data-document-direction="{{ json_encode(Str::limit($document->direction->direction, 40, '...')) }}"
+                                data-document-division="{{ json_encode(Str::limit($document->division->division, 40, '...')) }}"
+                                data-document-service="{{ json_encode(Str::limit($document->service->service, 40, '...')) }}"
+                                data-document-chemise="{{ json_encode($document?->chemisedossier?->code) }}"
+                                data-document-boite="{{ json_encode($document?->chemisedossier?->boitearchive?->code) }}"
+                                data-document-rayon="{{ json_encode($document?->chemisedossier?->boitearchive?->rayonrangement?->code) }}"
+                                data-document-date="{{ json_encode($document->datecreation) }}"
+                                >
+                            <a href="" onclick="event.preventDefault()">Infos</a>
+                        </button>
                         <button class="edit"><a href="{{ route('manager.document.edit', ['document' => $document->id]) }}">Éditer</a></button>
                         <button
                         class="delete"

@@ -498,3 +498,80 @@ h3 {
     transform: translate(-50%, -60%);
     transition: opacity 0.4s 0.2s ease-out, transform 0.4s 0.2s ease-out, height .4s;
 }
+
+
+.addDocumentForm .infosDoc {
+    /* background: #eee; */
+    width: 100%;
+    height: 100%;
+    padding: 5px 20px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    /* grid-template-rows: 80px; */
+    align-items: flex-start;
+    gap: 5px;
+    margin: 10px 0;
+}
+
+.addDocumentForm .infosDoc .infoContent {
+    padding: 10px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 20px;
+    /* background: blanchedalmond; */
+    box-shadow: var(--box-shadow-thin-dark);
+    border-radius: 5px;
+}
+
+.addDocumentForm .infosDoc .infoContent h5 {
+    color: var(--color-primary);
+    font-size: 1rem;
+}
+
+.addDocumentForm .infosDoc .content {
+    min-height: 250px;
+    border-radius: 10px;
+    background: #ffffff;
+    box-shadow: inset 5px 5px 20px #eee,
+                inset -5px -5px 20px #ffffff;
+    padding: 25px 10px 10px;
+    position: relative;
+    border: .5px solid var(--color-primary);
+    overflow: visible;
+    margin-bottom: 25px;
+}
+
+.addDocumentForm .infosDoc .sectionGeneral {
+    grid-column: 1 / span 2;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 5px;
+}
+
+
+.addDocumentForm .infosDoc .content h3 {
+    position: absolute;
+    display: block;
+    top: -8%;
+    left: 15px;
+    background: #fff;
+    padding: 5px;
+    border: .5px solid var(--color-primary);
+    border-radius: 5px;
+}
+
+.addDocumentForm .infosDoc .content .info {
+    display: flex;
+    justify-content: flex-start;
+    gap: 15px;
+    margin-bottom: 10px;
+}
+
+.addDocumentForm .infosDoc .content .info h5 {
+    color: var(--color-primary);
+    font-size: 1rem;
+}
+
+
+

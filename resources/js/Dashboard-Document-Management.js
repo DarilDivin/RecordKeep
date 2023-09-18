@@ -1,13 +1,61 @@
 
-const addBtn = document.querySelector('.add');
+const addBtn = document.querySelector('.viewInfo');
 const userFormContainer = document.querySelector('.addUserFormContainer');
 const closeUserForm = document.querySelector('.closeUserForm');
 const overlay = document.querySelector('.overlay');
 const documentFormContainer = document.querySelector('.addDocumentFormContainer');
 const closeDocumentForm = document.querySelector('.closeDocumentForm');
 
+const signature = document.getElementById('signature');
+const nom = document.getElementById('nom');
+const objet = document.getElementById('objet');
+const source = document.getElementById('source');
+const emetteur = document.getElementById('emetteur');
+const recepteur = document.getElementById('recepteur');
+const dua = document.getElementById('dua');
+const date = document.getElementById('date');
+const nature = document.getElementById('nature');
+const categorie = document.getElementById('categorie');
+const consult = document.getElementById('consult');
+const download = document.getElementById('download');
+const pret = document.getElementById('pret');
+const archived = document.getElementById('archived');
+const disponible = document.getElementById('disponible');
+const direction = document.getElementById('direction');
+const service = document.getElementById('service');
+const division = document.getElementById('division');
+const chemise = document.getElementById('chemise');
+const boite = document.getElementById('boite');
+const rayon = document.getElementById('rayon');
+
+
 addBtn.addEventListener('click', () => {
+    let document = JSON.parse(addBtn.getAttribute('data-document'));
+console.log(document);
+    signature.innerText = document.signature;
+    nom.innerText = document.nom;
+    objet.innerText = document.objet;
+    source.innerText = document.source;
+    emetteur.innerText = document.emetteur;
+    recepteur.innerText = document.recepteur;
+    dua.innerText = document.dua;
+    date.innerText = JSON.parse(addBtn.getAttribute('data-document-date'));
+    nature.innerText = JSON.parse(addBtn.getAttribute('data-document-nature'));
+    categorie.innerText = JSON.parse(addBtn.getAttribute('data-document-categorie'));
+    consult.innerText = document.nbrconsult;
+    download.innerText = document.nbrdownload;
+    pret.innerText = document.prete ? 'Oui' : 'Non';
+    archived.innerText = document.archive ? 'Oui' : 'Non';
+    disponible.innerText = document.disponibilite ? 'Disponible' : 'Indisponible';
+    direction.innerText = JSON.parse(addBtn.getAttribute('data-document-direction'));
+    service.innerText = JSON.parse(addBtn.getAttribute('data-document-service'));
+    division.innerText = JSON.parse(addBtn.getAttribute('data-document-division'));
+    chemise.innerText = JSON.parse(addBtn.getAttribute('data-document-chemise'));
+    boite.innerText = JSON.parse(addBtn.getAttribute('data-document-boite'));
+    rayon.innerText = JSON.parse(addBtn.getAttribute('data-document-rayon'));
+
     documentFormContainer.classList.add('showForm')
+
 })
 
 const closeFormDoc = () => {

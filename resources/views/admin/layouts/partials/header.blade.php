@@ -18,6 +18,7 @@
         'resources/js/Dashboard-Statistiques.js',
         'resources/js/Dashboard.js',
         'resources/js/sidebar.js',
+        'resources/js/Dashboard-Document-Management.js',
 ])
 </head>
 <body class="dash">
