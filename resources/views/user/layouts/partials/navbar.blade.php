@@ -13,6 +13,10 @@
     </div>
     <div class="nav_menu">
         <ul>
+            @if (request()->route()->getName() == 'Presentation')
+                <li @class(['nav_links', 'active' => str_contains($route, 'home')])><a href="{{ route('home') }}">Accueil</a></li>
+                <li @class(['nav_links', 'active' => str_contains($route, 'document.index')])><a href="{{ route('document.index') }}">Documenthèque</a></li>
+            @endif
             @canany(['Consulter un Document', 'Télécharger un Document', 'Rechercher un Document', 'Demander un Prêt'])
                 <li @class(['nav_links', 'active' => str_contains($route, 'home')])><a href="{{ route('home') }}">Accueil</a></li>
             @endcanany
@@ -57,12 +61,31 @@
             </a>
         </div>
 
-        <div class="navDropdownItem dashboardLink">
-            <a href="{{ route('admin.statistique') }}">
-                <ion-icon name="analytics-outline"></ion-icon>
-                <p>Dashboard</p>
-            </a>
-        </div>
+        @canany([
+            'Gestion des Rôles',
+            'Gestion des Services',
+            'Gestion des Fonctions',
+            'Gestion des Divisions',
+            'Gestion des Documents',
+            'Gestion des Directions',
+            'Gestion des Catégories',
+            'Gestion des Classements',
+            'Gestion des Utilisateurs',
+            'Gestion des Boîtes Archives',
+            'Gestion des Rayons Rangements',
+            'Gestion des Chemises Dossiers',
+            'Gestion des Demandes de Prêts',
+            'Gestion des Natures de Documents',
+            'Gestion des Demandes de Transferts',
+            'Gestion des Demandes de Transferts du MISP'
+        ])
+            <div class="navDropdownItem dashboardLink">
+                <a href="{{ route('admin.statistique') }}">
+                    <ion-icon name="analytics-outline"></ion-icon>
+                    <p>Dashboard</p>
+                </a>
+            </div>
+        @endcanany
 
     </div>
 

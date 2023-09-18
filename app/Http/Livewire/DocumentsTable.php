@@ -47,7 +47,9 @@ class DocumentsTable extends Component
 
     public function createTransfertDocuments(array $ids)
     {
-        $demandeTransfert = DemandeTransfert::where('transfere', 0)->get()->toArray();
+        $demandeTransfert = DemandeTransfert::where('transfere', 0)
+                ->where('user_id', Auth::user()->id)
+                ->get()->toArray();
         if(empty($demandeTransfert)){
             return session()->flash('error', "Créez une nouvelle Demande de Transfert !");
         }

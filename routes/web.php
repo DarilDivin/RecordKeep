@@ -18,7 +18,7 @@ use App\Http\Controllers\Manager\DocumentController;
 
 Route::get('/', function () {
     return view('index');
-})->middleware('guest');
+})->middleware('guest')->name('Presentation');
 
 Route::get('/home', [HomeController::class, 'index'])->name('home')->middleware(['auth', 'verified', 'permission:Consulter un Document|Rechercher un Document|Télécharger un Document']);
 

@@ -9,9 +9,11 @@
     <div class="addDocumentFormContainer showForm">
         <div class="overlay"></div>
         <div class="addDocumentForm">
-            <span class="closeDocumentForm">
-                <ion-icon name="arrow-back"></ion-icon>
-            </span>
+            <a href="{{ route('manager.transfert.all') }}">
+                <span class="closeDocumentForm">
+                    <ion-icon name="arrow-back"></ion-icon>
+                </span>
+            </a>
             <h1> Rédiger un Bordereau de Transfert </h1>
 
             <form method="POST" action="{{ route('manager.transfert.bordereau-create', ['transfert' => $transfert]) }}" enctype="multipart/form-data" class="rapport">

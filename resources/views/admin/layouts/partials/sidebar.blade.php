@@ -163,7 +163,7 @@
 
         @can('Gestion des Demandes de Prêts')
             <li class="list">
-                <a href="">
+                <a href="{{ route('rapport-depart-list') }}">
                     <span class="icon"><ion-icon name="swap-horizontal"></ion-icon></span>
                     <span class="title">Demandes de Prêts</span>
                 </a>

@@ -23,16 +23,16 @@
                     </div>
                 </div>
                 <div class="docOptions">
-                    <button class="consult" data-document-link="storage/{{ $document->document }}">
+                    {{-- <button class="consult" data-document-link="storage/{{ $document->document }}">
                         <ion-icon name="eye-outline"></ion-icon>
                         <p>Consulter</p>
-                </button>
-                <button class="download">
+                </button> --}}
+                {{-- <button class="download">
                     <a href="{{ route('document.download', ['document' => $document]) }}">
                         <ion-icon name="download"></ion-icon>
                         <p>Télécharger</p>
                     </a>
-                </button>
+                </button> --}}
                 </div>
             </div>
             <div class="infosDoc">
@@ -64,76 +64,16 @@
                 </table>
             </div>
         </section>
-
-        @can('Gestion des Documents')
-            <section class="plusInfos">
-                <table class="table">
-                    <tr>
-                        <td>Identifiant</td>
-                        <td>{{ $document->id }}</td>
-                    </tr>
-                    <tr>
-                        <td>Code</td>
-                        <td>{{ $document->code }}</td>
-                    </tr>
-                    <tr>
-                        <td>DUA</td>
-                        <td>{{ $document->dua }} ans</td>
-                    </tr>
-                    <tr>
-                        <td>Emetteur</td>
-                        <td>{{ $document->emetteur }}</td>
-                    </tr>
-                    <tr>
-                        <td>Récepteur</td>
-                        <td>{{ $document->recepteur }}</td>
-                    </tr>
-                    <tr>
-                        <td>Mots clés</td>
-                        <td>{{ $document->motclefs }}</td>
-                    </tr>
-
-                </table>
-                <div class="vertical-line"></div>
-                <table class="table">
-                    <tr>
-                        <td>Direction</td>
-                        <td>{{ $document->direction->direction }}</td>
-                    </tr>
-                    <tr>
-                        <td>Service</td>
-                        <td>{{ $document->service->service }}</td>
-                    </tr>
-                    <tr>
-                        <td>Division</td>
-                        <td>{{ $document->division->division }}</td>
-                    </tr>
-                    <tr>
-                        <td>Chemise</td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>Boite</td>
-                        <td>-</td>
-                    </tr>
-                    <tr>
-                        <td>Rayon</td>
-                        <td>-</td>
-                    </tr>
-                </table>
-            </section>
-        @endcan
-
-
+            @if (session('success'))
+                <div class="message success">
+                    {{ session('success') }}
+                </div>
+            @endif
         @can('Demander un Prêt')
             <section class="loanRequest">
                 <div class="formContainer">
 
-                    @if (session('success'))
-                        <div class="message success">
-                            {{ session('success') }}
-                        </div>
-                    @endif
+
 
                     <h1>{{ $document->disponibilite ? "Procéder à une demande pour ce document" : "Impossible de procéder à une demande pour ce document" }}</h1>
                     <form action="{{ route('document.demande', $document) }}" method="POST" @class(['loanForm', 'disabled' => !$document->disponibilite]) )>

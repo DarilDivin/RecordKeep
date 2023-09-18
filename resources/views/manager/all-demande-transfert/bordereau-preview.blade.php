@@ -74,26 +74,31 @@
             <h1>Bordereau de transfert </h1>
 
             <div class="line">
-                <p><strong>Nom du Transféreur : {{ $transfert->user->nom }}</strong></p>
-                <p></p>
+                <p><strong>Nom du Transféreur : </strong></p>
+                <p>{{ $transfert->user->nom }}</p>
             </div>
             <div class="line">
-                <p><strong>Prénoms du Transféreur :  {{ $transfert->user->prenoms }}</strong></p>
-                <p></p>
+                <p><strong>Prénoms du Transféreur :  </strong></p>
+                <p>{{ $transfert->user->prenoms }}</p>
             </div>
             <div class="line">
-                <p><strong>Email du Transféreur :  {{ $transfert->user->email }}</strong></p>
-                <p></p>
+                <p><strong>Email du Transféreur :  </strong></p>
+                <p>{{ $transfert->user->email }}</p>
             </div>
             <div class="bigtextarea">
                 <p><strong>Observation :</strong></p>
-                <p style="font-size: .9rem;">{{ $transfert->observation }}Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt molestiae nobis placeat, dolore pariatur ipsa dignissimos tempora id quibusdam tenetur officiis ducimus corrupti. Possimus hic culpa omnis magni. Sint, ducimus. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Optio doloremque eligendi, doloribus itaque numquam laborum officiis explicabo deleniti facilis nobis assumenda repudiandae animi, totam in! Nisi sed nihil veritatis quae! Lorem ipsum dolor sit amet consectetur, adipisicing elit. Maiores aspernatur ex sequi error rerum tempora. Molestias modi similique aliquam ipsam sequi blanditiis enim distinctio, quis quasi corporis aut fugiat nesciunt? Lorem ipsum dolor sit amet consectetur adipisicing elit. At quod minus similique esse saepe ex excepturi consequuntur omnis nam repellendus aperiam quibusdam culpa, modi fugiat laborum voluptatum reiciendis, molestias natus?Lorem ipsum dolor sit amet consectetur, adipisicing elit. Numquam eaque sequi modi quibusdam, fuga natus cum omnis, excepturi perferendis alias ab delectus asperiores nostrum ducimus quae amet dolorem cumque quo!lorem
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos quis aliquid natus repellat itaque rem maiores a eum in architecto. Sequi cumque nemo provident modi unde, libero quod consequuntur corrupti.</p>
+                <p style="font-size: .9rem;">{{ $transfert->bordereautransfert->observation }}</p>
             </div>
             <div class="line">
-                <p><strong>Dateb de L'Opération : {{ $transfert->created_at }}</strong></p>
-                <p></p>
+                <p><strong>Dateb de L'Opération : </strong></p>
+                <p>{{ $transfert->created_at }}</p>
             </div>
+            <h3>Liste des documents</h3>
+            <ul>
+                @foreach ($transfert->documents as $document)
+                    <li>{{ $document->nom }}</li>
+                @endforeach
+            </ul>
         </div>
     </div>
 </body>

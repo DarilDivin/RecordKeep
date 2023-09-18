@@ -128,6 +128,7 @@ class DocumentPageTable extends Component
 
         return view('livewire.document-page-table', [
             'documents' => $documents
+                ->where('archive', 1)
                 ->orderBy('created_at', 'desc')
                 ->paginate(20)
         ]);

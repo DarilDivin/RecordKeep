@@ -38,7 +38,7 @@
                 <div class="head">
                     <div class="titleInfos ">
                         <h3>{{ Str::limit($transfert->libelle, 30, '...') }}</h3>
-                        <span>{{ $transfert->user->direction->sigle }}</span>
+                        <span>{{ $transfert->user->direction->sigle }} | {{ $transfert->user->prenoms }} {{ strtoupper($transfert->user->nom) }}</span>
                     </div>
                     <span>{{ $transfert->created_at->translatedFormat('d/F/Y') }}</span>
                 </div>
