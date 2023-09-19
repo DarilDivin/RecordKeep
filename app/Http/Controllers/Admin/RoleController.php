@@ -71,6 +71,7 @@ class RoleController extends Controller
      */
     public function update(RoleFormRequest $request, Role $role): RedirectResponse
     {
+        dd($request->validated());
         $data = $request->validated();
         unset($data['permissions']);
         $role->update($data);

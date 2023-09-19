@@ -62,7 +62,7 @@ class DocumentsTable extends Component
             }
         }
         $this->documentsChecked = [];
-        return session()->flash('success', 'Le(s) Document(s) ont bien été ajouté à votre Demande de Transfert');
+        return session()->flash('success', 'Le(s) Document(s) ont bien été ajouté à votre Demande de Transfert.');
     }
 
     public function setOrderField(string | int | DateTime  $field)

@@ -12,7 +12,7 @@
             @php
                 $previousurl = url()->previous();
             @endphp
-            <a href="@if(Str::contains($previousurl, 'all-transferts')) {{ route('manager.transfert.all') }} @elseif(Str::contains($previousurl, 'document')) {{ route('manager.document.classed') }} @endif">
+            <a href="@if(Str::contains($previousurl, 'all-transferts')) {{ route('manager.transfert.one', ['slug' => $transfert->getSlug(),'transfert' => $transfert ]) }} @elseif(Str::contains($previousurl, 'document')) {{ route('manager.document.classed') }} @endif">
                 <span class="closeDocumentForm">
                     <ion-icon name="arrow-back"></ion-icon>
                 </span>

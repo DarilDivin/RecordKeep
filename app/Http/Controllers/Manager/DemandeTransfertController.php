@@ -84,15 +84,18 @@ class DemandeTransfertController extends Controller
 
     public function show(string $slug, DemandeTransfert $transfert): View | RedirectResponse
     {
-        if($slug !== $transfert->getSlug()){
-            return to_route('manager.transfert.show', [
-                'slug' => $transfert->getSlug(),
+        if(!$transfert->sr && $transfert->user_id === Auth::user()->id) {
+            if($slug !== $transfert->getSlug()){
+                return to_route('manager.transfert.show', [
+                    'slug' => $transfert->getSlug(),
+                    'transfert' => $transfert
+                ]);
+            }
+            return view('manager.demande-transfert.transfert-show', [
                 'transfert' => $transfert
             ]);
         }
-        return view('manager.demande-transfert.transfert-show', [
-            'transfert' => $transfert
-        ]);
+        return redirect()->route('manager.transfert.index');
     }
 
     public function removeForStandardTranfer(Document $document, DemandeTransfert $transfert): RedirectResponse

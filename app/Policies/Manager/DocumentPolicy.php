@@ -39,6 +39,7 @@ class DocumentPolicy
     public function update(User $user, Document $document): bool
     {
          return $user->can('Gestion des Documents') &&
+         $document->demande_transfert_id === null &&
          Auth::user()->direction->id === $document->direction_id;
     }
 
@@ -48,6 +49,7 @@ class DocumentPolicy
     public function delete(User $user, Document $document): bool
     {
          return $user->can('Gestion des Documents') &&
+         $document->demande_transfert_id === null &&
          Auth::user()->direction->id === $document->direction_id;
     }
 
@@ -75,11 +77,13 @@ class DocumentPolicy
 
     public function showClassementForm(User $user, Document $document): bool
     {
-        return $user->can('Gestion des Classements');
+        return $user->can('Gestion des Classements') &&
+        $document->demandetransfert->transfere === 1;
     }
 
     public function doClassement(User $user, Document $document): bool
     {
-        return $user->can('Gestion des Classements');
+        return $user->can('Gestion des Classements') &&
+        $document->demandetransfert->transfere === 1;
     }
 }

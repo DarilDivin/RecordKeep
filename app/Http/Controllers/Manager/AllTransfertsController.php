@@ -63,6 +63,7 @@ class AllTransfertsController extends Controller
                 $document = Document::find($documentId);
                 $document->update([
                     'archive' => 0,
+                    'chemise_dossier_id' => null,
                     'demande_transfert_id' => null
                 ]);
             }

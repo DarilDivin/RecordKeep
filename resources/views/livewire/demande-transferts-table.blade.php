@@ -42,7 +42,7 @@
                 <div class="head">
                     <div class="titleInfos ">
                         <h3 title="{{ $transfert->libelle }}">{{ $transfert->libelle }}</h3>
-                        <span>DPAF</span>
+                        <span>{{ $transfert->user->direction->sigle }} | {{ $transfert->user->prenoms }} {{ strtoupper($transfert->user->nom) }}</span>
                     </div>
                     <span>{{ $transfert->created_at->translatedFormat('d/F/Y') }}</span>
                 </div>
@@ -55,7 +55,11 @@
                 <div class="foot">
                     <a href="{{ route('manager.transfert.show', ['slug' => $transfert->getSlug(), 'transfert' => $transfert->id]) }}">Consulter</a>
                     @if (!$transfert->transfere)
-                        <a href="{{ route('manager.transfert.sending', ['transfert' => $transfert->id]) }}">Transférer</a>
+                        <form action="{{ route('manager.transfert.sending', ['transfert' => $transfert->id]) }}" method="POST">
+                            @csrf
+                            @method('patch')
+                            <button style="height: 32px; font-weight: normal;">Transférer</button>
+                        </form>
                     @endif
                     @if (!$transfert->transfere)
                         <button
@@ -65,7 +69,11 @@
                         </button>
                     @endif
                     @if ($transfert->transfere)
-                        <a href="{{ route('manager.transfert.rosl', ['transfert' => $transfert->id]) }}">Retirer</a>
+                        <form action="{{ route('manager.transfert.rosl', ['transfert' => $transfert->id]) }}" method="POST">
+                            @csrf
+                            @method('patch')
+                            <button style="height: 32px; font-weight: normal;">Retirer</button>
+                        </form>
                     @endif
                 </div>
             </div>

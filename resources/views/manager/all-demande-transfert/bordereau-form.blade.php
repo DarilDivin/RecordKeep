@@ -18,7 +18,7 @@
 
             <form method="POST" action="{{ route('manager.transfert.bordereau-create', ['transfert' => $transfert]) }}" enctype="multipart/form-data" class="rapport">
                 @csrf
-                @method('post')
+                @method('patch')
 
                 <x-input class="inputContainer DebMoit" id="nomUser" label="Nom du transféreur" type="text" name="nomUser" placeholder=""  readonly="readonly" value="{{ $transfert->user->prenoms }}" />
 

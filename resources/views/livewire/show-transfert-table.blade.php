@@ -75,7 +75,7 @@
                     <td>{{ $document->id }}</td>
                     <td>{{ $document->signature }}</td>
                     <td>{{ $document->nom }}</td>
-                    <td>{{ $document->created_at }}</td>
+                    <td>{{ $document->getDateCreation()->translatedFormat('d F Y') }}</td>
                     <td>{{ $document->dua }}ans</td>
                     @if (!$transfert->transfere)
                         <td>

@@ -47,6 +47,12 @@ class ShowAllTransfertTable extends Component
         }
     }
 
+    public function showBordereauForm()
+    {
+        return redirect()
+            ->route('manager.transfert.bordereau-form', ['transfert' => $this->transfert->id]);
+    }
+
     public function setOrderField(string | int | DateTime  $field)
     {
         if($field === $this->orderField){

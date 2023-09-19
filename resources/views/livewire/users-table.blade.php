@@ -40,6 +40,8 @@
                     <x-table-header label="Matricule" :direction="$orderDirection" name="matricule" :field="$orderField"></x-table-header>
                     <x-table-header label="Nom" :direction="$orderDirection" name="nom" :field="$orderField"></x-table-header>
                     <x-table-header label="Prénom(s)" :direction="$orderDirection" name="prenoms" :field="$orderField"></x-table-header>
+                    <x-table-header label="Email" :direction="$orderDirection" name="email" :field="$orderField"></x-table-header>
+                    <x-table-header label="Direction" :direction="$orderDirection" name="direction_id" :field="$orderField"></x-table-header>
                     <x-table-header label="Fonction" :direction="$orderDirection" name="fonction_id" :field="$orderField"></x-table-header>
                     <td>Rôle(s)</td>
                     <td>Actions</td>
@@ -55,6 +57,8 @@
                         <td>{{ $user->matricule }}</td>
                         <td>{{ $user->nom }}</td>
                         <td>{{ $user->prenoms }}</td>
+                        <td>{{ $user->email }}</td>
+                        <td>{{ $user->direction->sigle }}</td>
                         <td>{{ $user->fonction?->fonction }}</td>
                         <td>
                             @foreach ($user->roles as $role)

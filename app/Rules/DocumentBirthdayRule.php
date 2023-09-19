@@ -3,10 +3,10 @@
 namespace App\Rules;
 
 use Closure;
-use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
 use Illuminate\Contracts\Validation\ValidationRule;
 
-class ForceChoiceUserDiretionRule implements ValidationRule
+class DocumentBirthdayRule implements ValidationRule
 {
     /**
      * Run the validation rule.
@@ -15,8 +15,8 @@ class ForceChoiceUserDiretionRule implements ValidationRule
      */
     public function validate(string $attribute, mixed $value, Closure $fail): void
     {
-        if(request()->direction_id != Auth::user()->direction->id) {
-            $fail('La direction spécifiée n\'est pas la votre.');
+        if(!Carbon::parse(request()->datecreation)->isPast()) {
+            $fail('La Date de création ne peut pas être future.');
         }
     }
 }

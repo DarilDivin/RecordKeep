@@ -101,14 +101,14 @@ Route::middleware(['auth', 'permission:Gestion des Demandes de Transferts'])
     ]);
 
 Route::middleware(['auth', 'permission:Gestion des Demandes de Transferts'])
-    ->get('manager/transfert/{transfert}', [DemandeTransfertController::class, 'sending'])
+    ->patch('manager/transfert/{transfert}', [DemandeTransfertController::class, 'sending'])
     ->name('manager.transfert.sending')
     ->where([
         'transfert' => $idRegex
     ]);
 
 Route::middleware(['auth', 'permission:Gestion des Demandes de Transferts'])
-    ->get('manager/transfert/{transfert}/rosl', [DemandeTransfertController::class, 'removeOfStandardList'])
+    ->patch('manager/transfert/{transfert}/rosl', [DemandeTransfertController::class, 'removeOfStandardList'])
     ->name('manager.transfert.rosl')
     ->where([
         'transfert' => $idRegex
@@ -154,14 +154,14 @@ Route::middleware(['auth', 'permission:Gestion des Demandes de Transferts du MIS
     ]);
 
 Route::middleware(['auth', 'permission:Gestion des Demandes de Transferts du MISP'])
-    ->post('manager/all-transferts/{transfert}/bordereau-create', [AllTransfertsController::class, 'accept'])
+    ->patch('manager/all-transferts/{transfert}/bordereau-create', [AllTransfertsController::class, 'accept'])
     ->name('manager.transfert.bordereau-create')
     ->where([
         'transfert' => $idRegex
     ]);
 
 Route::middleware(['auth', 'permission:Gestion des Demandes de Transferts du MISP'])
-    ->get('manager/all-transferts/{transfert}/rocl', [AllTransfertsController::class, 'removeOfCentralList'])
+    ->patch('manager/all-transferts/{transfert}/rocl', [AllTransfertsController::class, 'removeOfCentralList'])
     ->name('manager.transfert.rocl')
     ->where([
         'transfert' => $idRegex

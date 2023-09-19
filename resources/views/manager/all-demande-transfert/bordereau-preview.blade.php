@@ -90,8 +90,8 @@
                 <p style="font-size: .9rem;">{{ $transfert->bordereautransfert->observation }}</p>
             </div>
             <div class="line">
-                <p><strong>Dateb de L'Opération : </strong></p>
-                <p>{{ $transfert->created_at }}</p>
+                <p><strong>Date de L'Opération : </strong></p>
+                <p>{{ $transfert->created_at->translatedFormat('d F Y') }}</p>
             </div>
             <h3>Liste des documents</h3>
             <ul>

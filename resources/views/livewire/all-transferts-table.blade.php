@@ -37,7 +37,7 @@
             <div class="card"  data-label="@if($transfert->transfere && !$transfert->valide) En attente @elseif($transfert->transfere && $transfert->valide) Terminé @else Non transféré @endif">
                 <div class="head">
                     <div class="titleInfos ">
-                        <h3>{{ Str::limit($transfert->libelle, 30, '...') }}</h3>
+                        <h3>{{ $transfert->libelle }}</h3>
                         <span>{{ $transfert->user->direction->sigle }} | {{ $transfert->user->prenoms }} {{ strtoupper($transfert->user->nom) }}</span>
                     </div>
                     <span>{{ $transfert->created_at->translatedFormat('d/F/Y') }}</span>
@@ -61,10 +61,14 @@
                         <a href="{{ route('manager.transfert.one', ['slug' => $transfert->getSlug(), 'transfert' => $transfert->id]) }}">Consulter</a>
                     @endif
                     @if ($transfert->documents->count() > 0)
-                        <a href="{{ route('manager.transfert.bordereau-form', ['transfert' => $transfert->id]) }}">{{ $transfert->valide ? 'Bordereau' : 'Accepter' }}</a>
+                        <a href="{{ route('manager.transfert.bordereau-form', ['transfert' => $transfert->id]) }}">{{ $transfert->valide ? 'Générer Bordereau' : 'Accepter' }}</a>
                     @endif
                     @if ($transfert->valide && $transfert->documents->where('archive', 0)->count() === 0)
-                        <a href="{{ route('manager.transfert.rocl', ['transfert' => $transfert->id]) }}">Retirer</a>
+                        <form action="{{ route('manager.transfert.rocl', ['transfert' => $transfert->id]) }}">
+                            @csrf
+                            @method('patch')
+                            <button style="height: 32px; font-weight: normal;">Retirer</button>
+                        </form>
                     @endif
                     @if (!$transfert->valide)
                         <button

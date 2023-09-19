@@ -12,9 +12,13 @@
                     Retirer
                 </button>
             @endif
-            <button class="filter">
+            <button class="filter"  x-on:click="$wire.showBordereauForm">
                 <ion-icon name="checkmark-circle-outline"></ion-icon>
-                Accepter
+                @if (!$transfert->valide)
+                    Accepter
+                @else
+                    Générer Bordereau
+                @endif
             </button>
         </div>
         <div class="search-box"  style="margin-right: 17px; width: 22%;">
@@ -64,7 +68,7 @@
                     <td>{{ $document->id }}</td>
                     <td>{{ $document->signature }}</td>
                     <td>{{ $document->nom }}</td>
-                    <td>{{ $document->created_at }}</td>
+                    <td>{{ $document->getDateCreation()->translatedFormat('d F Y') }}</td>
                     <td>{{ $document->dua }}ans</td>
                     <td>
                         <button class="classer"><a href="{{ route('manager.document.classement', ['document' => $document->id, 'transfert' => $transfert->id]) }}">Classer</a></button>

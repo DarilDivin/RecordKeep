@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Manager;
 
+use App\Rules\DocumentBirthdayRule;
 use App\Rules\ForceChoiceDirecteurFonctionRule;
 use App\Rules\ForceChoiceUserDiretionRule;
 use Illuminate\Validation\Rule;
@@ -51,7 +52,7 @@ class DocumentFormRequest extends FormRequest
             'dua' => ['required', 'integer'],
             'emetteur' => ['required', 'string'],
             'recepteur' => ['required', 'string'],
-            'datecreation' => ['required', 'date'],
+            'datecreation' => ['required', 'date', new DocumentBirthdayRule()],
             'disponibilite' => ['nullable', 'boolean'],
             'archive' => ['nullable', 'boolean'],
             'nature_document_id' => ['required', 'exists:nature_documents,id'],
