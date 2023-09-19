@@ -16,19 +16,19 @@
             <form action="" method="post" class="search-form">
                 <div class="inputcontainer">
                     <label for="">Nom</label>
-                    <input type="search"  class="search-bar" placeholder="Rechercher..." minlength="1">
+                    <input type="text"  class="search-bar" placeholder="Rechercher..." minlength="1">
                 </div>
                 <div class="inputcontainer">
-                    <label for="">Nom</label>
-                    <input type="search"  class="search-bar" placeholder="Rechercher..." minlength="1">
+                    <label for="">Du</label>
+                    <input type="date"  class="search-bar" minlength="1">
                 </div>
                 <div class="inputcontainer">
-                    <label for="">Nom</label>
-                    <input type="search"  class="search-bar" placeholder="Rechercher..." minlength="1">
+                    <label for="">Au</label>
+                    <input type="date"  class="search-bar" minlength="1">
                 </div>
                 <div class="inputcontainer">
-                    <label for="">Nom</label>
-                    <input type="search"  class="search-bar" placeholder="Rechercher..." minlength="1">
+                    <label for="">Mots Clés</label>
+                    <input type="text"  class="search-bar" placeholder="#Motsclés" minlength="1">
                 </div>
 
 

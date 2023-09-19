@@ -36,18 +36,24 @@
             <swiper-slide>
                 <img src="storage/images/documenthèque.png" alt="">
 
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus rem similique perferendis. Vero culpa eaque ratione quibusdam animi, velit facere deleniti consectetur nesciunt nostrum dolorum!</p>
+                <p>
+                    Lorsque vous ouvrez l'application, vous êtes accueilli par une page d'accueil propre et conviviale. Cette page peut contenir des informations sur l'application, des raccourcis vers des fonctionnalités clés, et un bouton de connexion.
+                </p>
             </swiper-slide>
             <swiper-slide>
                 <img src="storage/images/documenthèque.png" alt="">
 
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus rem similique perferendis. Vero culpa eaque ratione quibusdam animi, velit facere deleniti consectetur nesciunt nostrum dolorum!</p>
+                <p>
+                    L'application propose une fonction de recherche puissante qui vous permet de rechercher des fichiers ou des dossiers par nom, date, ou autres critères.
+                </p>
 
             </swiper-slide>
             <swiper-slide>
                 <img src="storage/images/documenthèque.png" alt="">
 
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus rem similique perferendis. Vero culpa eaque ratione quibusdam animi, velit facere deleniti consectetur nesciunt nostrum dolorum!</p>
+                <p>
+                    Une fois les documents disponibles vous pouvez effectuer des prêts pour certains documents.
+                </p>
 
             </swiper-slide>
             <div class="autoplay-progress" slot="container-end">
@@ -60,7 +66,9 @@
     </div>
     <div class="carousel-text" data-aos="fade-up">
         <h3>Découvrez la facilité d’utilisation</h3>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam vel aliquam, saepe, ut officia accusantium fugiat, ipsum earum voluptatibus autem vero tempore natus placeat voluptates expedita aspernatur porro amet obcaecati!</p>
+        <p>
+            L'objectif principal de cette application est de rendre la gestion des archives aussi simple et intuitive que possible pour les utilisateurs. Elle offre une interface utilisateur conviviale et des fonctionnalités de base pour organiser, stocker et récupérer des documents et des fichiers.
+        </p>
     </div>
 
     <div class="advantage">
@@ -70,7 +78,7 @@
         <div class="advantage-text">
             <h2 data-aos="fade-right" data-aos-delay="500">Les avantages à utiliser cette application</h2>
             <p data-aos="fade-down" data-aos-delay="500">
-                Bienvenu sur Record Keep, un tenu de régistre facile du Ministère de l'Intérieur et de la Sécurité Publique de la République du Bénin vous permettant de consulter certains documents accessibles en toute facilté, sécurité et simplicité.
+                Une application de gestion des archives simplifie la gestion, l'organisation et l'accès à d'importants documents et informations. Elle offre un stockage sûr, une recherche rapide et des fonctionnalités de suivi pour garantir que toutes les données essentielles sont à portée de main. Cela améliore l'efficacité opérationnelle, réduit les erreurs liées à la gestion papier, et garantit la conformité aux réglementations en matière d'archivage. En fin de compte, elle permet d'économiser du temps, de l'argent et des ressources, tout en offrant une tranquillité d'esprit grâce à la gestion intelligente des données.
             </p>
         </div>
     </div>

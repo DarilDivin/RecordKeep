@@ -10,10 +10,9 @@
     <section class="contact">
         <div class="content">
             <h2>Contactez Nous</h2>
-            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-            Soluta, ab corporis ad repellendus veniam eveniet tempora nobis
-            minus saepe laborum ipsam, quas illo doloremque architecto
-            obcaecati error facere repellat temporibus.</p>
+            <p>
+                Cette page est votre point de contact direct avec notre équipe. Vous pouvez l'utiliser pour poser des questions, signaler des problèmes, demander de l'aide ou fournir des commentaires. C'est l'endroit idéal pour obtenir une assistance technique, discuter de vos préoccupations, ou tout simplement en savoir plus sur notre entreprise, nos produits et nos services. Nous sommes là pour vous aider, alors n'hésitez pas à nous écrire. Votre avis compte et nous sommes là pour vous écouter.
+            </p>
         </div>
         <div class="contactContainer">
             <div class="contactInfo">
@@ -21,7 +20,7 @@
                     <div class="icon"><ion-icon name="location-outline"></ion-icon></div>
                     <div class="texte">
                         <h3>Adresse</h3>
-                        <p>402671 Sugar Camp Road,<br>Owatonna,Minnesota,<br>55025060</p>
+                        <p>Cadjèhoun,<br>Owatonna,Minnesota,<br>55025060</p>
                     </div>
                 </div>
                 <div class="contactBox">
@@ -35,7 +34,7 @@
                     <div class="icon"><ion-icon name="mail-outline"></ion-icon></div>
                     <div class="texte">
                         <h3>Email</h3>
-                        <p>wrub7d78i0e@temporary-mail</p>
+                        <p>interieur@gmail.com</p>
                     </div>
                 </div>
                 <h2 class="txt">Connectez-vous avec nous</h2>
