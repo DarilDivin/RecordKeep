@@ -16,13 +16,31 @@ class Direction extends Model
     use HasFactory, SoftDeletes;
 
     protected $fillable = [
-        'direction',
         'sigle',
+        'direction'
     ];
 
     protected $casts = [
         'created_at' => 'datetime'
     ];
+
+    protected static function boot() {
+        parent::boot();
+
+        static::created(function ($direction) {
+            $direction->services()->create([
+                'sigle' => 'AUCUN',
+                'service' => 'Aucun'
+            ]);
+        });
+
+        static::deleted(function ($direction) {
+            $direction->services->each(function ($service) {
+                $service->delete();
+            });
+        });
+
+    }
 
     public function services(): HasMany
     {

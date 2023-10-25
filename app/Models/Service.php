@@ -18,14 +18,32 @@ class Service extends Model
     use HasFactory, SoftDeletes;
 
     protected $fillable = [
-        'service',
         'sigle',
-        'direction_id',
+        'service',
+        'direction_id'
     ];
 
     protected $casts = [
         'created_at' => 'datetime'
     ];
+
+    protected static function boot() {
+        parent::boot();
+
+        static::created(function ($service) {
+            $service->divisions()->create([
+                'sigle' => 'AUCUNE',
+                'division' => 'Aucune'
+            ]);
+        });
+
+        static::deleted(function ($service) {
+            $service->divisions->each(function ($division) {
+                $division->delete();
+            });
+        });
+
+    }
 
     public function direction(): BelongsTo
     {

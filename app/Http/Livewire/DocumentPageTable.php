@@ -74,9 +74,9 @@ class DocumentPageTable extends Component
         // dd($zip);
 
         if ($zip->open($zipFilePath, ZipArchive::CREATE) === true) {
-            // $files = File::files($sourcePath);
-            // dd(count($documents));
-            // $a = [];
+            /* $files = File::files($sourcePath);
+            dd(count($documents));
+            $a = []; */
             foreach ($documents as $doc) {
                 for($i = 0; $i < count($doc); $i++){
                     $zip->addFile(public_path('storage/'). $doc[$i]->document, $doc[$i]->nom . '.pdf');
@@ -108,6 +108,9 @@ class DocumentPageTable extends Component
 
     public function render()
     {
+        /* $documents = Auth::user()->fonction->documents->where('direction_id', Auth::user()->direction->id)->toArray();
+        dd($documents); */
+
         $documents = Document::query();
 
         if(!empty($this->nom)){
@@ -128,7 +131,7 @@ class DocumentPageTable extends Component
 
         return view('livewire.document-page-table', [
             'documents' => $documents
-                ->where('archive', 1)
+                /* ->where('archive', 1) */
                 ->orderBy('created_at', 'desc')
                 ->paginate(20)
         ]);

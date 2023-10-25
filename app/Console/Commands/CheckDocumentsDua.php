@@ -27,20 +27,6 @@ class CheckDocumentsDua extends Command
      */
     public function handle()
     {
-        /* $documents = Document::all();
-        foreach($documents as $document) {
-            $dua = Carbon::now()->subYears($document->dua);
-            if($dua->isPast()) {
-                $document->update([
-                    'disponibilite' => 1
-                ]);
-            } else {
-                $document->update([
-                    'disponibilite' => 0
-                ]);
-            }
-            $this->info('Vérification Terminée'); */
-
         $documents = Document::all();
         foreach($documents as $document) {
             $duaAndCreatedAt = $document->created_at->addYears($document->dua);

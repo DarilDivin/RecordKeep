@@ -16,7 +16,7 @@
             </button>
         </div>
         <div class="search-box" style="margin-right: 17px; width: 22%;">
-            <input type="text" name="fonction" wire:model="fonction" placeholder="Nom de la fonction">
+            <input type="text" name="fonction" wire:model="fonction" placeholder="Nom de la fonction" style="height: 35px;">
             <ion-icon name="search"></ion-icon>
         </div>
     </div>

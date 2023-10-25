@@ -15,8 +15,6 @@ class PermissionSeeder extends Seeder
      */
     public function run(): void
     {
-
-        /* PERMISSIONS DES UTILISATEURS */
         $userPermissions = [
             'Demander un Prêt',
             'Consulter un Document',
@@ -24,7 +22,6 @@ class PermissionSeeder extends Seeder
             'Télécharger un Document',
         ];
 
-        /* PERMISSIONS DES ADMINISTRATEURS */
         $adminPermissions = [
             'Gestion des Rôles',
             'Gestion des Services',
@@ -34,7 +31,6 @@ class PermissionSeeder extends Seeder
             'Gestion des Utilisateurs',
         ];
 
-        /* PERMISSIONS DES GESTIONNAIRES */
         $standardManagerPermissions = [
             'Gestion des Documents',
             'Gestion des Catégories',
@@ -67,7 +63,6 @@ class PermissionSeeder extends Seeder
             ]);
             $userRole->givePermissionTo($permission);
         }
-        /* ------------------------------------------------------------------------------------------------- */
 
         foreach($adminPermissions as $permission){
             Permission::create([
@@ -76,7 +71,6 @@ class PermissionSeeder extends Seeder
             ]);
             $adminRole->givePermissionTo($permission);
         }
-        /* ------------------------------------------------------------------------------------------------- */
 
         foreach($standardManagerPermissions as $permission){
             Permission::create([
@@ -85,7 +79,6 @@ class PermissionSeeder extends Seeder
             ]);
             $standardManagerRole->givePermissionTo($permission);
         }
-        /* ------------------------------------------------------------------------------------------------- */
 
         foreach($centralManagerPermissions as $permission){
             Permission::create([

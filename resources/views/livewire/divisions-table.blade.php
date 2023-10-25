@@ -24,11 +24,11 @@
             </select>
         </div>
         <div class="search-box" style="width: 26%;">
-            <input type="text" name="division" wire:model="division" placeholder="Nom de la division">
+            <input type="text" name="division" wire:model="division" placeholder="Nom de la division" style="height: 35px;">
             <ion-icon name="search"></ion-icon>
         </div>
         <div class="search-box" style="margin-right: 17px; width: 26%;">
-            <input type="text" name="sigle" wire:model="sigle" placeholder="Sigle de la division">
+            <input type="text" name="sigle" wire:model="sigle" placeholder="Sigle de la division" style="height: 35px;">
             <ion-icon name="search"></ion-icon>
         </div>
     </div>

@@ -33,8 +33,8 @@ class DivisionController extends Controller
     {
         return view('admin.division.division-form', [
             'division' => new Division(),
-            'services' => Service::getAllServices(),
-            'directions' => Direction::getAllDirections(),
+            'services' => Service::where('service', '!=', 'Aucun')->get(),
+            'directions' => Direction::has('services', '>=', 2)->get()
         ]);
     }
 
@@ -56,8 +56,8 @@ class DivisionController extends Controller
     {
         return view('admin.division.division-form', [
             'division' => $division,
-            'services' => Service::getAllServices(),
-            'directions' => Direction::getAllDirections(),
+            'services' => Service::where('service', '!=', 'Aucun')->get(),
+            'directions' => Direction::has('services', '>=', 2)->get()
         ]);
     }
 

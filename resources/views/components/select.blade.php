@@ -9,4 +9,3 @@
         <span style="color: red;">{{ $message }}</span>
     @enderror
 </div>
-

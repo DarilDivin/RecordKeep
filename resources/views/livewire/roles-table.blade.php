@@ -16,8 +16,8 @@
             </button>
         </div>
 
-        <div class="search-box" style="margin-right: 17px; width: 24%">
-            <input type="text" name="search" wire:model="role" placeholder="Nom du rôle">
+        <div class="search-box" style="margin-right: 17px; width: 22%">
+            <input type="text" name="search" wire:model="role" placeholder="Nom du rôle" style="height: 35px;">
             <ion-icon name="search"></ion-icon>
         </div>
     </div>

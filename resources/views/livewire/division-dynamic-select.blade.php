@@ -2,8 +2,8 @@
     <div class="inputContainer">
         <label for="rayon">Direction</label>
         <select class="inputContainer" id="direction" wire:model="selectedDirection" name="direction_id">
-            @foreach ($directions as $id => $direction)
-                <option value="{{ $id }}">{{ $direction }}</option>
+            @foreach ($directions as $direction)
+                <option value="{{ $direction->id }}">{{ $direction->direction }}</option>
             @endforeach
         </select>
         @error('direction_id')
@@ -14,8 +14,8 @@
     <div class="inputContainer">
         <label for="boite">Service</label>
         <select class="inputContainer" id="service" wire:model="selectedService" name="service_id">
-            @foreach ($services as $id => $service)
-                <option value="{{ $id }}">{{ $service }}</option>
+            @foreach ($services as $service)
+                <option value="{{ $service->id }}">{{ $service->service }}</option>
             @endforeach
         </select>
         @error('service_id')

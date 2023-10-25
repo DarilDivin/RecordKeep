@@ -24,9 +24,9 @@
                 <x-input class="inputContainer fonction" id="sigle" label="Sigle" type="text" name="sigle" placeholder="Sigle"  readonly="" value="{{ $division->sigle }}" />
 
                 @livewire('division-dynamic-select', [
-                    'services' => $services,
                     'division' => $division,
-                    'directions' => $directions,
+                    'services' => $services,
+                    'directions' => $directions
                 ])
 
                 <div class="inputContainer button">
