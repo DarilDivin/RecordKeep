@@ -56,7 +56,7 @@ class Document extends Model
     protected static function boot() {
         parent::boot();
 
-        static::created(function ($document) {
+        static::creating(function ($document) {
             $document->standardDUAFinished = Carbon::parse($document->datecreation)->addYears($document->naturedocument->dua_bureaux);
             $document->centralDUAFinished = Carbon::parse($document->datecreation)->addYears($document->naturedocument->dua_bureaux + $document->naturedocument->dua_service_pre_archivage);
         });

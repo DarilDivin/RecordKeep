@@ -5,11 +5,13 @@ use App\Http\Controllers\Manager\DocumentController;
 use App\Http\Controllers\Manager\CategorieController;
 use App\Http\Controllers\Manager\DemandePretController;
 use App\Http\Controllers\Manager\BoiteArchiveController;
-use App\Http\Controllers\Manager\RapportRetourController;
+use App\Http\Controllers\Manager\AllTransfertsController;
 use App\Http\Controllers\Manager\RapportDepartController;
+use App\Http\Controllers\Manager\RapportRetourController;
 use App\Http\Controllers\Manager\ChemiseDossierController;
 use App\Http\Controllers\Manager\NatureDocumentController;
 use App\Http\Controllers\Manager\RayonRangementController;
+use App\Http\Controllers\Manager\DemandeTransfertController;
 use App\Http\Controllers\Manager\DocumentClassementController;
 
 $idRegex = '[0-9]+';
@@ -18,6 +20,10 @@ $mailRegex = '[^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$]';
 
 Route::group(['middleware' => ['auth', 'permission:Gestion des Documents'], 'prefix' => 'manager', 'as' => 'manager.'], function () {
     Route::resource('document', DocumentController::class)->except(['show']);
+});
+
+Route::group(['middleware' => ['auth', 'permission:Gestion des Demandes de Transferts'], 'prefix' => 'manager', 'as' => 'manager.'], function () {
+    Route::resource('transfert', DemandeTransfertController::class)->except(['show', 'edit', 'update']);
 });
 
 Route::group(['middleware' => ['auth', 'permission:Gestion des Catégories'], 'prefix' => 'manager', 'as' => 'manager.'], function () {
@@ -65,12 +71,50 @@ Route::middleware(['auth', 'permission:Gestion des Classements'])
 
 /* FOR STANDARDS MANAGER */
 
+Route::middleware(['auth', 'permission:Gestion des Demandes de Transferts'])
+    ->get('manager/transfert/{slug}/{transfert}', [DemandeTransfertController::class, 'show'])
+    ->name('manager.transfert.show')
+    ->where([
+        'transfert' => $idRegex,
+        'slug' => $slugRegex
+]);
+
+Route::middleware(['auth', 'permission:Gestion des Demandes de Transferts'])
+    ->patch('manager/transfert/{transfert}', [DemandeTransfertController::class, 'sending'])
+    ->name('manager.transfert.sending')
+    ->where([
+        'transfert' => $idRegex
+]);
 
 /* ------------------------------------------------------------------------------------------------------------------------------------- */
 
 /* FOR CENTRALES MANAGER */
 
+Route::middleware(['auth', 'permission:Gestion des Demandes de Transferts du MISP'])
+->get('manager/all-transferts', [AllTransfertsController::class, 'all'])
+->name('manager.transfert.all');
 
+Route::middleware(['auth', 'permission:Gestion des Demandes de Transferts du MISP'])
+->get('manager/all-transferts/{slug}/{transfert}', [AllTransfertsController::class, 'one'])
+->name('manager.transfert.one')
+->where([
+    'transfert' => $idRegex,
+    'slug' => $slugRegex
+]);
+
+Route::middleware(['auth', 'permission:Gestion des Demandes de Transferts du MISP'])
+->get('manager/all-transferts/{transfert}/bordereau-form', [AllTransfertsController::class, 'showBordereauForm'])
+->name('manager.transfert.bordereau-form')
+->where([
+    'transfert' => $idRegex
+]);
+
+Route::middleware(['auth', 'permission:Gestion des Demandes de Transferts du MISP'])
+->patch('manager/all-transferts/{transfert}/bordereau-create', [AllTransfertsController::class, 'accept'])
+->name('manager.transfert.bordereau-create')
+->where([
+    'transfert' => $idRegex
+]);
 
 
 /* ------------------------------------------------------------------------------------------------------------------------------------- */
