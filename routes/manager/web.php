@@ -6,12 +6,10 @@ use App\Http\Controllers\Manager\CategorieController;
 use App\Http\Controllers\Manager\DemandePretController;
 use App\Http\Controllers\Manager\BoiteArchiveController;
 use App\Http\Controllers\Manager\RapportRetourController;
-use App\Http\Controllers\Manager\AllTransfertsController;
 use App\Http\Controllers\Manager\RapportDepartController;
 use App\Http\Controllers\Manager\ChemiseDossierController;
 use App\Http\Controllers\Manager\NatureDocumentController;
 use App\Http\Controllers\Manager\RayonRangementController;
-use App\Http\Controllers\Manager\DemandeTransfertController;
 use App\Http\Controllers\Manager\DocumentClassementController;
 
 $idRegex = '[0-9]+';
@@ -42,10 +40,6 @@ Route::group(['middleware' => ['auth', 'permission:Gestion des Natures de Docume
     Route::resource('nature', NatureDocumentController::class)->except(['show']);
 });
 
-Route::group(['middleware' => ['auth', 'permission:Gestion des Demandes de Transferts'], 'prefix' => 'manager', 'as' => 'manager.'], function () {
-    Route::resource('transfert', DemandeTransfertController::class)->except(['show', 'edit', 'update']);
-});
-
 /* ------------------------------------------------------------------------------------------------------------------------------------- */
 
 Route::middleware(['auth', 'permission:Gestion des Classements'])
@@ -71,101 +65,12 @@ Route::middleware(['auth', 'permission:Gestion des Classements'])
 
 /* FOR STANDARDS MANAGER */
 
-Route::middleware(['auth', 'permission:Gestion des Demandes de Transferts'])
-    ->get('manager/transfert/{slug}/{transfert}', [DemandeTransfertController::class, 'show'])
-    ->name('manager.transfert.show')
-    ->where([
-        'transfert' => $idRegex,
-        'slug' => $slugRegex
-    ]);
-
-Route::middleware(['auth', 'permission:Gestion des Demandes de Transferts'])
-    ->put('manager/document-remove-for-standard-transfer/{document}/{transfert}', [DemandeTransfertController::class, 'removeForStandardTranfer'])
-    ->name('manager.document.sremove')
-    ->where([
-        'document' => $idRegex
-    ]);
-
-Route::middleware(['auth', 'permission:Gestion des Demandes de Transferts'])
-    ->get('manager/transfert/{transfert}/edit', [DemandeTransfertController::class, 'edit'])
-    ->name('manager.transfert.edit')
-    ->where([
-        'transfert' => $idRegex
-    ]);
-
-Route::middleware(['auth', 'permission:Gestion des Demandes de Transferts'])
-    ->put('manager/transfert/{transfert}', [DemandeTransfertController::class, 'update'])
-    ->name('manager.transfert.update')
-    ->where([
-        'transfert' => $idRegex
-    ]);
-
-Route::middleware(['auth', 'permission:Gestion des Demandes de Transferts'])
-    ->patch('manager/transfert/{transfert}', [DemandeTransfertController::class, 'sending'])
-    ->name('manager.transfert.sending')
-    ->where([
-        'transfert' => $idRegex
-    ]);
-
-Route::middleware(['auth', 'permission:Gestion des Demandes de Transferts'])
-    ->patch('manager/transfert/{transfert}/rosl', [DemandeTransfertController::class, 'removeOfStandardList'])
-    ->name('manager.transfert.rosl')
-    ->where([
-        'transfert' => $idRegex
-    ]);
-
 
 /* ------------------------------------------------------------------------------------------------------------------------------------- */
 
 /* FOR CENTRALES MANAGER */
 
 
-Route::middleware(['auth', 'permission:Gestion des Demandes de Transferts du MISP'])
-    ->get('manager/all-transferts', [AllTransfertsController::class, 'all'])
-    ->name('manager.transfert.all');
-
-Route::middleware(['auth', 'permission:Gestion des Demandes de Transferts du MISP'])
-    ->get('manager/all-transferts/{slug}/{transfert}', [AllTransfertsController::class, 'one'])
-    ->name('manager.transfert.one')
-    ->where([
-        'transfert' => $idRegex,
-        'slug' => $slugRegex
-    ]);
-
-Route::middleware(['auth', 'permission:Gestion des Demandes de Transferts du MISP'])
-    ->put('manager/document-remove-for-central-transfer/{document}/{transfert}', [AllTransfertsController::class, 'removeForCentralTranfer'])
-    ->name('manager.document.cremove')
-    ->where([
-        'document' => $idRegex
-    ]);
-
-Route::middleware(['auth', 'permission:Gestion des Demandes de Transferts du MISP'])
-    ->delete('manager/all-transferts/{transfert}', [AllTransfertsController::class, 'off'])
-    ->name('manager.transfert.off')
-    ->where([
-        'transfert' => $idRegex
-    ]);
-
-Route::middleware(['auth', 'permission:Gestion des Demandes de Transferts du MISP'])
-    ->get('manager/all-transferts/{transfert}/bordereau-form', [AllTransfertsController::class, 'showBordereauForm'])
-    ->name('manager.transfert.bordereau-form')
-    ->where([
-        'transfert' => $idRegex
-    ]);
-
-Route::middleware(['auth', 'permission:Gestion des Demandes de Transferts du MISP'])
-    ->patch('manager/all-transferts/{transfert}/bordereau-create', [AllTransfertsController::class, 'accept'])
-    ->name('manager.transfert.bordereau-create')
-    ->where([
-        'transfert' => $idRegex
-    ]);
-
-Route::middleware(['auth', 'permission:Gestion des Demandes de Transferts du MISP'])
-    ->patch('manager/all-transferts/{transfert}/rocl', [AllTransfertsController::class, 'removeOfCentralList'])
-    ->name('manager.transfert.rocl')
-    ->where([
-        'transfert' => $idRegex
-    ]);
 
 
 /* ------------------------------------------------------------------------------------------------------------------------------------- */

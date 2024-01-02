@@ -31,10 +31,12 @@ class RoleController extends Controller
      */
     public function create(): View
     {
+        $role = new Role();
         return view('admin.role.role-form', [
-            'role' => new Role(),
+            'role' => $role,
             'typeroles' => TypeRole::all()->pluck('libelle', 'id'),
-            'permissions' => Permission::where('type_role_id', TypeRole::first()->id)->get()->toArray()
+            'permissions' => Permission::where('type_role_id', TypeRole::first()->id)->get()->toArray(),
+            'rolePermissions' => $role->permissions->toArray()
         ]);
     }
 
@@ -60,7 +62,8 @@ class RoleController extends Controller
         return view('admin.role.role-form', [
             'role' => $role,
             'typeroles' => TypeRole::all()->pluck('libelle', 'id'),
-            'permissions' => $role->typerole->severalPermissions->toArray()
+            'permissions' => $role->typerole->severalPermissions->toArray(),
+            'rolePermissions' => $role->permissions->toArray()
         ]);
     }
 

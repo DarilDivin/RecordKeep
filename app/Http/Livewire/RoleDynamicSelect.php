@@ -4,6 +4,7 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 use App\Models\Permission;
+use App\Models\TypeRole;
 
 class RoleDynamicSelect extends Component
 {
@@ -13,21 +14,21 @@ class RoleDynamicSelect extends Component
 
     public $permissions;
 
-    public $selectedTypeRole;
+    public $rolePermissions;
 
-    public $selectedPermissions;
+    public $selectedTypeRole;
 
     public $alwaysPermissions;
 
+    public $selectedPermissions;
+
     public function mount()
     {
-        if(old('type_role_id')){
+        $this->selectedTypeRole = $this->role->type_role_id;
+        if (old('type_role_id')) {
             $this->selectedTypeRole = old('type_role_id');
+            $this->permissions = TypeRole::find($this->selectedTypeRole)->severalPermissions->toArray();
         }
-        if(old('permissions')){
-            $this->selectedPermissions = old('permissions');
-        }
-        /* $this->selectedTypeRole = $this->role->type_role_id; */
     }
 
     public function updatedSelectedTypeRole($typeRole)
@@ -38,18 +39,16 @@ class RoleDynamicSelect extends Component
 
     public function updatedSelectedPermissions($permissions_ids)
     {
-       /*  $permissions = [];
+        $permissions = [];
         foreach($permissions_ids as $id){
             $permissions[] = Permission::where('id', $id)->get()->toArray();
         }
-        dd($permissions);
         $this->alwaysPermissions = array_reduce($permissions, function ($carry, $item) {
             if($carry === null){
                 return $item;
             }
             return array_merge($carry, $item);
         });
-        dd($this->alwaysPermissions); */
     }
 
     public function render()

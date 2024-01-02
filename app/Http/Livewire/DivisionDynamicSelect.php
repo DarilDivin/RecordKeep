@@ -8,11 +8,11 @@ use Livewire\Component;
 
 class DivisionDynamicSelect extends Component
 {
+    public $services;
+
     public $division;
 
     public $directions;
-
-    public $services;
 
     public $selectedService;
 
@@ -21,25 +21,18 @@ class DivisionDynamicSelect extends Component
 
     public function mount()
     {
-        $route = request()->route()->getName();
-        if($route === 'admin.division.create') {
-            $d = $this->directions;
-            $this->selectedDirection = $d[array_key_first($d->toArray())]['id'];
-            $s = Direction::find($this->selectedDirection)->services;
-            $this->selectedService = $s[array_key_first($s->where('service', '!=', 'Aucun')->toArray())]['id'];
+        if(!is_null($this->division->service)){
+            $this->selectedService = $this->division->service_id;
+            $this->selectedDirection = $this->division->service->direction_id;
         }
-        elseif($route === 'admin.division.edit') {
-            if(!is_null($this->division->service)){
-                $this->selectedService = $this->division->service_id;
-                $this->selectedDirection = $this->division->service->direction_id;
-            }
+
+        if(old('service_id')) {
+            $this->services = Direction::find(old('direction_id'))->services->where('service', '!=', 'Aucun')->sortBy('service');
+            $this->selectedService = old('service_id');
         }
 
         if(old('direction_id')) {
             $this->selectedDirection = old('direction_id');
-        }
-        if(old('service_id')) {
-            $this->selectedService = old('service_id');
         }
     }
 

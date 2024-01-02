@@ -1,10 +1,26 @@
 <div style="width: 100%; grid-column: 1 / 4;">
+
+    @php
+        $routeName = request()->route()->getName()
+    @endphp
+
+
     <div class="inputContainer TomSelect role" wire:ignore>
+        @if ($routeName === 'admin.user.edit')
+            <div>
+                <label>
+                    Rôle(s) de l'utilisateur :
+                    @foreach ($user->roles as $role)
+                        {{ $role->name }} {{ $loop->last ? '.' : ',' }}
+                    @endforeach
+                </label>
+            </div>
+        @endif
         <label for="role">Rôle(s)</label>
-        <select name="roles[]" id="role" multiple placeholder="Choisir les rôles" wire:model="selectedRole">
-            @if (request()->route()->getName() === 'admin.user.edit' && !empty($user->roles->toArray()))
+        <select name="roles[]" id="role" multiple placeholder="Choisir les rôles" wire:model="selectedRoles">
+            @if ($routeName === 'admin.user.edit' /* && !empty($user->roles->toArray()) */)
                 @foreach ($roles as $id => $role)
-                    <option @if(in_array($id,$user->roles->pluck('id')->toArray())) selected @endif  value="{{ $id }}">{{ $role }}</option>
+                    <option {{-- @if(in_array($id,$user->roles->pluck('id')->toArray())) selected @endif  --}}  value="{{ $id }}">{{ $role }}</option>
                 @endforeach
             @else
                 @foreach ($roles as $id => $role)
@@ -17,7 +33,7 @@
         @enderror
     </div>
 
-    @if (request()->route()->getName() === 'admin.user.edit' )
+    {{-- @if ($routeName === 'admin.user.edit' )
         <hr>
         <h3>Les permissions disponibles</h3>
         <div class="permissionsContainer">
@@ -30,7 +46,7 @@
             </div>
             @endforeach
         </div>
-    @endif
+    @endif --}}
 
     @if (!empty($permissions))
         <hr>

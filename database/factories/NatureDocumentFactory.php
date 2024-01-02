@@ -30,7 +30,9 @@ class NatureDocumentFactory extends Factory
         ];
 
         return [
-            'nature' => $this->faker->unique()->randomElement($natures)
+            'nature' => $this->faker->unique()->randomElement($natures),
+            'dua' => $this->faker->numberBetween(4, 15),
+            'categorie_id' => $this->faker->numberBetween(1, 6),
         ];
     }
 }

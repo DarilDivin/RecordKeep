@@ -15,8 +15,8 @@
                 <a href="{{ route('admin.type-role.create') }}">Ajouter Type Role</a>
             </button>
         </div>
-        <div class="search-box" style="margin-right: 17px;">
-            <input type="text" name="libelle" wire:model="libelle" placeholder="Libellé du type de rôle">
+        <div class="search-box" style="margin-right: 17px; width: 22%">
+            <input type="text" name="libelle" wire:model="libelle" placeholder="Libellé du type de rôle" style="height: 35px;">
             <ion-icon name="search"></ion-icon>
         </div>
     </div>

@@ -3,10 +3,9 @@
     unset($motclefs[0]);
     $routeName = request()->route()->getName();
     $tabs = [
-        'Administratif',
         'Économique',
-        'Magistrat',
-        'Capitaliste'
+        'Commerciale',
+        'Administratif'
     ];
 @endphp
 

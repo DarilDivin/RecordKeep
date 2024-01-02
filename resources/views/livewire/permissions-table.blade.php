@@ -46,7 +46,7 @@
                         </td>
                         <td>{{ $permission->id }}</td>
                         <td>{{ $permission->name }}</td>
-                        <td>{{ $permission->created_at->translatedFormat('d M Y') }}</td>
+                        <td>{{ $permission->created_at->translatedFormat('d F Y') }}</td>
                         <td>
                             <button class="edit">
                                 <a href="{{ route('admin.permission.edit', ['permission' => $permission->id]) }}">

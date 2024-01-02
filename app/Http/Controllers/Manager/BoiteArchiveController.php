@@ -41,11 +41,7 @@ class BoiteArchiveController extends Controller
      */
     public function store(BoiteArchiveFormRequest $request): RedirectResponse
     {
-        $data = $request->validated();
-        $b = BoiteArchive::create($data);
-        $b->update([
-            'code' => RayonRangement::find($data['rayon_rangement_id'])->code . 'B' . $b->id
-        ]);
+        BoiteArchive::create($request->validated());
         return redirect()
             ->route('manager.boite.index')
             ->with('success', 'La Boîte Archive a bien été créé');
@@ -67,13 +63,7 @@ class BoiteArchiveController extends Controller
      */
     public function update(BoiteArchiveFormRequest $request, BoiteArchive $boite): RedirectResponse
     {
-        $data = $request->validated();
-        $boite->update(array_merge(
-            $data, [
-                'code' => RayonRangement::find($data['rayon_rangement_id'])->code . 'B' . $boite->id
-            ]
-        ));
-
+        $boite->update($request->validated());
         return redirect()
             ->route('manager.boite.index')
             ->with('success', 'La Boîte Archive a bien été modifiée');

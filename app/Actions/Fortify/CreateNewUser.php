@@ -10,7 +10,13 @@ use App\Rules\SameTypeRoleRule;
 use App\Rules\UserBirthDayRule;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Hash;
+use App\Rules\NoneServiceForDirector;
 use Illuminate\Support\Facades\Validator;
+use App\Rules\NoneDivisionForChiefService;
+use App\Rules\NoneDivisionForDirector;
+use App\Rules\OneDivisionForChiefDivision;
+use App\Rules\OneServiceForChiefDivision;
+use App\Rules\OneServiceForChiefService;
 use Laravel\Fortify\Contracts\CreatesNewUsers;
 
 class CreateNewUser implements CreatesNewUsers
@@ -33,8 +39,16 @@ class CreateNewUser implements CreatesNewUsers
             'sexe' => ['required', 'string'],
             'password' => $this->passwordRules(),
             'fonction_id' => ['integer','exists:fonctions,id', 'required'],
-            'division_id' => ['integer','exists:divisions,id', 'required'],
-            'service_id' => ['integer','exists:services,id', 'required'],
+            'division_id' => [
+                'integer','exists:divisions,id', 'required',
+                new NoneDivisionForDirector(),new NoneDivisionForChiefService(),
+                new OneDivisionForChiefDivision()
+            ],
+            'service_id' => [
+                'integer','exists:services,id', 'required',
+                new NoneServiceForDirector(), new OneServiceForChiefService(),
+                new OneServiceForChiefDivision()
+            ],
             'direction_id' => ['integer','exists:directions,id', 'required'],
             'roles' => ['array','exists:roles,id', 'required', new SameTypeRoleRule()]
         ])->validate();
@@ -63,6 +77,9 @@ class CreateNewUser implements CreatesNewUsers
         foreach($input['roles'] as $role){
             $user->permissions()->sync(Role::find($role)->permissions);
         }
+        /* array_map(function ($role) use($user) {
+            $user->permissions()->sync(Role::find($role)->permissions);
+        }, $input['roles']); */
         return $user;
     }
 }

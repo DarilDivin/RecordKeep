@@ -2,7 +2,6 @@
 
 use App\Models\Service;
 use App\Models\Division;
-use App\Models\Categorie;
 use App\Models\Direction;
 use App\Models\ChemiseDossier;
 use App\Models\NatureDocument;
@@ -22,7 +21,6 @@ return new class extends Migration
             $table->foreignIdFor(Division::class)->nullable();
             $table->foreignIdFor(Service::class)->nullable();
             $table->foreignIdFor(Direction::class);
-            $table->foreignIdFor(Categorie::class);
             $table->foreignIdFor(NatureDocument::class);
             $table->foreignIdFor(DemandeTransfert::class)->nullable();
             $table->foreignIdFor(ChemiseDossier::class)->nullable();

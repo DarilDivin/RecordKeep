@@ -2,13 +2,12 @@
 
 namespace App\Http\Controllers\Manager;
 
-use App\Models\BoiteArchive;
 use App\Models\ChemiseDossier;
+use App\Models\RayonRangement;
 use Illuminate\Contracts\View\View;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;
 use App\Http\Requests\Manager\ChemiseDossierFormRequest;
-use App\Models\RayonRangement;
 
 class ChemiseDossierController extends Controller
 {
@@ -31,10 +30,11 @@ class ChemiseDossierController extends Controller
      */
     public function create(): View
     {
+        $rayons = RayonRangement::has('boitearchives', '>=', 1)->orderBy('libelle', 'ASC')->get();
         return view('manager.chemise-dossier.chemise-form', [
             'chemise' => new ChemiseDossier(),
-            'boites' => BoiteArchive::getAllBoites(),
-            'rayons' => RayonRangement::getAllRayons()
+            'boites' => $rayons->first()->boitearchives->sortBy('libelle'),
+            'rayons' => $rayons
         ]);
     }
 
@@ -43,11 +43,7 @@ class ChemiseDossierController extends Controller
      */
     public function store(ChemiseDossierFormRequest $request): RedirectResponse
     {
-        $data = $request->validated();
-        $ch = ChemiseDossier::create($data);
-        $ch->update([
-            'code' => BoiteArchive::find($data['boite_archive_id'])->code . 'CH' . $ch->id
-        ]);
+        ChemiseDossier::create($request->validated());
         return redirect()
             ->route('manager.chemise.index')
             ->with('success', 'La Chemise de Dossier a bien été créé');
@@ -58,10 +54,11 @@ class ChemiseDossierController extends Controller
      */
     public function edit(ChemiseDossier $chemise): View
     {
+        $rayons = RayonRangement::has('boitearchives', '>=', 1)->orderBy('libelle', 'ASC')->get();
         return view('manager.chemise-dossier.chemise-form', [
             'chemise' => $chemise,
-            'boites' => BoiteArchive::getAllBoites(),
-            'rayons' => RayonRangement::getAllRayons()
+            'boites' => $chemise->boitearchive->rayonrangement->boitearchives->sortBy('service'),
+            'rayons' => $rayons
         ]);
     }
 
@@ -70,12 +67,7 @@ class ChemiseDossierController extends Controller
      */
     public function update(ChemiseDossierFormRequest $request, ChemiseDossier $chemise): RedirectResponse
     {
-        $data = $request->validated();
-        $chemise->update(array_merge(
-            $data, [
-                'code' => BoiteArchive::find($data['boite_archive_id'])->code . 'CH' . $chemise->id
-            ]
-        ));
+        $chemise->update($request->validated());
         return redirect()
             ->route('manager.chemise.index')
             ->with('success', 'La Chemise de Dossier a bien été modifiée');

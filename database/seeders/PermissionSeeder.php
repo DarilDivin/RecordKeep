@@ -33,17 +33,17 @@ class PermissionSeeder extends Seeder
 
         $standardManagerPermissions = [
             'Gestion des Documents',
-            'Gestion des Catégories',
-            'Gestion des Boîtes Archives',
-            'Gestion des Rayons Rangements',
-            'Gestion des Chemises Dossiers',
-            'Gestion des Natures de Documents',
             'Gestion des Demandes de Transferts'
         ];
 
         $centralManagerPermissions = [
+            'Gestion des Catégories',
             'Gestion des Classements',
+            'Gestion des Boîtes Archives',
             'Gestion des Demandes de Prêts',
+            'Gestion des Rayons Rangements',
+            'Gestion des Chemises Dossiers',
+            'Gestion des Natures de Documents',
             'Gestion des Demandes de Transferts du MISP'
         ];
 

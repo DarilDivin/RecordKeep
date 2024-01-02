@@ -27,9 +27,10 @@
                 <x-input class="inputContainer fonction" id="permission" label="Libellé de la Permission" type="text" name="name" placeholder="Permission"  readonly="" value="{{ $permission->name }}" />
 
                 @livewire('permission-dynamic-select', [
-                    'permission' => $permission,
-                    'typeroles' => $typeroles,
                     'roles' => $roles,
+                    'typeroles' => $typeroles,
+                    'permission' => $permission,
+                    'permissionRoles' => $permissionRoles
                 ])
 
                 <div class="inputContainer button">

@@ -21,6 +21,22 @@ class ChemiseDossier extends Model
         'boite_archive_id'
     ];
 
+    protected static function boot() {
+        parent::boot();
+
+        static::created(function ($chemise) {
+            $b = $chemise->boitearchive;
+            $chemise->update([
+                'code' => $b->code . 'CH' . $b->chemisedossiers->count()
+            ]);
+        });
+
+        static::updated(function ($chemise) {
+            $b = $chemise->boitearchive;
+            $chemise->code = $b->code . 'CH' . $b->chemisedossiers->count();
+        });
+    }
+
     public function boitearchive(): BelongsTo
     {
         return $this->belongsTo(BoiteArchive::class, 'boite_archive_id', 'id');

@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\Service;
 use App\Models\Division;
 use App\Models\Direction;
 use Illuminate\Contracts\View\View;
@@ -31,10 +30,11 @@ class DivisionController extends Controller
      */
     public function create(): View
     {
+        $directions = Direction::has('services', '>=', 2)->orderBy('direction', 'ASC')->get();
         return view('admin.division.division-form', [
             'division' => new Division(),
-            'services' => Service::where('service', '!=', 'Aucun')->get(),
-            'directions' => Direction::has('services', '>=', 2)->get()
+            'services' => $directions->first()->services->where('service', '!=', 'Aucun')->sortBy('service'),
+            'directions' => $directions
         ]);
     }
 
@@ -54,10 +54,11 @@ class DivisionController extends Controller
      */
     public function edit(Division $division): View
     {
+        $directions = Direction::has('services', '>=', 2)->orderBy('direction', 'ASC')->get();
         return view('admin.division.division-form', [
             'division' => $division,
-            'services' => Service::where('service', '!=', 'Aucun')->get(),
-            'directions' => Direction::has('services', '>=', 2)->get()
+            'services' => $division->service->direction->services->where('service', '!=', 'Aucun')->sortBy('service'),
+            'directions' => $directions
         ]);
     }
 

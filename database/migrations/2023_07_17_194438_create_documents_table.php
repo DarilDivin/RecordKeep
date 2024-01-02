@@ -14,14 +14,12 @@ return new class extends Migration
         Schema::create('documents', function (Blueprint $table) {
             $table->id();
             $table->string('nom');
-            $table->string('signature');
+            $table->string('timbre')->nullable();
             $table->string('code')->nullable();
             $table->string('objet');
-            $table->string('source');
             $table->string('emetteur');
             $table->string('recepteur');
             $table->string('motclefs');
-            $table->integer('dua');
             $table->date('datecreation');
             $table->boolean('disponibilite')->default(0);
             $table->boolean('archive')->default(0);
@@ -30,6 +28,9 @@ return new class extends Migration
             $table->integer('nbrdownload')->default(0);
             $table->integer('nbrconsult')->default(0);
             $table->dateTime('archived_at')->nullable();
+            $table->dateTime('datedua1');
+            $table->dateTime('datedua2');
+            $table->boolean('communicable')->default(0);
             $table->timestamps();
             $table->softDeletes();
         });

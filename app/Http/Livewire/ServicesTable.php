@@ -2,10 +2,10 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\Direction;
 use DateTime;
 use App\Models\Service;
 use Livewire\Component;
+use App\Models\Direction;
 use Livewire\WithPagination;
 
 class ServicesTable extends Component
@@ -84,7 +84,7 @@ class ServicesTable extends Component
             'services' => $services
                 ->orderBy($this->orderField, $this->orderDirection)
                 ->paginate(20),
-            'directions' => Direction::all()
+            'directions' => Direction::orderBy('direction', 'ASC')->get()
         ]);
     }
 

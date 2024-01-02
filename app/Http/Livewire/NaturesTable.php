@@ -32,7 +32,7 @@ class NaturesTable extends Component
     {
         NatureDocument::destroy($ids);
         $this->naturesChecked = [];
-        session()->flash('success', 'Les Natures de Document ont bien été supprimé');
+        session()->flash('success', 'Les Natures de Documents ont bien été supprimé');
     }
 
     public function setOrderField(string | int | DateTime  $field)

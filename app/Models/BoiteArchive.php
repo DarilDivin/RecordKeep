@@ -21,6 +21,29 @@ class BoiteArchive extends Model
         'rayon_rangement_id'
     ];
 
+    protected static function boot() {
+        parent::boot();
+
+        static::created(function ($boite) {
+            $r = $boite->rayonrangement;
+            $boite->update([
+                'code' => $r->code . 'B' . $r->boitearchives->count()
+            ]);
+        });
+
+        static::updated(function ($boite) {
+            $r = $boite->rayonrangement;
+            $boite->code = $r->code . 'B' . $r->boitearchives->count();
+        });
+
+        static::deleting(function ($boite) {
+            $boite->chemisedossiers->each(function ($chemise) {
+                $chemise->delete();
+            });
+        });
+
+    }
+
     public function rayonrangement(): BelongsTo
     {
         return $this->belongsTo(RayonRangement::class, 'rayon_rangement_id', 'id');

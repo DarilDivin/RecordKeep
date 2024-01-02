@@ -4,6 +4,7 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 use App\Models\BoiteArchive;
+use App\Models\RayonRangement;
 
 class ChemiseDynamicSelect extends Component
 {
@@ -23,11 +24,23 @@ class ChemiseDynamicSelect extends Component
             $this->selectedBoite = $this->chemise->boite_archive_id;
             $this->selectedRayon = $this->chemise->boitearchive->rayon_rangement_id;
         }
+
+        if(old('boite_archive_id')) {
+            $this->boites = RayonRangement::find(old('rayon_rangement_id'))->boitearchives->sortBy('libelle');
+            $this->selectedBoite = old('boite_archive_id');
+        }
+
+        if(old('rayon_rangement_id')) {
+            $this->selectedRayon = old('rayon_rangement_id');
+        }
     }
 
     public function updatedSelectedRayon($rayon_id)
     {
-        $this->boites = BoiteArchive::where('rayon_rangement_id', $rayon_id)->pluck('libelle', 'id');
+        $this->boites =
+        BoiteArchive::where('rayon_rangement_id', $rayon_id)
+        ->orderBy('libelle', 'ASC')
+        ->get();
     }
 
     public function updatedSelectedBoite($boite_id)

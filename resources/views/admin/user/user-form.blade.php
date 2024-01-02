@@ -25,7 +25,7 @@
 
                 <x-input class="inputContainer" id="prenoms" label="Prénom(s)" type="text" name="prenoms" placeholder="Prénom(s)" readonly="" value="{{ $user->prenoms }}" />
 
-                <x-input class="inputContainer" id="email" label="Email" type="email" name="email" placeholder="Email"  readonly="" value="{{ $user->email }}" />
+                <x-input class="inputContainer" id="email" label="Email" type="email" name="email" placeholder="jonhdoe@gouv.bj"  readonly="" value="{{ $user->email }}" />
 
                 <x-input class="inputContainer" id="password" label="Mot de passe" type="password" name="password" placeholder="Mot de passe"  readonly="" value="" />
 

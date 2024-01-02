@@ -14,6 +14,10 @@ return new class extends Migration
         Schema::create('nature_documents', function (Blueprint $table) {
             $table->id();
             $table->string('nature');
+            $table->integer('dc');
+            $table->integer('dua1');
+            $table->integer('dua2');
+            $table->boolean('')->default(0);
             $table->timestamps();
             $table->softDeletes();
         });

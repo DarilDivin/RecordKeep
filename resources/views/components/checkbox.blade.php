@@ -1,4 +1,4 @@
 <div class="{{ $class }}">
     <label for="{{ $id }}">{{ $label }}</label>
-    <input type="checkbox" name="{{ $name }}[]" id="{{ $id }}" value="{{ $value }}" @if(in_array($value, $ex) || in_array($value, old($name, [])) || $fonction === 'Directeur') checked @endif />
+    <input type="checkbox" name="{{ $name }}[]" id="{{ $id }}" value="{{ $value }}" @if(in_array($value, $ex) || in_array($value, old($name, [])) || $fonction === 'Directeur') checked @endif/>
 </div>

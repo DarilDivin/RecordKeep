@@ -41,17 +41,14 @@ class DocumentFactory extends Factory
         $signature = "N° $signatureNumber/" . $this->faker->regexify('[A-Z]{2,5}/[A-Z]{2,4}/[A-Z]{2,5}/[A-Z]{2,3}');
 
         return [
-            'signature' => $signature,
+            'timbre' => $signature,
             'nom' => $this->faker->sentence($this->faker->numberBetween(2, 3)),
             'code' => strtoupper($this->faker->bothify('?#?#?#')),
             'objet' => $this->faker->sentence($this->faker->numberBetween(4, 9)),
-            'source' => $this->faker->company(),
             'emetteur' => $this->faker->company(),
             'recepteur' => $this->faker->name(),
             'motclefs' => $keywords,
-            'dua' => $this->faker->numberBetween(4, 15),
             'datecreation' => $this->faker->date(),
-            'categorie_id' => $this->faker->numberBetween(1, 6),
             'nature_document_id' => $this->faker->numberBetween(1, 8),
         ];
     }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Manager;
 
+use App\Rules\SameBoiteForRayon;
 use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -23,12 +24,8 @@ class BoiteArchiveFormRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'libelle' => ['required', 'string',
-                Rule::unique('boite_archives')
-                ->ignore($this->route()->parameter('boite'))
-                ->withoutTrashed()
-        ],
-        'rayon_rangement_id' => ['required', 'exists:rayon_rangements,id', 'integer'],
+            'libelle' => ['required', 'string', new SameBoiteForRayon()],
+            'rayon_rangement_id' => ['required', 'exists:rayon_rangements,id', 'integer'],
         ];
     }
 }

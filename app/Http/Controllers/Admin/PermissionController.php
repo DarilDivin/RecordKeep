@@ -31,12 +31,12 @@ class PermissionController extends Controller
      */
     public function create(): View
     {
-        $firstTypeRole = TypeRole::orderBy('id', 'asc')->take(1)->get()->toArray();
-        $firstTypeRoleId = $firstTypeRole[0]['id'];
+        $permission = new Permission();
         return view('admin.permission.permission-form', [
-            'permission' => new Permission(),
+            'permission' => $permission,
             'typeroles' => TypeRole::all()->pluck('libelle', 'id'),
-            'roles' => Role::where('type_role_id', $firstTypeRoleId)->get()->toArray()
+            'roles' => Role::where('type_role_id', TypeRole::first()->id)->get()->toArray(),
+            'permissionRoles' => $permission->roles->toArray()
         ]);
     }
 
@@ -62,7 +62,8 @@ class PermissionController extends Controller
         return view('admin.permission.permission-form', [
             'permission' => $permission,
             'typeroles' => TypeRole::all()->pluck('libelle', 'id'),
-            'roles' => $permission->typerole->severalRoles->toArray()
+            'roles' => $permission->typerole->severalRoles->toArray(),
+            'permissionRoles' => $permission->roles->toArray()
         ]);
     }
 

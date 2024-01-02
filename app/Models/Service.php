@@ -37,7 +37,7 @@ class Service extends Model
             ]);
         });
 
-        static::deleted(function ($service) {
+        static::deleting(function ($service) {
             $service->divisions->each(function ($division) {
                 $division->delete();
             });
@@ -69,6 +69,6 @@ class Service extends Model
 
     public static function getAllServices(): Collection
     {
-        return self::all()->pluck('service', 'id');
+        return self::orderBy('service', 'ASC')->pluck('service', 'id');
     }
 }

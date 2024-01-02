@@ -20,7 +20,7 @@
                 @csrf
                 @method($boite->exists ? 'put' : 'post')
 
-                <x-input class="inputContainer fonction" id="boite" label="Boite Archive" type="text" name="libelle" placeholder="Boite d'Archive"  readonly="" value="{{ $boite->libelle }}" />
+                <x-input class="inputContainer fonction" id="boite" label="Boite Archive(Libellé)" type="text" name="libelle" placeholder="Boite d'Archive"  readonly="" value="{{ $boite->libelle }}" />
 
                 <x-select class="inputContainer fonction" id="rayon" label="Rayon de Rangement" name="rayon_rangement_id" :value="$rayons" elementIdOnEntite="{{ $boite->rayon_rangement_id }}" />
 

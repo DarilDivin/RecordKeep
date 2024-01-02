@@ -27,7 +27,9 @@ class NatureDocumentFormRequest extends FormRequest
                 Rule::unique('nature_documents')
                 ->ignore($this->route()->parameter('nature'))
                 ->withoutTrashed()
-            ]
+            ],
+            'dua' => ['required', 'integer'],
+            'categorie_id' => ['required', 'exists:categories,id', 'integer'],
         ];
     }
 }

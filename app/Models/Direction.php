@@ -34,7 +34,7 @@ class Direction extends Model
             ]);
         });
 
-        static::deleted(function ($direction) {
+        static::deleting(function ($direction) {
             $direction->services->each(function ($service) {
                 $service->delete();
             });
@@ -61,6 +61,6 @@ class Direction extends Model
 
     public static function getAllDirections(): Collection
     {
-        return self::all()->pluck('direction', 'id');
+        return self::orderBy('direction', 'ASC')->pluck('direction', 'id');
     }
 }

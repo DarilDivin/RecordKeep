@@ -39,10 +39,7 @@ class RayonRangementController extends Controller
      */
     public function store(RayonRangementFormRequest $request): RedirectResponse
     {
-        $r = RayonRangement::create($request->validated());
-        $r->update([
-            'code' => 'R' . $r->id
-        ]);
+        RayonRangement::create($request->validated());
         return redirect()
             ->route('manager.rayon.index')
             ->with('success', 'Le Rayon de Rangement a bien été créé');
