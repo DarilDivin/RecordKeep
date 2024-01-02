@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Models\Division as ModelsDivision;
+use Str;
 use App\Models\User;
 use App\Models\Service;
 use App\Models\Document;
@@ -18,9 +18,9 @@ class Division extends Model
     use HasFactory, SoftDeletes;
 
     protected $fillable = [
-        'division',
         'sigle',
-        'service_id',
+        'division',
+        'service_id'
     ];
 
     protected $casts = [
@@ -41,6 +41,11 @@ class Division extends Model
     {
         return $this->hasMany(User::class);
     }
+
+    /* public function getFormattedContent(): string {
+        return nl2br(htmlentities($this->division));
+        return str_replace("&#039;", "'", $this->division);
+    } */
 
     /* Pluck Methods */
 

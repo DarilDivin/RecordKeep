@@ -31,12 +31,10 @@ class RoleController extends Controller
      */
     public function create(): View
     {
-        $firstTypeRole = TypeRole::orderBy('id', 'asc')->take(1)->get()->toArray();
-        $firstTypeRoleId = $firstTypeRole[0]['id'];
         return view('admin.role.role-form', [
             'role' => new Role(),
             'typeroles' => TypeRole::all()->pluck('libelle', 'id'),
-            'permissions' => Permission::where('type_role_id', $firstTypeRoleId)->get()->toArray()
+            'permissions' => Permission::where('type_role_id', TypeRole::first()->id)->get()->toArray()
         ]);
     }
 
@@ -71,7 +69,6 @@ class RoleController extends Controller
      */
     public function update(RoleFormRequest $request, Role $role): RedirectResponse
     {
-        dd($request->validated());
         $data = $request->validated();
         unset($data['permissions']);
         $role->update($data);

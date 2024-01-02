@@ -16,7 +16,7 @@ class ForceChoiceUserDiretionRule implements ValidationRule
     public function validate(string $attribute, mixed $value, Closure $fail): void
     {
         if(request()->direction_id != Auth::user()->direction->id) {
-            $fail('La direction spécifiée n\'est pas la votre.');
+            $fail('La direction spécifiée n\'est pas la vôtre.');
         }
     }
 }

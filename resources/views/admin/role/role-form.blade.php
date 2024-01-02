@@ -6,11 +6,6 @@
 
     @section('content')
 
-    @php
-        $roleName = str_replace("&#039;", "\'", $role->name );
-    @endphp
-
-
     <div class="addDocumentFormContainer showForm">
         <div class="overlay"></div>
         <div class="addDocumentForm">
@@ -24,7 +19,7 @@
                 @csrf
                 @method($role->exists ? 'put' : 'post')
 
-                <x-input class="inputContainer fonction" id="role" label="Libellé du Rôle" type="text" name="name" placeholder="Rôle"  readonly="" value="{{ $roleName }}" />
+                <x-input class="inputContainer fonction" id="role" label="Libellé du Rôle" type="text" name="name" placeholder="Rôle"  readonly="" value="{{ $role->name }}" />
 
                 @livewire('role-dynamic-select', [
                     'role' => $role,

@@ -14,11 +14,12 @@ class UniqueAndMaxMotCleRule implements ValidationRule
      */
     public function validate(string $attribute, mixed $value, Closure $fail): void
     {
-        foreach(array_count_values(request()->motclefs) as $motclef) {
+        array_map(function ($motclef) use ($fail) {
             if($motclef > 1){
                 $fail('Le champ :attribute ne doit pas contenir deux mots clés de même valeur.');
             }
-        }
+        }, array_count_values(request()->motclefs));
+
         if(count(request()->motclefs ) > 3)
         {
             $fail('Vous ne pouvez pas dépasser 3 mots clés.');

@@ -25,6 +25,7 @@ class DivisionsTable extends Component
     public array $divisionsChecked = [];
 
     protected $rules = [
+        'sigle' => 'nullable|string',
         'division' => 'nullable|string'
     ];
 
@@ -65,7 +66,7 @@ class DivisionsTable extends Component
     {
         $this->validate();
 
-        $divisions = division::query();
+        $divisions = division::query()->where('division', '!=', 'Aucune');
 
         if(!empty($this->sigle)){
             $divisions = $divisions->where('sigle', 'LIKE', "%{$this->sigle}%");
@@ -83,7 +84,7 @@ class DivisionsTable extends Component
             'divisions' => $divisions
                 ->orderBy($this->orderField, $this->orderDirection)
                 ->paginate(20),
-            'services' => Service::all()
+            'services' => Service::where('service', '!=', 'Aucun')->get()
         ]);
     }
 

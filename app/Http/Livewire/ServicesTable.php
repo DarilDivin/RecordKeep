@@ -25,6 +25,7 @@ class ServicesTable extends Component
     public array $servicesChecked = [];
 
     protected $rules = [
+        'sigle' => 'nullable|string',
         'service' => 'nullable|string'
     ];
 
@@ -65,7 +66,7 @@ class ServicesTable extends Component
     {
         $this->validate();
 
-        $services = Service::query();
+        $services = Service::query()->where('service', '!=', 'Aucun');
 
         if(!empty($this->service)){
             $services = $services->where('service', 'LIKE', "%{$this->service}%");

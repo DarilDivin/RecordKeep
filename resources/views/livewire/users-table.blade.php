@@ -16,11 +16,11 @@
             </button>
         </div>
         <div class="search-box" style="width: 23%;">
-            <input type="text" name="nom" wire:model="nom" placeholder="Nom de l'utilisateur">
+            <input type="text" name="nom" wire:model="nom" placeholder="Nom de l'utilisateur" style="height: 35px;">
             <ion-icon name="search"></ion-icon>
         </div>
-        <div class="search-box" style="margin-right: 17px; width: 23%;"">
-            <input type="text" name="matricule" wire:model="matricule" placeholder="Matricule {{-- de l'utilisateur --}}">
+        <div class="search-box" style="margin-right: 17px; width: 22%;"">
+            <input type="text" name="matricule" wire:model="matricule" placeholder="Matricule de l'utilisateur" style="height: 35px;">
             <ion-icon name="search"></ion-icon>
         </div>
     </div>

@@ -23,7 +23,6 @@ class DocumentController extends Controller
 {
     public function index(): View
     {
-        // dd(Auth::user()->fonction->documents);
         return view('user.DocumentPage');
     }
 
