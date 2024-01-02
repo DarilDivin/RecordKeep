@@ -36,6 +36,10 @@ class Document extends Model
         'datecreation',
         'disponibilite',
         'archive',
+        'prete',
+        'communicable',
+        'standardDUAFinished',
+        'centralDUAFinished',
         'document',
         'division_id',
         'service_id',
@@ -43,13 +47,21 @@ class Document extends Model
         'chemise_dossier_id',
         'nature_document_id',
         'demande_transfert_id',
-        'datedua1',
-        'datedua2'
     ];
 
     protected $casts = [
         'created_at' => 'datetime'
     ];
+
+    protected static function boot() {
+        parent::boot();
+
+        static::created(function ($document) {
+            $document->standardDUAFinished = Carbon::parse($document->datecreation)->addYears($document->naturedocument->dua_bureaux);
+            $document->centralDUAFinished = Carbon::parse($document->datecreation)->addYears($document->naturedocument->dua_bureaux + $document->naturedocument->dua_service_pre_archivage);
+        });
+
+    }
 
     public function division(): BelongsTo
     {

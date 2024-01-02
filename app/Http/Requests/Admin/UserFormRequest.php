@@ -11,7 +11,9 @@ use App\Rules\OneServiceForChiefService;
 use App\Rules\OneServiceForChiefDivision;
 use App\Rules\NoneDivisionForChiefService;
 use App\Rules\OneDivisionForChiefDivision;
+use App\Rules\ForceCentralManagerToBeAtDSI;
 use Illuminate\Foundation\Http\FormRequest;
+use App\Rules\OneCentralManagerForApplication;
 use App\Actions\Fortify\PasswordValidationRules;
 
 class UserFormRequest extends FormRequest
@@ -41,7 +43,10 @@ class UserFormRequest extends FormRequest
             'email' => ['required', 'email', Rule::unique('users')->ignore($this->route()->parameter('user'))],
             'datenaissance' => ['required', 'date', new UserBirthDayRule()],
             'sexe' => ['required', 'string'],
-            'roles' => ['array','exists:roles,id', 'required', new SameTypeRoleRule()],
+            'roles' => ['array','exists:roles,id', 'required',
+                new SameTypeRoleRule(), new ForceCentralManagerToBeAtDSI(),
+                new OneCentralManagerForApplication()
+            ],
             'password' => $this->passwordRules(),
             'fonction_id' => ['integer','exists:fonctions,id', 'required'],
             'division_id' => [

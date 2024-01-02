@@ -24,13 +24,13 @@ return new class extends Migration
             $table->boolean('disponibilite')->default(0);
             $table->boolean('archive')->default(0);
             $table->boolean('prete')->default(0);
+            $table->boolean('communicable')->default(0);
+            $table->date('standardDUAFinished')->nullable();
+            $table->date('centralDUAFinished')->nullable();
             $table->string('document')->nullable();
             $table->integer('nbrdownload')->default(0);
             $table->integer('nbrconsult')->default(0);
             $table->dateTime('archived_at')->nullable();
-            $table->dateTime('datedua1');
-            $table->dateTime('datedua2');
-            $table->boolean('communicable')->default(0);
             $table->timestamps();
             $table->softDeletes();
         });

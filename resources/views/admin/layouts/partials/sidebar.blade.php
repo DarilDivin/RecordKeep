@@ -152,14 +152,14 @@
             </li>
         @endcan
 
-        @can('Gestion des Demandes de Transferts')
+        {{-- @can('Gestion des Demandes de Transferts')
             <li @class(['list', 'active' => str_contains($route_name, 'transfert')])>
                 <a href="{{ route('manager.transfert.index') }}">
                     <span class="icon"><ion-icon name="arrow-redo"></ion-icon></span>
                     <span class="title">Demandes de transferts</span>
                 </a>
             </li>
-        @endcan
+        @endcan --}}
 
         @can('Gestion des Demandes de Prêts')
             <li @class(['list', 'active' => str_contains($route_name, 'rapport-depart-list')])>
@@ -170,14 +170,14 @@
             </li>
         @endcan
 
-        @can('Gestion des Demandes de Transferts du MISP')
+        {{-- @can('Gestion des Demandes de Transferts du MISP')
             <li @class(['list', 'active' => str_contains($route_name, 'all')])>
                 <a href="{{ route('manager.transfert.all') }}">
                     <span class="icon"><ion-icon name="send"></ion-icon></span>
                     <span class="title">Transferts du MISP</span>
                 </a>
             </li>
-        @endcan
+        @endcan --}}
 
         @can('Gestion des Classements')
             <li @class(['list', 'active' => str_contains($route_name, 'classed')])>

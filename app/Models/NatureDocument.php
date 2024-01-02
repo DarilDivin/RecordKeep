@@ -16,12 +16,11 @@ class NatureDocument extends Model
     use HasFactory, SoftDeletes;
 
     protected $fillable = [
-        'dc',
-        'dua1',
-        'dua2',
         'nature',
-        'communicable',
-        'categorie_id'
+        'categorie_id',
+        'duree-communicabilite',
+        'dua_bureaux',
+        'dua_service_pre_archivage'
     ];
 
     protected $casts = [

@@ -6,6 +6,7 @@ use App\Models\Role;
 use App\Models\User;
 use App\Models\Service;
 use App\Models\Division;
+use App\Rules\ForceCentralManagerToBeAtDSI;
 use App\Rules\SameTypeRoleRule;
 use App\Rules\UserBirthDayRule;
 use Illuminate\Validation\Rule;
@@ -14,6 +15,7 @@ use App\Rules\NoneServiceForDirector;
 use Illuminate\Support\Facades\Validator;
 use App\Rules\NoneDivisionForChiefService;
 use App\Rules\NoneDivisionForDirector;
+use App\Rules\OneCentralManagerForApplication;
 use App\Rules\OneDivisionForChiefDivision;
 use App\Rules\OneServiceForChiefDivision;
 use App\Rules\OneServiceForChiefService;
@@ -50,7 +52,10 @@ class CreateNewUser implements CreatesNewUsers
                 new OneServiceForChiefDivision()
             ],
             'direction_id' => ['integer','exists:directions,id', 'required'],
-            'roles' => ['array','exists:roles,id', 'required', new SameTypeRoleRule()]
+            'roles' => ['array','exists:roles,id', 'required',
+                new SameTypeRoleRule(), new ForceCentralManagerToBeAtDSI(),
+                new OneCentralManagerForApplication()
+            ]
         ])->validate();
 
         if(Service::find($input['service_id'])->service === 'Aucun') {
