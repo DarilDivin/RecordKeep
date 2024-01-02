@@ -19,7 +19,7 @@
             <form method="POST" action="{{ route($document->exists ? 'manager.document.update' : 'manager.document.store', ['document' => $document->id]) }}" enctype="multipart/form-data">
                 @csrf
                 @method($document->exists ? 'put' : 'post')
-                <x-input class="inputContainer" id="signature" label="Signature" type="text" name="signature" placeholder="Signature"  readonly="" value="{{ $document->signature }}" />
+                <x-input class="inputContainer" id="timbre" label="Timbre" type="text" name="timbre" placeholder="Timbre"  readonly="" value="{{ $document->timbre }}" />
 
                 <x-input class="inputContainer" id="nom" label="Nom du Document" type="text" name="nom" placeholder="Nom du Document" readonly="" value="{{ $document->nom }}" />
 
@@ -31,13 +31,7 @@
 
                 @include('shared.tom-select')
 
-                <x-input class="inputContainer" id="dua" label="DUA" type="number" name="dua" placeholder="DUA"  readonly="" value="{{ $document->dua }}" />
-
                 <x-select class="inputContainer" id="nature" label="Nature du Document" name="nature_document_id" :value="$natures" elementIdOnEntite="{{ $document->nature_document_id }}" />
-
-                <x-select class="inputContainer" id="categories" label="Catégorie du Document" name="categorie_id" :value="$categories" elementIdOnEntite="{{ $document->categorie_id }}" />
-
-                <x-input class="inputContainer" id="source" label="Source du Document" type="text" name="source" placeholder="Source du Document" readonly="" value="{{ $document->source }}" />
 
                 <x-input class="inputContainer" id="datecreation" label="Date de Création" type="date" name="datecreation" placeholder=""  readonly="" value="{{ $document->datecreation }}" />
 

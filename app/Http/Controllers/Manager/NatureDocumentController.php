@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers\Manager;
 
-use App\Http\Controllers\Controller;
-use App\Http\Requests\Manager\NatureDocumentFormRequest;
+use App\Models\Categorie;
 use App\Models\NatureDocument;
 use Illuminate\Contracts\View\View;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;
+use App\Http\Requests\Manager\NatureDocumentFormRequest;
 
 class NatureDocumentController extends Controller
 {
@@ -30,7 +31,8 @@ class NatureDocumentController extends Controller
     public function create(): View
     {
         return view('manager.nature-document.nature-form', [
-            'nature' => new NatureDocument()
+            'nature' => new NatureDocument(),
+            'categories' => Categorie::getAllCategories()
         ]);
     }
 
@@ -51,7 +53,8 @@ class NatureDocumentController extends Controller
     public function edit(NatureDocument $nature)
     {
         return view('manager.nature-document.nature-form', [
-            'nature' => $nature
+            'nature' => $nature,
+            'categories' => Categorie::getAllCategories()
         ]);
     }
 

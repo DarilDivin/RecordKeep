@@ -5,19 +5,21 @@ namespace App\Http\Livewire;
 use App\Models\Service;
 use Livewire\Component;
 use App\Models\Division;
+use App\Models\Direction;
 use Illuminate\Support\Str;
 
 class DocumentDynamicSelect extends Component
 {
-    public $document;
 
     public $user;
 
-    public $directions;
-
     public $services;
 
+    public $document;
+
     public $divisions;
+
+    public $directions;
 
     public $selectedService;
 
@@ -39,13 +41,30 @@ class DocumentDynamicSelect extends Component
             $this->selectedDivision = $this->user->division_id;
             $this->selectedDirection = $this->user->direction_id;
         }
+
+        if(old('division_id')) {
+            $this->selectedDivision = old('division_id');
+        }
+
+        if(old('service_id')) {
+            $this->divisions = Service::find(old('service_id'))->divisions->sortBy('division');
+            $this->services = Direction::find(old('direction_id'))->services->sortBy('service');
+            $this->selectedService = old('service_id');
+        }
+
+        if(old('direction_id')) {
+            $this->services = Direction::find(old('direction_id'))->services->sortBy('service');
+            $this->selectedDirection = old('direction_id');
+        }
+
     }
+
 
     public function updatedSelectedDirection($direction_id)
     {
-        $this->services = Service::where('direction_id', $direction_id)->pluck('service', 'id');
-        if(!empty(array_key_first($this->services->toArray()))){
-            $this->divisions = Division::where('service_id', array_key_first($this->services->toArray()))->pluck('division', 'id');
+        $this->services = Service::where('direction_id', $direction_id)->orderBy('service', 'ASC')->get();
+        if($this->services->isNotEmpty()) {
+            $this->divisions = Division::where('service_id', $this->services->sortBy('service')->first()->id)->get();
         }
         else {
             $this->divisions = [];
@@ -54,7 +73,7 @@ class DocumentDynamicSelect extends Component
 
     public function updatedSelectedService($service_id)
     {
-        $this->divisions = Division::where('service_id', $service_id)->pluck('division', 'id');
+        $this->divisions = Division::where('service_id', $service_id)->orderBy('division', 'ASC')->get();
         $this->selectedDirection = Service::find($service_id)->direction_id;
     }
 

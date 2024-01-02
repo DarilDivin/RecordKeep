@@ -51,6 +51,6 @@ class Division extends Model
 
     public static function getAllDivisions(): Collection
     {
-        return self::all()->pluck('division', 'id');
+        return self::orderBy('division', 'ASC')->pluck('division', 'id');
     }
 }

@@ -34,8 +34,8 @@ class DocumentFormRequest extends FormRequest
 
         return [
             'nom' => ['required', 'string'],
-            'signature' => [
-                'required', 'string',
+            'timbre' => [
+                'nullable', 'string',
                 Rule::unique('documents')
                 ->where(function ($query){
                     return $query->whereNull('deleted_at');
@@ -48,15 +48,12 @@ class DocumentFormRequest extends FormRequest
                     return $query->whereNull('deleted_at');
                 })->ignore($this->route()->parameter('document'))],
             'objet' => ['required', 'string'],
-            'source' => ['required', 'string'],
-            'dua' => ['required', 'integer'],
             'emetteur' => ['required', 'string'],
             'recepteur' => ['required', 'string'],
             'datecreation' => ['required', 'date', new DocumentBirthdayRule()],
             'disponibilite' => ['nullable', 'boolean'],
             'archive' => ['nullable', 'boolean'],
             'nature_document_id' => ['required', 'exists:nature_documents,id'],
-            'categorie_id' => ['required', 'exists:categories,id', 'integer'],
             'chemise_dossier_id' => ['nullable', 'exists:chemise_dossiers,id'],
             'division_id' => ['required', 'exists:divisions,id', 'integer'],
             'service_id' => ['required', 'exists:services,id', 'integer'],

@@ -19,7 +19,7 @@
             <form method="POST" action="{{ route($rayon->exists ? 'manager.rayon.update' : 'manager.rayon.store', ['rayon' => $rayon->id]) }}">
                 @csrf
                 @method($rayon->exists ? 'put' : 'post')
-                <x-input class="inputContainer fonction" id="rayon" label="Rayon de Rangement" type="text" name="libelle" placeholder="Rayon de Rangement"  readonly="" value="{{ $rayon->libelle }}" />
+                <x-input class="inputContainer fonction" id="rayon" label="Rayon de Rangement(Libellé)" type="text" name="libelle" placeholder="Rayon de Rangement"  readonly="" value="{{ $rayon->libelle }}" />
 
                 <div class="inputContainer button">
                     <button type="submit">

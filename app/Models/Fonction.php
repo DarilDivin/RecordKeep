@@ -37,6 +37,6 @@ class Fonction extends Model
 
     public static function getAllFonctions(): Collection
     {
-        return self::all()->pluck('fonction', 'id');
+        return self::orderBy('fonction', 'ASC')->pluck('fonction', 'id');
     }
 }

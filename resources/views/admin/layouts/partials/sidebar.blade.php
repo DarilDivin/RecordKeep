@@ -152,14 +152,14 @@
             </li>
         @endcan
 
-        @can('Gestion des Demandes de Transferts')
+        {{-- @can('Gestion des Demandes de Transferts')
             <li class="list">
                 <a href="{{ route('manager.transfert.index') }}">
                     <span class="icon"><ion-icon name="arrow-redo"></ion-icon></span>
                     <span class="title">Demandes de transferts</span>
                 </a>
             </li>
-        @endcan
+        @endcan --}}
 
         @can('Gestion des Demandes de Prêts')
             <li class="list">
@@ -170,14 +170,14 @@
             </li>
         @endcan
 
-        @can('Gestion des Demandes de Transferts du MISP')
+        {{-- @can('Gestion des Demandes de Transferts du MISP')
             <li class="list">
                 <a href="{{ route('manager.transfert.all') }}">
                     <span class="icon"><ion-icon name="send"></ion-icon></span>
                     <span class="title">Transferts du MISP</span>
                 </a>
             </li>
-        @endcan
+        @endcan --}}
 
         @can('Gestion des Classements')
             <li class="list">

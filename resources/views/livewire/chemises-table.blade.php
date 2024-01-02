@@ -18,8 +18,8 @@
         <div class="check-categorie-documents" style="width: 22%;">
             <select class="inputContainer" id="boite" wire:model="selectedBoite" name="boite_id" style="height: 35px;">
                 <option value="">Sélectionnez une boîte</option>
-                @foreach ($boites as $id => $boite)
-                    <option value="{{ $id }}">{{ $boite }}</option>
+                @foreach ($boites as $boite)
+                    <option value="{{ $boite->id }}">{{ $boite->libelle . ' ' . '(' . $boite->rayonrangement->code .')' }}</option>
                 @endforeach
             </select>
         </div>

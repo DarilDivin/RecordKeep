@@ -13,11 +13,20 @@ class UserDynamicSelect extends Component
 
     public $permissions = [];
 
-    public $selectedRole;
+    public $selectedRoles;
 
     public $userPermissions;
 
-    public function updatedSelectedRole(array $rolesIds)
+    /* public function mount() {
+        if (old('roles')) {
+            array_map(function ($role) {
+                $this->selectedRoles[] = (int)$role;
+            }, old('roles'));
+            dd($this->selectedRoles);
+        }
+    } */
+
+    public function updatedselectedRoles(array $rolesIds)
     {
         $permissions = [];
         foreach($rolesIds as $role_id)

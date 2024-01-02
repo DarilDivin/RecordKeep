@@ -2,11 +2,12 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Models\NatureDocument;
 use Illuminate\Support\Collection;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Categorie extends Model
 {
@@ -16,9 +17,9 @@ class Categorie extends Model
         'categorie'
     ];
 
-    public function documents(): HasMany
+    public function naturesDocuments(): HasMany
     {
-        return $this->hasMany(Document::class);
+        return $this->hasMany(NatureDocument::class);
     }
 
     public static function getAllCategories(): Collection

@@ -6,7 +6,6 @@ use App\Models\Service;
 use App\Models\Division;
 use App\Models\Document;
 use App\Models\Fonction;
-use App\Models\Categorie;
 use App\Models\Direction;
 use App\Models\NatureDocument;
 use Illuminate\Contracts\View\View;
@@ -39,22 +38,21 @@ class DocumentController extends Controller
         $document =  new Document();
         $document->fill([
             'nom' => 'Autorisation de stage',
-            'signature' => 'N°564/DPAF/MISP/SGHTE/DPRF/SA',
+            'timbre' => 'N°564/DPAF/MISP/SGHTE/DPRF/SA',
             'objet' => 'Autorisation de stage',
             'emetteur' => 'DPAF',
-            'recepteur' => 'Daniel',
-            'source' => 'DPAF',
-            'dua' => 10,
+            'recepteur' => 'Daniel'
         ]);
 
+        $directions = Direction::orderBy('id')->get();
+        $services = $directions->first()->services->sortBy('service');
         return view('manager.document.document-form',[
             'document' => $document,
-            'services' => Service::getAllServices(),
-            'divisions' => Division::getAllDivisions(),
+            'services' => $services,
+            'directions' => $directions,
             'fonctions' => Fonction::getAllFonctions(),
-            'categories' => Categorie::getAllCategories(),
-            'directions' => Direction::getAllDirections(),
             'natures' => NatureDocument::getAllNatureDocuments(),
+            'divisions' => $services->first()->divisions->sortBy('division')
         ]);
     }
 
@@ -98,12 +96,11 @@ class DocumentController extends Controller
     {
         return view('manager.document.document-form',[
             'document' => $document,
-            'services' => Service::getAllServices(),
-            'divisions' => Division::getAllDivisions(),
             'fonctions' => Fonction::getAllFonctions(),
-            'categories' => Categorie::getAllCategories(),
-            'directions' => Direction::getAllDirections(),
+            'directions' => Direction::orderBy('id')->get(),
             'natures' => NatureDocument::getAllNatureDocuments(),
+            'services' => $document->direction->services->sortBy('service'),
+            'divisions' => $document->service->divisions->sortBy('division')
         ]);
     }
 

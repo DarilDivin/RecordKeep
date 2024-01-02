@@ -27,14 +27,12 @@ class Document extends Model
 
     protected $fillable = [
         'nom',
-        'signature',
+        'timbre',
         'code',
         'objet',
-        'source',
         'emetteur',
         'recepteur',
         'motclefs',
-        'dua',
         'datecreation',
         'disponibilite',
         'archive',
@@ -42,10 +40,11 @@ class Document extends Model
         'division_id',
         'service_id',
         'direction_id',
-        'categorie_id',
         'chemise_dossier_id',
         'nature_document_id',
-        'demande_transfert_id'
+        'demande_transfert_id',
+        'datedua1',
+        'datedua2'
     ];
 
     protected $casts = [
@@ -65,11 +64,6 @@ class Document extends Model
     public function direction(): BelongsTo
     {
         return $this->belongsTo(Direction::class);
-    }
-
-    public function categorie(): BelongsTo
-    {
-        return $this->belongsTo(Categorie::class);
     }
 
     public function chemisedossier(): BelongsTo

@@ -12,21 +12,16 @@
         @enderror
     </div>
 
+    @php
+        $routeName = request()->route()->getName();
+    @endphp
+
     <div class="inputContainer TomSelect" style="grid-column: 1 / span 3; height: 210px;">
-        <label for="roles">Roles</label>
+        <label for="roles">Veuillez sélectionner les rôles que vous souhaitez accorder à cette permission</label>
         <select name="roles[]" id="roles" multiple placeholder="Choisissez quelques rôles..." wire:model="selectedRoles" style="height: 100%;">
-            @php
-                $routeName = request()->route()->getName();
-            @endphp
-            @if ($routeName === 'admin.permission.edit' && !empty($permission->roles->toArray()))
-                @foreach ($roles as $role)
-                    <option @if(in_array($role['id'],$permission->roles->pluck('id')->toArray())) selected @endif value="{{ $role['id'] }}">{{ $role['name'] }}</option>
-                @endforeach
-            @else
-                @foreach ($roles as $role)
-                    <option value="{{ $role['id'] }}">{{ $role['name'] }}</option>
-                @endforeach
-            @endif
+            @foreach ($roles as $role)
+                <option value="{{ $role['id'] }}">{{ $role['name'] }}</option>
+            @endforeach
         </select>
         @error('roles')
             <span style="color: red; font-size: 0.7rem">{{ $message }}</span>
@@ -34,8 +29,10 @@
     </div> <br>
 
     @if ($routeName === 'admin.permission.edit')
+        <hr>
+        <h3>Les permissions accordés</h3>
         <div class="permissionsContainer">
-            @foreach ($roles as $role)
+            @foreach ($permissionRoles as $role)
                 <div class="permission">
                     <div class="permissionName">
                         <input type="checkbox" name="" id="role{{ $role['id'] }}" value="{{ $role['id'] }}" checked>
@@ -47,6 +44,9 @@
     @endif
 
     @if (!is_null($alwaysRoles))
+        <br>
+        <hr>
+        <h3>Les permissions accordés</h3>
         <div class="permissionsContainer">
             @foreach ($alwaysRoles as $role)
                 <div class="permission">

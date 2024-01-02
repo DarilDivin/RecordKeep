@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Manager;
 
+use App\Rules\SameChemiseForBoite;
 use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -23,11 +24,7 @@ class ChemiseDossierFormRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'libelle' => ['required', 'string',
-                Rule::unique('chemise_dossiers')
-                ->ignore($this->route()->parameter('chemise'))
-                ->withoutTrashed()
-        ],
+            'libelle' => ['required', 'string', new SameChemiseForBoite()],
         'boite_archive_id' => ['required', 'exists:boite_archives,id', 'integer'],
         ];
     }

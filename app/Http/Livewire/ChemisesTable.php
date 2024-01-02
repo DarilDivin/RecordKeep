@@ -16,8 +16,6 @@ class ChemisesTable extends Component
 
     public $chemise = '';
 
-    public $selectedRayon;
-
     public $selectedBoite;
 
     public $orderField = 'libelle';
@@ -85,7 +83,7 @@ class ChemisesTable extends Component
             'chemises' => $chemises
                 ->orderBy($this->orderField, $this->orderDirection)
                 ->paginate(20),
-            'boites' => BoiteArchive::getAllBoites(),
+            'boites' => BoiteArchive::all()
         ]);
     }
 

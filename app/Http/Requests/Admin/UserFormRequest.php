@@ -2,11 +2,17 @@
 
 namespace App\Http\Requests\Admin;
 
-use App\Actions\Fortify\PasswordValidationRules;
 use App\Rules\SameTypeRoleRule;
 use App\Rules\UserBirthDayRule;
 use Illuminate\Validation\Rule;
+use App\Rules\NoneServiceForDirector;
+use App\Rules\NoneDivisionForDirector;
+use App\Rules\OneServiceForChiefService;
+use App\Rules\OneServiceForChiefDivision;
+use App\Rules\NoneDivisionForChiefService;
+use App\Rules\OneDivisionForChiefDivision;
 use Illuminate\Foundation\Http\FormRequest;
+use App\Actions\Fortify\PasswordValidationRules;
 
 class UserFormRequest extends FormRequest
 {
@@ -30,17 +36,24 @@ class UserFormRequest extends FormRequest
     {
         return [
             'matricule' => ['required','integer', 'min:6', Rule::unique('users')->ignore($this->route()->parameter('user'))],
-            'nom' => ['required', 'string'],
+            'nom' => ['required', 'string', 'max:255'],
             'prenoms' => ['required', 'string'],
             'email' => ['required', 'email', Rule::unique('users')->ignore($this->route()->parameter('user'))],
             'datenaissance' => ['required', 'date', new UserBirthDayRule()],
             'sexe' => ['required', 'string'],
             'roles' => ['array','exists:roles,id', 'required', new SameTypeRoleRule()],
-            /* 'permissions' => ['array','exists:permissions,id', 'required'], */
             'password' => $this->passwordRules(),
             'fonction_id' => ['integer','exists:fonctions,id', 'required'],
-            'division_id' => ['integer','exists:divisions,id', 'nullable'],
-            'service_id' => ['integer','exists:services,id', 'nullable'],
+            'division_id' => [
+                'integer','exists:divisions,id', 'required',
+                new NoneDivisionForDirector(),new NoneDivisionForChiefService(),
+                new OneDivisionForChiefDivision()
+            ],
+            'service_id' => [
+                'integer','exists:services,id', 'required',
+                new NoneServiceForDirector(), new OneServiceForChiefService(),
+                new OneServiceForChiefDivision()
+            ],
             'direction_id' => ['integer','exists:directions,id', 'required'],
         ];
     }

@@ -7,26 +7,23 @@ use Livewire\Component;
 
 class PermissionDynamicSelect extends Component
 {
-    public $permission;
-
-    public $typeroles;
 
     public $roles;
 
-    public $selectedTypeRole;
+    public $typeroles;
 
-    public $selectedRoles;
+    public $permission;
 
     public $alwaysRoles;
 
+    public $selectedRoles;
+
+    public $permissionRoles;
+
+    public $selectedTypeRole;
+
     public function mount()
     {
-        /* if(old('type_role_id')){
-            $this->selectedTypeRole = old('type_role_id');
-        }
-        if(old('roles')){
-            $this->selectedRoles = old('roles');
-        } */
         $this->selectedTypeRole = $this->permission->type_role_id;
     }
 

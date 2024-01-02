@@ -22,6 +22,23 @@ class RayonRangement extends Model
         'created_at' => 'datetime'
     ];
 
+    protected static function boot() {
+        parent::boot();
+
+        static::created(function ($rayon) {
+            $rayon->update([
+                'code' => 'R' . $rayon->id
+            ]);
+        });
+
+        static::deleting(function ($rayon) {
+            $rayon->boitearchives->each(function ($boite) {
+                $boite->delete();
+            });
+        });
+
+    }
+
     public function boitearchives(): HasMany
     {
         return $this->hasMany(BoiteArchive::class, 'rayon_rangement_id', 'id');

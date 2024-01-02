@@ -25,6 +25,7 @@
                     'role' => $role,
                     'typeroles' => $typeroles,
                     'permissions' => $permissions,
+                    'rolePermissions' => $rolePermissions
                 ])
 
                 <div class="inputContainer button">

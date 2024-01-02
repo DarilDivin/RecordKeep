@@ -7,7 +7,6 @@ use App\Models\Service;
 use App\Models\Division;
 use App\Models\Fonction;
 use App\Models\Direction;
-use App\Models\Permission;
 use Spatie\Permission\Models\Role;
 use Illuminate\Contracts\View\View;
 use App\Http\Controllers\Controller;
@@ -43,14 +42,16 @@ class UserController extends Controller
             'prenoms' => 'Gérard',
             'email' => 'gerard@codjo.com',
         ]);
+        $directions = Direction::orderBy('id')->get();
+        $services = $directions->first()->services->sortBy('service');
         return view('admin.user.user-form', [
             'user' => $user,
-            'services' => Service::getAllServices(),
+            'services' => $services,
+            'directions' => $directions,
             'fonctions' => Fonction::getAllFonctions(),
-            'divisions' => Division::getAllDivisions(),
             'roles' => Role::all()->pluck('name', 'id'),
-            'directions' => Direction::getAllDirections(),
             'userPermissions' => $user->permissions->toArray(),
+            'divisions' => $services->first()->divisions->sortBy('division')
         ]);
     }
 
@@ -83,12 +84,12 @@ class UserController extends Controller
     {
         return view('admin.user.user-form', [
             'user' => $user,
-            'services' => Service::getAllServices(),
             'fonctions' => Fonction::getAllFonctions(),
-            'divisions' => Division::getAllDivisions(),
             'roles' => Role::all()->pluck('name', 'id'),
-            'directions' => Direction::getAllDirections(),
+            'directions' => Direction::orderBy('id')->get(),
             'userPermissions' => $user->permissions->toArray(),
+            'services' => $user->direction->services->sortBy('service'),
+            'divisions' => $user->service->divisions->sortBy('division')
         ]);
     }
 
@@ -120,6 +121,9 @@ class UserController extends Controller
         foreach($request['roles'] as $role){
             $user->permissions()->sync(Role::find($role)->permissions);
         }
+        /* array_map(function ($role) use($user) {
+            $user->permissions()->sync(Role::find($role)->permissions);
+        }, $request['roles']); */
         return redirect()
             ->route('admin.user.index')
             ->with('success', 'L\' utilisateur a bien été modifié');

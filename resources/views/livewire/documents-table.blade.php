@@ -8,10 +8,10 @@
                 <ion-icon name="trash"></ion-icon>
                 Supprimer
             </button>
-            <button class="filter" x-show="documentsChecked.length > 0" x-on:click="$wire.createTransfertDocuments(documentsChecked)" x-cloak>
+            {{-- <button class="filter" x-show="documentsChecked.length > 0" x-on:click="$wire.createTransfertDocuments(documentsChecked)" x-cloak>
                 <ion-icon name="add"></ion-icon>
                 Demande Transfert
-            </button>
+            </button> --}}
             <button class="add">
                 <ion-icon name="add"></ion-icon>
                 <a href="{{ route('manager.document.create') }}">Ajouter Document</a>
@@ -48,10 +48,10 @@
                 <tr>
                     <td></td>
                     <x-table-header label="N°" :direction="$orderDirection" name="id" :field="$orderField"></x-table-header>
-                    <x-table-header label="Signature" :direction="$orderDirection" name="signature" :field="$orderField"></x-table-header>
+                    <x-table-header label="Timbre" :direction="$orderDirection" name="timbre" :field="$orderField"></x-table-header>
                     <x-table-header label="Nom du Document" :direction="$orderDirection" name="nom" :field="$orderField"></x-table-header>
+                    <td>DUA(ans)</td>
                     <x-table-header label="Date de Création" :direction="$orderDirection" name="datecreation" :field="$orderField"></x-table-header>
-                    <x-table-header label="DUA" :direction="$orderDirection" name="dua" :field="$orderField"></x-table-header>
                     <td>Actions</td>
                 </tr>
             </thead>
@@ -62,15 +62,14 @@
                         <input type="checkbox" x-model="documentsChecked" value="{{ $document->id }}">
                     </td>
                     <td>{{ $document->id }}</td>
-                    <td>{{ $document->signature }}</td>
+                    <td>{{ $document->timbre }}</td>
                     <td>{{ $document->nom }}</td>
+                    <td>{{ $document->naturedocument->dua }}ans</td>
                     <td>{{ $document->getDateCreation()->translatedFormat('d F Y') }}</td>
-                    <td>{{ $document->dua }}ans</td>
                     <td>
                         <button class="viewInfo"
                                 data-document="{{ json_encode($document) }}"
                                 data-document-nature="{{ json_encode($document->naturedocument->nature) }}"
-                                data-document-categorie="{{ json_encode($document->categorie->categorie) }}"
                                 data-document-direction="{{ json_encode(Str::limit($document->direction->direction, 40, '...')) }}"
                                 data-document-division="{{ json_encode(Str::limit($document?->division?->division, 40, '...')) }}"
                                 data-document-service="{{ json_encode(Str::limit($document?->service?->service, 40, '...')) }}"

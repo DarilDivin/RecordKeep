@@ -21,7 +21,7 @@ class TypeRole extends Model
         'created_at' => 'datetime'
     ];
 
-    public function severalpermissions(): HasMany
+    public function severalPermissions(): HasMany
     {
         return $this->hasMany(Permission::class, 'type_role_id', 'id');
     }
