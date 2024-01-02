@@ -37,7 +37,7 @@
     width: 300px;
     flex-wrap: nowrap;
     align-items: center;
-    padding-left: 28px;
+    padding-left: 20px;
     text-align: center;
     font-size: 1.2rem;
     font-weight: 600;
@@ -49,10 +49,21 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    background: #00000020;
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
 }
 
 .navigation .sidebar-title .lock_container .lock {
     position: absolute;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .navigation.locked .sidebar-title .lock_container .lock.open,
@@ -103,6 +114,8 @@
 
 .navigation .sidebar-title h3 {
     transition: all .4s .2s ease;
+    pointer-events: none;
+    cursor: none;
 }
 
 .navigation.close .sidebar-title h3 {
@@ -113,7 +126,7 @@
 
 .navigation ul {
     position: absolute;
-    top: 50%;
+    top: 47%;
     left: 0;
     transform: translate(0, -50%);
     width: 100%;
@@ -123,6 +136,7 @@
     overflow-x: hidden;
     overflow-y: scroll;
     min-height: 500px;
+    /* box-shadow: var(--box-shadow-normal-inset); */
 }
 
 .navigation ul::-webkit-scrollbar{

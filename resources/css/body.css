@@ -12,6 +12,8 @@
                   0 -4px 8px #85c0ff33;
     --box-shadow-normal: 0 4px 8px #d2d2d233,
                          0 -4px 8px #d2d2d233;
+    --box-shadow-normal-inset: inset 0 4px 8px #3c9afe33,
+                         inset 0 -4px 8px #85c0ff33;
     --box-shadow-normal-dark: 0 4px 8px #0000001a,
                          0 -4px 8px #0000001a;
     --box-shadow-thin-dark: 0 2px 4px #0000001a,
@@ -59,6 +61,11 @@ body {
     overflow-x: hidden;
     transition: .4s ease;
     margin-bottom: 0!important;
+    /* background-image: url('../../storage/app/public/images/pngwing-3.png');
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover; */
 }
 
 /* body.user {

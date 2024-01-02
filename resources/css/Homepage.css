@@ -4,6 +4,9 @@
     margin-top: 100px;
     min-height: 90vh;
     padding: 0 7.5%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .connexion-message {

@@ -1,0 +1,256 @@
+.profileContainer{
+    background: #ececec;
+    /* height: 85vh; */
+    width: 85%;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: var(--box-shadow-normal-dark);
+    overflow: hidden;
+    margin: 25px 0;
+    align-self: center;
+}
+
+.profileContainer .bannerContainer {
+    height: 195px;
+    width: 100%;
+    position: relative;
+    background: rgb(22,34,51);
+    background: radial-gradient(circle, rgba(22,34,51,1) 4%, rgba(99,99,255,1) 60%);
+}
+
+.profileContainer .bannerContainer img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.profileContainer .bannerContainer span.editbtn {
+    height: 35px;
+    width: 35px;
+    border-radius: 50%;
+    background: #fff;
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2rem;
+    font-weight: 900;
+}
+
+.profileContainer .userInfosContainer {
+    height: 70%;
+    width: 100%;
+    background: #fff;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.profileContainer .userInfosContainer .profileImgContainer {
+    height: 150px;
+    width: 150px;
+    border-radius: 50%;
+    border: 5px solid #fff;
+    position: absolute;
+    top: -75px;
+    left: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    background: #ddd;
+}
+
+.profileContainer .userInfosContainer .profileImgContainer img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+.profileContainer .userInfosContainer .userInfosContent {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 25px;
+    gap: 10px;
+    width: 100%;
+}
+
+.profileContainer .userInfosContainer .userInfosContent .userInfos {
+    padding: 50px 0 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    min-width: 500px;
+}
+
+.profileContainer .userInfosContainer .userInfosContent .userInfos h2 {
+    font-size: 1.8rem;
+    color: var(--color-secondary);
+    font-weight: 600;
+}
+
+.profileContainer .userInfosContainer .userInfosContent .userInfos p {
+    color: #000;
+    opacity: 0.6;
+}
+
+.profileContainer .userInfosContainer .userInfosContent .userInfos .btnContainer {
+    padding: 15px 0;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 15px;
+}
+
+.profileContainer .userInfosContainer .userInfosContent .userInfos .btnContainer button {
+    border-radius: 50px;
+    background: var(--color-secondary);
+    border: 2px solid var(--color-secondary);
+    font-size: 1rem;
+    color: #fff;
+    min-width: 100px;
+    font-weight: 600;
+}
+
+.profileContainer .userInfosContainer .userInfosContent .userInfos .btnContainer button.set {
+    background: #fff;
+    color: var(--color-secondary);
+}
+
+.profileContainer .userInfosContainer .userInfosContent .userMore {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.profileContainer .userInfosContainer .userInfosContent .userMore .habilities {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: flex-end;
+    min-height: 100px;
+}
+
+.profileContainer .userInfosContainer .userInfosContent .userMore .habilities .roles {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    justify-content: flex-end;
+}
+
+.profileContainer .userInfosContainer .userInfosContent .userMore .habilities p {
+    color: #000;
+    opacity: 0.6;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.profileContainer .userInfosContainer .userInfosContent .userMore .habilities .roles p ion-icon {
+    font-size: 1.2rem;
+}
+
+.profileContainer .userInfosContainer .userInfosContent .userMore .habilities .roles span {
+    background: var(--color-primary-light-2);
+    padding: 10px 20px;
+    border-radius: 50px;
+    margin-top: 8px;
+    font-weight: 600;
+}
+
+.profileContainer .userInfosContainer .userInfosContent .userMore .skills .competences {
+    display: flex;
+    gap: 20px;
+}
+
+.profileContainer .userInfosContainer .userInfosContent .userMore .skills .competences span {
+    background: #ffa50020;
+    padding: 10px 20px;
+    border-radius: 50px;
+    margin-top: 8px;
+    font-weight: 600;
+}
+
+.profileContainer .userInfosContainer .otherInfos {
+    width: 100%;
+    padding: 5px 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.profileContainer .userInfosContainer .otherInfos .otherContentContainer {
+    background:  var(--color-primary-light-2);
+    width: auto;
+    height: 145px;
+    display: flex;
+    padding: 10px;
+    border-radius: 10px;
+    gap: 10px;
+}
+
+.profileContainer .userInfosContainer .otherInfos .otherContentContainer.twofa {
+    flex-basis: 56%;
+}
+
+.profileContainer .userInfosContainer .otherInfos .otherContentContainer .otherContent {
+    width: 100%;
+}
+
+.profileContainer .userInfosContainer .otherInfos .otherContentContainer .otherContent h3 {
+    color: var(--color-secondary);
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.profileContainer .userInfosContainer .otherInfos .otherContentContainer .otherContent p {
+    color: #000;
+    opacity: .6;
+}
+
+.profileContainer .userInfosContainer .otherInfos .otherContentContainer .otherContentArrow {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 28%;
+    font-size: 3rem;
+    color: var(--color-primary);
+}
+
+.profileContainer .userInfosContainer .otherInfos .otherContentContainer .otherContentArrow form {
+    align-self: flex-end;
+    justify-self: flex-end;
+}
+
+.profileContainer .userInfosContainer .otherInfos .otherContentContainer .otherContentArrow form button {
+    border: none;
+    border-radius: 8px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+
+.profileContainer .userInfosContainer .otherInfos .otherContentContainer .otherContentArrow form button.success {
+    background: var(--bg-color-success);
+    color: var(--text-color-success);
+}
+
+.profileContainer .userInfosContainer .otherInfos .otherContentContainer .otherContentArrow form button.error {
+    background: var(--bg-color-error);
+    color: var(--text-color-error);
+}
+

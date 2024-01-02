@@ -44,7 +44,7 @@ class DocumentController extends Controller
         $lastCreatedDemande = DemandePret::create(array_merge($request->validated(), [
             'user_id' => Auth::user()->id,
             'document_id' => $document->id,
-            'etat' => 'encour'
+            'etat' => 'Encour'
         ]));
 
         $routeAccept = route('document.demande.accept', ['demande' => $lastCreatedDemande]);
@@ -57,7 +57,7 @@ class DocumentController extends Controller
     public function acceptDemande(DemandePret $demande)
     {
 
-        $demande->update(['etat' => 'validé']);
+        $demande->update(['etat' => 'Validé']);
 
         Mail::send(new AcceptDemandeMail($demande->user->email));
 

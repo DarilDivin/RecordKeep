@@ -39,19 +39,19 @@
                                 <h5>{{ $nbrdocument }}</h5>
                             </div>
                             <div class="info">
-                                <h5>Archivé</h5>
+                                <h5>Archivé : {{ $nbrDocumentArchivé }}</h5>
                                 <div class="gauge" id="1" data-pourcentage-archive="{{ json_encode($pourcentagedocumentArchivé) }}"></div>
                             </div>
                             <div class="info">
-                                <h5>Prêté</h5>
+                                <h5>Prêté : {{ $nbrDocumentPreté }}</h5>
                                 <div class="gauge" id="2" data-pourcentage-prete="{{ json_encode($pourcentagedocumentPreté) }}"></div>
                             </div>
                             <div class="info">
-                                <h5>Téléchargé</h5>
+                                <h5>Téléchargé : {{ $nbrDocumentTéléchargé }}</h5>
                                 <div class="gauge" id="3" data-pourcentage-telecharge="{{ json_encode($pourcentagedocumentTéléchargé) }}"></div>
                             </div>
                             <div class="info">
-                                <h5>Disponible</h5>
+                                <h5>Disponible : {{ $nbrDocumentDispo }}</h5>
                                 <div class="gauge" id="4" data-pourcentage-dispo="{{ json_encode($pourcentagedocumentDispo) }}"></div>
                             </div>
                         </div>
@@ -69,7 +69,7 @@
                                 <canvas id="donut"></canvas>
                             </div>
                             <div class="info">
-                                <h5>Authentifié</h5>
+                                <h5>Authentifié : {{ $nbrUtilisateursAuthentifies }} / {{ $nbruser }}</h5>
                                 <div class="gauge" id="5" data-pourcentage-utilisateur-auth="{{ json_encode($pourcentageUtilisateursAuthentifies) }}"></div>
                             </div>
                         </div>

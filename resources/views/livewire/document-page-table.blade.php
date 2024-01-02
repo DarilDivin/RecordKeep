@@ -141,10 +141,12 @@
                 </div>
             </div>
         @empty
-            Aucun Document ne correspond à votre recherche
+            Aucun document disponible
         @endforelse
         <br>
+            @if ($documents->count() > 20)
+                {{ $documents->onEachSide(0)->links() }}
+            @endif
 
-        {{ $documents->onEachSide(0)->links() }}
 </section>
 </section>

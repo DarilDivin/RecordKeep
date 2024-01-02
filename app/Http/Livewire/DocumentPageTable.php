@@ -108,6 +108,15 @@ class DocumentPageTable extends Component
 
     public function render()
     {
+        $user = Auth::user();
+
+        // Récupérer les documents dont l'une des fonctions correspondent à la fonction de l'utilisateur
+        $documents = Document::whereHas('fonctions', function ($query) use ($user) {
+            $query->whereHas('users', function ($query) use ($user) {
+                $query->where('id', $user->id);
+            });
+        });
+
         $documents = Document::query();
 
         if(!empty($this->nom)){
@@ -129,6 +138,7 @@ class DocumentPageTable extends Component
         return view('livewire.document-page-table', [
             'documents' => $documents
                 ->where('archive', 1)
+                ->where('direction_id', $user->direction?->id)
                 ->orderBy('created_at', 'desc')
                 ->paginate(20)
         ]);

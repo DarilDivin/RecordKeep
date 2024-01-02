@@ -97,7 +97,7 @@ class DocumentsTable extends Component
 
         return view('livewire.documents-table', [
             'documents' => $documents
-                ->where('direction_id', Auth::user()->direction->id)
+                ->where('direction_id', Auth::user()->direction?->id)
                 ->where('demande_transfert_id', null)
                 ->orderBy($this->orderField, $this->orderDirection)
                 ->paginate(20),

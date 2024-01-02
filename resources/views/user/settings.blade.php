@@ -13,7 +13,7 @@
     <section class="settings">
         <div class="connexion-message">
 
-            @if (! auth()->user()->two_factor_secret )
+            {{-- @if (! auth()->user()->two_factor_secret )
                 <div class="twofa-message error">
                     <h3>
                         La double authentification n'est pas activée
@@ -56,7 +56,7 @@
                         </button>
                     </form>
                 </div>
-            @endif
+            @endif --}}
 
             @if (session('status') == 'two-factor-authentication-enabled')
                 <div class="recovery-container">
@@ -80,7 +80,7 @@
 
             @if (session('status') == 'two-factor-authentication-confirmed')
                 <div class="twofa-message success">
-                    Two factor authentication confirmed and enabled successfully.
+                    Authentification à deux facteurs confirmée et activée avec succès.
                 </div>
 
                 <div class="recuperation">
@@ -92,6 +92,97 @@
                     </ul>
                 </div>
             @endif
+        </div>
+
+        <div class="profileContainer">
+            <div class="bannerContainer">
+                {{-- <img src="storage/images/banniere.jpeg" alt=""> --}}
+                {{-- <span class="editbtn">
+                    <ion-icon name="create-outline"></ion-icon>
+                </span> --}}
+            </div>
+            <div class="userInfosContainer">
+
+                <div class="profileImgContainer">
+                    <img src="storage/images/{{ Auth::user()->sexe = 'masculin' ? 'profileM' : 'profileF' }}.png" alt="">
+                </div>
+
+                <div class="userInfosContent">
+                    <div class="userInfos">
+                        <h2>{{ Auth::user()->prenoms }} {{ Auth::user()->nom }}</h2>
+                        <p>{{ Auth::user()->fonction->fonction }}</p>
+                        <p>{{ Auth::user()->direction->direction }}</p>
+                        <p>{{ Auth::user()->service->service }}</p>
+                        <p>{{ Auth::user()->division->division }}</p>
+                        {{-- <div class="btnContainer">
+                            <button>Edit Profile</button>
+                            <button class="set">Settings</button>
+                        </div> --}}
+                    </div>
+
+                    <div class="userMore">
+                        <div class="habilities">
+                            <p>
+                                Role(s) courant(s)
+                                <ion-icon name="bag-handle-outline"></ion-icon>
+                            </p>
+
+                            <div class="roles">
+                                @foreach (Auth::user()->roles as $role)
+                                    <span>{{ $role->name }}</span>
+                                @endforeach
+                            </div>
+                        </div>
+
+                        {{-- <div class="habilities skills">
+                            <p>
+                                Skills
+                                <ion-icon name="star-outline"></ion-icon>
+                            </p>
+                            <div class="competences">
+                                <span>HTML</span>
+                                <span>CSS</span>
+                                <span>Dart</span>
+                                <span>C++</span>
+                                <span>UI Design</span>
+                            </div>
+                        </div> --}}
+                    </div>
+
+                </div>
+
+                <div class="otherInfos">
+                    <div class="otherContentContainer twofa">
+                        <div class="otherContent">
+                            <h3>{{ !auth()->user()->two_factor_secret ? 'Activer' : 'Désactiver' }} la double authentification</h3>
+                            <p>La double authentification renforce la sécurité en ajoutant un second niveau d'authentification, réduisant les risques d'accès non autorisé.</p>
+                        </div>
+                        <div class="otherContentArrow">
+                            @if (! auth()->user()->two_factor_secret)
+                                <form
+                                    action="{{ url('user/two-factor-authentication') }}"
+                                    method="POST">
+                                    @csrf
+                                    <button type="submit" class="success">
+                                        Activer
+                                    </button>
+                                </form>
+                            @else
+                                <form
+                                action="{{ url('user/two-factor-authentication') }}"
+                                method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="error">
+                                        Désactiver
+                                    </button>
+                                </form>
+                            @endif
+                        </div>
+                    </div>
+                </div>
+
+            </div>
         </div>
     </section>
 @endsection

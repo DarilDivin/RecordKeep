@@ -58,7 +58,7 @@
                         <td>{{ $user->nom }}</td>
                         <td>{{ $user->prenoms }}</td>
                         <td>{{ $user->email }}</td>
-                        <td>{{ $user->direction->sigle }}</td>
+                        <td>{{ $user->direction?->sigle }}</td>
                         <td>{{ $user->fonction?->fonction }}</td>
                         <td>
                             @foreach ($user->roles as $role)

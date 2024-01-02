@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('sexe')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password')->nullable();
+            $table->boolean('haschangedpwd')->nullable()->default(0);
             $table->rememberToken();
             $table->timestamps();
             $table->softDeletes();

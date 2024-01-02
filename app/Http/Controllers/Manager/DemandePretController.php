@@ -16,9 +16,11 @@ class DemandePretController extends Controller
         ]);
     }
 
-    public function indexEncours()
+    public function index()
     {
-        $demandes = DemandePret::where('etat', '=', 'encour')->get();
+        $demandes = DemandePret::all();
+
+        // dd($demandes);
 
         return view('manager.demande-pret.demandes-encours', [
             'demandes' => $demandes,

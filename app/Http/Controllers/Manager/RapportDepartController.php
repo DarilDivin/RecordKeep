@@ -33,7 +33,9 @@ class RapportDepartController extends Controller
             'type' => 'Depart'
         ]));
 
-        return redirect(route('rapport-show', ['rapport' => $rapport->id]));
+        // return redirect(route('rapport-show', ['rapport' => $rapport->id]));
+
+        return to_route('demande-de-prets')->with('success', 'Votre rapport à été bien créer.  <a target="_blank" href="' . route('rapport-show', ['rapport' => $rapport->id]) . '"> Cliquez ici pour y accéder </a>');
     }
 
     public function show(RapportPret $rapport)

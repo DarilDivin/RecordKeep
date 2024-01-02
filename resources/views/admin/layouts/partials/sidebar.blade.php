@@ -153,7 +153,7 @@
         @endcan
 
         @can('Gestion des Demandes de Transferts')
-            <li class="list">
+            <li @class(['list', 'active' => str_contains($route_name, 'transfert')])>
                 <a href="{{ route('manager.transfert.index') }}">
                     <span class="icon"><ion-icon name="arrow-redo"></ion-icon></span>
                     <span class="title">Demandes de transferts</span>
@@ -162,16 +162,16 @@
         @endcan
 
         @can('Gestion des Demandes de Prêts')
-            <li class="list">
+            <li @class(['list', 'active' => str_contains($route_name, 'rapport-depart-list')])>
                 <a href="{{ route('rapport-depart-list') }}">
                     <span class="icon"><ion-icon name="swap-horizontal"></ion-icon></span>
-                    <span class="title">Demandes de Prêts</span>
+                    <span class="title">Rapport de Prêts</span>
                 </a>
             </li>
         @endcan
 
         @can('Gestion des Demandes de Transferts du MISP')
-            <li class="list">
+            <li @class(['list', 'active' => str_contains($route_name, 'all')])>
                 <a href="{{ route('manager.transfert.all') }}">
                     <span class="icon"><ion-icon name="send"></ion-icon></span>
                     <span class="title">Transferts du MISP</span>
@@ -180,10 +180,19 @@
         @endcan
 
         @can('Gestion des Classements')
-            <li class="list">
+            <li @class(['list', 'active' => str_contains($route_name, 'classed')])>
                 <a href="{{ route('manager.document.classed') }}">
-                    <span class="icon"><ion-icon name="document-text-outline"></ion-icon></span>
+                    <span class="icon"><ion-icon name="document-attach-outline"></ion-icon></span>
                     <span class="title">Gestion des Classements</span>
+                </a>
+            </li>
+        @endcan
+
+        @can('Gestion des Classements')
+            <li @class(['list', 'active' => str_contains($route_name, 'demande-de-prets')])>
+                <a href="{{ route('demande-de-prets') }}">
+                    <span class="icon"><ion-icon name="document-lock-outline"></ion-icon></span>
+                    <span class="title">Demandes de Prêts</span>
                 </a>
             </li>
         @endcan

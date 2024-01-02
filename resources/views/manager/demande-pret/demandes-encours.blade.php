@@ -1,7 +1,7 @@
 @extends('admin.layouts.template')
 
 @section('title')
-    Dashboard-User-Management
+    Demandes de Prêts
 @endsection
 
 @section('content')
@@ -10,404 +10,57 @@
 
         <div class="main">
             <div class="title">
-                <p>Manage Users</p>
-                <ion-icon name="person"></ion-icon>
+                <p>Demandes de Prêts</p>
+                <ion-icon name="document-lock-outline"></ion-icon>
             </div>
 
-            <div class="sidebarOptions">
-                <div class="sidebarOptionContainerOverlay"></div>
-                <div class="sidebarOptionContainer">
-                    <div class="optionContainer">
-                        <a href="Document-classé.html">
-                            <ion-icon name="archive"></ion-icon>
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="optional">
-                <div class="buttons">
-                    <button class="filter">
-                        <ion-icon name="filter"></ion-icon>
-                        Filtrer
-                    </button>
-                </div>
+            {{-- <div class="optional">
                 <form action="">
                     <div class="search-box">
                         <input type="text" name="search">
                         <ion-icon name="search"></ion-icon>
                     </div>
                 </form>
-            </div>
+            </div> --}}
 
             @if (session('success'))
-                <div class="success">
-                    {{ session('success') }}
+                <div class="message success">
+                    {!! session('success') !!}
                 </div>
             @endif
 
-            {{-- <div class="tableau">
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <td>Demandant</td>
-                            <td>Document Demandé</td>
-                            <td>Durée</td>
-                            <td>Actions</td>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @forelse ($demandes as $demande)
-                            <tr>
-                                <td>{{ $demande->user->nom }} {{ $demande->user->prenoms }}</td>
-                                <td>{{ $demande->document->nom }}</td>
-                                <td>{{ $demande->duree }}</td>
-                                <td>
-                                    <button class="edit">
-                                        <a href="">
-                                            Editer
-                                        </a>
-                                    </button>
-                                    <button class="delete">
-                                        <a href="">
-                                            Supprimer
-                                        </a>
-                                    </button>
-                                </td>
-                            </tr>
-                        @empty
-                            Aucune demande en base de données
-                        @endforelse
-                    </tbody>
-                </table>
-            </div> --}}
-
             <div class="cardContainer">
-                <div class="card">
-                    <div class="head">
-                        <div class="titleInfos ">
-                            <h3>Titre de la demande </h3>
-                            <span>DPAF</span>
+                @foreach ($demandes as $demande)
+                    <div class="card" data-label="{{ $demande->etat }}">
+                        <div class="head">
+                            <div class="titleInfos ">
+                                <h3>Demande de prêt</h3>
+                                <span>{{ $demande->user->direction->direction }}</span>
+                            </div>
+                            <span>{{ $demande->created_at->translatedFormat('d F Y') }}</span>
                         </div>
-                        <span>30/05/2023</span>
-                    </div>
-                    <div class="body">
-                        <div class="info">
-                            <p>Nbre de Documents</p>
-                            <span>150</span>
+                        <div class="body">
+                            <div class="info">
+                                <p>Document</p>
+                                <span>{{ $demande->document->nom }}</span>
+                            </div>
+                            <div class="info">
+                                <p>Demandeur</p>
+                                <span>{{ $demande->user->nom }} {{ $demande->user->prenoms }}</span>
+                            </div>
+                            <div class="info">
+                                <p>Durée</p>
+                                <span>{{ $demande->duree }} Jours</span>
+                            </div>
                         </div>
-                        <div class="info">
-                            <p>Nbre de Documents</p>
-                            <span>150</span>
-                        </div>
-                        <div class="info">
-                            <p>Nbre de Documents</p>
-                            <span>150</span>
-                        </div>
-                    </div>
-                    <div class="foot">
-                        <a href="#">Proceed</a>
-                        <a href="#">Proceed</a>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="head">
-                        <div class="titleInfos ">
-                            <h3>Titre de la demande </h3>
-                            <span>DPAF</span>
-                        </div>
-                        <span>30/05/2023</span>
-                    </div>
-                    <div class="body">
-                        <div class="info">
-                            <p>Nbre de Documents</p>
-                            <span>150</span>
-                        </div>
-                        <div class="info">
-                            <p>Nbre de Documents</p>
-                            <span>150</span>
-                        </div>
-                        <div class="info">
-                            <p>Nbre de Documents</p>
-                            <span>150</span>
+                        <div class="foot">
+                            @if ($demande->etat === 'Encour')
+                                <a href="{{ route('document.demande.accept', ['demande' => $demande->id]) }}">Accepter</a>
+                                <a href="{{ route('document.demande.reject', ['demande' => $demande->id]) }}">Rejeter</a>
+                            @endif
                         </div>
                     </div>
-                    <div class="foot">
-                        <a href="#">Proceed</a>
-                        <a href="#">Proceed</a>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="head">
-                        <div class="titleInfos ">
-                            <h3>Titre de la demande </h3>
-                            <span>DPAF</span>
-                        </div>
-                        <span>30/05/2023</span>
-                    </div>
-                    <div class="body">
-                        <div class="info">
-                            <p>Nbre de Documents</p>
-                            <span>150</span>
-                        </div>
-                        <div class="info">
-                            <p>Nbre de Documents</p>
-                            <span>150</span>
-                        </div>
-                        <div class="info">
-                            <p>Nbre de Documents</p>
-                            <span>150</span>
-                        </div>
-                    </div>
-                    <div class="foot">
-                        <a href="#">Proceed</a>
-                        <a href="#">Proceed</a>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="head">
-                        <div class="titleInfos ">
-                            <h3>Titre de la demande </h3>
-                            <span>DPAF</span>
-                        </div>
-                        <span>30/05/2023</span>
-                    </div>
-                    <div class="body">
-                        <div class="info">
-                            <p>Nbre de Documents</p>
-                            <span>150</span>
-                        </div>
-                        <div class="info">
-                            <p>Nbre de Documents</p>
-                            <span>150</span>
-                        </div>
-                        <div class="info">
-                            <p>Nbre de Documents</p>
-                            <span>150</span>
-                        </div>
-                    </div>
-                    <div class="foot">
-                        <a href="#">Proceed</a>
-                        <a href="#">Proceed</a>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="head">
-                        <div class="titleInfos ">
-                            <h3>Titre de la demande </h3>
-                            <span>DPAF</span>
-                        </div>
-                        <span>30/05/2023</span>
-                    </div>
-                    <div class="body">
-                        <div class="info">
-                            <p>Nbre de Documents</p>
-                            <span>150</span>
-                        </div>
-                        <div class="info">
-                            <p>Nbre de Documents</p>
-                            <span>150</span>
-                        </div>
-                        <div class="info">
-                            <p>Nbre de Documents</p>
-                            <span>150</span>
-                        </div>
-                    </div>
-                    <div class="foot">
-                        <a href="#">Proceed</a>
-                        <a href="#">Proceed</a>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="head">
-                        <div class="titleInfos ">
-                            <h3>Titre de la demande </h3>
-                            <span>DPAF</span>
-                        </div>
-                        <span>30/05/2023</span>
-                    </div>
-                    <div class="body">
-                        <div class="info">
-                            <p>Nbre de Documents</p>
-                            <span>150</span>
-                        </div>
-                        <div class="info">
-                            <p>Nbre de Documents</p>
-                            <span>150</span>
-                        </div>
-                        <div class="info">
-                            <p>Nbre de Documents</p>
-                            <span>150</span>
-                        </div>
-                    </div>
-                    <div class="foot">
-                        <a href="#">Proceed</a>
-                        <a href="#">Proceed</a>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="head">
-                        <div class="titleInfos ">
-                            <h3>Titre de la demande </h3>
-                            <span>DPAF</span>
-                        </div>
-                        <span>30/05/2023</span>
-                    </div>
-                    <div class="body">
-                        <div class="info">
-                            <p>Nbre de Documents</p>
-                            <span>150</span>
-                        </div>
-                        <div class="info">
-                            <p>Nbre de Documents</p>
-                            <span>150</span>
-                        </div>
-                        <div class="info">
-                            <p>Nbre de Documents</p>
-                            <span>150</span>
-                        </div>
-                    </div>
-                    <div class="foot">
-                        <a href="#">Proceed</a>
-                        <a href="#">Proceed</a>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="head">
-                        <div class="titleInfos ">
-                            <h3>Titre de la demande </h3>
-                            <span>DPAF</span>
-                        </div>
-                        <span>30/05/2023</span>
-                    </div>
-                    <div class="body">
-                        <div class="info">
-                            <p>Nbre de Documents</p>
-                            <span>150</span>
-                        </div>
-                        <div class="info">
-                            <p>Nbre de Documents</p>
-                            <span>150</span>
-                        </div>
-                        <div class="info">
-                            <p>Nbre de Documents</p>
-                            <span>150</span>
-                        </div>
-                    </div>
-                    <div class="foot">
-                        <a href="#">Proceed</a>
-                        <a href="#">Proceed</a>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="head">
-                        <div class="titleInfos ">
-                            <h3>Titre de la demande </h3>
-                            <span>DPAF</span>
-                        </div>
-                        <span>30/05/2023</span>
-                    </div>
-                    <div class="body">
-                        <div class="info">
-                            <p>Nbre de Documents</p>
-                            <span>150</span>
-                        </div>
-                        <div class="info">
-                            <p>Nbre de Documents</p>
-                            <span>150</span>
-                        </div>
-                        <div class="info">
-                            <p>Nbre de Documents</p>
-                            <span>150</span>
-                        </div>
-                    </div>
-                    <div class="foot">
-                        <a href="#">Proceed</a>
-                        <a href="#">Proceed</a>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="head">
-                        <div class="titleInfos ">
-                            <h3>Titre de la demande </h3>
-                            <span>DPAF</span>
-                        </div>
-                        <span>30/05/2023</span>
-                    </div>
-                    <div class="body">
-                        <div class="info">
-                            <p>Nbre de Documents</p>
-                            <span>150</span>
-                        </div>
-                        <div class="info">
-                            <p>Nbre de Documents</p>
-                            <span>150</span>
-                        </div>
-                        <div class="info">
-                            <p>Nbre de Documents</p>
-                            <span>150</span>
-                        </div>
-                    </div>
-                    <div class="foot">
-                        <a href="#">Proceed</a>
-                        <a href="#">Proceed</a>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="head">
-                        <div class="titleInfos ">
-                            <h3>Titre de la demande </h3>
-                            <span>DPAF</span>
-                        </div>
-                        <span>30/05/2023</span>
-                    </div>
-                    <div class="body">
-                        <div class="info">
-                            <p>Nbre de Documents</p>
-                            <span>150</span>
-                        </div>
-                        <div class="info">
-                            <p>Nbre de Documents</p>
-                            <span>150</span>
-                        </div>
-                        <div class="info">
-                            <p>Nbre de Documents</p>
-                            <span>150</span>
-                        </div>
-                    </div>
-                    <div class="foot">
-                        <a href="#">Proceed</a>
-                        <a href="#">Proceed</a>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="head">
-                        <div class="titleInfos ">
-                            <h3>Titre de la demande </h3>
-                            <span>DPAF</span>
-                        </div>
-                        <span>30/05/2023</span>
-                    </div>
-                    <div class="body">
-                        <div class="info">
-                            <p>Nbre de Documents</p>
-                            <span>150</span>
-                        </div>
-                        <div class="info">
-                            <p>Nbre de Documents</p>
-                            <span>150</span>
-                        </div>
-                        <div class="info">
-                            <p>Nbre de Documents</p>
-                            <span>150</span>
-                        </div>
-                    </div>
-                    <div class="foot">
-                        <a href="#">Proceed</a>
-                        <a href="#">Proceed</a>
-                    </div>
-                </div>
-
+                @endforeach
             </div>
         </div>
     </div>

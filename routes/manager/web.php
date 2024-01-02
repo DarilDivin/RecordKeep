@@ -218,7 +218,7 @@ Route::get('downloadPdf/{rapport}', [RapportDepartController::class, 'pdf'])
 
 /* ------------------------------------------------------------------------------------------------------------------------------------- */
 
-// Route::get('manager/demandes-de-pret/encours', [DemandePretController::class, 'indexEncours'])->name('demande-de-prets-encours');
+Route::get('manager/demandes-de-pret/', [DemandePretController::class, 'index'])->name('demande-de-prets');
 // Route::get('manager/demandes-de-pret/validé', [DemandePretController::class, 'indexValidé'])->name('demande-de-prets-validé');
 
 

@@ -37,10 +37,14 @@ class StatistiquesController extends Controller
 
         $documents = Document::all();
         $nbrDocument = count($documents);
-        $pourcentageDocumentArchivé = $nbrDocument > 0 ? (count($documents->where('archive')) * 100) / $nbrDocument : 0;
-        $pourcentageDocumentPreté = $nbrDocument > 0 ? (count($documents->where('prete')) * 100) / $nbrDocument : 0;
-        $pourcentageDocumentDispo = $nbrDocument > 0 ? (count($documents->where('disponibilite')) * 100) / $nbrDocument : 0;
-        $pourcentageDocumentTéléchargé = $nbrDocument > 0 ? (count($documents->where('nbrdownload', '>=', 1)) * 100) / $nbrDocument : 0;
+        $nbrDocumentArchivé = count($documents->where('archive'));
+        $nbrDocumentPreté = count($documents->where('prete'));
+        $nbrDocumentDispo = count($documents->where('disponibilite'));
+        $nbrDocumentTéléchargé = count($documents->where('nbrdownload', '>=', 1));
+        $pourcentageDocumentArchivé = $nbrDocument > 0 ? ($nbrDocumentArchivé * 100) / $nbrDocument : 0;
+        $pourcentageDocumentPreté = $nbrDocument > 0 ? ($nbrDocumentPreté * 100) / $nbrDocument : 0;
+        $pourcentageDocumentDispo = $nbrDocument > 0 ? ($nbrDocumentDispo * 100) / $nbrDocument : 0;
+        $pourcentageDocumentTéléchargé = $nbrDocument > 0 ? ($nbrDocumentTéléchargé * 100) / $nbrDocument : 0;
 
 
 
@@ -64,6 +68,11 @@ class StatistiquesController extends Controller
         return view('admin.Dashboard-Statistiques', [
             'nbrdocument' => $nbrDocument,
             'nbruser' => count($utilisateurs),
+            'nbrDocumentArchivé' => $nbrDocumentArchivé,
+            'nbrDocumentPreté' => $nbrDocumentPreté,
+            'nbrDocumentDispo' => $nbrDocumentDispo,
+            'nbrDocumentTéléchargé' => $nbrDocumentTéléchargé,
+            'nbrUtilisateursAuthentifies' => count($nombreUtilisateursAuthentifies),
             'pourcentagedocumentArchivé' => $pourcentageDocumentArchivé,
             'pourcentagedocumentPreté' => $pourcentageDocumentPreté,
             'pourcentagedocumentDispo' => $pourcentageDocumentDispo,
