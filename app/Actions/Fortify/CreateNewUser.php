@@ -58,12 +58,14 @@ class CreateNewUser implements CreatesNewUsers
             ]
         ])->validate();
 
-        if(Service::find($input['service_id'])->service === 'Aucun') {
-            $input['service_id'] = null;
-        }
-        if(Division::find($input['division_id'])->division === 'Aucune') {
-            $input['division_id'] = null;
-        }
+        /*
+            if(Service::find($input['service_id'])->service === 'Aucun') {
+                $input['service_id'] = null;
+            }
+            if(Division::find($input['division_id'])->division === 'Aucune') {
+                $input['division_id'] = null;
+            }
+        */
 
         $user = User::create([
             'matricule' => $input['matricule'],

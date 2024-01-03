@@ -12,10 +12,9 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule): void
     {
-        $schedule->command('app:enregistrer-statistiques-mensuelles')->everyMinute();
-        // $schedule->command('app:enregistrer-statistiques-mensuelles')->monthly();
-
-        $schedule->command('app:check-documents-dua')->everyMinute();
+        /* $schedule->command('app:daily-message')->everyFiveSeconds(); */
+        /* $schedule->command('app:enregistrer-statistiques-mensuelles')->everyMinute(); */
+        $schedule->command('app:send-document-into-demande-transfert')->everyTenSeconds();
     }
 
     /**
