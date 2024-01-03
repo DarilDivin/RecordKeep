@@ -13,7 +13,6 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('roles', function (Blueprint $table) {
-            $table->softDeletes();
             $table->foreignIdFor(TypeRole::class)->nullable()->constrained()->cascadeOnDelete();
         });
     }
