@@ -25,7 +25,7 @@ INSERT INTO `boite_archives` (`id`, `libelle`, `code`, `rayon_rangement_id`, `cr
 -- Listage des données de la table recordkeeper.categories : ~3 rows (environ)
 INSERT INTO `categories` (`id`, `categorie`, `created_at`, `updated_at`, `deleted_at`) VALUES
 	(1, 'Administrative', '2023-09-10 18:31:51', '2023-09-18 00:18:02', NULL),
-	(2, 'Economique', '2023-09-10 18:32:07', '2023-09-10 18:32:07', NULL),
+	(2, 'Économique', '2023-09-10 18:32:07', '2023-09-10 18:32:07', NULL),
 	(3, 'Diplomatique', '2023-09-10 18:32:22', '2023-09-10 18:32:22', NULL);
 
 -- Listage des données de la table recordkeeper.chemise_dossiers : ~0 rows (environ)

@@ -2,6 +2,8 @@
 
 namespace App\Http\Requests\Manager;
 
+use App\Rules\DUAAtDesks;
+use App\Rules\DUAAtSPAR;
 use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -28,7 +30,8 @@ class NatureDocumentFormRequest extends FormRequest
                 ->ignore($this->route()->parameter('nature'))
                 ->withoutTrashed()
             ],
-            'dua' => ['required', 'integer'],
+            'dua1' => ['required', 'integer', new DUAAtDesks()],
+            'dua2' => ['required', 'integer', new DUAAtSPAR()],
             'categorie_id' => ['required', 'exists:categories,id', 'integer'],
         ];
     }
