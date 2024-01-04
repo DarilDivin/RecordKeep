@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Models\Document;
 use App\Models\Categorie;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -26,6 +27,27 @@ class NatureDocument extends Model
     protected $casts = [
         'created_at' => 'datetime'
     ];
+
+    protected static function boot() {
+
+        parent::boot();
+
+        $userFullName = Auth::user()->nom . " " . Auth::user()->prenoms;
+
+        static::creating(function ($nature) use ($userFullName) {
+            $nature->created_by = $userFullName;
+        });
+
+        static::updating(function ($nature) use ($userFullName) {
+            $nature->updated_by = $userFullName;
+        });
+
+        static::deleting(function ($nature) use ($userFullName) {
+            $nature->deleted_by = $userFullName;
+            $nature->save();
+        });
+
+    }
 
     public function documents(): HasMany
     {

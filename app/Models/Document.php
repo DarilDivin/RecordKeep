@@ -54,11 +54,19 @@ class Document extends Model
     ];
 
     protected static function boot() {
+
         parent::boot();
 
-        static::creating(function ($document) {
+        $userFullName = Auth::user()->nom . " " . Auth::user()->prenoms;
+
+        static::creating(function ($document) use ($userFullName) {
             $document->standardDUAFinished = Carbon::parse($document->datecreation)->addYears($document->naturedocument->dua_bureaux);
             $document->centralDUAFinished = Carbon::parse($document->datecreation)->addYears($document->naturedocument->dua_bureaux + $document->naturedocument->dua_service_pre_archivage);
+            $document->created_by = $userFullName;
+        });
+
+        static::updating(function ($document) use ($userFullName) {
+            $document->updated_by = $userFullName;
         });
 
     }

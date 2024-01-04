@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Models\ChemiseDossier;
 use App\Models\RayonRangement;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -22,7 +23,10 @@ class BoiteArchive extends Model
     ];
 
     protected static function boot() {
+
         parent::boot();
+
+        $userFullName = Auth::user()->nom . " " . Auth::user()->prenoms;
 
         static::created(function ($boite) {
             $r = $boite->rayonrangement;
@@ -31,15 +35,25 @@ class BoiteArchive extends Model
             ]);
         });
 
+        static::creating(function ($boite) use ($userFullName) {
+            $boite->created_by = $userFullName;
+        });
+
         static::updated(function ($boite) {
             $r = $boite->rayonrangement;
             $boite->code = $r->code . 'B' . $r->boitearchives->count();
         });
 
-        static::deleting(function ($boite) {
+        static::updating(function ($boite) use ($userFullName) {
+            $boite->updated_by = $userFullName;
+        });
+
+        static::deleting(function ($boite) use ($userFullName) {
             $boite->chemisedossiers->each(function ($chemise) {
                 $chemise->delete();
             });
+            $boite->deleted_by = $userFullName;
+            $boite->save();
         });
 
     }

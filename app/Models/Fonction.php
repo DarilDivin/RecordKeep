@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Models\User;
 use App\Models\Document;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -22,6 +23,27 @@ class Fonction extends Model
     protected $casts = [
         'created_at' => 'datetime'
     ];
+
+    protected static function boot() {
+
+        parent::boot();
+
+        $userFullName = Auth::user()->nom . " " . Auth::user()->prenoms;
+
+        static::creating(function ($fonction) use ($userFullName) {
+            $fonction->created_by = $userFullName;
+        });
+
+        static::updating(function ($fonction) use ($userFullName) {
+            $fonction->updated_by = $userFullName;
+        });
+
+        static::deleting(function ($fonction) use ($userFullName) {
+            $fonction->deleted_by = $userFullName;
+            $fonction->save();
+        });
+
+    }
 
     public function documents(): BelongsToMany
     {

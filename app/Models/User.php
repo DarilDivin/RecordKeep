@@ -8,6 +8,7 @@ use App\Models\Fonction;
 use App\Models\Direction;
 use App\Models\DemandePret;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Support\Facades\Auth;
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -62,6 +63,27 @@ class User extends Authenticatable implements MustVerifyEmail
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    protected static function boot() {
+
+        parent::boot();
+
+        $userFullName = Auth::user()->nom . " " . Auth::user()->prenoms;
+
+        static::creating(function ($user) use ($userFullName) {
+            $user->created_by = $userFullName;
+        });
+
+        static::updating(function ($user) use ($userFullName) {
+            $user->updated_by = $userFullName;
+        });
+
+        static::deleting(function ($user) use ($userFullName) {
+            $user->deleted_by = $userFullName;
+            $user->save();
+        });
+
+    }
 
     public function division():BelongsTo
     {
