@@ -5,7 +5,7 @@ namespace App\Rules;
 use Closure;
 use Illuminate\Contracts\Validation\ValidationRule;
 
-class DUAAtSPAR implements ValidationRule
+class DUAAtSPARRule implements ValidationRule
 {
     /**
      * Run the validation rule.

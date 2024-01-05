@@ -226,6 +226,10 @@ return [
         'permissions'              => 'Permissions',
         'roles'                    => 'Rôles',
         'permission_id'            => 'Permission',
-        'fonctions'                => 'Fonctions'
+        'fonctions'                => 'Fonctions',
+        'dc'                => 'Durée de Communicabilité',
+        'dua1'                => 'DUA aux Bureaux',
+        'dua2'                => 'DUA au Service de Pré-Archivage',
+        'boitesNumbers'                => 'Le nombre de boîtes',
     ],
 ];
