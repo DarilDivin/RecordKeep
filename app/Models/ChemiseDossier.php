@@ -26,27 +26,34 @@ class ChemiseDossier extends Model
 
         parent::boot();
 
-        $userFullName = Auth::user()->nom . " " . Auth::user()->prenoms;
+        if (!app()->runningInConsole()) {
+            $userFullName = Auth::user()->nom . " " . Auth::user()->prenoms;
 
-        static::created(function ($chemise) {
-            $b = $chemise->boitearchive;
-            $chemise->update([
-                'code' => $b->code . 'CH' . $b->chemisedossiers->count()
-            ]);
-        });
+            static::creating(function ($service) use ($userFullName) {
+                $service->created_by = $userFullName;
+            });
 
-        static::creating(function ($service) use ($userFullName) {
-            $service->created_by = $userFullName;
-        });
+            static::created(function ($chemise) {
+                $b = $chemise->boitearchive;
+                $chemise->update([
+                    'code' => $b->code . 'CH' . $b->chemisedossiers->count()
+                ]);
+            });
 
-        static::updating(function ($service) use ($userFullName) {
-            $service->updated_by = $userFullName;
-        });
+            static::updating(function ($service) use ($userFullName) {
+                $service->updated_by = $userFullName;
+            });
 
-        static::updated(function ($chemise) {
-            $b = $chemise->boitearchive;
-            $chemise->code = $b->code . 'CH' . $b->chemisedossiers->count();
-        });
+            static::updated(function ($chemise) {
+                $b = $chemise->boitearchive;
+                $chemise->code = $b->code . 'CH' . $b->chemisedossiers->count();
+            });
+
+            static::deleting(function ($user) use ($userFullName) {
+                $user->deleted_by = $userFullName;
+                $user->save();
+            });
+        }
     }
 
     public function boitearchive(): BelongsTo

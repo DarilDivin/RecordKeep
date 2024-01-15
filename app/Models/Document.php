@@ -57,17 +57,24 @@ class Document extends Model
 
         parent::boot();
 
-        $userFullName = Auth::user()->nom . " " . Auth::user()->prenoms;
+        if (!app()->runningInConsole()) {
+            $userFullName = Auth::user()->nom . " " . Auth::user()->prenoms;
 
-        static::creating(function ($document) use ($userFullName) {
-            $document->standardDUAFinished = Carbon::parse($document->datecreation)->addYears($document->naturedocument->dua_bureaux);
-            $document->centralDUAFinished = Carbon::parse($document->datecreation)->addYears($document->naturedocument->dua_bureaux + $document->naturedocument->dua_service_pre_archivage);
-            $document->created_by = $userFullName;
-        });
+            static::creating(function ($document) use ($userFullName) {
+                $document->standardDUAFinished = Carbon::parse($document->datecreation)->addYears($document->naturedocument->dua_bureaux);
+                $document->centralDUAFinished = Carbon::parse($document->datecreation)->addYears($document->naturedocument->dua_bureaux + $document->naturedocument->dua_service_pre_archivage);
+                $document->created_by = $userFullName;
+            });
 
-        static::updating(function ($document) use ($userFullName) {
-            $document->updated_by = $userFullName;
-        });
+            static::updating(function ($document) use ($userFullName) {
+                $document->updated_by = $userFullName;
+            });
+
+            static::deleting(function ($user) use ($userFullName) {
+                $user->deleted_by = $userFullName;
+                $user->save();
+            });
+        }
 
     }
 

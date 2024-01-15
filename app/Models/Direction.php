@@ -31,30 +31,32 @@ class Direction extends Model
     protected static function boot() {
         parent::boot();
 
-        $userFullName = Auth::user()->nom . " " . Auth::user()->prenoms;
+        if (!app()->runningInConsole()) {
+            $userFullName = Auth::user()->nom . " " . Auth::user()->prenoms;
 
-        static::created(function ($direction) {
-            $direction->services()->create([
-                'sigle' => 'AUCUN',
-                'service' => 'Aucun'
-            ]);
-        });
-
-        static::creating(function ($direction) use ($userFullName) {
-            $direction->created_by = $userFullName;
-        });
-
-        static::updating(function ($direction) use ($userFullName) {
-            $direction->updated_by = $userFullName;
-        });
-
-        static::deleting(function ($direction) use ($userFullName) {
-            $direction->services->each(function ($service) {
-                $service->delete();
+            static::creating(function ($direction) use ($userFullName) {
+                $direction->created_by = $userFullName;
             });
-            $direction->deleted_by = $userFullName;
-            $direction->save();
-        });
+
+            static::created(function ($direction) {
+                $direction->services()->create([
+                    'sigle' => 'AUCUN',
+                    'service' => 'Aucun'
+                ]);
+            });
+
+            static::updating(function ($direction) use ($userFullName) {
+                $direction->updated_by = $userFullName;
+            });
+
+            static::deleting(function ($direction) use ($userFullName) {
+                $direction->services->each(function ($service) {
+                    $service->delete();
+                });
+                $direction->deleted_by = $userFullName;
+                $direction->save();
+            });
+        }
 
     }
 

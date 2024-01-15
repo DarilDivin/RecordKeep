@@ -19,6 +19,7 @@ class BoiteArchive extends Model
     protected $fillable = [
         'libelle',
         'code',
+        'chemises_number_max',
         'rayon_rangement_id'
     ];
 
@@ -26,35 +27,37 @@ class BoiteArchive extends Model
 
         parent::boot();
 
-        $userFullName = Auth::user()->nom . " " . Auth::user()->prenoms;
+        if (!app()->runningInConsole()) {
+            $userFullName = Auth::user()->nom . " " . Auth::user()->prenoms;
 
-        static::created(function ($boite) {
-            $r = $boite->rayonrangement;
-            $boite->update([
-                'code' => $r->code . 'B' . $r->boitearchives->count()
-            ]);
-        });
-
-        static::creating(function ($boite) use ($userFullName) {
-            $boite->created_by = $userFullName;
-        });
-
-        static::updated(function ($boite) {
-            $r = $boite->rayonrangement;
-            $boite->code = $r->code . 'B' . $r->boitearchives->count();
-        });
-
-        static::updating(function ($boite) use ($userFullName) {
-            $boite->updated_by = $userFullName;
-        });
-
-        static::deleting(function ($boite) use ($userFullName) {
-            $boite->chemisedossiers->each(function ($chemise) {
-                $chemise->delete();
+            static::creating(function ($boite) use ($userFullName) {
+                $boite->created_by = $userFullName;
             });
-            $boite->deleted_by = $userFullName;
-            $boite->save();
-        });
+
+            static::created(function ($boite) {
+                $r = $boite->rayonrangement;
+                $boite->update([
+                    'code' => $r->code . 'B' . $r->boitearchives->count()
+                ]);
+            });
+
+            static::updating(function ($boite) use ($userFullName) {
+                $boite->updated_by = $userFullName;
+            });
+
+            static::updated(function ($boite) {
+                $r = $boite->rayonrangement;
+                $boite->code = $r->code . 'B' . $r->boitearchives->count();
+            });
+
+            static::deleting(function ($boite) use ($userFullName) {
+                $boite->chemisedossiers->each(function ($chemise) {
+                    $chemise->delete();
+                });
+                $boite->deleted_by = $userFullName;
+                $boite->save();
+            });
+        }
 
     }
 

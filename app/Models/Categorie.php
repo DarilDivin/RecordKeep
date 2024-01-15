@@ -22,20 +22,22 @@ class Categorie extends Model
 
         parent::boot();
 
-        $userFullName = Auth::user()->nom . " " . Auth::user()->prenoms;
+        if (!app()->runningInConsole()) {
+            $userFullName = Auth::user()->nom . " " . Auth::user()->prenoms;
 
-        static::creating(function ($category) use ($userFullName) {
-            $category->created_by = $userFullName;
-        });
+            static::creating(function ($category) use ($userFullName) {
+                $category->created_by = $userFullName;
+            });
 
-        static::updating(function ($category) use ($userFullName) {
-            $category->updated_by = $userFullName;
-        });
+            static::updating(function ($category) use ($userFullName) {
+                $category->updated_by = $userFullName;
+            });
 
-        static::deleting(function ($category) use ($userFullName) {
-            $category->deleted_by = $userFullName;
-            $category->save();
-        });
+            static::deleting(function ($category) use ($userFullName) {
+                $category->deleted_by = $userFullName;
+                $category->save();
+            });
+        }
 
     }
 

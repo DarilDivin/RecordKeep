@@ -21,11 +21,11 @@
                 @method($nature->exists ? 'put' : 'post')
                 <x-input class="inputContainer fonction" id="nature" label="Nature de Document" type="text" name="nature" placeholder="Nature de Document"  readonly="" value="{{ $nature->nature }}" />
 
-                <x-input class="inputContainer fonction" id="dc" label="DC (Durée de Communicabilité en ans)" type="number" name="dc" placeholder="Durée de Communicabilité"  readonly="" value="{{ $nature->duree_communicabilite }}" />
+                <x-input class="inputContainer fonction" id="duree_communicabilite" label="DC (Durée de Communicabilité en ans)" type="number" name="duree_communicabilite" placeholder="Durée de Communicabilité"  readonly="" value="{{ $nature->duree_communicabilite }}" />
 
-                <x-input class="inputContainer fonction" id="dua1" label="DUA (Durée d'Utilité Administrative en ans) aux bureaux" type="number" name="dua1" placeholder="DUA aux bureaux"  readonly="" value="{{ $nature->dua_bureaux }}" />
+                <x-input class="inputContainer fonction" id="dua_bureaux" label="DUA (Durée d'Utilité Administrative en ans) aux bureaux" type="number" name="dua_bureaux" placeholder="DUA aux bureaux"  readonly="" value="{{ $nature->dua_bureaux }}" />
 
-                <x-input class="inputContainer fonction" id="dua2" label="DUA (Durée d'Utilité Administrative en ans) au service de pré-archivage" type="number" name="dua2" placeholder="DUA au service de pré-archivage"  readonly="" value="{{ $nature->dua_service_pre_archivage }}" />
+                <x-input class="inputContainer fonction" id="dua_service_pre_archivage" label="DUA (Durée d'Utilité Administrative en ans) au service de pré-archivage" type="number" name="dua_service_pre_archivage" placeholder="DUA au service de pré-archivage"  readonly="" value="{{ $nature->dua_service_pre_archivage }}" />
 
                 <x-select class="inputContainer fonction" id="categories" label="Catégorie de la Nature de Document" name="categorie_id" :value="$categories" elementIdOnEntite="{{ $nature->categorie_id }}" />
 

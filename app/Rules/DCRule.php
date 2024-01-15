@@ -14,6 +14,6 @@ class DCRule implements ValidationRule
      */
     public function validate(string $attribute, mixed $value, Closure $fail): void
     {
-        if (request()->dc < 0) $fail('La durée de communicabilité ne peut pas être négative.');
+        if (request()->duree_communicabilite < 0) $fail('La durée de communicabilité ne peut pas être négative.');
     }
 }

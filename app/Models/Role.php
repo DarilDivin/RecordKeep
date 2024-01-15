@@ -17,20 +17,22 @@ class Role extends OriginalModelRole
 
         parent::boot();
 
-        $userFullName = Auth::user()->nom . " " . Auth::user()->prenoms;
+        if (!app()->runningInConsole()) {
+            $userFullName = Auth::user()->nom . " " . Auth::user()->prenoms;
 
-        static::creating(function ($role) use ($userFullName) {
-            $role->created_by = $userFullName;
-        });
+            static::creating(function ($role) use ($userFullName) {
+                $role->created_by = $userFullName;
+            });
 
-        static::updating(function ($role) use ($userFullName) {
-            $role->updated_by = $userFullName;
-        });
+            static::updating(function ($role) use ($userFullName) {
+                $role->updated_by = $userFullName;
+            });
 
-        static::deleting(function ($role) use ($userFullName) {
-            $role->deleted_by = $userFullName;
-            $role->save();
-        });
+            static::deleting(function ($role) use ($userFullName) {
+                $role->deleted_by = $userFullName;
+                $role->save();
+            });
+        }
 
     }
 

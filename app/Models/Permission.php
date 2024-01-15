@@ -17,20 +17,22 @@ class Permission extends OriginalModelPermission
 
         parent::boot();
 
-        $userFullName = Auth::user()->nom . " " . Auth::user()->prenoms;
+        if (!app()->runningInConsole()) {
+            $userFullName = Auth::user()->nom . " " . Auth::user()->prenoms;
 
-        static::creating(function ($permission) use ($userFullName) {
-            $permission->created_by = $userFullName;
-        });
+            static::creating(function ($permission) use ($userFullName) {
+                $permission->created_by = $userFullName;
+            });
 
-        static::updating(function ($permission) use ($userFullName) {
-            $permission->updated_by = $userFullName;
-        });
+            static::updating(function ($permission) use ($userFullName) {
+                $permission->updated_by = $userFullName;
+            });
 
-        static::deleting(function ($permission) use ($userFullName) {
-            $permission->deleted_by = $userFullName;
-            $permission->save();
-        });
+            static::deleting(function ($permission) use ($userFullName) {
+                $permission->deleted_by = $userFullName;
+                $permission->save();
+            });
+        }
 
     }
 

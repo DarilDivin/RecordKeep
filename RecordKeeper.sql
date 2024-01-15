@@ -15,10 +15,6 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 -- Listage des données de la table recordkeeper.boite_archives : ~3 rows (environ)
-INSERT INTO `boite_archives` (`id`, `libelle`, `code`, `rayon_rangement_id`, `created_at`, `updated_at`, `deleted_at`) VALUES
-	(1, 'Boîte 1', 'R1B1', 1, '2023-11-04 08:05:41', '2023-11-04 09:44:32', NULL),
-	(2, 'Boîte 2', 'R1B2', 1, '2023-11-04 08:18:05', '2023-11-04 10:50:09', NULL),
-	(19, 'Boîte 1', 'R2B1', 2, '2023-11-04 10:29:19', '2023-11-04 10:46:03', NULL);
 
 -- Listage des données de la table recordkeeper.bordereau_transferts : ~0 rows (environ)
 
@@ -29,8 +25,6 @@ INSERT INTO `categories` (`id`, `categorie`, `created_at`, `updated_at`, `delete
 	(3, 'Diplomatique', '2023-09-10 18:32:22', '2023-09-10 18:32:22', NULL);
 
 -- Listage des données de la table recordkeeper.chemise_dossiers : ~0 rows (environ)
-INSERT INTO `chemise_dossiers` (`id`, `libelle`, `code`, `boite_archive_id`, `created_at`, `updated_at`, `deleted_at`) VALUES
-	(2, 'Chemise 1', 'R2B1CH1', 19, '2023-11-04 11:59:20', '2023-11-04 11:59:20', NULL);
 
 -- Listage des données de la table recordkeeper.demande_prets : ~0 rows (environ)
 
@@ -270,11 +264,6 @@ INSERT INTO `permissions` (`id`, `name`, `guard_name`, `created_at`, `updated_at
 -- Listage des données de la table recordkeeper.rapport_prets : ~0 rows (environ)
 
 -- Listage des données de la table recordkeeper.rayon_rangements : ~3 rows (environ)
-INSERT INTO `rayon_rangements` (`id`, `libelle`, `code`, `created_at`, `updated_at`, `deleted_at`) VALUES
-	(1, 'Rayon 1', 'R1', '2023-09-10 19:43:50', '2023-11-04 09:44:03', NULL),
-	(2, 'Rayon 2', 'R2', '2023-09-10 19:44:02', '2023-09-10 19:44:02', NULL),
-	(3, 'Rayon 3', 'R3', '2023-09-10 19:44:13', '2023-09-10 19:44:31', NULL),
-	(4, 'Rayon 4', 'R4', '2023-11-04 10:33:30', '2023-11-04 10:47:27', NULL);
 
 -- Listage des données de la table recordkeeper.roles : ~4 rows (environ)
 INSERT INTO `roles` (`id`, `name`, `guard_name`, `created_at`, `updated_at`, `deleted_at`, `type_role_id`) VALUES

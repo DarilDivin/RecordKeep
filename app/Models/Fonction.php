@@ -28,20 +28,22 @@ class Fonction extends Model
 
         parent::boot();
 
-        $userFullName = Auth::user()->nom . " " . Auth::user()->prenoms;
+        if (!app()->runningInConsole()) {
+            $userFullName = Auth::user()->nom . " " . Auth::user()->prenoms;
 
-        static::creating(function ($fonction) use ($userFullName) {
-            $fonction->created_by = $userFullName;
-        });
+            static::creating(function ($fonction) use ($userFullName) {
+                $fonction->created_by = $userFullName;
+            });
 
-        static::updating(function ($fonction) use ($userFullName) {
-            $fonction->updated_by = $userFullName;
-        });
+            static::updating(function ($fonction) use ($userFullName) {
+                $fonction->updated_by = $userFullName;
+            });
 
-        static::deleting(function ($fonction) use ($userFullName) {
-            $fonction->deleted_by = $userFullName;
-            $fonction->save();
-        });
+            static::deleting(function ($fonction) use ($userFullName) {
+                $fonction->deleted_by = $userFullName;
+                $fonction->save();
+            });
+        }
 
     }
 

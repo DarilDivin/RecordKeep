@@ -14,6 +14,6 @@ class DUAAtSPARRule implements ValidationRule
      */
     public function validate(string $attribute, mixed $value, Closure $fail): void
     {
-        if (request()->dua1 < 7) $fail("La DUA aux service de pré-archivage doit être supérieure ou égale à 7ans");
+        if (request()->dua_service_pre_archivage < 0) $fail("La DUA aux service de pré-archivage ne peut pas être négative.");
     }
 }

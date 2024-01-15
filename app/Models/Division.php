@@ -32,20 +32,22 @@ class Division extends Model
 
         parent::boot();
 
-        $userFullName = Auth::user()->nom . " " . Auth::user()->prenoms;
+        if (!app()->runningInConsole()) {
+            $userFullName = Auth::user()->nom . " " . Auth::user()->prenoms;
 
-        static::creating(function ($division) use ($userFullName) {
-            $division->created_by = $userFullName;
-        });
+            static::creating(function ($division) use ($userFullName) {
+                $division->created_by = $userFullName;
+            });
 
-        static::updating(function ($division) use ($userFullName) {
-            $division->updated_by = $userFullName;
-        });
+            static::updating(function ($division) use ($userFullName) {
+                $division->updated_by = $userFullName;
+            });
 
-        static::deleting(function ($division) use ($userFullName) {
-            $division->deleted_by = $userFullName;
-            $division->save();
-        });
+            static::deleting(function ($division) use ($userFullName) {
+                $division->deleted_by = $userFullName;
+                $division->save();
+            });
+        }
 
     }
 

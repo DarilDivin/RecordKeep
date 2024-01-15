@@ -19,7 +19,7 @@ class NatureDocument extends Model
     protected $fillable = [
         'nature',
         'categorie_id',
-        'duree-communicabilite',
+        'duree_communicabilite',
         'dua_bureaux',
         'dua_service_pre_archivage'
     ];
@@ -32,20 +32,22 @@ class NatureDocument extends Model
 
         parent::boot();
 
-        $userFullName = Auth::user()->nom . " " . Auth::user()->prenoms;
+        if (!app()->runningInConsole()) {
+            $userFullName = Auth::user()->nom . " " . Auth::user()->prenoms;
 
-        static::creating(function ($nature) use ($userFullName) {
-            $nature->created_by = $userFullName;
-        });
+            static::creating(function ($nature) use ($userFullName) {
+                $nature->created_by = $userFullName;
+            });
 
-        static::updating(function ($nature) use ($userFullName) {
-            $nature->updated_by = $userFullName;
-        });
+            static::updating(function ($nature) use ($userFullName) {
+                $nature->updated_by = $userFullName;
+            });
 
-        static::deleting(function ($nature) use ($userFullName) {
-            $nature->deleted_by = $userFullName;
-            $nature->save();
-        });
+            static::deleting(function ($nature) use ($userFullName) {
+                $nature->deleted_by = $userFullName;
+                $nature->save();
+            });
+        }
 
     }
 

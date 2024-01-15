@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Manager;
 
 use App\Rules\SameBoiteForRayon;
+use App\Rules\VerifyIfRayonHasAgainOnePlace;
 use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -25,7 +26,8 @@ class BoiteArchiveFormRequest extends FormRequest
     {
         return [
             'libelle' => ['required', 'string', new SameBoiteForRayon()],
-            'rayon_rangement_id' => ['required', 'exists:rayon_rangements,id', 'integer'],
+            'rayon_rangement_id' => ['required', 'exists:rayon_rangements,id', 'integer', new VerifyIfRayonHasAgainOnePlace()],
+            'chemises_number_max' => ['required', 'min:1', 'numeric', 'integer'],
         ];
     }
 }

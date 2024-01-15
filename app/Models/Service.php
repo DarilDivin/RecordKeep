@@ -32,28 +32,30 @@ class Service extends Model
 
         parent::boot();
 
-        $userFullName = Auth::user()->nom . " " . Auth::user()->prenoms;
+        if (!app()->runningInConsole()) {
+            $userFullName = Auth::user()->nom . " " . Auth::user()->prenoms;
 
-        static::created(function ($service) {
-            $service->divisions()->create([
-                'sigle' => 'AUCUNE',
-                'division' => 'Aucune'
-            ]);
-        });
-
-        static::creating(function ($service) use ($userFullName) {
-            $service->created_by = $userFullName;
-        });
-
-        static::updating(function ($service) use ($userFullName) {
-            $service->updated_by = $userFullName;
-        });
-
-        static::deleting(function ($service) {
-            $service->divisions->each(function ($division) {
-                $division->delete();
+            static::creating(function ($service) use ($userFullName) {
+                $service->created_by = $userFullName;
             });
-        });
+
+            static::created(function ($service) {
+                $service->divisions()->create([
+                    'sigle' => 'AUCUNE',
+                    'division' => 'Aucune'
+                ]);
+            });
+
+            static::updating(function ($service) use ($userFullName) {
+                $service->updated_by = $userFullName;
+            });
+
+            static::deleting(function ($service) {
+                $service->divisions->each(function ($division) {
+                    $division->delete();
+                });
+            });
+        }
 
     }
 

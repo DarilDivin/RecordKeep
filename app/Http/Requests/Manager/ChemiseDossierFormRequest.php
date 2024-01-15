@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Manager;
 
 use App\Rules\SameChemiseForBoite;
+use App\Rules\VerifyIfBoiteHasAgainOnePlace;
 use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -25,7 +26,7 @@ class ChemiseDossierFormRequest extends FormRequest
     {
         return [
             'libelle' => ['required', 'string', new SameChemiseForBoite()],
-        'boite_archive_id' => ['required', 'exists:boite_archives,id', 'integer'],
+            'boite_archive_id' => ['required', 'exists:boite_archives,id', 'integer', new VerifyIfBoiteHasAgainOnePlace()],
         ];
     }
 }

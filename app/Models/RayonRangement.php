@@ -16,7 +16,8 @@ class RayonRangement extends Model
 
     protected $fillable = [
         'libelle',
-        'code'
+        'code',
+        'boites_number_max'
     ];
 
     protected $casts = [
@@ -27,27 +28,31 @@ class RayonRangement extends Model
 
         parent::boot();
 
-        $userFullName = Auth::user()->nom . " " . Auth::user()->prenoms;
+        if (!app()->runningInConsole()) {
+            $userFullName = Auth::user()->nom . " " . Auth::user()->prenoms;
 
-        static::created(function ($rayon) {
-            $rayon->update([
-                'code' => 'R' . $rayon->id
-            ]);
-        });
-
-        static::creating(function ($service) use ($userFullName) {
-            $service->created_by = $userFullName;
-        });
-
-        static::updating(function ($service) use ($userFullName) {
-            $service->updated_by = $userFullName;
-        });
-
-        static::deleting(function ($rayon) {
-            $rayon->boitearchives->each(function ($boite) {
-                $boite->delete();
+            static::creating(function ($service) use ($userFullName) {
+                $service->created_by = $userFullName;
             });
-        });
+
+            static::created(function ($rayon) {
+                $rayon->update([
+                    'code' => 'R' . $rayon->id
+                ]);
+            });
+
+            static::updating(function ($service) use ($userFullName) {
+                $service->updated_by = $userFullName;
+            });
+
+            static::deleting(function ($rayon) use ($userFullName) {
+                $rayon->boitearchives->each(function ($boite) {
+                    $boite->delete();
+                });
+                $rayon->deleted_by = $userFullName;
+                $rayon->save();
+            });
+        }
 
     }
 

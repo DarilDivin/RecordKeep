@@ -21,7 +21,7 @@
                 @method($rayon->exists ? 'put' : 'post')
                 <x-input class="inputContainer fonction" id="rayon" label="Rayon de Rangement(Libellé)" type="text" name="libelle" placeholder="Rayon de Rangement"  readonly="" value="{{ $rayon->libelle }}" />
 
-                <x-input class="inputContainer fonction" id="boitesNumbers" label="Nombres de Boîtes Maximum" type="number" name="boitesNumbers" placeholder="Nombres de boîtes maximum"  readonly="" value="{{ $rayon->boites_numbers }}" />
+                <x-input class="inputContainer fonction" id="boites_number_max" label="Nombres de Boîtes Maximum" type="number" name="boites_number_max" placeholder="Nombres de boîtes maximum"  readonly="" value="{{ $rayon->boites_numbers }}" />
 
                 <div class="inputContainer button">
                     <button type="submit">

@@ -28,7 +28,7 @@ class RayonRangementFormRequest extends FormRequest
                 ->ignore($this->route()->parameter('rayon'))
                 ->withoutTrashed()
             ],
-            'boitesNumbers' => ['required'],
+            'boites_number_max' => ['required', 'min:1', 'numeric', 'integer'],
         ];
     }
 }
