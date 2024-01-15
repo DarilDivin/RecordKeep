@@ -15,6 +15,7 @@ use App\Rules\ForceCentralManagerToBeAtDSI;
 use Illuminate\Foundation\Http\FormRequest;
 use App\Rules\OneCentralManagerForApplication;
 use App\Actions\Fortify\PasswordValidationRules;
+use App\Rules\OneStandardManagerForDirection;
 
 class UserFormRequest extends FormRequest
 {
@@ -44,8 +45,9 @@ class UserFormRequest extends FormRequest
             'datenaissance' => ['required', 'date', new UserBirthDayRule()],
             'sexe' => ['required', 'string'],
             'roles' => ['array','exists:roles,id', 'required',
-                new SameTypeRoleRule(), new ForceCentralManagerToBeAtDSI(),
-                new OneCentralManagerForApplication()
+                new SameTypeRoleRule(), /* new ForceCentralManagerToBeAtDSI(),
+                new OneStandardManagerForDirection(),
+                new OneCentralManagerForApplication(), */
             ],
             'password' => $this->passwordRules(),
             'fonction_id' => ['integer','exists:fonctions,id', 'required'],

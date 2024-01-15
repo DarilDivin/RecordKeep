@@ -50,7 +50,8 @@
                     <x-table-header label="N°" :direction="$orderDirection" name="id" :field="$orderField"></x-table-header>
                     <x-table-header label="Timbre" :direction="$orderDirection" name="timbre" :field="$orderField"></x-table-header>
                     <x-table-header label="Nom du Document" :direction="$orderDirection" name="nom" :field="$orderField"></x-table-header>
-                    <td>DUA(ans)</td>
+                    <x-table-header label="Nature du Document" :direction="$orderDirection" name="nature_document" :field="$orderField"></x-table-header>
+                    <x-table-header label="DUA aux bureaux" :direction="$orderDirection" name="" :field="$orderField"></x-table-header>
                     <x-table-header label="Date de Création" :direction="$orderDirection" name="datecreation" :field="$orderField"></x-table-header>
                     <td>Actions</td>
                 </tr>
@@ -64,7 +65,8 @@
                     <td>{{ $document->id }}</td>
                     <td>{{ $document->timbre }}</td>
                     <td>{{ $document->nom }}</td>
-                    <td>{{ $document->naturedocument->dua }}ans</td>
+                    <td>{{ $document->naturedocument->nature }}</td>
+                    <td>{{ $document->naturedocument->dua_bureaux }}ans</td>
                     <td>{{ $document->getDateCreation()->translatedFormat('d F Y') }}</td>
                     <td>
                         <button class="viewInfo"
