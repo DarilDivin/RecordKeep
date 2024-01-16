@@ -9,8 +9,6 @@
     <div class="container">
         @include('admin.layouts.partials.sidebar')
 
-        @livewire('demande-transferts-table', [
-            'userTransfert' => $userTransfert
-        ])
+        @livewire('demande-transferts-table')
     </div>
 @endsection

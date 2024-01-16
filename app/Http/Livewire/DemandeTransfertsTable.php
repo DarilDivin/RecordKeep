@@ -13,8 +13,6 @@ class DemandeTransfertsTable extends Component
 
     public $libelle;
 
-    public $userTransfert;
-
     public function updatedLibelle()
     {
         $this->resetPage();

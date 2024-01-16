@@ -21,14 +21,7 @@ class DemandeTransfertController extends Controller
 
     public function index(): View
     {
-        $userTransfert =
-            DemandeTransfert::query()
-            ->where('transfere', 0)
-            ->where('user_id', Auth::user()->id)
-            ->get()->toArray();
-        return view('manager.demande-transfert.transferts', [
-            'userTransfert' => $userTransfert
-        ]);
+        return view('manager.demande-transfert.transferts');
     }
 
 

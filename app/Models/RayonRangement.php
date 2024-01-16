@@ -31,8 +31,8 @@ class RayonRangement extends Model
         if (!app()->runningInConsole()) {
             $userFullName = Auth::user()->nom . " " . Auth::user()->prenoms;
 
-            static::creating(function ($service) use ($userFullName) {
-                $service->created_by = $userFullName;
+            static::creating(function ($rayon) use ($userFullName) {
+                $rayon->created_by = $userFullName;
             });
 
             static::created(function ($rayon) {
@@ -41,8 +41,8 @@ class RayonRangement extends Model
                 ]);
             });
 
-            static::updating(function ($service) use ($userFullName) {
-                $service->updated_by = $userFullName;
+            static::updating(function ($rayon) use ($userFullName) {
+                $rayon->updated_by = $userFullName;
             });
 
             static::deleting(function ($rayon) use ($userFullName) {

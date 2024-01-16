@@ -14,6 +14,9 @@ return new class extends Migration
         Schema::create('type_roles', function (Blueprint $table) {
             $table->id();
             $table->string('libelle');
+            $table->string('created_by')->nullable();
+            $table->string('updated_by')->nullable();
+            $table->string('deleted_by')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

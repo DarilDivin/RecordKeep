@@ -29,8 +29,8 @@ class ChemiseDossier extends Model
         if (!app()->runningInConsole()) {
             $userFullName = Auth::user()->nom . " " . Auth::user()->prenoms;
 
-            static::creating(function ($service) use ($userFullName) {
-                $service->created_by = $userFullName;
+            static::creating(function ($chemise) use ($userFullName) {
+                $chemise->created_by = $userFullName;
             });
 
             static::created(function ($chemise) {
@@ -40,8 +40,8 @@ class ChemiseDossier extends Model
                 ]);
             });
 
-            static::updating(function ($service) use ($userFullName) {
-                $service->updated_by = $userFullName;
+            static::updating(function ($chemise) use ($userFullName) {
+                $chemise->updated_by = $userFullName;
             });
 
             static::updated(function ($chemise) {
@@ -49,9 +49,9 @@ class ChemiseDossier extends Model
                 $chemise->code = $b->code . 'CH' . $b->chemisedossiers->count();
             });
 
-            static::deleting(function ($user) use ($userFullName) {
-                $user->deleted_by = $userFullName;
-                $user->save();
+            static::deleting(function ($chemise) use ($userFullName) {
+                $chemise->deleted_by = $userFullName;
+                $chemise->save();
             });
         }
     }

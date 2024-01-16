@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Manager;
 
+use Carbon\Carbon;
 use App\Models\Service;
 use App\Models\Division;
 use App\Models\Document;
@@ -27,6 +28,7 @@ class DocumentController extends Controller
 
     public function index(): View
     {
+        dd(Document::where("datecreation", ">=", now())->get());
         return view('manager.document.documents');
     }
 
@@ -77,7 +79,7 @@ class DocumentController extends Controller
             }
             if(Division::find($data['division_id'])->division === 'Aucune') {
                 $data['division_id'] = null;
-            } 
+            }
         */
         $data['motclefs'] = '#' . implode('#', $request->validated('motclefs'));
         unset($data['fonctions']);

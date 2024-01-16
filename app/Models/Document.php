@@ -70,9 +70,9 @@ class Document extends Model
                 $document->updated_by = $userFullName;
             });
 
-            static::deleting(function ($user) use ($userFullName) {
-                $user->deleted_by = $userFullName;
-                $user->save();
+            static::deleting(function ($document) use ($userFullName) {
+                $document->deleted_by = $userFullName;
+                $document->save();
             });
         }
 

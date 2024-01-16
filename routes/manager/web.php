@@ -22,10 +22,6 @@ Route::group(['middleware' => ['auth', 'permission:Gestion des Documents'], 'pre
     Route::resource('document', DocumentController::class)->except(['show']);
 });
 
-Route::group(['middleware' => ['auth', 'permission:Gestion des Demandes de Transferts'], 'prefix' => 'manager', 'as' => 'manager.'], function () {
-    Route::resource('transfert', DemandeTransfertController::class)->except(['show', 'edit', 'update']);
-});
-
 Route::group(['middleware' => ['auth', 'permission:Gestion des Catégories'], 'prefix' => 'manager', 'as' => 'manager.'], function () {
     Route::resource('categorie', CategorieController::class)->except(['show']);
 });
@@ -72,18 +68,25 @@ Route::middleware(['auth', 'permission:Gestion des Classements'])
 /* FOR STANDARDS MANAGER */
 
 Route::middleware(['auth', 'permission:Gestion des Demandes de Transferts'])
-    ->get('manager/transfert/{slug}/{transfert}', [DemandeTransfertController::class, 'show'])
-    ->name('manager.transfert.show')
-    ->where([
-        'transfert' => $idRegex,
-        'slug' => $slugRegex
+->get('manager/transfert', [DemandeTransfertController::class, 'index'])
+->name('manager.transfert.index')
+->where([
+    'transfert' => $idRegex
 ]);
 
 Route::middleware(['auth', 'permission:Gestion des Demandes de Transferts'])
-    ->patch('manager/transfert/{transfert}', [DemandeTransfertController::class, 'sending'])
-    ->name('manager.transfert.sending')
-    ->where([
-        'transfert' => $idRegex
+->get('manager/transfert/{slug}/{transfert}', [DemandeTransfertController::class, 'show'])
+->name('manager.transfert.show')
+->where([
+    'transfert' => $idRegex,
+    'slug' => $slugRegex
+]);
+
+Route::middleware(['auth', 'permission:Gestion des Demandes de Transferts'])
+->patch('manager/transfert/{transfert}', [DemandeTransfertController::class, 'sending'])
+->name('manager.transfert.sending')
+->where([
+    'transfert' => $idRegex
 ]);
 
 /* ------------------------------------------------------------------------------------------------------------------------------------- */
@@ -122,48 +125,48 @@ Route::middleware(['auth', 'permission:Gestion des Demandes de Transferts du MIS
 
 // Route::get('manager/rapport-de-depart-de-pret', [RapportDepartController::class, 'index'])->name('rapport-depart-list');
 Route::get('manager/rapport-de-depart-de-pret/create/{demande}', [RapportDepartController::class, 'create'])
-    ->name('rapport-depart-create')
-    ->where([
-        'demande' => $idRegex
-    ]);
+->name('rapport-depart-create')
+->where([
+    'demande' => $idRegex
+]);
 Route::post('manager/rapport-de-depart-de-pret/store/', [RapportDepartController::class, 'store'])
-    ->name('rapport-depart-store');
+->name('rapport-depart-store');
 
 Route::get('manager/rapport-preview/{rapport}', [RapportDepartController::class, 'show'])
-    ->name('rapport-show')
-    ->where([
-        'rapport' => $idRegex
-    ]);
+->name('rapport-show')
+->where([
+    'rapport' => $idRegex
+]);
 
 /* ------------------------------------------------------------------------------------------------------------------------------------- */
 
 Route::get('manager/rapport-pret', [RapportDepartController::class, 'index'])
-    ->name('rapport-depart-list')
-    ->middleware(['auth', 'permission:Gestion des Demandes de Prêts']);
+->name('rapport-depart-list')
+->middleware(['auth', 'permission:Gestion des Demandes de Prêts']);
 
 Route::get('manager/rapport-de-retour-de-pret/create/{rapportDepart}', [RapportRetourController::class, 'create'])
-    ->name('rapport-retour-create')
-    ->middleware(['auth', 'permission:Gestion des Demandes de Prêts'])
-    ->where([
-        'rapportDepart' => $idRegex
-    ]);
+->name('rapport-retour-create')
+->middleware(['auth', 'permission:Gestion des Demandes de Prêts'])
+->where([
+    'rapportDepart' => $idRegex
+]);
 
 Route::post('manager/rapport-de-retour-de-pret/store/', [RapportRetourController::class, 'store'])
-    ->name('rapport-retour-store')
-    ->middleware(['auth', 'permission:Gestion des Demandes de Prêts']);
+->name('rapport-retour-store')
+->middleware(['auth', 'permission:Gestion des Demandes de Prêts']);
 
 Route::get('manager/rapport-preview/{rapport}', [RapportDepartController::class, 'show'])
-    ->name('rapport-show')
-    ->middleware(['auth', 'permission:Gestion des Demandes de Prêts'])
-    ->where([
-        'rapport' => $idRegex
-    ]);
+->name('rapport-show')
+->middleware(['auth', 'permission:Gestion des Demandes de Prêts'])
+->where([
+    'rapport' => $idRegex
+]);
 
 /* ------------------------------------------------------------------------------------------------------------------------------------- */
 
 Route::get('downloadPdf/{rapport}', [RapportDepartController::class, 'pdf'])
-    ->middleware(['auth', 'permission:Gestion des Demandes de Prêts'])
-    ->where(['rapport' => $idRegex]);
+->middleware(['auth', 'permission:Gestion des Demandes de Prêts'])
+->where(['rapport' => $idRegex]);
 
 /* ------------------------------------------------------------------------------------------------------------------------------------- */
 

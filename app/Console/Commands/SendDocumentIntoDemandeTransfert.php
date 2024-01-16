@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use Carbon\Carbon;
 use App\Models\Document;
 use Illuminate\Console\Command;
 
@@ -26,6 +27,6 @@ class SendDocumentIntoDemandeTransfert extends Command
      */
     public function handle()
     {
-
+        $documents = Document::where(Carbon::parse("standardDUA")->isPast())->get();
     }
 }
