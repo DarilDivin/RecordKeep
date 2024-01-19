@@ -43,12 +43,19 @@ class DemandeTransfertPolicy
 
     }
 
+    public function sending(User $user, DemandeTransfert $demandeTransfert): bool
+    {
+        return $user->can('Gestion des Demandes de Transferts')
+        && $demandeTransfert->transferable === 1;
+    }
+
     /**
      * Determine whether the user can delete the model.
      */
-    public function delete(User $user, DemandeTransfert $demandeTransfert): void
+    public function delete(User $user, DemandeTransfert $demandeTransfert): bool
     {
-
+        return $user->can('Gestion des Demandes de Transferts')
+        && $demandeTransfert->valide === 1;
     }
 
     /**
@@ -65,12 +72,6 @@ class DemandeTransfertPolicy
     public function forceDelete(User $user, DemandeTransfert $demandeTransfert): void
     {
 
-    }
-
-
-    public function sending(User $user, DemandeTransfert $demandeTransfert): bool
-    {
-        return $user->can('Gestion des Demandes de Transferts');
     }
 
 

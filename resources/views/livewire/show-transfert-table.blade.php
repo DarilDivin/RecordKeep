@@ -30,29 +30,25 @@
         <table class="table">
             <thead>
                 <tr>
-                    @if (!$transfert->transfere)
-                        <td></td>
-                    @endif
                     <x-table-header label="N°" :direction="$orderDirection" name="id" :field="$orderField"></x-table-header>
-                    <x-table-header label="Signature" :direction="$orderDirection" name="signature" :field="$orderField"></x-table-header>
+                    <x-table-header label="Timbre" :direction="$orderDirection" name="signature" :field="$orderField"></x-table-header>
                     <x-table-header label="Nom du Document" :direction="$orderDirection" name="nom" :field="$orderField"></x-table-header>
+                    <x-table-header label="Nature du Document" :direction="$orderDirection" name="nature" :field="$orderField"></x-table-header>
+                    <td>DUA aux bureaux</td>
+                    <x-table-header label="Communicable" :direction="$orderDirection" name="communicable" :field="$orderField"></x-table-header>
                     <x-table-header label="Date de Création" :direction="$orderDirection" name="datecreation" :field="$orderField"></x-table-header>
-                    <x-table-header label="DUA" :direction="$orderDirection" name="dua" :field="$orderField"></x-table-header>
                 </tr>
             </thead>
             <tbody>
                 @forelse ($documents as $document)
                 <tr>
-                    @if (!$transfert->transfere)
-                        <td>
-                            <input type="checkbox" x-model="documentsChecked" value="{{ $document->id }}">
-                        </td>
-                    @endif
                     <td>{{ $document->id }}</td>
-                    <td>{{ $document->signature }}</td>
+                    <td>{{ $document->timbre }}</td>
                     <td>{{ $document->nom }}</td>
+                    <td>{{ $document->naturedocument->nature }}</td>
+                    <td>{{ $document->naturedocument->dua_bureaux }}ans</td>
+                    <td>{{ $document->communicable ? "Oui" : "Non" }}</td>
                     <td>{{ $document->getDateCreation()->translatedFormat('d F Y') }}</td>
-                    <td>{{ $document->dua }}ans</td>
                 </tr>
                 @empty
                     LA DEMANDE DE TRANSFERT NE CONTIENT AUCUN DOCUMENT

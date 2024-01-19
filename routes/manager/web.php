@@ -89,6 +89,13 @@ Route::middleware(['auth', 'permission:Gestion des Demandes de Transferts'])
     'transfert' => $idRegex
 ]);
 
+Route::middleware(['auth', 'permission:Gestion des Demandes de Transferts'])
+->delete('manager/transfert/{transfert}', [DemandeTransfertController::class, 'delete'])
+->name('manager.transfert.delete')
+->where([
+    'transfert' => $idRegex
+]);
+
 /* ------------------------------------------------------------------------------------------------------------------------------------- */
 
 /* FOR CENTRALES MANAGER */

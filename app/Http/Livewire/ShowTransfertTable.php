@@ -54,12 +54,6 @@ class ShowTransfertTable extends Component
 
         $documents = Document::query()->where('demande_transfert_id', $this->transfert->id);
 
-        $userTransfert =
-            DemandeTransfert::query()
-            ->where('transfere', 0)
-            ->where('user_id', Auth::user()->id)
-            ->get()->toArray();
-
         if(!empty($this->nom)){
             $documents = $documents->where('nom', 'LIKE', "%{$this->nom}%");
         }
@@ -68,7 +62,6 @@ class ShowTransfertTable extends Component
             'documents' => $documents
                 ->orderBy($this->orderField, $this->orderDirection)
                 ->paginate(20),
-            'userTransfert' => $userTransfert
         ]);
     }
 

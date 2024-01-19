@@ -75,6 +75,11 @@ class Direction extends Model
         return $this->hasMany(User::class);
     }
 
+    public function demandetransferts(): HasMany
+    {
+        return $this->hasMany(DemandeTransfert::class, 'direction_id', 'id');
+    }
+
     /* Pluck Methods */
 
     public static function getAllDirections(): Collection

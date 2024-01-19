@@ -18,13 +18,17 @@ class DemandeTransfert extends Model
 
     protected $fillable = [
         'libelle',
-        'user_id',
-        'valide',
+        'direction_id',
+        'transferable',
         'transfere',
+        'valide',
+        'created_by',
+        'updated_by',
+        'deleted_by'
     ];
 
     protected $casts = [
-        'created_at' => 'datetime'
+        'created_at' => 'datetime',
     ];
 
     protected static function boot() {
@@ -70,9 +74,14 @@ class DemandeTransfert extends Model
         return $this->hasMany(Document::class, 'demande_transfert_id', 'id');
     }
 
-    public function user(): BelongsTo
+    /* public function user(): BelongsTo
     {
         return $this->belongsTo(User::class, 'user_id', 'id');
+    } */
+
+    public function direction(): BelongsTo
+    {
+        return $this->belongsTo(Direction::class, 'direction_id', 'id');
     }
 
     public function bordereautransfert(): HasOne

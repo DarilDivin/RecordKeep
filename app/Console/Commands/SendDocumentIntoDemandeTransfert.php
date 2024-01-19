@@ -2,8 +2,10 @@
 
 namespace App\Console\Commands;
 
+use App\Models\DemandeTransfert;
 use Carbon\Carbon;
 use App\Models\Document;
+use App\Models\Fonction;
 use Illuminate\Console\Command;
 
 class SendDocumentIntoDemandeTransfert extends Command
@@ -27,6 +29,12 @@ class SendDocumentIntoDemandeTransfert extends Command
      */
     public function handle()
     {
-        $documents = Document::where(Carbon::parse("standardDUA")->isPast())->get();
+        $documents = Document::where("standardDUAFinished", "<", now())->get();
+        foreach ($documents as $k => $document) {
+            $demandeTransfert = DemandeTransfert::where('direction_id', $document->direction_id)->get();
+            $document->update([
+                'demande_transfert_id' => $demandeTransfert[0]->id
+            ]);
+        }
     }
 }

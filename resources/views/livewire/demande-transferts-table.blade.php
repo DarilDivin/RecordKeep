@@ -25,11 +25,11 @@
 
     <div class="cardContainer">
         @forelse ($transferts as $transfert)
-            <div class="card" data-label="@if($transfert->transfere && !$transfert->valide) En attente @elseif($transfert->transfere && $transfert->valide) Terminé @else Non transféré @endif">
+            <div class="card" data-label="Non Transféré{{-- @if($transfert->transfere && !$transfert->valide) En attente @elseif($transfert->transfere && $transfert->valide) Terminé @else Non transféré @endif --}}">
                 <div class="head">
                     <div class="titleInfos ">
                         <h3 title="{{ $transfert->libelle }}">{{ $transfert->libelle }}</h3>
-                        <span>{{ $transfert->user->direction->sigle }} | {{ $transfert->user->prenoms }} {{ strtoupper($transfert->user->nom) }}</span>
+                        <span>{{ $transfert->direction->sigle }} | {{ $user->prenoms }} {{ strtoupper($user->nom) }}</span>
                     </div>
                     <span>{{ $transfert->created_at->translatedFormat('d/F/Y') }}</span>
                 </div>
@@ -41,11 +41,18 @@
                 </div>
                 <div class="foot">
                     <a href="{{ route('manager.transfert.show', ['slug' => $transfert->getSlug(), 'transfert' => $transfert->id]) }}">Consulter</a>
-                    @if (!$transfert->transfere)
+                    @if ($transfert->transfere)
                         <form action="{{ route('manager.transfert.sending', ['transfert' => $transfert->id]) }}" method="POST">
                             @csrf
                             @method('patch')
                             <button style="height: 32px; font-weight: normal;">Transférer</button>
+                        </form>
+                    @endif
+                    @if ($transfert->valide)
+                        <form action="{{ route('manager.transfert.delete', ['transfert' => $transfert->id]) }}" method="POST">
+                            @csrf
+                            @method('delete')
+                            <button style="height: 32px; font-weight: normal;">Retirer</button>
                         </form>
                     @endif
                 </div>

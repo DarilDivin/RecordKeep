@@ -28,7 +28,6 @@ class DocumentController extends Controller
 
     public function index(): View
     {
-        dd(Document::where("datecreation", ">=", now())->get());
         return view('manager.document.documents');
     }
 

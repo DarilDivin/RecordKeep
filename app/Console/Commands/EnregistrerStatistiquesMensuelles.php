@@ -21,7 +21,7 @@ class EnregistrerStatistiquesMensuelles extends Command
      *
      * @var string
      */
-    protected $description = 'Enregistre les statistiques mensuelles';
+    protected $description = 'Cette tâche se charge d\'enrégistrer les statistiques mensuelles';
 
     /**
      * Execute the console command.

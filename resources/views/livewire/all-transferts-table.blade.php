@@ -34,11 +34,15 @@
 
     <div class="cardContainer">
         @foreach ($transferts as $transfert)
-            <div class="card"  data-label="@if($transfert->transfere && !$transfert->valide) En attente @elseif($transfert->transfere && $transfert->valide) Terminé @else Non transféré @endif">
+            @php
+                $documents = Document::all()
+            @endphp
+            @dd($documents)
+            <div class="card"  data-label="Transféré{{-- @if($transfert->transfere && !$transfert->valide) En attente @elseif($transfert->transfere && $transfert->valide) Terminé @else Non transféré @endif --}}">
                 <div class="head">
                     <div class="titleInfos ">
                         <h3>{{ $transfert->libelle }}</h3>
-                        <span>{{ $transfert->user->direction->sigle }} | {{ $transfert->user->prenoms }} {{ strtoupper($transfert->user->nom) }}</span>
+                        <span>{{ $transfert->direction->sigle }} | {{ $transfertUser->prenoms }} {{ strtoupper($transfertUser->nom) }}</span>
                     </div>
                     <span>{{ $transfert->created_at->translatedFormat('d/F/Y') }}</span>
                 </div>

@@ -34,7 +34,7 @@ class AllTransfertsTable extends Component
             'transferts' => $transferts
                 ->where('transfere', 1)
                 ->latest()
-                ->paginate(18)
+                ->paginate(18),
         ]);
     }
 }
