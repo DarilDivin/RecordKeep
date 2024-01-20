@@ -68,6 +68,19 @@
         }
     </style>
 </head>
+
+@php
+    use App\Models\User;
+    use App\Models\DemandeTransfert;
+
+    $directionId = DemandeTransfert::find($transfert->id)->direction->id;
+    $standardManager = User::whereHas('direction', function ($query) use ($directionId) {
+        $query->where('id', $directionId);
+    })->whereHas('roles', function ($query) {
+        $query->where('name', 'Gestionnaire-Standard');
+    })->get();
+@endphp
+
 <body>
     <div class="rapportContainer">
         <div class="rapport">
@@ -75,15 +88,15 @@
 
             <div class="line">
                 <p><strong>Nom du Transféreur : </strong></p>
-                <p>{{ $transfert->user->nom }}</p>
+                <p>{{ $standardManager[0]->nom }}</p>
             </div>
             <div class="line">
                 <p><strong>Prénoms du Transféreur :  </strong></p>
-                <p>{{ $transfert->user->prenoms }}</p>
+                <p>{{ $standardManager[0]->prenoms }}</p>
             </div>
             <div class="line">
                 <p><strong>Email du Transféreur :  </strong></p>
-                <p>{{ $transfert->user->email }}</p>
+                <p>{{ $standardManager[0]->email }}</p>
             </div>
             <div class="bigtextarea">
                 <p><strong>Observation :</strong></p>
@@ -91,7 +104,7 @@
             </div>
             <div class="line">
                 <p><strong>Date de L'Opération : </strong></p>
-                <p>{{ $transfert->created_at->translatedFormat('d F Y') }}</p>
+                <p>{{ $transfert->bordereautransfert->created_at->translatedFormat('d F Y') }}</p>
             </div>
             <h3>Liste des documents</h3>
             <ul>

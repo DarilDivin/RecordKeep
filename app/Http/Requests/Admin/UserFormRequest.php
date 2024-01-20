@@ -45,9 +45,9 @@ class UserFormRequest extends FormRequest
             'datenaissance' => ['required', 'date', new UserBirthDayRule()],
             'sexe' => ['required', 'string'],
             'roles' => ['array','exists:roles,id', 'required',
-                new SameTypeRoleRule(), /* new ForceCentralManagerToBeAtDSI(),
+                new SameTypeRoleRule(), new ForceCentralManagerToBeAtDSI(),
                 new OneStandardManagerForDirection(),
-                new OneCentralManagerForApplication(), */
+                new OneCentralManagerForApplication(),
             ],
             'password' => $this->passwordRules(),
             'fonction_id' => ['integer','exists:fonctions,id', 'required'],

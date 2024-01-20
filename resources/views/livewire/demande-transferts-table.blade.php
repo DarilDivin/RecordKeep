@@ -25,7 +25,7 @@
 
     <div class="cardContainer">
         @forelse ($transferts as $transfert)
-            <div class="card" data-label="Non Transféré{{-- @if($transfert->transfere && !$transfert->valide) En attente @elseif($transfert->transfere && $transfert->valide) Terminé @else Non transféré @endif --}}">
+            <div class="card" data-label="@if($transfert->transfere && !$transfert->valide) En attente @elseif($transfert->transfere && $transfert->valide) Terminé @else Non transféré @endif">
                 <div class="head">
                     <div class="titleInfos ">
                         <h3 title="{{ $transfert->libelle }}">{{ $transfert->libelle }}</h3>
@@ -41,7 +41,7 @@
                 </div>
                 <div class="foot">
                     <a href="{{ route('manager.transfert.show', ['slug' => $transfert->getSlug(), 'transfert' => $transfert->id]) }}">Consulter</a>
-                    @if ($transfert->transfere)
+                    @if ($transfert->transferable && !$transfert->transfere)
                         <form action="{{ route('manager.transfert.sending', ['transfert' => $transfert->id]) }}" method="POST">
                             @csrf
                             @method('patch')

@@ -20,18 +20,15 @@ class AllTransfertsController extends Controller
     public function one(string $slug, DemandeTransfert $transfert): View | RedirectResponse
     {
         $this->authorize('one', $transfert);
-        if($transfert->transfere && $transfert->documents->where('archive', 0)->count() > 0){
-            if($slug !== $transfert->getSlug()){
-                return to_route('manager.transfert.show', [
-                    'slug' => $transfert->getSlug(),
-                    'transfert' => $transfert
-                ]);
-            }
-            return view('manager.all-demande-transfert.transfert-show', [
+        if($slug !== $transfert->getSlug()){
+            return to_route('manager.transfert.show', [
+                'slug' => $transfert->getSlug(),
                 'transfert' => $transfert
             ]);
         }
-        return redirect()->route('manager.transfert.all');
+        return view('manager.all-demande-transfert.transfert-show', [
+            'transfert' => $transfert
+        ]);
     }
 
     public function showBordereauForm(DemandeTransfert $transfert)

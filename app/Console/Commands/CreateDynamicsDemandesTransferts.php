@@ -32,13 +32,9 @@ class CreateDynamicsDemandesTransferts extends Command
             $demandesOfDirection = $direction->demandetransferts;
             foreach ($demandesOfDirection as $demande) {
                 if ($demande->documents->count() > 0) {
-                    $demande->update([
-                        'transferable' => 1
-                    ]);
+                    $demande->update(['transferable' => 1]);
                 }else {
-                    $demande->update([
-                        'transferable' => 1
-                    ]);
+                    $demande->update(['transferable' => 1]);
                     $demande->delete();
                 }
             }

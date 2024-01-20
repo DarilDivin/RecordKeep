@@ -54,9 +54,9 @@ class CreateNewUser implements CreatesNewUsers
             ],
             'direction_id' => ['integer','exists:directions,id', 'required'],
             'roles' => ['array','exists:roles,id', 'required',
-                new SameTypeRoleRule(), /* new ForceCentralManagerToBeAtDSI(),
+                new SameTypeRoleRule(), new ForceCentralManagerToBeAtDSI(),
                 new OneStandardManagerForDirection(),
-                new OneCentralManagerForApplication() */
+                new OneCentralManagerForApplication()
             ]
         ])->validate();
 

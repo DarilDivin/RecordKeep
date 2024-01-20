@@ -1,3 +1,8 @@
+@php
+    use App\Models\User;
+    use App\Models\DemandeTransfert;
+@endphp
+
 <div class="main">
     <div class="title">
         <p>Gestion des Demandes de Transferts</p>
@@ -35,14 +40,19 @@
     <div class="cardContainer">
         @foreach ($transferts as $transfert)
             @php
-                $documents = Document::all()
+                $directionId = DemandeTransfert::find($transfert->id)->direction->id;
+                $standardManager = User::whereHas('direction', function ($query) use ($directionId) {
+                    $query->where('id', $directionId);
+                })->whereHas('roles', function ($query) {
+                    $query->where('name', 'Gestionnaire-Standard');
+                })->get();
             @endphp
-            @dd($documents)
-            <div class="card"  data-label="Transféré{{-- @if($transfert->transfere && !$transfert->valide) En attente @elseif($transfert->transfere && $transfert->valide) Terminé @else Non transféré @endif --}}">
+
+            <div class="card"  data-label="@if($transfert->transfere && !$transfert->valide) En attente @elseif($transfert->transfere && $transfert->valide) Terminé @else Non transféré @endif">
                 <div class="head">
                     <div class="titleInfos ">
-                        <h3>{{ $transfert->libelle }}</h3>
-                        <span>{{ $transfert->direction->sigle }} | {{ $transfertUser->prenoms }} {{ strtoupper($transfertUser->nom) }}</span>
+                        <h3>{{ $transfert->libelle }} ({{ $transfert->direction->sigle }})</h3>
+                        <span>{{ $transfert->direction->sigle }} | {{ $standardManager[0]->prenoms }} {{ strtoupper($standardManager[0]->nom) }}</span>
                     </div>
                     <span>{{ $transfert->created_at->translatedFormat('d/F/Y') }}</span>
                 </div>
@@ -67,20 +77,13 @@
                     @if ($transfert->documents->count() > 0)
                         <a href="{{ route('manager.transfert.bordereau-form', ['transfert' => $transfert->id]) }}">{{ $transfert->valide ? 'Générer Bordereau' : 'Accepter' }}</a>
                     @endif
-                    @if ($transfert->valide && $transfert->documents->where('archive', 0)->count() === 0)
-                        <form action="{{ route('manager.transfert.rocl', ['transfert' => $transfert->id]) }}">
-                            @csrf
-                            @method('patch')
-                            <button style="height: 32px; font-weight: normal;">Retirer</button>
-                        </form>
-                    @endif
-                    @if (!$transfert->valide)
+                    {{-- @if (!$transfert->valide)
                         <button
                             class="delete"
                             routeForDeleting="{{ route('manager.transfert.off', ['transfert' => $transfert->id]) }}" style="height: 30px; font-size: 14px;">
                             Annuler
                         </button>
-                    @endif
+                    @endif --}}
                 </div>
             </div>
         @endforeach

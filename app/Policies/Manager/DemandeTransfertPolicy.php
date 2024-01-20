@@ -2,9 +2,10 @@
 
 namespace App\Policies\Manager;
 
-use App\Models\DemandeTransfert;
 use App\Models\User;
+use App\Models\DemandeTransfert;
 use Illuminate\Auth\Access\Response;
+use Illuminate\Support\Facades\Auth;
 
 class DemandeTransfertPolicy
 {
@@ -24,7 +25,8 @@ class DemandeTransfertPolicy
      */
     public function view(User $user, DemandeTransfert $demandeTransfert): bool
     {
-        return $user->can('Gestion des Demandes de Transferts');
+        return $user->can('Gestion des Demandes de Transferts')
+        && $demandeTransfert->direction_id === Auth::user()->direction_id;
     }
 
     /**
@@ -46,7 +48,7 @@ class DemandeTransfertPolicy
     public function sending(User $user, DemandeTransfert $demandeTransfert): bool
     {
         return $user->can('Gestion des Demandes de Transferts')
-        && $demandeTransfert->transferable === 1;
+        && $demandeTransfert->transferable === 1 && $demandeTransfert->transfere === 0;
     }
 
     /**
@@ -84,19 +86,20 @@ class DemandeTransfertPolicy
 
      public function one(User $user, DemandeTransfert $demandeTransfert): bool
      {
-        return $user->can('Gestion des Demandes de Transferts du MISP');
+        return $user->can('Gestion des Demandes de Transferts du MISP')
+        && $demandeTransfert->transfere === 1;
      }
 
      public function showBordereauForm(User $user, DemandeTransfert $demandeTransfert): bool
      {
         return $user->can('Gestion des Demandes de Transferts du MISP')
-            && $demandeTransfert->transfere === 1;
+            && $demandeTransfert->transfere === 1/*  && $demandeTransfert->documents->count() > 0 */;
      }
 
      public function accept(User $user, DemandeTransfert $demandeTransfert): bool
      {
         return $user->can('Gestion des Demandes de Transferts du MISP')
-         && $demandeTransfert->transfere === 1;
+         && $demandeTransfert->transfere === 1/*  && $demandeTransfert->documents->count() > 0 */;
      }
 
 }

@@ -41,13 +41,16 @@ class DemandeTransfertController extends Controller
     public function sending (DemandeTransfert $transfert) {
         $this->authorize('sending', $transfert);
         $transfert->update(['transfere' => 1]);
+        return redirect()
+            ->route('manager.transfert.index')
+            ->with('success', 'Le Transfert a été éffectué avec succès');
     }
 
     public function delete (DemandeTransfert $transfert) {
         $transfert->delete();
         return redirect()
             ->route('manager.transfert.index')
-            ->with('success', 'La Demande de Transfert a bien été retirée');
+            ->with('success', 'La Demande de Transfert a été retirée avec succès');
     }
 
 }

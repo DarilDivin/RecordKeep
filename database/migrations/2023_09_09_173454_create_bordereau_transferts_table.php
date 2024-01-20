@@ -16,6 +16,9 @@ return new class extends Migration
             $table->id();
             $table->string('observation');
             $table->foreignIdFor(DemandeTransfert::class)->constrained()->cascadeOnDelete();
+            $table->string('created_by')->nullable();
+            $table->string('updated_by')->nullable();
+            $table->string('deleted_by')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
