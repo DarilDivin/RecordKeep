@@ -1,7 +1,7 @@
 <div class="main" x-data = "{ documentsChecked : @entangle('documentsChecked').defer }">
     <div class="title">
         <p>Manage Archives Documents</p>
-        <ion-icon name="folder-outline"></ion-icon>
+        <ion-icon name="document-attach-outline"></ion-icon>
     </div>
 
     <div class="optional">
@@ -42,8 +42,10 @@
                     <x-table-header label="Signature" :direction="$orderDirection" name="signature" :field="$orderField"></x-table-header>
                     <x-table-header label="Nom du Document" :direction="$orderDirection" name="nom" :field="$orderField"></x-table-header>
                     <x-table-header label="Code du Document" :direction="$orderDirection" name="code" :field="$orderField"></x-table-header>
+                    <x-table-header label="Nature du Document" :direction="$orderDirection" name="nature" :field="$orderField"></x-table-header>
+                    <td>DUA au Service de Pré-Archivage</td>
+                    <x-table-header label="Communicable" :direction="$orderDirection" name="communicable" :field="$orderField"></x-table-header>
                     <x-table-header label="Date de Création" :direction="$orderDirection" name="datecreation" :field="$orderField"></x-table-header>
-                    <x-table-header label="DUA" :direction="$orderDirection" name="dua" :field="$orderField"></x-table-header>
                     <td>Actions</td>
                 </tr>
             </thead>
@@ -57,8 +59,10 @@
                     <td>{{ $document->signature }}</td>
                     <td>{{ $document->nom }}</td>
                     <td>{{ $document->code }}</td>
+                    <td>{{ $document->naturedocument->nature }}</td>
+                    <td>{{ $document->naturedocument->dua_service_pre_archivage }}ans</td>
+                    <td>{{ $document->communicable ? "Oui" : "Non" }}</td>
                     <td>{{ $document->datecreation/* ->translatedFormat('d F Y') */ }}</td>
-                    <td>{{ $document->dua }}ans</td>
                     <td>
                         <button class="classer"><a href="{{ route('manager.document.classement', ['document' => $document->id, 'transfert' => $document->demandetransfert->id]) }}">Reclasser</a></button>
                     </td>

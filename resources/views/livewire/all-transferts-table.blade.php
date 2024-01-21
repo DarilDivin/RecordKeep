@@ -6,7 +6,7 @@
 <div class="main">
     <div class="title">
         <p>Gestion des Demandes de Transferts</p>
-        <ion-icon name="arrow-redo"></ion-icon>
+        <ion-icon name="send"></ion-icon>
     </div>
 
     <div class="optional">

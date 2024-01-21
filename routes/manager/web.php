@@ -57,7 +57,7 @@ Route::middleware(['auth', 'permission:Gestion des Classements'])
     ]);
 
 Route::middleware(['auth', 'permission:Gestion des Classements'])
-    ->patch('manager/document/{document}/{transfert}/classement', [DocumentClassementController::class, 'doClassement'])
+    ->put('manager/document/{document}/{transfert}/classement', [DocumentClassementController::class, 'doClassement'])
     ->where([
         'document' => $idRegex,
         'transfert' => $idRegex

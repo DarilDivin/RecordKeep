@@ -2,16 +2,16 @@
 
 namespace App\Http\Controllers\Manager;
 
-use App\Http\Controllers\Controller;
-use App\Http\Requests\Manager\ClassementFormRequest;
-use App\Models\BoiteArchive;
-use App\Models\ChemiseDossier;
-use App\Models\DemandeTransfert;
-use App\Models\Document;
-use App\Models\RayonRangement;
 use Carbon\Carbon;
+use App\Models\Document;
+use Illuminate\Support\Str;
+use App\Models\ChemiseDossier;
+use App\Models\RayonRangement;
+use App\Models\DemandeTransfert;
 use Illuminate\Contracts\View\View;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;
+use App\Http\Requests\Manager\ClassementFormRequest;
 
 class DocumentClassementController extends Controller
 {
@@ -28,13 +28,17 @@ class DocumentClassementController extends Controller
         $motclefsArray = explode('#', $document->motclefs);
         unset($motclefsArray[0]);
         $motclefsString = implode(', ', $motclefsArray);
+
+        $rayons = RayonRangement::orderBy('id')->get();
+        $boites = $rayons->first()->boitearchives->sortBy('libelle');
+
         return view('manager.document.document-classement', [
+            'rayons' => $rayons,
+            'boites' => $boites,
             'document' => $document,
             'transfert' => $transfert,
             'motclefs' => $motclefsString,
-            'chemises' => ChemiseDossier::getAllChemises(),
-            'boites' => BoiteArchive::getAllBoites(),
-            'rayons' => RayonRangement::getAllRayons()
+            'chemises' => $boites->first()->chemisedossiers->sortBy('libelle'),
         ]);
     }
 
@@ -49,8 +53,15 @@ class DocumentClassementController extends Controller
             'code' => ChemiseDossier::find($data['chemise_dossier_id'])->code . 'D' . $document->id
         ]);
 
-        return redirect()
+        if (Str::contains(url()->previous(), 'all-transferts')) {
+            return redirect()
             ->route('manager.transfert.one', ['slug' => $transfert->getSlug(), 'transfert' => $transfert])
             ->with('success', "Le document N° $document->id a bien été classé");
+        }
+        else if (Str::contains(url()->previous(), 'document')) {
+            return redirect()
+            ->route('manager.document.classed')
+            ->with('success', "Le document N° $document->id a bien été classé");
+        }
     }
 }

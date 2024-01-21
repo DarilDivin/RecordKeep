@@ -24,7 +24,7 @@ class ClassementFormRequest extends FormRequest
     {
         return [
             'nom' => ['required', 'string'],
-            'signature' => [
+            'timbre' => [
                 'required', 'string',
                 Rule::unique('documents')
                 ->where(function ($query){
