@@ -39,7 +39,7 @@
                 <table class="table">
                     <tr>
                         <td>Signature</td>
-                        <td>{{ $document->signature }}</td>
+                        <td>{{ $document->timbre }}</td>
                     </tr>
                     <tr>
                         <td>Nom</td>
@@ -51,7 +51,7 @@
                     </tr>
                     <tr>
                         <td>Source</td>
-                        <td>{{ $document->source }}</td>
+                        <td>{{ $document->emetteur }}</td>
                     </tr>
                     <tr>
                         <td>Date du courier</td>

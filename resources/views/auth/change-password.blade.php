@@ -15,8 +15,8 @@
         <form action="{{ route('changePassword') }}" class="connexion connexion-form" method="POST">
             @csrf
 
-            <input type="password" name="password" id="" placeholder="Mot de passe" class="input">
-            <input type="password" name="password_confirmation" id="" placeholder="Confirmer mot de passe" class="input">
+            <input type="password" name="password" id="" placeholder="Nouveau mot de passe" class="input">
+            <input type="password" name="password_confirmation" id="" placeholder="Confirmer le mot de passe" class="input">
 
             <button type="submit">Confirmer</button>
         </form>
