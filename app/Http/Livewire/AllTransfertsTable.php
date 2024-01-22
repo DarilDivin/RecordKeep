@@ -33,6 +33,7 @@ class AllTransfertsTable extends Component
         return view('livewire.all-transferts-table', [
             'transferts' => $transferts
                 ->where('transfere', 1)
+                ->where('cw', 0)
                 ->latest()
                 ->paginate(18),
         ]);

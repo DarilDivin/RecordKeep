@@ -34,6 +34,7 @@ class DemandeTransfertsTable extends Component
         return view('livewire.demande-transferts-table', [
             'transferts' => $transferts
                 ->where('direction_id', Auth::user()->direction_id)
+                ->where('sw', 0)
                 ->latest()
                 ->paginate(18),
             'user' => Auth::user()

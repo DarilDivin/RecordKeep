@@ -90,8 +90,8 @@ Route::middleware(['auth', 'permission:Gestion des Demandes de Transferts'])
 ]);
 
 Route::middleware(['auth', 'permission:Gestion des Demandes de Transferts'])
-->delete('manager/transfert/{transfert}', [DemandeTransfertController::class, 'delete'])
-->name('manager.transfert.delete')
+->patch('manager/transfert/{transfert}', [DemandeTransfertController::class, 'swithdraw'])
+->name('manager.transfert.swithdraw')
 ->where([
     'transfert' => $idRegex
 ]);
@@ -122,6 +122,13 @@ Route::middleware(['auth', 'permission:Gestion des Demandes de Transferts du MIS
 Route::middleware(['auth', 'permission:Gestion des Demandes de Transferts du MISP'])
 ->patch('manager/all-transferts/{transfert}/bordereau-create', [AllTransfertsController::class, 'accept'])
 ->name('manager.transfert.bordereau-create')
+->where([
+    'transfert' => $idRegex
+]);
+
+Route::middleware(['auth', 'permission:Gestion des Demandes de Transferts'])
+->patch('manager/transfert/{transfert}', [AllTransfertsController::class, 'cwithdraw'])
+->name('manager.transfert.cwithdraw')
 ->where([
     'transfert' => $idRegex
 ]);

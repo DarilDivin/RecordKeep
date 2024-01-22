@@ -21,6 +21,8 @@ return new class extends Migration
             $table->boolean('transferable')->default(0);
             $table->boolean('transfere')->default(0);
             $table->boolean('valide')->default(0);
+            $table->boolean('sw')->default(0);
+            $table->boolean('cw')->default(0);
             $table->string('created_by')->nullable();
             $table->string('updated_by')->nullable();
             $table->string('deleted_by')->nullable();

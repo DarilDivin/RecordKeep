@@ -77,13 +77,13 @@
                     @if ($transfert->documents->count() > 0)
                         <a href="{{ route('manager.transfert.bordereau-form', ['transfert' => $transfert->id]) }}">{{ $transfert->valide ? 'Générer Bordereau' : 'Accepter' }}</a>
                     @endif
-                    {{-- @if (!$transfert->valide)
-                        <button
-                            class="delete"
-                            routeForDeleting="{{ route('manager.transfert.off', ['transfert' => $transfert->id]) }}" style="height: 30px; font-size: 14px;">
-                            Annuler
-                        </button>
-                    @endif --}}
+                    @if ($transfert->valide)
+                        <form action="{{ route('manager.transfert.cwithdraw', ['transfert' => $transfert->id]) }}" method="POST">
+                            @csrf
+                            @method('patch')
+                            <button style="height: 32px; font-weight: normal;">Retirer</button>
+                        </form>
+                    @endif
                 </div>
             </div>
         @endforeach

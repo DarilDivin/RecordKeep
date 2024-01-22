@@ -25,11 +25,17 @@ class OneCentralManagerForApplication implements ValidationRule
             }, $userRoles);
         }
 
-        if (($routeName === "admin.user.store")/*  || ($routeName === "admin.user.update" && !in_array('Gestionnaire-Central', $rolesNames)) */
+        if (($routeName === "admin.user.create")/*  || ($routeName === "admin.user.edit" && !in_array('Gestionnaire-Central', $rolesNames)) */
             && in_array(Role::findByName('Gestionnaire-Central')->id, request()->roles)
             && Role::findByName('Gestionnaire-Central')->count() > 0
         )
-        $fail('Il existe déjà un Gestionnaire Central à la DSI.');
+        $fail('Il existe déjà un Gestionnaire Central pour le MISP à la DSI.');
+
+        if (/* ($routeName === "admin.user.create") ||  */($routeName === "admin.user.edit" && !in_array('Gestionnaire-Central', $rolesNames))
+            && in_array(Role::findByName('Gestionnaire-Central')->id, request()->roles)
+            && Role::findByName('Gestionnaire-Central')->count() > 0
+        )
+        $fail('Il existe déjà un Gestionnaire Central pour le MISP à la DSI.');
 
     }
 }

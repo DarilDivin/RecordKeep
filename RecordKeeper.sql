@@ -15,10 +15,15 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 -- Listage des données de la table recordkeeper.boite_archives : ~0 rows (environ)
+INSERT INTO `boite_archives` (`id`, `libelle`, `code`, `chemises_number_max`, `rayon_rangement_id`, `created_by`, `updated_by`, `deleted_by`, `created_at`, `updated_at`, `deleted_at`) VALUES
+	(3, 'Boîte 1', 'R1B1', 2, 1, 'Jackson Jinard', 'Jackson Jinard', NULL, '2024-01-22 00:18:18', '2024-01-22 00:18:18', NULL);
 
--- Listage des données de la table recordkeeper.bordereau_transferts : ~0 rows (environ)
+-- Listage des données de la table recordkeeper.bordereau_transferts : ~2 rows (environ)
+INSERT INTO `bordereau_transferts` (`id`, `observation`, `demande_transfert_id`, `created_at`, `updated_at`, `deleted_at`) VALUES
+	(1, 'Les documents dont au complet et donc la Demande de Transfert est validée.', 2, '2024-01-20 16:07:45', '2024-01-20 16:07:45', NULL),
+	(2, 'Regénération du Bordeareau de Transfert de cette Demande', 2, '2024-01-20 16:18:10', '2024-01-20 16:18:10', NULL);
 
--- Listage des données de la table recordkeeper.categories : ~0 rows (environ)
+-- Listage des données de la table recordkeeper.categories : ~3 rows (environ)
 INSERT INTO `categories` (`id`, `categorie`, `created_by`, `updated_by`, `deleted_by`, `created_at`, `updated_at`, `deleted_at`) VALUES
 	(1, 'Administrative', NULL, NULL, NULL, '2023-09-10 18:31:51', '2023-09-18 00:18:02', NULL),
 	(2, 'Économique', NULL, NULL, NULL, '2023-09-10 18:32:07', '2023-09-10 18:32:07', NULL),
@@ -28,9 +33,9 @@ INSERT INTO `categories` (`id`, `categorie`, `created_by`, `updated_by`, `delete
 
 -- Listage des données de la table recordkeeper.demande_prets : ~0 rows (environ)
 
--- Listage des données de la table recordkeeper.demande_transferts : ~10 rows (environ)
+-- Listage des données de la table recordkeeper.demande_transferts : ~40 rows (environ)
 
--- Listage des données de la table recordkeeper.directions : ~0 rows (environ)
+-- Listage des données de la table recordkeeper.directions : ~10 rows (environ)
 INSERT INTO `directions` (`id`, `direction`, `sigle`, `created_by`, `updated_by`, `deleted_by`, `created_at`, `updated_at`, `deleted_at`) VALUES
 	(1, 'Direction des Systèmes d\'Information', 'DSI', NULL, NULL, NULL, '2023-09-10 17:00:46', '2023-09-10 17:00:46', NULL),
 	(2, 'Direction de la Planification de l\'Administration et des Finances', 'DPAF', NULL, NULL, NULL, '2023-09-10 17:01:39', '2023-09-10 17:01:39', NULL),
@@ -116,16 +121,20 @@ INSERT INTO `divisions` (`id`, `division`, `sigle`, `service_id`, `created_by`, 
 	(69, 'Aucune', 'AUCUNE', 24, NULL, NULL, NULL, '2023-11-04 06:55:33', '2023-11-04 06:55:33', NULL),
 	(70, 'Première Division du PSND1', 'PDPSND1', 24, NULL, NULL, NULL, '2023-11-04 07:03:31', '2023-11-04 07:03:31', NULL);
 
--- Listage des données de la table recordkeeper.documents : ~6 rows (environ)
+-- Listage des données de la table recordkeeper.documents : ~10 rows (environ)
 INSERT INTO `documents` (`id`, `nom`, `timbre`, `code`, `objet`, `emetteur`, `recepteur`, `motclefs`, `datecreation`, `disponibilite`, `archive`, `prete`, `communicable`, `standardDUAFinished`, `centralDUAFinished`, `document`, `nbrdownload`, `nbrconsult`, `archived_at`, `created_by`, `updated_by`, `deleted_by`, `created_at`, `updated_at`, `deleted_at`, `division_id`, `service_id`, `direction_id`, `nature_document_id`, `demande_transfert_id`, `chemise_dossier_id`) VALUES
-	(1, 'Autorisation de stage', 'N°564/DPAF/MISP/SGHTE/DPRF/SA', NULL, 'Autorisation de stage', 'DPAF', 'Daniel', '#Économique#Commerciale', '2023-10-31', 0, 0, 0, 1, '2013-06-01', '2013-06-01', 'documents/Exercices en C++.pdf', 0, 0, NULL, NULL, NULL, NULL, '2023-11-04 15:08:42', '2024-01-20 04:07:07', NULL, 29, 6, 2, 4, NULL, NULL),
-	(2, 'Rapport de stage', 'N°1164/DPAF/MISP/SGHTE/DPRF/SA', NULL, 'Rapport de stage', 'DPAF', 'Daniel', '#Économique#Commerciale#Administratif', '2023-06-01', 0, 0, 0, 1, '2013-06-01', '2025-06-01', 'documents/Pointeurs.pdf', 0, 0, NULL, 'Lama Lama', NULL, NULL, '2024-01-20 03:21:49', '2024-01-20 04:07:07', NULL, 18, 7, 2, 2, NULL, NULL),
-	(3, 'Décision de stage', 'N°0064/DPAF/MISP/SGHTE/DPRF/SA', NULL, 'Décision de stage', 'DPAF', 'Daniel', '#Économique#Commerciale', '2022-12-29', 0, 0, 0, 1, '2015-12-29', '2013-12-29', 'documents/Pointeurs.pdf', 0, 0, NULL, 'Lama Lama', NULL, NULL, '2024-01-20 03:23:10', '2024-01-20 04:07:07', NULL, 42, 12, 2, 2, NULL, NULL),
-	(4, 'Autorisation de soutenance', 'N°774/DAIC/MISP/SGHTE/DPRF/SA', NULL, 'Autorisation de soutenance', 'DAIC', 'Daniel', '#Commerciale#Administratif', '2023-08-03', 0, 0, 0, 1, '2015-08-03', '2015-08-03', 'documents/0172-formation-base-donnees.pdf', 0, 0, NULL, 'Kama Kama', NULL, NULL, '2024-01-20 03:25:06', '2024-01-20 04:07:07', NULL, 54, 18, 4, 4, NULL, NULL),
-	(5, 'Rapport de soutenance', 'N°33334/DPAF/MISP/SGHTE/DPRF/SA', NULL, 'Rapport de soutenance', 'DPAF', 'Daniel', '#Économique#Commerciale', '2023-09-27', 0, 0, 0, 1, '2014-09-27', '2019-09-27', 'documents/Apprenez Ã  programmer en C .pdf', 0, 0, NULL, 'Kama Kama', NULL, NULL, '2024-01-20 03:26:02', '2024-01-20 04:07:07', NULL, 48, 16, 4, 5, NULL, NULL),
-	(6, 'Mémoire de soutenance', 'N°004/DAIC/MISP/SGHTE/DPRF/SA', NULL, 'Mémoire de soutenance', 'DPAF', 'Daniel', '#Économique#Commerciale', '2023-08-02', 0, 0, 0, 1, '2016-08-02', '2009-08-02', 'documents/0764-la-programmation-en-c-moderne.pdf', 0, 0, NULL, 'Kama Kama', NULL, NULL, '2024-01-20 03:27:27', '2024-01-20 04:07:07', NULL, 46, 15, 4, 3, NULL, NULL);
+	(1, 'Autorisation de stage', 'N°564/DPAF/MISP/SGHTE/DPRF/SA', NULL, 'Autorisation de stage', 'DPAF', 'Daniel', '#Économique#Commerciale', '2023-10-31', 0, 0, 0, 1, '2013-06-01', '2013-06-01', 'documents/Exercices en C++.pdf', 0, 0, NULL, NULL, NULL, NULL, '2023-11-04 15:08:42', '2024-01-20 05:07:33', NULL, 29, 6, 2, 4, NULL, NULL),
+	(2, 'Rapport de stage', 'N°1164/DPAF/MISP/SGHTE/DPRF/SA', NULL, 'Rapport de stage', 'DPAF', 'Daniel', '#Économique#Commerciale#Administratif', '2023-06-01', 0, 0, 0, 1, '2013-06-01', '2025-06-01', 'documents/Pointeurs.pdf', 0, 0, NULL, 'Lama Lama', NULL, NULL, '2024-01-20 03:21:49', '2024-01-20 05:07:33', NULL, 18, 7, 2, 2, NULL, NULL),
+	(3, 'Décision de stage', 'N°0064/DPAF/MISP/SGHTE/DPRF/SA', NULL, 'Décision de stage', 'DPAF', 'Daniel', '#Économique#Commerciale', '2022-12-29', 0, 1, 0, 1, '2015-12-29', '2013-12-29', 'documents/Pointeurs.pdf', 0, 0, NULL, 'Lama Lama', 'Jackson Jinard', NULL, '2024-01-20 03:23:10', '2024-01-21 11:15:11', NULL, 42, 12, 2, 2, NULL, NULL),
+	(4, 'Autorisation de soutenance', 'N°774/DAIC/MISP/SGHTE/DPRF/SA', NULL, 'Autorisation de soutenance', 'DAIC', 'Daniel', '#Commerciale#Administratif', '2023-08-03', 0, 0, 0, 1, '2015-08-03', '2015-08-03', 'documents/0172-formation-base-donnees.pdf', 0, 0, NULL, 'Kama Kama', NULL, NULL, '2024-01-20 03:25:06', '2024-01-20 05:07:33', NULL, 54, 18, 4, 4, NULL, NULL),
+	(5, 'Rapport de soutenance', 'N°33334/DPAF/MISP/SGHTE/DPRF/SA', NULL, 'Rapport de soutenance', 'DPAF', 'Daniel', '#Économique#Commerciale', '2023-09-27', 0, 0, 0, 1, '2014-09-27', '2019-09-27', 'documents/Apprenez Ã  programmer en C .pdf', 0, 0, NULL, 'Kama Kama', NULL, NULL, '2024-01-20 03:26:02', '2024-01-20 05:07:33', NULL, 48, 16, 4, 5, NULL, NULL),
+	(6, 'Mémoire de soutenance', 'N°004/DAIC/MISP/SGHTE/DPRF/SA', NULL, 'Mémoire de soutenance', 'DPAF', 'Daniel', '#Économique#Commerciale', '2023-08-02', 0, 0, 0, 1, '2016-08-02', '2009-08-02', 'documents/0764-la-programmation-en-c-moderne.pdf', 0, 0, NULL, 'Kama Kama', NULL, NULL, '2024-01-20 03:27:27', '2024-01-20 05:07:33', NULL, 46, 15, 4, 3, NULL, NULL),
+	(7, 'Autorisation de stage', 'N°2220/DPAF/MISP/SGHTE/DPRF/SA', NULL, 'Autorisation de stage', 'DPAF', 'Daniel', '#Économique#Commerciale', '2023-06-01', 0, 0, 0, 1, '2023-06-01', '2023-06-01', 'documents/C++_cours.pdf', 0, 0, NULL, 'Lama Lama', NULL, NULL, '2024-01-20 05:08:53', '2024-01-20 05:10:48', NULL, 44, 13, 2, 1, NULL, NULL),
+	(8, 'Document de test', 'N°564/DAIC/MISP/SGHTE/DPRF/SA', NULL, 'Document de test', 'DAIC', 'Daniel', '#Économique#Commerciale', '2023-09-01', 0, 0, 0, 1, '2023-09-01', '2023-09-01', 'documents/sgbd1_cours.pdf', 0, 0, NULL, 'Kama Kama', NULL, NULL, '2024-01-20 05:10:14', '2024-01-20 05:10:48', NULL, 49, 16, 4, 1, NULL, NULL),
+	(9, 'Validation de mémoire', 'N°56400/DPAF/MISP/SGHTE/DPRF/SA', NULL, 'Validation de mémoire', 'DPAF', 'Daniel', '#Économique#Commerciale#Administratif', '2023-08-31', 0, 0, 0, 1, '2023-08-31', '2023-08-31', 'documents/Exercices Corrigés Initaition aux BDD.pdf', 0, 0, NULL, 'Lama Lama', NULL, NULL, '2024-01-20 14:26:58', '2024-01-20 14:28:13', NULL, 35, 8, 2, 1, NULL, NULL),
+	(10, 'Validation de mémoire', 'N°664/DAIC/MISP/SGHTE/DPRF/SA', NULL, 'Validation de mémoire', 'DAIC', 'Daniel', '#Économique#Commerciale', '2023-05-04', 0, 0, 0, 1, '2023-05-04', '2023-05-04', 'documents/0764-la-programmation-en-c-moderne.pdf', 0, 0, NULL, 'Kama Kama', NULL, NULL, '2024-01-20 15:21:17', '2024-01-20 15:21:41', NULL, 48, 16, 4, 1, NULL, NULL);
 
--- Listage des données de la table recordkeeper.document_fonction : ~0 rows (environ)
+-- Listage des données de la table recordkeeper.document_fonction : ~27 rows (environ)
 INSERT INTO `document_fonction` (`document_id`, `fonction_id`) VALUES
 	(1, 1),
 	(2, 1),
@@ -133,34 +142,45 @@ INSERT INTO `document_fonction` (`document_id`, `fonction_id`) VALUES
 	(4, 1),
 	(5, 1),
 	(6, 1),
+	(7, 1),
+	(8, 1),
+	(9, 1),
+	(10, 1),
 	(1, 2),
 	(2, 2),
 	(3, 2),
 	(4, 2),
 	(5, 2),
 	(6, 2),
+	(7, 2),
+	(8, 2),
+	(9, 2),
+	(10, 2),
 	(1, 3),
 	(1, 4),
 	(4, 4),
-	(5, 4);
+	(5, 4),
+	(8, 4),
+	(9, 4),
+	(10, 4);
 
 -- Listage des données de la table recordkeeper.failed_jobs : ~0 rows (environ)
 
--- Listage des données de la table recordkeeper.fonctions : ~0 rows (environ)
+-- Listage des données de la table recordkeeper.fonctions : ~4 rows (environ)
 INSERT INTO `fonctions` (`id`, `fonction`, `created_by`, `updated_by`, `deleted_by`, `created_at`, `updated_at`, `deleted_at`) VALUES
 	(1, 'Directeur', NULL, NULL, NULL, '2023-09-10 18:28:05', '2023-09-10 18:28:05', NULL),
 	(2, 'Chef Service', NULL, NULL, NULL, '2023-09-10 18:28:18', '2023-09-10 18:28:18', NULL),
 	(3, 'Chargé', NULL, NULL, NULL, '2023-09-10 18:28:35', '2023-09-10 18:28:35', NULL),
 	(4, 'Chef Division', NULL, NULL, NULL, '2023-09-10 18:28:52', '2023-09-10 18:28:52', NULL);
 
--- Listage des données de la table recordkeeper.jobs : ~0 rows (environ)
+-- Listage des données de la table recordkeeper.jobs : ~2 rows (environ)
 INSERT INTO `jobs` (`id`, `queue`, `payload`, `attempts`, `reserved_at`, `available_at`, `created_at`) VALUES
 	(1, 'default', '{"uuid":"41cc67df-a2b0-4f4f-91d3-2925ad35b64e","displayName":"App\\\\Jobs\\\\DemandePretJob","job":"Illuminate\\\\Queue\\\\CallQueuedHandler@call","maxTries":null,"maxExceptions":null,"failOnTimeout":false,"backoff":null,"timeout":null,"retryUntil":null,"data":{"commandName":"App\\\\Jobs\\\\DemandePretJob","command":"O:23:\\"App\\\\Jobs\\\\DemandePretJob\\":3:{s:7:\\"demande\\";O:45:\\"Illuminate\\\\Contracts\\\\Database\\\\ModelIdentifier\\":5:{s:5:\\"class\\";s:22:\\"App\\\\Models\\\\DemandePret\\";s:2:\\"id\\";i:1;s:9:\\"relations\\";a:0:{}s:10:\\"connection\\";s:5:\\"mysql\\";s:15:\\"collectionClass\\";N;}s:11:\\"routeAccept\\";s:48:\\"http:\\/\\/localhost:8000\\/documents\\/demande\\/accept\\/1\\";s:11:\\"routeReject\\";s:48:\\"http:\\/\\/localhost:8000\\/documents\\/demande\\/reject\\/1\\";}"}}', 0, NULL, 1695001957, 1695001957),
 	(2, 'default', '{"uuid":"0f482be8-0297-4284-90f8-86ecfe2ebc05","displayName":"App\\\\Jobs\\\\DemandePretJob","job":"Illuminate\\\\Queue\\\\CallQueuedHandler@call","maxTries":null,"maxExceptions":null,"failOnTimeout":false,"backoff":null,"timeout":null,"retryUntil":null,"data":{"commandName":"App\\\\Jobs\\\\DemandePretJob","command":"O:23:\\"App\\\\Jobs\\\\DemandePretJob\\":3:{s:7:\\"demande\\";O:45:\\"Illuminate\\\\Contracts\\\\Database\\\\ModelIdentifier\\":5:{s:5:\\"class\\";s:22:\\"App\\\\Models\\\\DemandePret\\";s:2:\\"id\\";i:2;s:9:\\"relations\\";a:0:{}s:10:\\"connection\\";s:5:\\"mysql\\";s:15:\\"collectionClass\\";N;}s:11:\\"routeAccept\\";s:48:\\"http:\\/\\/localhost:8000\\/documents\\/demande\\/accept\\/2\\";s:11:\\"routeReject\\";s:48:\\"http:\\/\\/localhost:8000\\/documents\\/demande\\/reject\\/2\\";}"}}', 0, NULL, 1695002141, 1695002141);
 
 -- Listage des données de la table recordkeeper.migrations : ~0 rows (environ)
 
--- Listage des données de la table recordkeeper.model_has_permissions : ~0 rows (environ)
+-- Listage des données de la table recordkeeper.model_has_permissions : ~42 rows (environ)
 INSERT INTO `model_has_permissions` (`permission_id`, `model_type`, `model_id`) VALUES
 	(1, 'App\\Models\\User', 1),
 	(2, 'App\\Models\\User', 1),
@@ -205,7 +225,7 @@ INSERT INTO `model_has_permissions` (`permission_id`, `model_type`, `model_id`) 
 	(10, 'App\\Models\\User', 7),
 	(16, 'App\\Models\\User', 7);
 
--- Listage des données de la table recordkeeper.model_has_roles : ~0 rows (environ)
+-- Listage des données de la table recordkeeper.model_has_roles : ~9 rows (environ)
 INSERT INTO `model_has_roles` (`role_id`, `model_type`, `model_id`) VALUES
 	(1, 'App\\Models\\User', 1),
 	(2, 'App\\Models\\User', 1),
@@ -228,7 +248,7 @@ INSERT INTO `nature_documents` (`id`, `nature`, `duree_communicabilite`, `dua_bu
 
 -- Listage des données de la table recordkeeper.password_reset_tokens : ~0 rows (environ)
 
--- Listage des données de la table recordkeeper.permissions : ~0 rows (environ)
+-- Listage des données de la table recordkeeper.permissions : ~20 rows (environ)
 INSERT INTO `permissions` (`id`, `name`, `guard_name`, `created_by`, `updated_by`, `deleted_by`, `created_at`, `updated_at`, `deleted_at`, `type_role_id`) VALUES
 	(1, 'Demander un Prêt', 'web', NULL, NULL, NULL, '2023-09-10 16:55:58', '2023-09-10 16:55:58', NULL, 1),
 	(2, 'Consulter un Document', 'web', NULL, NULL, NULL, '2023-09-10 16:55:58', '2023-09-10 16:55:58', NULL, 1),
@@ -256,15 +276,18 @@ INSERT INTO `permissions` (`id`, `name`, `guard_name`, `created_by`, `updated_by
 -- Listage des données de la table recordkeeper.rapport_prets : ~0 rows (environ)
 
 -- Listage des données de la table recordkeeper.rayon_rangements : ~0 rows (environ)
+INSERT INTO `rayon_rangements` (`id`, `libelle`, `code`, `boites_number_max`, `created_by`, `updated_by`, `deleted_by`, `created_at`, `updated_at`, `deleted_at`) VALUES
+	(1, 'Rayon 1', 'R1', 2, 'Jackson Jinard', 'Jackson Jinard', NULL, '2024-01-20 18:21:52', '2024-01-20 18:21:52', NULL);
 
--- Listage des données de la table recordkeeper.roles : ~0 rows (environ)
+-- Listage des données de la table recordkeeper.roles : ~4 rows (environ)
 INSERT INTO `roles` (`id`, `name`, `guard_name`, `created_by`, `updated_by`, `deleted_by`, `created_at`, `updated_at`, `deleted_at`, `type_role_id`) VALUES
 	(1, 'Utilisateur', 'web', NULL, NULL, NULL, '2023-09-10 16:55:58', '2023-09-10 16:55:58', NULL, 1),
 	(2, 'Administrateur', 'web', NULL, NULL, NULL, '2023-09-10 16:55:58', '2023-09-10 16:55:58', NULL, 3),
 	(3, 'Gestionnaire-Standard', 'web', NULL, NULL, NULL, '2023-09-10 16:55:58', '2023-09-10 16:55:58', NULL, 2),
-	(4, 'Gestionnaire-Central', 'web', NULL, NULL, NULL, '2023-09-10 16:55:58', '2023-09-10 16:55:58', NULL, 4);
+	(4, 'Gestionnaire-Central', 'web', NULL, NULL, NULL, '2023-09-10 16:55:58', '2023-09-10 16:55:58', NULL, 4),
+	(5, 'Nouveau Rôle', 'web', 'Lawson Tony', NULL, NULL, '2024-01-21 04:03:31', '2024-01-21 04:03:31', NULL, 4);
 
--- Listage des données de la table recordkeeper.role_has_permissions : ~0 rows (environ)
+-- Listage des données de la table recordkeeper.role_has_permissions : ~20 rows (environ)
 INSERT INTO `role_has_permissions` (`permission_id`, `role_id`) VALUES
 	(1, 1),
 	(2, 1),
@@ -285,9 +308,12 @@ INSERT INTO `role_has_permissions` (`permission_id`, `role_id`) VALUES
 	(15, 4),
 	(17, 4),
 	(18, 4),
-	(19, 4);
+	(19, 4),
+	(12, 5),
+	(13, 5),
+	(14, 5);
 
--- Listage des données de la table recordkeeper.services : ~0 rows (environ)
+-- Listage des données de la table recordkeeper.services : ~24 rows (environ)
 INSERT INTO `services` (`id`, `service`, `sigle`, `direction_id`, `created_by`, `updated_by`, `deleted_by`, `created_at`, `updated_at`, `deleted_at`) VALUES
 	(1, 'Service Exploitation, Postes de Travail, Application et E-services', 'SEPTAE', 1, NULL, NULL, NULL, '2023-09-10 17:12:26', '2023-09-10 17:12:26', NULL),
 	(2, 'Services Infrastructures et Systèmes', 'SIS', 1, NULL, NULL, NULL, '2023-09-10 17:13:47', '2023-09-10 17:13:47', NULL),
@@ -314,19 +340,19 @@ INSERT INTO `services` (`id`, `service`, `sigle`, `direction_id`, `created_by`, 
 	(23, 'Aucun', 'AUCUN', 10, NULL, NULL, NULL, '2023-11-04 06:45:02', '2023-11-04 06:45:02', NULL),
 	(24, 'Premier Service de la ND1', 'PSND1', 10, NULL, NULL, NULL, '2023-11-04 06:55:33', '2023-11-04 06:55:33', NULL);
 
--- Listage des données de la table recordkeeper.statistiques : ~0 rows (environ)
+-- Listage des données de la table recordkeeper.statistiques : ~2 rows (environ)
 INSERT INTO `statistiques` (`id`, `date`, `nbrDocArchived`, `nbrDocCreated`, `created_at`, `updated_at`) VALUES
 	(1, '2023-09-14', 0, 1, '2023-09-14 13:34:45', '2023-09-14 13:34:45'),
 	(2, '2023-09-14', 0, 1, '2023-09-14 13:35:05', '2023-09-14 13:35:05');
 
--- Listage des données de la table recordkeeper.type_roles : ~0 rows (environ)
+-- Listage des données de la table recordkeeper.type_roles : ~4 rows (environ)
 INSERT INTO `type_roles` (`id`, `libelle`, `created_by`, `updated_by`, `deleted_by`, `created_at`, `updated_at`, `deleted_at`) VALUES
 	(1, 'Utilisateur', NULL, NULL, NULL, '2023-09-10 16:55:58', '2023-09-10 16:55:58', NULL),
 	(2, 'Gestionnaire-Standard', NULL, NULL, NULL, '2023-09-10 16:55:58', '2023-09-10 16:55:58', NULL),
 	(3, 'Administrateur', NULL, NULL, NULL, '2023-09-10 16:55:58', '2023-09-10 16:55:58', NULL),
 	(4, 'Gestionnaire-Central', NULL, NULL, NULL, '2023-09-10 16:55:58', '2023-09-10 16:55:58', NULL);
 
--- Listage des données de la table recordkeeper.users : ~0 rows (environ)
+-- Listage des données de la table recordkeeper.users : ~6 rows (environ)
 INSERT INTO `users` (`id`, `matricule`, `nom`, `prenoms`, `email`, `datenaissance`, `sexe`, `email_verified_at`, `password`, `two_factor_secret`, `two_factor_recovery_codes`, `two_factor_confirmed_at`, `haschangedpwd`, `remember_token`, `created_by`, `updated_by`, `deleted_by`, `created_at`, `updated_at`, `deleted_at`, `division_id`, `service_id`, `direction_id`, `fonction_id`) VALUES
 	(1, 2632646, 'Doe', 'Jonh', 'jonh@doe.fr', '1975-02-06', 'masculin', '2023-09-10 16:55:59', '$2y$10$bDOML/RLGtSidQbrpxr.XOV4fUlCmF2Zez6vLEqRBv8i1Mhqal7FC', NULL, NULL, NULL, 0, 'YL1toHR4I3yOvtQ7Tj0cAZMS682mzJYdVAgiU5LzvfNgRTYIxI25Ze0gopqW', NULL, NULL, NULL, '2023-09-10 16:55:59', '2023-09-10 19:10:45', NULL, 1, 1, 1, 1),
 	(2, 8029737, 'Lawson', 'Tony', 'tony@lawson.fr', '1995-07-27', 'masculin', '2023-09-10 16:55:59', '$2y$10$Ri8xW44rtbR8mLrY/Noh/.Wue5WzX6Il0uximnn22gF6Lv89nnoCy', NULL, NULL, NULL, 0, '4JbcbZD8WQtayPE8BanRiNPgs94NsRLLqwip95bDNwO87X7bEQ6wjpDThyfN', NULL, NULL, NULL, '2023-09-10 16:55:59', '2023-09-13 16:02:13', NULL, 4, 1, 1, 1),

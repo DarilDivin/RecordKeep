@@ -28,9 +28,16 @@ class ChemiseDossierController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create(): View
+    public function create(): View | RedirectResponse
     {
         $rayons = RayonRangement::has('boitearchives', '>=', 1)->orderBy('libelle', 'ASC')->get();
+
+        if ($rayons->isEmpty()) {
+            return redirect()
+            ->route('manager.chemise.index')
+            ->with('error', 'Veuillez disposer d\'un Rayon contenant au moins une boîte d\'abord.');
+        }
+
         return view('manager.chemise-dossier.chemise-form', [
             'chemise' => new ChemiseDossier(),
             'boites' => $rayons->first()->boitearchives->sortBy('libelle'),

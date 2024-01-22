@@ -49,9 +49,9 @@
                         </form>
                     @endif
                     @if ($transfert->valide)
-                        <form action="{{ route('manager.transfert.delete', ['transfert' => $transfert->id]) }}" method="POST">
+                        <form action="{{ route('manager.transfert.swithdraw', ['transfert' => $transfert->id]) }}" method="POST">
                             @csrf
-                            @method('delete')
+                            @method('patch')
                             <button style="height: 32px; font-weight: normal;">Retirer</button>
                         </form>
                     @endif

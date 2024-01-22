@@ -46,8 +46,8 @@ class DemandeTransfertController extends Controller
             ->with('success', 'Le Transfert a été éffectué avec succès');
     }
 
-    public function delete (DemandeTransfert $transfert) {
-        $transfert->delete();
+    public function swithdraw (DemandeTransfert $transfert) {
+        $transfert->update(['sw' => 1]);
         return redirect()
             ->route('manager.transfert.index')
             ->with('success', 'La Demande de Transfert a été retirée avec succès');
