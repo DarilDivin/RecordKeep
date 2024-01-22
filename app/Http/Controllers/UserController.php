@@ -25,6 +25,6 @@ class UserController extends Controller
         ]);
         // dd($user);
 
-        return route('home');
+        return redirect()->route('home');
     }
 }
