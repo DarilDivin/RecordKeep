@@ -31,6 +31,13 @@ class DivisionController extends Controller
     public function create(): View
     {
         $directions = Direction::has('services', '>=', 2)->orderBy('direction', 'ASC')->get();
+
+        if ($directions->isEmpty()) {
+            return redirect()
+            ->route('manager.division.index')
+            ->with('error', 'Veuillez disposer d\'une Direction contenant au moins un service d\'abord.');
+        }
+
         return view('admin.division.division-form', [
             'division' => new Division(),
             'services' => $directions->first()->services->where('service', '!=', 'Aucun')->sortBy('service'),

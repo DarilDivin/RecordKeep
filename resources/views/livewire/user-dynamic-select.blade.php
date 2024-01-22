@@ -9,7 +9,7 @@
         @if ($routeName === 'admin.user.edit')
             <div>
                 <label>
-                    Rôle(s) de l'utilisateur :
+                    Rôle(s) actuel(s) de l'utilisateur :
                     @foreach ($user->roles as $role)
                         {{ $role->name }} {{ $loop->last ? '.' : ',' }}
                     @endforeach

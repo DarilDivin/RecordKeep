@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\BoiteArchive;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -15,7 +16,8 @@ class RayonRangement extends Model
 
     protected $fillable = [
         'libelle',
-        'code'
+        'code',
+        'boites_number_max'
     ];
 
     protected $casts = [
@@ -23,19 +25,34 @@ class RayonRangement extends Model
     ];
 
     protected static function boot() {
+
         parent::boot();
 
-        static::created(function ($rayon) {
-            $rayon->update([
-                'code' => 'R' . $rayon->id
-            ]);
-        });
+        if (!app()->runningInConsole()) {
+            $userFullName = Auth::user()->nom . " " . Auth::user()->prenoms;
 
-        static::deleting(function ($rayon) {
-            $rayon->boitearchives->each(function ($boite) {
-                $boite->delete();
+            static::creating(function ($rayon) use ($userFullName) {
+                $rayon->created_by = $userFullName;
             });
-        });
+
+            static::created(function ($rayon) {
+                $rayon->update([
+                    'code' => 'R' . $rayon->id
+                ]);
+            });
+
+            static::updating(function ($rayon) use ($userFullName) {
+                $rayon->updated_by = $userFullName;
+            });
+
+            static::deleting(function ($rayon) use ($userFullName) {
+                $rayon->boitearchives->each(function ($boite) {
+                    $boite->delete();
+                });
+                $rayon->deleted_by = $userFullName;
+                $rayon->save();
+            });
+        }
 
     }
 

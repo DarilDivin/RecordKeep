@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Models\ChemiseDossier;
 use App\Models\RayonRangement;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -18,29 +19,45 @@ class BoiteArchive extends Model
     protected $fillable = [
         'libelle',
         'code',
+        'chemises_number_max',
         'rayon_rangement_id'
     ];
 
     protected static function boot() {
+
         parent::boot();
 
-        static::created(function ($boite) {
-            $r = $boite->rayonrangement;
-            $boite->update([
-                'code' => $r->code . 'B' . $r->boitearchives->count()
-            ]);
-        });
+        if (!app()->runningInConsole()) {
+            $userFullName = Auth::user()->nom . " " . Auth::user()->prenoms;
 
-        static::updated(function ($boite) {
-            $r = $boite->rayonrangement;
-            $boite->code = $r->code . 'B' . $r->boitearchives->count();
-        });
-
-        static::deleting(function ($boite) {
-            $boite->chemisedossiers->each(function ($chemise) {
-                $chemise->delete();
+            static::creating(function ($boite) use ($userFullName) {
+                $boite->created_by = $userFullName;
             });
-        });
+
+            static::created(function ($boite) {
+                $r = $boite->rayonrangement;
+                $boite->update([
+                    'code' => $r->code . 'B' . $r->boitearchives->count()
+                ]);
+            });
+
+            static::updating(function ($boite) use ($userFullName) {
+                $boite->updated_by = $userFullName;
+            });
+
+            static::updated(function ($boite) {
+                $r = $boite->rayonrangement;
+                $boite->code = $r->code . 'B' . $r->boitearchives->count();
+            });
+
+            static::deleting(function ($boite) use ($userFullName) {
+                $boite->chemisedossiers->each(function ($chemise) {
+                    $chemise->delete();
+                });
+                $boite->deleted_by = $userFullName;
+                $boite->save();
+            });
+        }
 
     }
 

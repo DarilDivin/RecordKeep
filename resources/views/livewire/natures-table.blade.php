@@ -34,9 +34,10 @@
                     <td></td>
                     <x-table-header label="N°" :direction="$orderDirection" name="id" :field="$orderField"></x-table-header>
                     <x-table-header label="Nature" :direction="$orderDirection" name="nature" :field="$orderField"></x-table-header>
-                    <x-table-header label="DUA Bureaux(ans)" :direction="$orderDirection" name="dua_bureaux" :field="$orderField"></x-table-header>
-                    <x-table-header label="DUA Service Pré-Archivage(ans)" :direction="$orderDirection" name="dua_service_pre_archivage" :field="$orderField"></x-table-header>
                     <x-table-header label="Catégorie" :direction="$orderDirection" name="categorie_id" :field="$orderField"></x-table-header>
+                    <x-table-header label="Durée de Communicabilité" :direction="$orderDirection" name="duree_communicabilite" :field="$orderField"></x-table-header>
+                    <x-table-header label="DUA aux Bureaux(ans)" :direction="$orderDirection" name="dua_bureaux" :field="$orderField"></x-table-header>
+                    <x-table-header label="DUA au Service de Pré-Archivage(ans)" :direction="$orderDirection" name="dua_service_pre_archivage" :field="$orderField"></x-table-header>
                     <x-table-header label="Date de Création" :direction="$orderDirection" name="created_at" :field="$orderField"></x-table-header>
                     <td>Actions</td>
                 </tr>
@@ -49,9 +50,10 @@
                         </td>
                         <td>{{ $nature->id }}</td>
                         <td>{{ $nature->nature }}</td>
+                        <td>{{ $nature->categorie->categorie }}</td>
+                        <td>{{ $nature->duree_communicabilite }}ans</td>
                         <td>{{ $nature->dua_bureaux }}ans</td>
                         <td>{{ $nature->dua_service_pre_archivage }}ans</td>
-                        <td>{{ $nature->categorie->categorie }}</td>
                         <td>{{ $nature->created_at->translatedFormat('d F Y') }}</td>
                         <td>
                             <button class="edit">

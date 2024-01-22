@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Models\Document;
 use App\Models\BoiteArchive;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -22,19 +23,37 @@ class ChemiseDossier extends Model
     ];
 
     protected static function boot() {
+
         parent::boot();
 
-        static::created(function ($chemise) {
-            $b = $chemise->boitearchive;
-            $chemise->update([
-                'code' => $b->code . 'CH' . $b->chemisedossiers->count()
-            ]);
-        });
+        if (!app()->runningInConsole()) {
+            $userFullName = Auth::user()->nom . " " . Auth::user()->prenoms;
 
-        static::updated(function ($chemise) {
-            $b = $chemise->boitearchive;
-            $chemise->code = $b->code . 'CH' . $b->chemisedossiers->count();
-        });
+            static::creating(function ($chemise) use ($userFullName) {
+                $chemise->created_by = $userFullName;
+            });
+
+            static::created(function ($chemise) {
+                $b = $chemise->boitearchive;
+                $chemise->update([
+                    'code' => $b->code . 'CH' . $b->chemisedossiers->count()
+                ]);
+            });
+
+            static::updating(function ($chemise) use ($userFullName) {
+                $chemise->updated_by = $userFullName;
+            });
+
+            static::updated(function ($chemise) {
+                $b = $chemise->boitearchive;
+                $chemise->code = $b->code . 'CH' . $b->chemisedossiers->count();
+            });
+
+            static::deleting(function ($chemise) use ($userFullName) {
+                $chemise->deleted_by = $userFullName;
+                $chemise->save();
+            });
+        }
     }
 
     public function boitearchive(): BelongsTo

@@ -71,12 +71,14 @@ class DocumentController extends Controller
     private function withDocuments(Document $document, DocumentFormRequest $request): array
     {
         $data = $request->validated();
-        if(Service::find($data['service_id'])->service === 'Aucun') {
-            $data['service_id'] = null;
-        }
-        if(Division::find($data['division_id'])->division === 'Aucune') {
-            $data['division_id'] = null;
-        }
+        /*
+            if(Service::find($data['service_id'])->service === 'Aucun') {
+                $data['service_id'] = null;
+            }
+            if(Division::find($data['division_id'])->division === 'Aucune') {
+                $data['division_id'] = null;
+            }
+        */
         $data['motclefs'] = '#' . implode('#', $request->validated('motclefs'));
         unset($data['fonctions']);
         if(array_key_exists('document', $data))

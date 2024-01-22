@@ -2,8 +2,8 @@
     <div class="inputContainer">
         <label for="rayon">Rayon Rangement</label>
         <select class="inputContainer" id="rayon" wire:model="selectedRayon" name="rayon_rangement_id">
-            @foreach ($rayons as $id => $rayon)
-                <option value="{{ $id }}">{{ $rayon }}</option>
+            @foreach ($rayons as $rayon)
+                <option value="{{ $rayon->id }}">{{ $rayon->libelle }}</option>
             @endforeach
         </select>
         @error('rayon_rangement_id')
@@ -14,8 +14,8 @@
     <div class="inputContainer">
         <label for="boite">Boîte Archive</label>
         <select class="inputContainer" id="boite" wire:model="selectedBoite" name="boite_archive_id">
-            @foreach ($boites as $id => $boite)
-                <option value="{{ $id }}">{{ $boite }}</option>
+            @foreach ($boites as $boite)
+                <option value="{{ $boite->id }}">{{ $boite->libelle }}</option>
             @endforeach
         </select>
         @error('boite_archive_id')
@@ -25,9 +25,9 @@
 
     <div class="inputContainer">
         <label for="chemise">Chemise Dossier</label>
-        <select class="inputContainer" id="chemise" wire:model="selectedChemise" name="chemise_dossier_id">
-            @foreach ($chemises as $id => $chemise)
-                <option value="{{ $id }}">{{ $chemise }}</option>
+        <select class="inputContainer" id="chemise" wire:model="" name="chemise_dossier_id">
+            @foreach ($chemises as $chemise)
+                <option value="{{ $chemise->id }}">{{ $chemise->libelle }}</option>
             @endforeach
         </select>
         @error('chemise_dossier_id')

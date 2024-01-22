@@ -4,12 +4,13 @@ namespace App\Models;
 
 use App\Models\Document;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class DemandeTransfert extends Model
 {
@@ -17,15 +18,41 @@ class DemandeTransfert extends Model
 
     protected $fillable = [
         'libelle',
-        'user_id',
-        'valide',
+        'direction_id',
+        'transferable',
         'transfere',
-        'sr', 'cr'
+        'valide',
+        'created_by',
+        'updated_by',
+        'deleted_by'
     ];
 
     protected $casts = [
-        'created_at' => 'datetime'
+        'created_at' => 'datetime',
     ];
+
+    protected static function boot() {
+
+        parent::boot();
+
+        if (!app()->runningInConsole()) {
+            $userFullName = Auth::user()->nom . " " . Auth::user()->prenoms;
+
+            static::creating(function ($transfert) {
+                $transfert->created_by = "RECORD KEEPER";
+            });
+
+            static::updating(function ($transfert) {
+                $transfert->updated_by = "RECORD KEEPER";
+            });
+
+            static::deleting(function ($user) use ($userFullName) {
+                $user->deleted_by = $userFullName;
+                $user->save();
+            });
+        }
+
+    }
 
     public function getSlug(): string
     {
@@ -47,9 +74,14 @@ class DemandeTransfert extends Model
         return $this->hasMany(Document::class, 'demande_transfert_id', 'id');
     }
 
-    public function user(): BelongsTo
+    /* public function user(): BelongsTo
     {
         return $this->belongsTo(User::class, 'user_id', 'id');
+    } */
+
+    public function direction(): BelongsTo
+    {
+        return $this->belongsTo(Direction::class, 'direction_id', 'id');
     }
 
     public function bordereautransfert(): HasOne

@@ -111,12 +111,14 @@ class UserController extends Controller
             'service_id' => $request['service_id'],
             'direction_id' => $request['direction_id']
         ]);
-        if(Service::find($request['service_id'])->service === 'Aucun') {
-            $request['service_id'] = null;
-        }
-        if(Division::find($request['division_id'])->division === 'Aucune') {
-            $request['division_id'] = null;
-        }
+        /*
+            if(Service::find($request['service_id'])->service === 'Aucun') {
+                $request['service_id'] = null;
+            }
+            if(Division::find($request['division_id'])->division === 'Aucune') {
+                $request['division_id'] = null;
+            }
+        */
         $user->roles()->sync($request['roles']);
         foreach($request['roles'] as $role){
             $user->permissions()->sync(Role::find($role)->permissions);

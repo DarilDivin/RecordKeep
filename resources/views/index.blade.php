@@ -12,7 +12,7 @@
         <div class="description_msg" data-aos="fade-right" data-aos-delay="1000">
             <h2>Accédez aux documents accessibles en un clic</h2>
             <p>
-                Bienvenu sur Record Keep, un tenu de régistre facile du Ministère de l'Intérieur et de la Sécurité Publique de la République du Bénin vous permettant de consulter certains documents accessibles en toute facilté, sécurité et simplicité.
+                Bienvenu sur Record Keeper, une tenue de régistre facile du Ministère de l'Intérieur et de la Sécurité Publique de la République du Bénin vous permettant de consulter certains documents accessibles en toute facilté, sécurité et simplicité.
             </p>
             <button class="btn-signin">
                 <a href="{{ route('login') }}">Se connecter</a>
@@ -44,7 +44,7 @@
                 <img src="storage/images/documenthèque.png" alt="">
 
                 <p>
-                    L'application propose une fonction de recherche puissante qui vous permet de rechercher des fichiers ou des dossiers par nom, date, ou autres critères.
+                    L'application propose une puissante fonction de recherche qui vous permet de retrouver des fichiers ou des dossiers par nom, date, ou autres critères.
                 </p>
 
             </swiper-slide>
@@ -52,7 +52,7 @@
                 <img src="storage/images/documenthèque.png" alt="">
 
                 <p>
-                    Une fois les documents disponibles vous pouvez effectuer des prêts pour certains documents.
+                    Une fois les documents disponibles, vous pouvez effectuer des prêts pour certains documents.
                 </p>
 
             </swiper-slide>

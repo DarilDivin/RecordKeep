@@ -31,6 +31,9 @@ return new class extends Migration
             $table->integer('nbrdownload')->default(0);
             $table->integer('nbrconsult')->default(0);
             $table->dateTime('archived_at')->nullable();
+            $table->string('created_by')->nullable();
+            $table->string('updated_by')->nullable();
+            $table->string('deleted_by')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

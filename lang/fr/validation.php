@@ -217,8 +217,11 @@ return [
         'direction_id'             => 'Direction',
         'categorie_id'             => 'Catégorie',
         'nature_document_id'       => 'Nature',
+        'boite_archive_id'         => 'Boîte Archive',
+        'chemise_dossier_id'       => 'Chemise de Dossier',
+        'rayon_rangeement_id'       => 'Rayon de Rangement',
         'document'                 => 'Document',
-        'documents'                 => 'Documents',
+        'documents'                => 'Documents',
         'motclefs'                 => 'Mots Clés',
         'datecreation'             => 'Date de création',
         'libelle'                  => 'Libellé',
@@ -226,6 +229,12 @@ return [
         'permissions'              => 'Permissions',
         'roles'                    => 'Rôles',
         'permission_id'            => 'Permission',
-        'fonctions'                => 'Fonctions'
+        'fonctions'                => 'Fonctions',
+        'duree_communicabilite'    => 'Durée de Communicabilité',
+        'dua_bureaux'              => 'DUA aux Bureaux',
+        'dua_service_pre_archivage'=> 'DUA au Service de Pré-Archivage',
+        'boites_number_max'        => 'Nombre de boîtes maximum',
+        'chemises_number_max'      => 'Nombre de chemises maximum',
+        'observation'              => 'Observation'
     ],
 ];

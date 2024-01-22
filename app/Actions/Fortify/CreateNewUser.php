@@ -19,6 +19,7 @@ use App\Rules\OneCentralManagerForApplication;
 use App\Rules\OneDivisionForChiefDivision;
 use App\Rules\OneServiceForChiefDivision;
 use App\Rules\OneServiceForChiefService;
+use App\Rules\OneStandardManagerForDirection;
 use Laravel\Fortify\Contracts\CreatesNewUsers;
 
 class CreateNewUser implements CreatesNewUsers
@@ -54,16 +55,19 @@ class CreateNewUser implements CreatesNewUsers
             'direction_id' => ['integer','exists:directions,id', 'required'],
             'roles' => ['array','exists:roles,id', 'required',
                 new SameTypeRoleRule(), new ForceCentralManagerToBeAtDSI(),
+                new OneStandardManagerForDirection(),
                 new OneCentralManagerForApplication()
             ]
         ])->validate();
 
-        if(Service::find($input['service_id'])->service === 'Aucun') {
-            $input['service_id'] = null;
-        }
-        if(Division::find($input['division_id'])->division === 'Aucune') {
-            $input['division_id'] = null;
-        }
+        /*
+            if(Service::find($input['service_id'])->service === 'Aucun') {
+                $input['service_id'] = null;
+            }
+            if(Division::find($input['division_id'])->division === 'Aucune') {
+                $input['division_id'] = null;
+            }
+        */
 
         $user = User::create([
             'matricule' => $input['matricule'],

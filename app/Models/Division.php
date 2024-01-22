@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\Service;
 use App\Models\Document;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -26,6 +27,29 @@ class Division extends Model
     protected $casts = [
         'created_at' => 'datetime'
     ];
+
+    protected static function boot() {
+
+        parent::boot();
+
+        if (!app()->runningInConsole()) {
+            $userFullName = Auth::user()->nom . " " . Auth::user()->prenoms;
+
+            static::creating(function ($division) use ($userFullName) {
+                $division->created_by = $userFullName;
+            });
+
+            static::updating(function ($division) use ($userFullName) {
+                $division->updated_by = $userFullName;
+            });
+
+            static::deleting(function ($division) use ($userFullName) {
+                $division->deleted_by = $userFullName;
+                $division->save();
+            });
+        }
+
+    }
 
     public function service(): BelongsTo
     {

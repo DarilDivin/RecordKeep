@@ -45,25 +45,27 @@ class DocumentsTable extends Component
         return session()->flash('success', 'Les Documents ont bien été supprimé');
     }
 
-    public function createTransfertDocuments(array $ids)
-    {
-        $demandeTransfert = DemandeTransfert::where('transfere', 0)
-                ->where('user_id', Auth::user()->id)
-                ->get()->toArray();
-        if(empty($demandeTransfert)){
-            return session()->flash('error', "Créez une nouvelle Demande de Transfert !");
-        }
-        else{
-            foreach($ids as $id){
-                $document = Document::find($id);
-                $document->update([
-                    'demande_transfert_id' => $demandeTransfert[0]['id']
-                ]);
+    /*
+        public function createTransfertDocuments(array $ids)
+        {
+            $demandeTransfert = DemandeTransfert::where('transfere', 0)
+                    ->where('user_id', Auth::user()->id)
+                    ->get()->toArray();
+            if(empty($demandeTransfert)){
+                return session()->flash('error', "Créez une nouvelle Demande de Transfert !");
             }
-        }
-        $this->documentsChecked = [];
-        return session()->flash('success', 'Le(s) Document(s) ont bien été ajouté à votre Demande de Transfert.');
-    }
+            else{
+                foreach($ids as $id){
+                    $document = Document::find($id);
+                    $document->update([
+                        'demande_transfert_id' => $demandeTransfert[0]['id']
+                    ]);
+                }
+            }
+            $this->documentsChecked = [];
+            return session()->flash('success', 'Le(s) Document(s) ont bien été ajouté à votre Demande de Transfert.');
+        } 
+    */
 
     public function setOrderField(string | int | DateTime  $field)
     {

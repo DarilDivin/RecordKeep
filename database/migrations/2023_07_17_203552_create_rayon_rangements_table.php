@@ -15,6 +15,10 @@ return new class extends Migration
             $table->id();
             $table->string('libelle');
             $table->string('code')->nullable();
+            $table->integer('boites_number_max');
+            $table->string('created_by')->nullable();
+            $table->string('updated_by')->nullable();
+            $table->string('deleted_by')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

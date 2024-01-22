@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Direction;
 use App\Models\User;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
@@ -15,11 +16,16 @@ return new class extends Migration
         Schema::create('demande_transferts', function (Blueprint $table) {
             $table->id();
             $table->string('libelle');
-            $table->foreignIdFor(User::class)->constrained()->cascadeOnDelete();
+            /* $table->foreignIdFor(User::class)->constrained()->cascadeOnDelete(); */
+            $table->foreignIdFor(Direction::class)->constrained()->cascadeOnDelete();
+            $table->boolean('transferable')->default(0);
             $table->boolean('transfere')->default(0);
             $table->boolean('valide')->default(0);
-            $table->boolean('sr')->default(0);
-            $table->boolean('cr')->default(0);
+            $table->boolean('sw')->default(0);
+            $table->boolean('cw')->default(0);
+            $table->string('created_by')->nullable();
+            $table->string('updated_by')->nullable();
+            $table->string('deleted_by')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

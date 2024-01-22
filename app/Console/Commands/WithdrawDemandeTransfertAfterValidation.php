@@ -4,27 +4,27 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 
-class DailyMessage extends Command
+class WithdrawDemandeTransfertAfterValidation extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'app:daily-message';
+    protected $signature = 'app:delete-demande-transfert-after-validation';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Command description';
+    protected $description = "Cette Tâche se chargera de supprimer quelques temps après une demande de Transfert une fois que celle ci sera validée";
 
     /**
      * Execute the console command.
      */
     public function handle()
     {
-        $this->info('Ceci est un Message Quotidien');
+        //
     }
 }

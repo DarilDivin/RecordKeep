@@ -16,10 +16,12 @@ class ForceCentralManagerToBeAtDSI implements ValidationRule
      */
     public function validate(string $attribute, mixed $value, Closure $fail): void
     {
+
         if (
             in_array(Role::findByName('Gestionnaire-Central')->id, request()->roles)
             && Direction::find(request()->direction_id)->sigle !== "DSI"
         )
         $fail('Le Gestionnaire Central doit se trouver à la DSI.');
+
     }
 }

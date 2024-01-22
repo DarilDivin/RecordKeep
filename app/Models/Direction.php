@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Support\Facades\Auth;
 
 class Direction extends Model
 {
@@ -17,7 +18,10 @@ class Direction extends Model
 
     protected $fillable = [
         'sigle',
-        'direction'
+        'direction',
+        'created_by',
+        'updated_by',
+        'deleted_by'
     ];
 
     protected $casts = [
@@ -27,18 +31,32 @@ class Direction extends Model
     protected static function boot() {
         parent::boot();
 
-        static::created(function ($direction) {
-            $direction->services()->create([
-                'sigle' => 'AUCUN',
-                'service' => 'Aucun'
-            ]);
-        });
+        if (!app()->runningInConsole()) {
+            $userFullName = Auth::user()->nom . " " . Auth::user()->prenoms;
 
-        static::deleting(function ($direction) {
-            $direction->services->each(function ($service) {
-                $service->delete();
+            static::creating(function ($direction) use ($userFullName) {
+                $direction->created_by = $userFullName;
             });
-        });
+
+            static::created(function ($direction) {
+                $direction->services()->create([
+                    'sigle' => 'AUCUN',
+                    'service' => 'Aucun'
+                ]);
+            });
+
+            static::updating(function ($direction) use ($userFullName) {
+                $direction->updated_by = $userFullName;
+            });
+
+            static::deleting(function ($direction) use ($userFullName) {
+                $direction->services->each(function ($service) {
+                    $service->delete();
+                });
+                $direction->deleted_by = $userFullName;
+                $direction->save();
+            });
+        }
 
     }
 
@@ -55,6 +73,11 @@ class Direction extends Model
     public function users():HasMany
     {
         return $this->hasMany(User::class);
+    }
+
+    public function demandetransferts(): HasMany
+    {
+        return $this->hasMany(DemandeTransfert::class, 'direction_id', 'id');
     }
 
     /* Pluck Methods */

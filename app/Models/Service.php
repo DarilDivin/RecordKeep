@@ -7,6 +7,7 @@ use App\Models\Division;
 use App\Models\Document;
 use App\Models\Direction;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -28,20 +29,33 @@ class Service extends Model
     ];
 
     protected static function boot() {
+
         parent::boot();
 
-        static::created(function ($service) {
-            $service->divisions()->create([
-                'sigle' => 'AUCUNE',
-                'division' => 'Aucune'
-            ]);
-        });
+        if (!app()->runningInConsole()) {
+            $userFullName = Auth::user()->nom . " " . Auth::user()->prenoms;
 
-        static::deleting(function ($service) {
-            $service->divisions->each(function ($division) {
-                $division->delete();
+            static::creating(function ($service) use ($userFullName) {
+                $service->created_by = $userFullName;
             });
-        });
+
+            static::created(function ($service) {
+                $service->divisions()->create([
+                    'sigle' => 'AUCUNE',
+                    'division' => 'Aucune'
+                ]);
+            });
+
+            static::updating(function ($service) use ($userFullName) {
+                $service->updated_by = $userFullName;
+            });
+
+            static::deleting(function ($service) {
+                $service->divisions->each(function ($division) {
+                    $division->delete();
+                });
+            });
+        }
 
     }
 

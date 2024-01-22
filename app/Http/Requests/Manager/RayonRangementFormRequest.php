@@ -27,7 +27,8 @@ class RayonRangementFormRequest extends FormRequest
                 Rule::unique('rayon_rangements')
                 ->ignore($this->route()->parameter('rayon'))
                 ->withoutTrashed()
-            ]
+            ],
+            'boites_number_max' => ['required', 'min:1', 'numeric', 'integer'],
         ];
     }
 }

@@ -16,7 +16,11 @@ return new class extends Migration
             $table->id();
             $table->string('libelle');
             $table->string('code')->nullable();
+            $table->integer('chemises_number_max');
             $table->foreignIdFor(RayonRangement::class)->constrained()->cascadeOnDelete();
+            $table->string('created_by')->nullable();
+            $table->string('updated_by')->nullable();
+            $table->string('deleted_by')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

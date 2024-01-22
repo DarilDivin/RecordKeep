@@ -21,7 +21,16 @@
             <form method="POST" action="{{ route('manager.document.classement', ['document' => $document->id, 'transfert' => $transfert]) }}" enctype="multipart/form-data">
                 @csrf
                 @method('put')
-                <x-input class="inputContainer" id="signature" label="Signature" type="text" name="signature" placeholder="Signature"  readonly="readonly" value="{{ $document->signature }}" />
+
+               {{--  @if ($errors->any())
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li class="error">{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                @endif --}}
+
+                <x-input class="inputContainer" id="timbre" label="Timbre" type="text" name="timbre" placeholder="Timbre"  readonly="readonly" value="{{ $document->timbre }}" />
 
                 <x-input class="inputContainer" id="nom" label="Nom du Document" type="text" name="nom" placeholder="Nom du Document" readonly="readonly" value="{{ $document->nom }}" />
 
@@ -41,7 +50,7 @@
                 ])
 
                 <div class="inputContainer button">
-                    <button type="submit">Classer</button>
+                    <button type="submit">Soumettre le Classement</button>
                 </div>
             </form>
         </div>
