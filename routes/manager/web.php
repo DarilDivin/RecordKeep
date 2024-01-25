@@ -127,7 +127,7 @@ Route::middleware(['auth', 'permission:Gestion des Demandes de Transferts du MIS
 ]);
 
 Route::middleware(['auth', 'permission:Gestion des Demandes de Transferts'])
-->patch('manager/transfert/{transfert}', [AllTransfertsController::class, 'cwithdraw'])
+->patch('manager/all-transfert/{transfert}', [AllTransfertsController::class, 'cwithdraw'])
 ->name('manager.transfert.cwithdraw')
 ->where([
     'transfert' => $idRegex

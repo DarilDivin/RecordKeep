@@ -217,6 +217,7 @@ return [
         'direction_id'             => 'Direction',
         'categorie_id'             => 'Catégorie',
         'nature_document_id'       => 'Nature',
+        'visible'                  => 'Accessibilité',
         'boite_archive_id'         => 'Boîte Archive',
         'chemise_dossier_id'       => 'Chemise de Dossier',
         'rayon_rangeement_id'       => 'Rayon de Rangement',

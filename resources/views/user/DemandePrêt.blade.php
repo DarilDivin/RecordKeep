@@ -72,9 +72,6 @@
         @can('Demander un Prêt')
             <section class="loanRequest">
                 <div class="formContainer">
-
-
-
                     <h1>{{ $document->disponibilite ? "Procéder à une demande pour ce document" : "Impossible de procéder à une demande pour ce document" }}</h1>
                     <form action="{{ route('document.demande', $document) }}" method="POST" @class(['loanForm', 'disabled' => !$document->disponibilite]) )>
                         @csrf
