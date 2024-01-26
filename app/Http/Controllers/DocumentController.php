@@ -22,13 +22,21 @@ use Illuminate\Http\RedirectResponse;
 
 class DocumentController extends Controller
 {
+
+    /* public function __construct()
+    {
+        $this->authorize(Document::class, 'document');
+    } */
+
     public function index(): View
     {
+        /* $this->authorize('index', Document::class); */
         return view('user.DocumentPage');
     }
 
     public function show(string $slug, Document $document): View | RedirectResponse
     {
+        /* $this->authorize('show', $document); */
         $expectedSlug = $document->getSlug();
         if ($slug != $expectedSlug) {
             return to_route('document.show', ['slug' => $expectedSlug, 'document' => $document]);

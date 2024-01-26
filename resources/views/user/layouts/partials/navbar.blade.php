@@ -13,7 +13,7 @@
     </div>
     <div class="nav_menu">
         <ul>
-            @if (request()->route()->getName() == 'Presentation')
+            @if ($route == 'Presentation' || ($route === 'contactUs' && !auth()->check()))
                 <li @class(['nav_links', 'active' => str_contains($route, 'home')])><a href="{{ route('home') }}">Accueil</a></li>
                 <li @class(['nav_links', 'active' => str_contains($route, 'document.index')])><a href="{{ route('document.index') }}">Documenthèque</a></li>
             @endif
