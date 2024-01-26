@@ -1,7 +1,7 @@
 <x-mail::message>
 # Reponse à votre demande
 
-Votre demande de document à été rejeté.
+Votre demande de document à été rejetée.
 
 {{-- <x-mail::button :url="''">
 Button Text

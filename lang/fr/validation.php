@@ -236,6 +236,8 @@ return [
         'dua_service_pre_archivage'=> 'DUA au Service de Pré-Archivage',
         'boites_number_max'        => 'Nombre de boîtes maximum',
         'chemises_number_max'      => 'Nombre de chemises maximum',
-        'observation'              => 'Observation'
+        'observation'              => 'Observation',
+        'motif'                    => 'Motif',
+        'duree'                    => 'Durée'
     ],
 ];

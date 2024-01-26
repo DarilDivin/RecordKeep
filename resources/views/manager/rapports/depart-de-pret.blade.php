@@ -21,7 +21,7 @@
                 @method('post')
                 <x-input class="inputContainer DebMoit" id="nomDoc" label="Nom du Document" type="text" name="nomDoc" placeholder=""  readonly="readonly" value="{{ $demande->document->nom }}" />
 
-                <x-input class="inputContainer MoitFin" id="sigDoc" label="Signature du Document" type="text" name="sig" placeholder="" readonly="readonly" value="{{ $demande->document->signature }}" />
+                <x-input class="inputContainer MoitFin" id="sigDoc" label="Signature du Document" type="text" name="sig" placeholder="" readonly="readonly" value="{{ $demande->document->timbre }}" />
 
                 <x-input class="inputContainer DebMoit" id="nomUser" label="Nom du demandeur" type="text" name="nomUser" placeholder=""  readonly="readonly" value="{{ $demande->user->nom }}" />
 

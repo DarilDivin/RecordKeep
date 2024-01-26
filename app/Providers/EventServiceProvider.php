@@ -2,15 +2,16 @@
 
 namespace App\Providers;
 
-use App\Events\AcceptDemandeEvent;
 use App\Events\DemandePretEvent;
+use App\Events\AcceptDemandeEvent;
 use App\Events\RejectDemandeEvent;
+use Illuminate\Support\Facades\Event;
 use App\Listeners\DemandePretListener;
-use App\Listeners\RejectDemandeListener;
 use Illuminate\Auth\Events\Registered;
+use App\Listeners\AcceptDemandeListener;
+use App\Listeners\RejectDemandeListener;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
-use Illuminate\Support\Facades\Event;
 
 class EventServiceProvider extends ServiceProvider
 {

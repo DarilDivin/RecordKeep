@@ -22,6 +22,7 @@ use App\Models\RayonRangement;
 use App\Models\DemandeTransfert;
 use App\Policies\Admin\UserPolicy;
 use App\Policies\Admin\RolePolicy;
+use App\Policies\User\DocumentPolicy as UserDocumentPolicy;
 use App\Policies\Admin\ServicePolicy;
 use App\Policies\Admin\DivisionPolicy;
 use App\Policies\Admin\FonctionPolicy;

@@ -30,8 +30,6 @@
                     <label for="">Mots Clés</label>
                     <input type="text"  class="search-bar" placeholder="#Motsclés" minlength="1">
                 </div>
-
-
                 <button type="submit">Rechercher</button>
             </form>
         </section>

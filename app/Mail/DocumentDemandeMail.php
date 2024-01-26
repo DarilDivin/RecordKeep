@@ -31,7 +31,7 @@ class DocumentDemandeMail extends Mailable
         return new Envelope(
             to: 'manager@gmail.fr',
             replyTo: $this->demande->user->email,
-            subject: 'Document Demande Mail',
+            subject: 'Demande de Prêt pour un Document spécifque',
         );
     }
 

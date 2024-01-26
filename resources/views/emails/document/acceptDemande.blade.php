@@ -1,7 +1,7 @@
 <x-mail::message>
 # Reponse à votre demande
 
-Votre demande de document à été accepté
+Votre Demande de Prêt de document à été acceptée, vous pouvez passer chercher le document.
 
 {{-- <x-mail::button :url="''">
 Button Text

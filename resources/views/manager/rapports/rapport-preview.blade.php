@@ -81,8 +81,8 @@
             </h1>
 
             <div class="line">
-                <p><strong>Signature du document :</strong></p>
-                <p>{{ $rapport->demandePret->document->signature }}</p>
+                <p><strong>Timbre du document :</strong></p>
+                <p>{{ $rapport->demandePret->document->timbre }}</p>
             </div>
             <div class="line">
                 <p><strong>Nom du document :</strong></p>

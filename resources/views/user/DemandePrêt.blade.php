@@ -55,7 +55,7 @@
                     </tr>
                     <tr>
                         <td>Date du courier</td>
-                        <td>{{ $document->datecreation }}</td>
+                        <td>{{ $document->datecreation->translatedFormat("d F Y") }}</td>
                     </tr>
                     <tr>
                         <td>Nature</td>
@@ -72,13 +72,17 @@
         @can('Demander un Prêt')
             <section class="loanRequest">
                 <div class="formContainer">
-                    <h1>{{ $document->disponibilite ? "Procéder à une demande pour ce document" : "Impossible de procéder à une demande pour ce document" }}</h1>
+                    <h1>{{ $document->disponibilite ? "Procéder à une Demande de Prêt pour ce document" : "Impossible de procéder à une Demande de Prêt pour ce document" }}</h1>
                     <form action="{{ route('document.demande', $document) }}" method="POST" @class(['loanForm', 'disabled' => !$document->disponibilite]) )>
                         @csrf
                         <div class="inputs firstname">
                             <label for="nom">Nom</label>
                             <input type="text" name="nom" id="" placeholder="Nom" value="{{ Auth::user()->nom }}" readonly>
-                            <small></small>
+                            @error('nom')
+                                <span style="color: red; font-size: 0.7rem">
+                                    {{ $message }}
+                                </span>
+                            @enderror
                         </div>
                         <div class="inputs lastname">
                             <label for="prenoms">Prénoms</label>
@@ -88,22 +92,38 @@
                         <div class="inputs durée">
                             <label for="duree">Durée du prêt</label>
                             <input type="text" name="duree" id="" placeholder="Durée du prêt en jours" value="15">
-                            <small></small>
+                            @error('duree')
+                                <span style="color: red; font-size: 0.7rem">
+                                    {{ $message }}
+                                </span>
+                            @enderror
                         </div>
                         <div class="inputs">
                             <label for="email">Email</label>
                             <input type="text" name="email" id="" placeholder="Email" value="{{ Auth::user()->email }}" readonly>
-                            <small></small>
+                            @error('email')
+                                <span style="color: red; font-size: 0.7rem">
+                                    {{ $message }}
+                                </span>
+                            @enderror
                         </div>
                         <div class="inputs">
                             <label for="telephone">Téléphone</label>
-                            <input type="text" name="telephone" id="" placeholder="Téléphone" value="55555555">
-                            <small></small>
+                            <input type="text" name="telephone" id="" placeholder="Téléphone" value="+229 96909016">
+                            @error('telephone')
+                                <span style="color: red; font-size: 0.7rem">
+                                    {{ $message }}
+                                </span>
+                            @enderror
                         </div>
                         <div class="inputs motif">
                             <label for="motif">Motif du prêt</label>
                             <textarea name="motif" id="" cols="30" rows="5" placeholder="Motif du prêt"></textarea>
-                            <small></small>
+                            @error('motif')
+                                <span style="color: red; font-size: 0.7rem">
+                                    {{ $message }}
+                                </span>
+                            @enderror
                         </div>
                         <button type="submit">Soumettre</button>
                     </form>

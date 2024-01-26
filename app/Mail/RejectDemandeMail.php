@@ -28,7 +28,7 @@ class RejectDemandeMail extends Mailable
     {
         return new Envelope(
             to: $this->destination,
-            subject: 'Reject Demande Mail',
+            subject: 'Demande de Prêt rejetée',
         );
     }
 

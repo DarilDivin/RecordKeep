@@ -14,7 +14,6 @@ class RapportDepartController extends Controller
 {
     public function index() : View
     {
-        // dd(RapportPret::where('type', 'depart')->get());
         return view('manager.rapports.rapport-prets', [
             'rapports' => RapportPret::where('type', '=', 'depart')->get(),
         ]);
@@ -30,12 +29,9 @@ class RapportDepartController extends Controller
     public function store(RapportPretFormRequest $request)
     {
         $rapport = RapportPret::create(array_merge($request->validated(), [
-            'type' => 'Depart'
+            'type' => 'Départ'
         ]));
-
-        // return redirect(route('rapport-show', ['rapport' => $rapport->id]));
-
-        return to_route('demande-de-prets')->with('success', 'Votre rapport à été bien créer.  <a target="_blank" href="' . route('rapport-show', ['rapport' => $rapport->id]) . '"> Cliquez ici pour y accéder </a>');
+        return to_route('demande-de-prets')->with('success', 'Votre rapport à été bien crée.  <a target="_blank" href="' . route('rapport-show', ['rapport' => $rapport->id]) . '"> Cliquez ici pour y accéder </a>');
     }
 
     public function show(RapportPret $rapport)

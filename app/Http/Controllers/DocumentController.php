@@ -18,6 +18,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Response;
 use App\Http\Requests\DocumentDemandeRequest;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 
 class DocumentController extends Controller
 {
@@ -26,7 +27,7 @@ class DocumentController extends Controller
         return view('user.DocumentPage');
     }
 
-    public function show(string $slug, Document $document)
+    public function show(string $slug, Document $document): View | RedirectResponse
     {
         $expectedSlug = $document->getSlug();
         if ($slug != $expectedSlug) {
@@ -43,7 +44,7 @@ class DocumentController extends Controller
         $lastCreatedDemande = DemandePret::create(array_merge($request->validated(), [
             'user_id' => Auth::user()->id,
             'document_id' => $document->id,
-            'etat' => 'Encour'
+            'etat' => 'Encours'
         ]));
 
         $routeAccept = route('document.demande.accept', ['demande' => $lastCreatedDemande]);
@@ -57,9 +58,7 @@ class DocumentController extends Controller
     {
 
         $demande->update(['etat' => 'Validé']);
-
         Mail::send(new AcceptDemandeMail($demande->user->email));
-
         return redirect(route('rapport-depart-create', ['demande' => $demande]));
     }
 
@@ -67,16 +66,13 @@ class DocumentController extends Controller
     {
 
         DemandePret::destroy($demande);
-
         Mail::send(new RejectDemandeMail($demande->user->email));
-
-        return to_route('document.index')->with('success', 'Votre demande a bien été envoyée');
+        return to_route('document.index')->with('success', 'Le prêteur a bien été notifié que sa Demande de Prêt a été refusée');
     }
 
     public function download(Document $document)
     {
         $documentPath = 'public/'. $document->document;
-
         $document->update([
             'nbrdownload' => ++$document->nbrdownload,
         ]);

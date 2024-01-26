@@ -54,7 +54,7 @@
                             </div>
                         </div>
                         <div class="foot">
-                            @if ($demande->etat === 'Encour')
+                            @if ($demande->etat === 'Encours')
                                 <a href="{{ route('document.demande.accept', ['demande' => $demande->id]) }}">Accepter</a>
                                 <a href="{{ route('document.demande.reject', ['demande' => $demande->id]) }}">Rejeter</a>
                             @endif

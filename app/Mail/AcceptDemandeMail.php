@@ -30,7 +30,7 @@ class AcceptDemandeMail extends Mailable
     {
         return new Envelope(
             to: $this->destination,
-            subject: 'Accept Demande Mail',
+            subject: 'Demande de Prêt acceptée',
         );
     }
 
