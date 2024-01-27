@@ -40,6 +40,7 @@
                 <a href="{{ route('admin.statistique') }}">
                     <span class="icon"><ion-icon name="stats-chart-outline"></ion-icon></span>
                     <span class="title">Statistiques</span>
+                    <span class="notif-alert">0</span>
                 </a>
             </li>
         @endcanany
@@ -49,6 +50,7 @@
                 <a href="{{ route('admin.user.index') }}">
                     <span class="icon"><ion-icon name="people"></ion-icon></span>
                     <span class="title">Utilisateurs</span>
+                    <span class="notif-alert">0</span>
                 </a>
             </li>
         @endcan
@@ -58,6 +60,7 @@
                 <a href="{{ route('admin.fonction.index') }}">
                     <span class="icon"><ion-icon name="briefcase-outline"></ion-icon></span>
                     <span class="title">Fonctions</span>
+                    <span class="notif-alert">0</span>
                 </a>
             </li>
         @endcan
