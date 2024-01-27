@@ -12,8 +12,6 @@ class Statistiques extends Component
         $document->update([
             'nbrconsult' => ++$document->nbrconsult
         ]);
-
-        dd($document);
     }
 
     public function render()

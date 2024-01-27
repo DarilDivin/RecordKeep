@@ -5,7 +5,6 @@ namespace App\Http\Livewire;
 use ZipArchive;
 use Livewire\Component;
 use App\Models\Document;
-use App\Models\NatureDocument;
 use Livewire\WithPagination;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
@@ -13,7 +12,6 @@ use Illuminate\Support\Facades\Response;
 
 class DocumentPageTable extends Component
 {
-    // public $documents;
 
     use WithPagination;
 
@@ -109,37 +107,8 @@ class DocumentPageTable extends Component
 
     public function render()
     {
-
-        /* $documents = Document::whereHas('fonctions', function ($query) {
-            $query->whereHas('users', function ($query) {
-                $query->where('id', Auth::user()->id);
-            });
-        }); */
-
-        /* $documents =
-        Document::where('direction_id',  Auth::user()->id)
-        ->where('communicable', 1)
-        ->where(NatureDocument::find('nature_document_id')->visible === 1)
-        ->whereHas('fonctions', function ($query) {
-            $query->where('id', Auth::user()->fonction_id);
-        })->get(); */
-
-        /* $documents =
-        Document::where('direction_id',  Auth::user()->id)
-        ->where('communicable', 1)
-        ->where(NatureDocument::find('nature_document_id')->visible === 1)
-        ->whereHas('fonctions', function ($query) {
-            $query->whereHas('users', function ($query) {
-                $query->where('id', Auth::user()->fonction_id);
-            });
-        })->get(); */
-
         $documents =
-        Document::whereHas('direction', function ($query) {
-            /* $query->whereHas('users', function ($query) {
-                $query->where('id', Auth::user()->id);
-            }); */
-        })
+        Document::whereHas('direction')
         ->where('communicable', 1)
         ->whereHas('naturedocument', function ($query) {
             $query->where('visible', 1);
@@ -168,7 +137,6 @@ class DocumentPageTable extends Component
 
         return view('livewire.document-page-table', [
             'documents' => $documents
-                /* ->where('direction_id', Auth::user()->direction?->id) */
                 ->orderBy('created_at', 'desc')
                 ->paginate(20)
         ]);

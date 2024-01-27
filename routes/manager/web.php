@@ -137,13 +137,12 @@ Route::middleware(['auth', 'permission:Gestion des Demandes de Transferts'])
 /* ------------------------------------------------------------------------------------------------------------------------------------- */
 
 
-// Route::get('manager/rapport-de-depart-de-pret', [RapportDepartController::class, 'index'])->name('rapport-depart-list');
-Route::get('manager/rapport-de-depart-de-pret/create/{demande}', [RapportDepartController::class, 'create'])
+Route::get('manager/rapport-depart/create/{demande}', [RapportDepartController::class, 'create'])
 ->name('rapport-depart-create')
 ->where([
     'demande' => $idRegex
 ]);
-Route::post('manager/rapport-de-depart-de-pret/store/', [RapportDepartController::class, 'store'])
+Route::post('manager/rapport-depart/store/', [RapportDepartController::class, 'store'])
 ->name('rapport-depart-store');
 
 Route::get('manager/rapport-preview/{rapport}', [RapportDepartController::class, 'show'])
@@ -158,14 +157,14 @@ Route::get('manager/rapport-pret', [RapportDepartController::class, 'index'])
 ->name('rapport-depart-list')
 ->middleware(['auth', 'permission:Gestion des Demandes de Prêts']);
 
-Route::get('manager/rapport-de-retour-de-pret/create/{rapportDepart}', [RapportRetourController::class, 'create'])
+Route::get('manager/rapport-retour/create/{rapportDepart}', [RapportRetourController::class, 'create'])
 ->name('rapport-retour-create')
 ->middleware(['auth', 'permission:Gestion des Demandes de Prêts'])
 ->where([
     'rapportDepart' => $idRegex
 ]);
 
-Route::post('manager/rapport-de-retour-de-pret/store/', [RapportRetourController::class, 'store'])
+Route::post('manager/rapport-retour/store/', [RapportRetourController::class, 'store'])
 ->name('rapport-retour-store')
 ->middleware(['auth', 'permission:Gestion des Demandes de Prêts']);
 
@@ -185,7 +184,3 @@ Route::get('downloadPdf/{rapport}', [RapportDepartController::class, 'pdf'])
 /* ------------------------------------------------------------------------------------------------------------------------------------- */
 
 Route::get('manager/demandes-de-pret/', [DemandePretController::class, 'index'])->name('demande-de-prets');
-// Route::get('manager/demandes-de-pret/validé', [DemandePretController::class, 'indexValidé'])->name('demande-de-prets-validé');
-
-
-/* ------------------------------------------------------------------------------------------------------------------------------------- */

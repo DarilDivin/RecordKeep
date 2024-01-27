@@ -23,8 +23,6 @@ class UserController extends Controller
             'password' => $password,
             'haschangedpwd' => 1,
         ]);
-        // dd($user);
-
         return redirect()->route('home');
     }
 }
