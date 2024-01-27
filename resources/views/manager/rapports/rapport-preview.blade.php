@@ -72,7 +72,7 @@
     <div class="rapportContainer">
         <div class="rapport">
             <h1>
-                @if ($rapport->type == 'Depart')
+                @if ($rapport->type === 'Départ')
                     Validation de prêt
                 @else
                     Retour de prêt
@@ -101,7 +101,7 @@
                 <p style="font-size: .9rem;">{{ $rapport->observation }}</p>
             </div>
             <div class="line">
-                <p><strong>Etat du doc :</strong></p>
+                <p><strong>Etat du document :</strong></p>
                 <p>{{ $rapport->etat_doc }}</p>
             </div>
         </div>

@@ -23,20 +23,17 @@ use Illuminate\Http\RedirectResponse;
 class DocumentController extends Controller
 {
 
-    /* public function __construct()
-    {
-        $this->authorize(Document::class, 'document');
-    } */
-
     public function index(): View
     {
-        /* $this->authorize('index', Document::class); */
         return view('user.DocumentPage');
     }
 
     public function show(string $slug, Document $document): View | RedirectResponse
     {
-        /* $this->authorize('show', $document); */
+
+        /* if (Auth::user()->direction_id !== $document->direction_id)
+        return redirect() ->route('home'); */
+
         $expectedSlug = $document->getSlug();
         if ($slug != $expectedSlug) {
             return to_route('document.show', ['slug' => $expectedSlug, 'document' => $document]);
@@ -59,13 +56,19 @@ class DocumentController extends Controller
         $routeReject = route('document.demande.reject', ['demande' => $lastCreatedDemande]);
         DemandePretJob::dispatch($lastCreatedDemande, $routeAccept, $routeReject);
 
-        return back()->with('success', 'Votre demande a bien été envoyée');
+        return back()->with('success', 'Votre demande de prêt a bien été envoyée');
     }
 
     public function acceptDemande(DemandePret $demande)
     {
 
         $demande->update(['etat' => 'Validé']);
+        $demande->document()->update([
+            'prete' => 1,
+            'disponibilite' => 0
+        ]);
+        /* $demande->document->prete = 1;
+        $demande->document->disponibilite = 0; */
         Mail::send(new AcceptDemandeMail($demande->user->email));
         return redirect(route('rapport-depart-create', ['demande' => $demande]));
     }
@@ -73,9 +76,9 @@ class DocumentController extends Controller
     public function rejectDemande(DemandePret $demande)
     {
 
-        DemandePret::destroy($demande);
+        $demande->delete();
         Mail::send(new RejectDemandeMail($demande->user->email));
-        return to_route('document.index')->with('success', 'Le prêteur a bien été notifié que sa Demande de Prêt a été refusée');
+        return to_route('demande-de-prets')->with('success', 'Le prêteur a bien été notifié que sa Demande de Prêt a été refusée');
     }
 
     public function download(Document $document)

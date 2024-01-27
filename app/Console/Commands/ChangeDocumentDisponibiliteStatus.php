@@ -27,7 +27,7 @@ class ChangeDocumentDisponibiliteStatus extends Command
     public function handle()
     {
         foreach (Document::all() as $document) {
-            if ($document->communicable/*  && !$document->prete */) {
+            if ($document->communicable && !$document->prete) {
                 $document->update(['disponibilite' => 1]);
             }
         }

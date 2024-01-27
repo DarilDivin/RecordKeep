@@ -13,7 +13,7 @@ Une nouvelle Demande de Prêt de document à été fait pour le document
 {{ $demande->motif }}
 
 **Durée du prêt** <br>
-{{ $demande->duree }}
+{{ $demande->duree }}jours
 
 
 <x-mail::button :url="$urlaccept">

@@ -4,6 +4,7 @@ namespace App\Mail;
 
 use App\Models\DemandePret;
 use App\Models\Document;
+use App\Models\Role;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
@@ -28,8 +29,9 @@ class DocumentDemandeMail extends Mailable
      */
     public function envelope(): Envelope
     {
+        $centralManagerOfApplication = Role::findByName("Gestionnaire-Central")->users->first()->email;
         return new Envelope(
-            to: 'manager@gmail.fr',
+            to: $centralManagerOfApplication,
             replyTo: $this->demande->user->email,
             subject: 'Demande de Prêt pour un Document spécifque',
         );

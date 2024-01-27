@@ -136,9 +136,9 @@ class DocumentPageTable extends Component
 
         $documents =
         Document::whereHas('direction', function ($query) {
-            $query->whereHas('users', function ($query) {
+            /* $query->whereHas('users', function ($query) {
                 $query->where('id', Auth::user()->id);
-            });
+            }); */
         })
         ->where('communicable', 1)
         ->whereHas('naturedocument', function ($query) {

@@ -100,26 +100,26 @@
 
             <div class="cardContainer">
                 @forelse ($rapports as $rapport)
-                    <div class="card" data-label="{{ $rapport->demandepret->etat }}">
+                    <div class="card" data-label="{{ $rapport->demandePret->etat }}">
                         <div class="head">
                             <div class="titleInfos ">
                                 <h3>Validation de prêt </h3>
-                                <span>{{ $rapport->demandepret->duree }} jours</span>
+                                <span>{{ $rapport->demandePret->duree }} jours</span>
                             </div>
-                            <span>{{ $rapport->created_at }}</span>
+                            <span>{{ $rapport->created_at->translatedFormat('d/F/Y') }}</span>
                         </div>
                         <div class="body">
                             <div class="info">
-                                <p>Signature du Document</p>
-                                <span>{{ $rapport->demandepret->document->signature }}</span>
+                                <p>Timbre du Document</p>
+                                <span>{{ $rapport->demandePret->document->timbre }}</span>
                             </div>
                             <div class="info">
                                 <p>Nom du Document</p>
-                                <span>{{ $rapport->demandepret->document->nom }}</span>
+                                <span>{{ $rapport->demandePret->document->nom }}</span>
                             </div>
                             <div class="info">
                                 <p>Nom de l'utilisateur</p>
-                                <span>{{ $rapport->demandepret->user->nom }} {{ $rapport->demandepret->user->prenoms }}</span>
+                                <span>{{ $rapport->demandePret->user->nom }} {{ $rapport->demandePret->user->prenoms }}</span>
                             </div>
                         </div>
                         <div class="foot">

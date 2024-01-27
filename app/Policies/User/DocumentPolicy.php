@@ -17,14 +17,14 @@ class DocumentPolicy
         $user->can("Télécharger un Document"); */
     }
 
-    public function show (User $user, Document $document): bool
+    public function show (User $user, Document $document): void
     {
         /* return
         $user->can("Consulter un Document") ||
         $user->can("Rechercher un Document") ||
         $user->can("Télécharger un Document") ||
         $user->can("Demander un Prêt"); */
-        return $user->direction_id === $document->direction_id;
+        /* return $user->direction_id === $document->direction_id; */
     }
 
     /* public function download (User $user, Document $document)
