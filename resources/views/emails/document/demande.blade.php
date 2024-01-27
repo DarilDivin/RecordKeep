@@ -16,13 +16,9 @@ Une nouvelle Demande de Prêt de document à été fait pour le document
 {{ $demande->duree }}jours
 
 
-<x-mail::button :url="$urlaccept">
-Accepter la demande
-</x-mail::button>
+<x-mail::button :url="$urlaccept">Accepter la demande</x-mail::button>
 
-<x-mail::button :url="$urlreject">
-Rejeter la demande
-</x-mail::button>
+<x-mail::button :url="$urlreject">Rejeter la demande</x-mail::button>
 
 Thanks,<br>
 {{ config('app.name') }}

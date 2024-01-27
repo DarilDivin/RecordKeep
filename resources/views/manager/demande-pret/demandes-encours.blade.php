@@ -57,6 +57,10 @@
                             @if ($demande->etat === 'Encours')
                                 <a href="{{ route('document.demande.accept', ['demande' => $demande->id]) }}">Accepter</a>
                                 <a href="{{ route('document.demande.reject', ['demande' => $demande->id]) }}">Rejeter</a>
+                            @elseif ($demande->etat === 'Validé')
+                                <a href="{{ route('document.demande.accept', ['demande' => $demande->id]) }}">Établir rapport</a>
+                            @else
+                                <a href="{{ route('rapport-show', ['rapport' => $demande->rapportprets->where('type', '=', 'Départ')->first()->id]) }}">Générer un départ de prêt</a>
                             @endif
                         </div>
                     </div>

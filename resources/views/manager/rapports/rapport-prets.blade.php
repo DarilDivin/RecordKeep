@@ -11,7 +11,7 @@
         <div class="main">
             <div class="title">
                 <p>Rapports</p>
-                <ion-icon name="document"></ion-icon>
+                <ion-icon name="swap-horizontal"></ion-icon>
             </div>
 
             <div class="sidebarOptions">
@@ -25,7 +25,7 @@
                 </div>
             </div>
 
-            <div class="optional">
+            {{-- <div class="optional">
                 <div class="buttons">
                     <button class="filter">
                         <ion-icon name="filter"></ion-icon>
@@ -42,7 +42,7 @@
                         <ion-icon name="search"></ion-icon>
                     </div>
                 </form>
-            </div>
+            </div> --}}
 
             @if (session('success'))
                 <div class="success">
@@ -104,7 +104,7 @@
                         <div class="head">
                             <div class="titleInfos ">
                                 <h3>Validation de prêt </h3>
-                                <span>{{ $rapport->demandePret->duree }} jours</span>
+                                <span>{{ $rapport->observation }}</span>
                             </div>
                             <span>{{ $rapport->created_at->translatedFormat('d/F/Y') }}</span>
                         </div>

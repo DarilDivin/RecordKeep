@@ -61,15 +61,13 @@ class DocumentController extends Controller
 
     public function acceptDemande(DemandePret $demande)
     {
-
+        if ($demande->etat === 'Encours')
+        Mail::send(new AcceptDemandeMail($demande->user->email));
         $demande->update(['etat' => 'Validé']);
         $demande->document()->update([
             'prete' => 1,
             'disponibilite' => 0
         ]);
-        /* $demande->document->prete = 1;
-        $demande->document->disponibilite = 0; */
-        Mail::send(new AcceptDemandeMail($demande->user->email));
         return redirect(route('rapport-depart-create', ['demande' => $demande]));
     }
 
@@ -78,6 +76,10 @@ class DocumentController extends Controller
 
         $demande->delete();
         Mail::send(new RejectDemandeMail($demande->user->email));
+        $demande->document()->update([
+            'prete' => 0,
+            'disponibilite' => 1
+        ]);
         return to_route('demande-de-prets')->with('success', 'Le prêteur a bien été notifié que sa Demande de Prêt a été refusée');
     }
 
