@@ -1,4 +1,6 @@
 @php
+    use App\Models\DemandePret;
+    use App\Models\DemandeTransfert;
     $route_name = request()->route()->getName();
 @endphp
 <div class="navigation locked close">
@@ -40,7 +42,6 @@
                 <a href="{{ route('admin.statistique') }}">
                     <span class="icon"><ion-icon name="stats-chart-outline"></ion-icon></span>
                     <span class="title">Statistiques</span>
-                    <span class="notif-alert">0</span>
                 </a>
             </li>
         @endcanany
@@ -50,7 +51,6 @@
                 <a href="{{ route('admin.user.index') }}">
                     <span class="icon"><ion-icon name="people"></ion-icon></span>
                     <span class="title">Utilisateurs</span>
-                    <span class="notif-alert">0</span>
                 </a>
             </li>
         @endcan
@@ -60,7 +60,6 @@
                 <a href="{{ route('admin.fonction.index') }}">
                     <span class="icon"><ion-icon name="briefcase-outline"></ion-icon></span>
                     <span class="title">Fonctions</span>
-                    <span class="notif-alert">0</span>
                 </a>
             </li>
         @endcan
@@ -178,6 +177,7 @@
                 <a href="{{ route('manager.transfert.all') }}">
                     <span class="icon"><ion-icon name="send"></ion-icon></span>
                     <span class="title">Transferts du MISP</span>
+                    <span class="notif-alert">{{ DemandeTransfert::all()->count() }}</span>
                 </a>
             </li>
         @endcan
@@ -196,6 +196,7 @@
                 <a href="{{ route('demande-de-prets') }}">
                     <span class="icon"><ion-icon name="document-lock-outline"></ion-icon></span>
                     <span class="title">Demandes de Prêts</span>
+                    <span class="notif-alert">{{ DemandePret::all()->count() }}</span>
                 </a>
             </li>
         @endcan

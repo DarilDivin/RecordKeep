@@ -133,11 +133,11 @@
                             <a href="{{ route('document.download', ['document' => $document]) }}">Télécharger</a>
                         </button>
                     @endcan
-                    @hasrole('Utilisateur')
+                    @can('Demander un Prêt')
                         <button class="btn more">
                             <a href="{{ route('document.show', ['slug' => $document->getSlug(), 'document' => $document]) }}">Plus</a>
                         </button>
-                    @endhasrole
+                    @endcan
                 </div>
             </div>
         @empty

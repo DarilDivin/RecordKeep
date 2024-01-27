@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="">
     <title>Erreur de Serveur interne|500</title>
     @vite([
-        'resources/css/app.css',
+        'resources/css/404.css',
     ])
 </head>
 <body>

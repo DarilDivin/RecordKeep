@@ -190,6 +190,21 @@
                     </div>
 
                 </div>
+                <div class="sectionClassement content">
+                    <h3>Classement</h3>
+                    <div class="info">
+                        <h5>Chemise:</h5>
+                        <p id="chemise"></p>
+                    </div>
+                    <div class="info">
+                        <h5>Boite :</h5>
+                        <p id="boite"></p>
+                    </div>
+                    <div class="info">
+                        <h5>Rayon :</h5>
+                        <p id="rayon"></p>
+                    </div>
+                </div>
                 <div class="sectionStructure content">
                     <h3>Structure d'appartenance</h3>
                     <div class="info">
@@ -205,21 +220,6 @@
                         <p id="division"></p>
                     </div>
                 </div>
-                    <div class="sectionClassement content">
-                        <h3>Classement</h3>
-                        <div class="info">
-                            <h5>Chemise:</h5>
-                            <p id="chemise"></p>
-                        </div>
-                        <div class="info">
-                            <h5>Boite :</h5>
-                            <p id="boite"></p>
-                        </div>
-                        <div class="info">
-                            <h5>Rayon :</h5>
-                            <p id="rayon"></p>
-                        </div>
-                    </div>
             </div>
         </div>
     </div>

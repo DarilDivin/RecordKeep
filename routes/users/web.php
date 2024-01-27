@@ -17,7 +17,7 @@ Route::get('/documents', [DocumentController::class, 'index'])->name('document.i
 Route::get('/documents/{slug}-{document}', [DocumentController::class, 'show'])->name('document.show')->where([
     'document' => $idRegex,
     'slug' => $slugRegex
-])->middleware(['auth', 'permission:Demander un Prêt|Consulter un Document|Rechercher un Document|Télécharger un Document|Gestion des Documents']);
+])->middleware(['auth', 'permission:Demander un Prêt|Consulter un Document|Rechercher un Document|Télécharger un Document']);
 
 Route::post('/documents/{document}/demande', [DocumentController::class, 'demande'])->name('document.demande')->where([
     'document' => $idRegex,
