@@ -8,8 +8,8 @@
         <span>I</span> --}}
         {{-- <img src="storage/images/Logo-recordkeep-white.png" alt="" class="white">
         <img src="storage/images/Logo-recordkeep-black.png" alt="" class="black"> --}}
-        <img src="storage/images/RecordKeepFichier  10.svg" alt="" class="white">
-        <img src="storage/images/RecordKeepFichier  9.svg" alt="" class="black">
+        <img src="{{ asset("storage/images/RecordKeepFichier  10.svg") }}" alt="" class="white">
+        <img src="{{ asset("storage/images/RecordKeepFichier  9.svg") }}" alt="" class="black">
     </div>
     <div class="nav_menu">
         <ul>
