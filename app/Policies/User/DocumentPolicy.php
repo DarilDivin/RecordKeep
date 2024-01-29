@@ -9,29 +9,6 @@ use Illuminate\Auth\Access\Response;
 class DocumentPolicy
 {
 
-    public function index (User $user): void
-    {
-        /* return
-        $user->can("Consulter un Document") ||
-        $user->can("Rechercher un Document") ||
-        $user->can("Télécharger un Document"); */
-    }
-
-    public function show (User $user, Document $document): void
-    {
-        /* return
-        $user->can("Consulter un Document") ||
-        $user->can("Rechercher un Document") ||
-        $user->can("Télécharger un Document") ||
-        $user->can("Demander un Prêt"); */
-        /* return $user->direction_id === $document->direction_id; */
-    }
-
-    /* public function download (User $user, Document $document)
-    {
-        return $user->can("Télécharger un Document");
-    }
-
     public function demande (User $user, Document $document)
     {
 
@@ -45,7 +22,7 @@ class DocumentPolicy
     public function rejectDemande (User $user, Document $document)
     {
 
-    } */
+    }
 
     /**
      * Determine whether the user can view any models.

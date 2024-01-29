@@ -37,7 +37,6 @@
         <table class="table">
             <thead>
                 <tr>
-                    <td></td>
                     <x-table-header label="N°" :direction="$orderDirection" name="id" :field="$orderField"></x-table-header>
                     <x-table-header label="Signature" :direction="$orderDirection" name="signature" :field="$orderField"></x-table-header>
                     <x-table-header label="Nom du Document" :direction="$orderDirection" name="nom" :field="$orderField"></x-table-header>
@@ -52,9 +51,6 @@
             <tbody>
                 @forelse ($documents as $document)
                 <tr>
-                    <td>
-                        <input type="checkbox" x-model="documentsChecked" value="{{ $document->id }}">
-                    </td>
                     <td>{{ $document->id }}</td>
                     <td>{{ $document->signature }}</td>
                     <td>{{ $document->nom }}</td>
@@ -62,7 +58,7 @@
                     <td>{{ $document->naturedocument->nature }}</td>
                     <td>{{ $document->naturedocument->dua_service_pre_archivage }}ans</td>
                     <td>{{ $document->communicable ? "Oui" : "Non" }}</td>
-                    <td>{{ $document->datecreation/* ->translatedFormat('d F Y') */ }}</td>
+                    <td>{{ $document->getDateCreation()->translatedFormat('d F Y') }}</td>
                     <td>
                         <button class="classer"><a href="{{ route('manager.document.classement', ['document' => $document->id, 'transfert' => $document->demandetransfert->id]) }}">Reclasser</a></button>
                     </td>

@@ -51,7 +51,7 @@ class Document extends Model
 
     protected $casts = [
         'created_at' => 'datetime',
-        'datecreation' => 'datetime'
+        /* 'datecreation' => 'datetime' */
     ];
 
     protected static function boot() {

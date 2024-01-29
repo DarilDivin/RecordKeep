@@ -42,7 +42,7 @@ class ChemisesTable extends Component
     {
         ChemiseDossier::destroy($ids);
         $this->chemisesChecked = [];
-        session()->flash('success', 'Les Chemises de Dossiers ont bien été supprimé');
+        session()->flash('success', 'Le(s) Chemise(s) de Dossiers ont bien été supprimé');
     }
 
     public function setOrderField(string | int | DateTime  $field)

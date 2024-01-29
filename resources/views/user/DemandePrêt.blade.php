@@ -55,7 +55,7 @@
                     </tr>
                     <tr>
                         <td>Date de création</td>
-                        <td>{{ $document->datecreation->translatedFormat("d F Y") }}</td>
+                        <td>{{ $document->getDateCreation()->translatedFormat("d F Y") }}</td>
                     </tr>
                     <tr>
                         <td>Nature</td>
@@ -73,7 +73,7 @@
                 <section class="loanRequest">
                     <div class="formContainer">
                         <h1> @if ($document->disponibilite) {{ "Procéder à une Demande de Prêt pour ce document." }} @elseif (!$document->disponibilite && $document->prete) {{ "Le dit document est actuellement en cours de prêt." }} @else {{ "Impossible de procéder à une Demande de Prêt pour ce document" }} @endif </h1>
-                        <form action="{{ route('document.demande', $document) }}" method="POST" @class(['loanForm', 'disabled' => !$document->disponibilite && $document->direction_id !== auth()->user()->direction_id]) )>
+                        <form action="{{ route('document.demande', $document) }}" method="POST" @class(['loanForm', 'disabled' => !$document->disponibilite || $document->direction_id !== auth()->user()->direction_id]) )>
                             @csrf
                             <div class="inputs firstname">
                                 <label for="nom">Nom</label>

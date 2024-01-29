@@ -17,7 +17,6 @@ class DemandePretController extends Controller
 
     public function index()
     {
-        /* dd(RapportPret::find(10)->demandePret->document->prete); */
         return view('manager.demande-pret.demandes-encours', [
             'demandes' => DemandePret::all(),
         ]);

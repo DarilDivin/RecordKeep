@@ -22,6 +22,7 @@ class DemandeTransfert extends Model
         'transferable',
         'transfere',
         'valide',
+        'sw', 'cw',
         'created_by',
         'updated_by',
         'deleted_by'

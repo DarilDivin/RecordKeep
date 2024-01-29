@@ -83,7 +83,7 @@ Route::middleware(['auth', 'permission:Gestion des Demandes de Transferts'])
 ]);
 
 Route::middleware(['auth', 'permission:Gestion des Demandes de Transferts'])
-->patch('manager/transfert/{transfert}', [DemandeTransfertController::class, 'sending'])
+->patch('manager/{transfert}/transfert', [DemandeTransfertController::class, 'sending'])
 ->name('manager.transfert.sending')
 ->where([
     'transfert' => $idRegex
@@ -126,6 +126,13 @@ Route::middleware(['auth', 'permission:Gestion des Demandes de Transferts du MIS
     'transfert' => $idRegex
 ]);
 
+Route::middleware(['auth', 'permission:Gestion des Demandes de Transferts du MISP'])
+->get('manager/all-transferts/{bordereau}/bordereau-show', [AllTransfertsController::class, 'show'])
+->name('manager.transfert.bordereau-show')
+->where([
+    'transfert' => $idRegex
+]);
+
 Route::middleware(['auth', 'permission:Gestion des Demandes de Transferts'])
 ->patch('manager/all-transfert/{transfert}', [AllTransfertsController::class, 'cwithdraw'])
 ->name('manager.transfert.cwithdraw')
@@ -139,14 +146,17 @@ Route::middleware(['auth', 'permission:Gestion des Demandes de Transferts'])
 
 Route::get('manager/rapport-depart/create/{demande}', [RapportDepartController::class, 'create'])
 ->name('rapport-depart-create')
+->middleware(['auth', 'permission:Gestion des Demandes de Prêts'])
 ->where([
     'demande' => $idRegex
 ]);
 Route::post('manager/rapport-depart/store/', [RapportDepartController::class, 'store'])
+->middleware(['auth', 'permission:Gestion des Demandes de Prêts'])
 ->name('rapport-depart-store');
 
 Route::get('manager/rapport-preview/{rapport}', [RapportDepartController::class, 'show'])
 ->name('rapport-show')
+->middleware(['auth', 'permission:Gestion des Demandes de Prêts'])
 ->where([
     'rapport' => $idRegex
 ]);

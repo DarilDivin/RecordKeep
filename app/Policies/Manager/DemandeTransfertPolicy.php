@@ -102,4 +102,10 @@ class DemandeTransfertPolicy
          && $demandeTransfert->transfere === 1/*  && $demandeTransfert->documents->count() > 0 */;
      }
 
+     public function show(User $user, DemandeTransfert $demandeTransfert): bool
+     {
+        return $user->can('Gestion des Demandes de Transferts du MISP')
+        && $demandeTransfert->transfere === 1 && $demandeTransfert->valide === 1;
+     }
+
 }

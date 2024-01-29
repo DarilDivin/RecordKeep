@@ -27,7 +27,7 @@
 
     @if (session('success'))
         <div class="message success">
-            {{ session('success') }}
+            {!! session('success') !!}
         </div>
     @endif
 
@@ -54,7 +54,7 @@
                         <h3>{{ $transfert->libelle }} ({{ $transfert->direction->sigle }})</h3>
                         <span>{{ $transfert->direction->sigle }} | {{ $standardManager[0]->prenoms }} {{ strtoupper($standardManager[0]->nom) }}</span>
                     </div>
-                    <span>{{ $transfert->created_at->translatedFormat('d/F/Y') }}</span>
+                    <span>{{ $transfert->created_at->translatedFormat('d/m/Y') }}</span>
                 </div>
                 <div class="body">
                     <div class="info">
@@ -74,10 +74,13 @@
                     @if ($transfert->documents->where('archive', 0)->count() > 0)
                         <a href="{{ route('manager.transfert.one', ['slug' => $transfert->getSlug(), 'transfert' => $transfert->id]) }}">Consulter</a>
                     @endif
-                    @if ($transfert->documents->count() > 0)
-                        <a href="{{ route('manager.transfert.bordereau-form', ['transfert' => $transfert->id]) }}">{{ $transfert->valide ? 'Générer Bordereau' : 'Accepter' }}</a>
+                    @if ($transfert->documents->count() > 0 && !$transfert->valide)
+                        <a href="{{ route('manager.transfert.bordereau-form', ['transfert' => $transfert->id]) }}">Accepter</a>
                     @endif
-                    @if ($transfert->valide)
+                    @if ($transfert->documents->count() > 0 && $transfert->valide)
+                        <a href="{{ route('manager.transfert.bordereau-show', ['bordereau' => $transfert->bordereautransfert]) }}">Générer Bordereau</a>
+                    @endif
+                    @if ($transfert->valide && $transfert->documents->where('archive', '=', '0')->count() == 0)
                         <form action="{{ route('manager.transfert.cwithdraw', ['transfert' => $transfert->id]) }}" method="POST">
                             @csrf
                             @method('patch')

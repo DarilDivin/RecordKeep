@@ -15,7 +15,7 @@
         <p>Impossible d'accéder à cette page via la méthode GET.</p>
     </div>
     <div class="Image404">
-   <img src="{{ asset("storage/images/404.svg") }}" alt="Non supportée">
+   <img src="{{ asset("storage/images/403.svg") }}" alt="Non supportée">
 
     </div>
 </body>

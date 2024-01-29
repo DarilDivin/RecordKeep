@@ -2,6 +2,8 @@
     use App\Models\DemandePret;
     use App\Models\DemandeTransfert;
     $route_name = request()->route()->getName();
+    $centralManagerDTNotifications = DemandeTransfert::where('transfere', '=', '1')->where('valide', '=', '0')->count();
+    $standardManagerDTNotifications = DemandeTransfert::where('direction_id', '=', Auth::user()->direction_id)->where('transferable', '=', '1')->where('transfere', '=', '0')->count();
 @endphp
 <div class="navigation locked close">
     <div class="sidebar-title">
@@ -159,6 +161,9 @@
                 <a href="{{ route('manager.transfert.index') }}">
                     <span class="icon"><ion-icon name="arrow-redo"></ion-icon></span>
                     <span class="title">Demandes de transferts</span>
+                    @if ($standardManagerDTNotifications > 0)
+                        <span class="notif-alert">{{ $standardManagerDTNotifications }}</span>
+                    @endif
                 </a>
             </li>
         @endcan
@@ -177,7 +182,9 @@
                 <a href="{{ route('manager.transfert.all') }}">
                     <span class="icon"><ion-icon name="send"></ion-icon></span>
                     <span class="title">Transferts du MISP</span>
-                    <span class="notif-alert">{{ DemandeTransfert::all()->count() }}</span>
+                    @if ($centralManagerDTNotifications > 0)
+                        <span class="notif-alert">{{ $centralManagerDTNotifications }}</span>
+                    @endif
                 </a>
             </li>
         @endcan
