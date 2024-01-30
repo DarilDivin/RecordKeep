@@ -22,59 +22,6 @@
             </div>
         </section>
     @endcan
-    {{-- <section class="documentList list">
-        <div class="sectionIndication">
-            <h3>Document List</h3>
-            <div class="listOption">
-                <ion-icon name="list" class="list-icon"></ion-icon>
-                <ion-icon name="grid" class="grid-icon"></ion-icon>
-            </div>
-        </div>
-        <div class="documents" x-data="{ documentChecked : [] }">
-            <style>
-                [x-cloak]{
-                    display: none !important;
-                }
-            </style>
-            <button x-show="documentChecked.length > 0" class="btndownload" x-on:click="$wire.filesdownload(documentChecked)" x-cloak>Télécharger</button>
-            @forelse ($documents as $document)
-                <div class="document" >
-                    <div class="documentLine">
-
-                        <input type="checkbox" name="document[]" id="{{ $document->id }}" value="{{ $document->id }}" x-model="documentChecked">
-
-                        <div class="documentIcon">
-                            <img src="storage/images/pdf-1.png" alt="">
-                        </div>
-                        <div class="documentName">
-                            <p><a href="{{ route('document.show', ['slug' => $document->getSlug(), 'document' => $document]) }}">{{ $document->nom }}</a></p>
-                        </div>
-                        <div class="documentCreationDate">
-                            <p>{{ $document->datecreation }}</p>
-                        </div>
-                        <div class="documentSize">
-                            <p>250ko</p>
-                        </div>
-                        <div class="documentOptions">
-                            <button class="consult" data-document-link="storage/{{ $document->document }}" type="button" x-on:click="$wire.incrementConsult({{ $document }})">
-                                <ion-icon name="eye-outline"></ion-icon>
-                                <p>Consulter</p>
-                            </button>
-                            <button class="download">
-                                <a href="{{ route('document.download', ['document' => $document]) }}" type="button">
-                                    <ion-icon name="download"></ion-icon>
-                                    <p>Télécharger</p>
-                                </a>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            @empty
-                Aucun Document ne correspond à votre recherche
-            @endforelse
-        </div>
-        {{ $documents->onEachSide(0)->links() }}
-    </section> --}}
 
     <section class="documentList list" x-data="{ documentChecked : [] }">
             @can('Télécharger un Document')
@@ -129,9 +76,11 @@
                     @endcan
 
                     @can('Télécharger un Document')
-                        <button class="btn download">
-                            <a href="{{ route('document.download', ['document' => $document]) }}">Télécharger</a>
-                        </button>
+                        <form action="{{ route('document.download', ['document' => $document]) }}" method="POST" style="margin-bottom: -11px;">
+                            @csrf
+                            @method('post')
+                            <button class="btn download">Télécharger</button>
+                        </form>
                     @endcan
                     @can('Demander un Prêt')
                         <button class="btn more">

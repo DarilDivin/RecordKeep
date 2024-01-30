@@ -31,7 +31,7 @@ class ClassementDynamicSelect extends Component
             $this->selectedBoite = $this->document->chemisedossier->boite_archive_id;
             $this->selectedRayon = $this->document->chemisedossier->boitearchive->rayon_rangement_id;
         }
-        dd($this->selectedRayon);
+        /* dd($this->selectedRayon); */
 
         if(old('chemise_dossier_id')) {
             $this->selectedChemise = old('chemise_dossier_id');

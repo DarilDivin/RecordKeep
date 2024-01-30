@@ -2,6 +2,7 @@
     use App\Models\DemandePret;
     use App\Models\DemandeTransfert;
     $route_name = request()->route()->getName();
+    $centralManagerDPNotifications = DemandePret::where('etat', 'Encours')->count();
     $centralManagerDTNotifications = DemandeTransfert::where('transfere', '=', '1')->where('valide', '=', '0')->count();
     $standardManagerDTNotifications = DemandeTransfert::where('direction_id', '=', Auth::user()->direction_id)->where('transferable', '=', '1')->where('transfere', '=', '0')->count();
 @endphp
@@ -198,12 +199,14 @@
             </li>
         @endcan
 
-        @can('Gestion des Classements')
+        @can('Gestion des Demandes de Prêts')
             <li @class(['list', 'active' => str_contains($route_name, 'demande-de-prets')])>
                 <a href="{{ route('demande-de-prets') }}">
                     <span class="icon"><ion-icon name="document-lock-outline"></ion-icon></span>
                     <span class="title">Demandes de Prêts</span>
-                    <span class="notif-alert">{{ DemandePret::all()->count() }}</span>
+                    @if ($centralManagerDPNotifications > 0)
+                        <span class="notif-alert">{{ $centralManagerDPNotifications }}</span>
+                    @endif
                 </a>
             </li>
         @endcan

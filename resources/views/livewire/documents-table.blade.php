@@ -8,10 +8,6 @@
                 <ion-icon name="trash"></ion-icon>
                 Supprimer
             </button>
-            {{-- <button class="filter" x-show="documentsChecked.length > 0" x-on:click="$wire.createTransfertDocuments(documentsChecked)" x-cloak>
-                <ion-icon name="add"></ion-icon>
-                Demande Transfert
-            </button> --}}
             <button class="add">
                 <ion-icon name="add"></ion-icon>
                 <a href="{{ route('manager.document.create') }}">Ajouter Document</a>
@@ -24,9 +20,6 @@
         {{-- <div class="search-box">
             <input type="text" name="datecreation" placeholder="12-12-2023" wire:model="datecreation">
             <ion-icon name="search"></ion-icon>
-            @error('datecreation')
-                <span style="color: red; font-size: 0.7rem">{{ $message }}</span>
-            @enderror
         </div> --}}
     </div>
 
@@ -51,7 +44,6 @@
                     <x-table-header label="Timbre" :direction="$orderDirection" name="timbre" :field="$orderField"></x-table-header>
                     <x-table-header label="Nom du Document" :direction="$orderDirection" name="nom" :field="$orderField"></x-table-header>
                     <x-table-header label="Nature du Document" :direction="$orderDirection" name="nature_document_id" :field="$orderField"></x-table-header>
-                    {{-- <x-table-header label="DUA aux bureaux" :direction="$orderDirection" name="" :field="$orderField"></x-table-header> --}}
                     <td>DUA aux bureaux</td>
                     <x-table-header label="Communicable" :direction="$orderDirection" name="communicable" :field="$orderField"></x-table-header>
                     <x-table-header label="Date de Création" :direction="$orderDirection" name="datecreation" :field="$orderField"></x-table-header>

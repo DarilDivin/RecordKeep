@@ -10,7 +10,7 @@
 
         <div class="main">
             <div class="title">
-                <p>Rapports</p>
+                <p>Rapports de Prêts</p>
                 <ion-icon name="swap-horizontal"></ion-icon>
             </div>
 
@@ -26,16 +26,6 @@
             </div>
 
             {{-- <div class="optional">
-                <div class="buttons">
-                    <button class="filter">
-                        <ion-icon name="filter"></ion-icon>
-                        Filtrer
-                    </button>
-                    <button class="add">
-                        <ion-icon name="add"></ion-icon>
-                        <a href="{{ route('admin.user.create') }}">Add User</a>
-                    </button>
-                </div>
                 <form action="">
                     <div class="search-box">
                         <input type="text" name="search">
@@ -50,60 +40,12 @@
                 </div>
             @endif
 
-            {{-- <div class="tableau">
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <td>Matricule</td>
-                            <td>Nom</td>
-                            <td>Prénoms</td>
-                            <td>Rôle</td>
-                            <td>Actions</td>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @forelse ($rapports as $rapport)
-                            <tr>
-                                <td>{{ $rapport->type }}</td>
-                                <td>{{ $rapport->nom }}</td>
-                                <td>{{ $rapport->prenoms }}</td>
-                                <td>
-                                    <div class="text-cut">
-                                        {{ $rapport->role }}
-                                    </div>
-                                </td>
-                                <td>
-                                    <button class="edit">
-                                        <a href="{{ route('admin.rapport.edit', ['rapport' => $rapport->id]) }}">
-                                            Editer
-                                        </a>
-                                    </button>
-                                    <button class="delete">
-                                        <a href="{{ route('admin.rapport.destroy', ['rapport' => $rapport->id]) }}"
-                                           onclick="event.preventDefault();
-                                           document.getElementById('deleteForm{{ $rapport->id }}').submit();">
-                                            Supprimer
-                                        </a>
-                                        <form action="{{ route('admin.rapport.destroy', ['rapport' => $rapport->id]) }}" method="POST" style="" id="deleteForm{{ $rapport->id }}">
-                                            @csrf
-                                            @method('delete')
-                                        </form>
-                                    </button>
-                                </td>
-                            </tr>
-                        @empty
-                            Aucun rapport en base de données
-                        @endforelse
-                    </tbody>
-                </table>
-            </div> --}}
-
             <div class="cardContainer">
                 @forelse ($rapports as $rapport)
                     <div class="card" data-label="{{ $rapport->demandePret->etat }}">
                         <div class="head">
                             <div class="titleInfos ">
-                                <h3>Validation de prêt </h3>
+                                <h3>Rapport de Prêt</h3>
                                 <span>{{ $rapport->observation }}</span>
                             </div>
                             <span>{{ $rapport->created_at->translatedFormat('d/F/Y') }}</span>

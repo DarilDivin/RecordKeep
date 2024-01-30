@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Manager;
 
-use App\Models\Document;
 use App\Models\DemandePret;
 use App\Models\RapportPret;
 use Barryvdh\DomPDF\Facade\Pdf;

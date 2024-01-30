@@ -3,9 +3,9 @@
 namespace App\Http\Livewire;
 
 use DateTime;
+use App\Models\Role;
 use Livewire\Component;
 use Livewire\WithPagination;
-use Spatie\Permission\Models\Role;
 
 class RolesTable extends Component
 {

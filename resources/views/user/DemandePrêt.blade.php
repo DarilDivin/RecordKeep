@@ -72,7 +72,17 @@
             @can('Demander un Prêt')
                 <section class="loanRequest">
                     <div class="formContainer">
-                        <h1> @if ($document->disponibilite) {{ "Procéder à une Demande de Prêt pour ce document." }} @elseif (!$document->disponibilite && $document->prete) {{ "Le dit document est actuellement en cours de prêt." }} @else {{ "Impossible de procéder à une Demande de Prêt pour ce document" }} @endif </h1>
+                        <h1>
+                            @if ($document->disponibilite && $document->direction_id === auth()->user()->direction_id)
+                                {{ "Procéder à une Demande de Prêt pour ce document." }}
+                            @elseif ($document->disponibilite && $document->direction_id !== auth()->user()->direction_id)
+                                {{ "Le document n'est pas de votre direction, il vous est donc impossible d'éffectuer cette opération." }}
+                            @elseif (!$document->disponibilite && $document->prete)
+                                {{ "Le dit document est actuellement en cours de prêt." }}
+                            @else
+                                {{ "Impossible de procéder à une Demande de Prêt pour ce document" }}
+                            @endif
+                        </h1>
                         <form action="{{ route('document.demande', $document) }}" method="POST" @class(['loanForm', 'disabled' => !$document->disponibilite || $document->direction_id !== auth()->user()->direction_id]) )>
                             @csrf
                             <div class="inputs firstname">

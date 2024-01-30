@@ -9,7 +9,7 @@
     <div class="addDocumentFormContainer showForm">
         <div class="overlay"></div>
         <div class="addDocumentForm">
-            <a href="{{ route('rapport-depart-list') }}">
+            <a href="{{ route('demande-de-prets') }}">
                 <span class="closeDocumentForm">
                     <ion-icon name="arrow-back"></ion-icon>
                 </span>

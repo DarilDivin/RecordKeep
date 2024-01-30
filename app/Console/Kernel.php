@@ -14,6 +14,7 @@ class Kernel extends ConsoleKernel
     {
         $schedule->command('app:enregistrer-statistiques-mensuelles')->everyMinute();
         $schedule->command('app:change-document-communicable-status')->everyMinute();
+        $schedule->command('app:change-document-disponibilite-status')->everyMinute();
         $schedule->command('app:create-dynamics-demandes-transferts')->everyMinute();
         $schedule->command('app:send-document-into-demande-transfert')->everyMinute();
     }

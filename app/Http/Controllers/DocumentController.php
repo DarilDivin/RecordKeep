@@ -35,6 +35,17 @@ class DocumentController extends Controller
         ]);
     }
 
+    public function download(Document $document)
+    {
+        $documentPath = 'public/'. $document->document;
+        $document->update([
+            'nbrdownload' => ++$document->nbrdownload,
+        ]);
+        $time = time();
+        $documentName = "$time"."$document->name".".pdf";
+        return Storage::download($documentPath, $documentName);
+    }
+
     public function demande(Document $document, DocumentDemandeRequest $request)
     {
         $lastCreatedDemande = DemandePret::create(array_merge($request->validated(), [
@@ -52,14 +63,18 @@ class DocumentController extends Controller
 
     public function acceptDemande(DemandePret $demande)
     {
-        if ($demande->etat === 'Encours')
-        Mail::send(new AcceptDemandeMail($demande->user->email));
-        $demande->update(['etat' => 'Validé']);
-        $demande->document()->update([
-            'prete' => 1,
-            'disponibilite' => 0
-        ]);
-        return redirect(route('rapport-depart-create', ['demande' => $demande]));
+        if ($demande->etat !== 'Validé') {
+            if ($demande->etat === 'Encours')
+            Mail::send(new AcceptDemandeMail($demande->user->email));
+            $demande->update(['etat' => 'Validé']);
+            $demande->document()->update([
+                'prete' => 1,
+                'disponibilite' => 0
+            ]);
+            return redirect(route('rapport-depart-create', ['demande' => $demande]));
+        }else {
+            return back()->with('success', 'La demande de prêt ne peut être validée');
+        }
     }
 
     public function rejectDemande(DemandePret $demande)
@@ -72,17 +87,6 @@ class DocumentController extends Controller
             'disponibilite' => 1
         ]);
         return to_route('demande-de-prets')->with('success', 'Le prêteur a bien été notifié que sa Demande de Prêt a été refusée');
-    }
-
-    public function download(Document $document)
-    {
-        $documentPath = 'public/'. $document->document;
-        $document->update([
-            'nbrdownload' => ++$document->nbrdownload,
-        ]);
-        $time = time();
-        $documentName = "$time"."$document->name".".pdf";
-        return Storage::download($documentPath, $documentName);
     }
 
 }

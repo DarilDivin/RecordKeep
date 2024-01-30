@@ -18,7 +18,7 @@ class WithdrawDemandeTransfertAfterValidation extends Command
      *
      * @var string
      */
-    protected $description = "Cette Tâche se chargera de supprimer quelques temps après une demande de Transfert une fois que celle ci sera validée";
+    protected $description = "Cette Tâche se chargera de retirer du listing quelques temps après, une demande de Transfert une fois que celle ci sera validée et que tous les documents seront classés";
 
     /**
      * Execute the console command.

@@ -25,10 +25,9 @@ class OneCentralManagerForApplication implements ValidationRule
             }, $userRoles);
         }
 
-        if (($routeName === "user.register")
-            || ($routeName === "admin.user.update"
-                && !in_array('Gestionnaire-Central', $rolesNames)
-            )
+        if (
+            ($routeName === "user.register") ||
+            ($routeName === "admin.user.update" && !in_array('Gestionnaire-Central', $rolesNames))
             && in_array(Role::findByName('Gestionnaire-Central')->id, request()->roles)
             && Role::where('name', '=', 'Gestionnaire-Central')->count() > 0
         )

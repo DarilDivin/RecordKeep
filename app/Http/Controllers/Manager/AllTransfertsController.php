@@ -78,7 +78,7 @@ class AllTransfertsController extends Controller
     public function cwithdraw (DemandeTransfert $transfert) {
         $transfert->update(['cw' => 1]);
         return redirect()
-            ->route('manager.transfert.index')
+            ->route('manager.transfert.all')
             ->with('success', 'La Demande de Transfert a été retirée avec succès');
     }
 

@@ -20,14 +20,6 @@
                 @csrf
                 @method($user->exists ? 'put' : 'post')
 
-                {{-- @if ($errors->any())
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                            <li class="error">{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                @endif --}}
-
                 <x-input class="inputContainer" id="matricule" label="Matricule" type="text" name="matricule" placeholder="Matricule"  readonly="" value="{{ $user->matricule }}" />
 
                 <x-input class="inputContainer" id="nom" label="Nom" type="text" name="nom" placeholder="Nom" readonly="" value="{{ $user->nom }}" />

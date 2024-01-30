@@ -3,7 +3,6 @@
 namespace App\Mail;
 
 use App\Models\DemandePret;
-use App\Models\Document;
 use App\Models\Role;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;

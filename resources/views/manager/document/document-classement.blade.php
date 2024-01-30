@@ -22,14 +22,6 @@
                 @csrf
                 @method('put')
 
-               {{--  @if ($errors->any())
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                            <li class="error">{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                @endif --}}
-
                 <x-input class="inputContainer" id="timbre" label="Timbre" type="text" name="timbre" placeholder="Timbre"  readonly="readonly" value="{{ $document->timbre }}" />
 
                 <x-input class="inputContainer" id="nom" label="Nom du Document" type="text" name="nom" placeholder="Nom du Document" readonly="readonly" value="{{ $document->nom }}" />

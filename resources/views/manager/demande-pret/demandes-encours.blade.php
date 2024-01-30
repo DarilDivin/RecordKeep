@@ -29,12 +29,18 @@
                 </div>
             @endif
 
+            @if (session('error'))
+                <div class="message error">
+                   {{ session('error') }}
+                </div>
+            @endif
+
             <div class="cardContainer">
                 @foreach ($demandes as $demande)
                     <div class="card" data-label="{{ $demande->etat }}">
                         <div class="head">
                             <div class="titleInfos ">
-                                <h3>Demande de prêt</h3>
+                                <h3>Nouvelle Demande de prêt</h3>
                                 <span>{{ $demande->user->direction->sigle }}</span>
                             </div>
                             <span>{{ $demande->created_at->translatedFormat('d F Y') }}</span>
