@@ -63,7 +63,9 @@ class DocumentController extends Controller
 
     public function acceptDemande(DemandePret $demande)
     {
-        if ($demande->etat !== 'Validé') {
+        if ($demande->document->demandeprets->where('etat', '=', 'Validé')->count() > 0) {
+            return back()->with('error', 'Le document demandé fait déjà objet de prêt.');
+        }else {
             if ($demande->etat === 'Encours')
             Mail::send(new AcceptDemandeMail($demande->user->email));
             $demande->update(['etat' => 'Validé']);
@@ -72,8 +74,6 @@ class DocumentController extends Controller
                 'disponibilite' => 0
             ]);
             return redirect(route('rapport-depart-create', ['demande' => $demande]));
-        }else {
-            return back()->with('success', 'La demande de prêt ne peut être validée');
         }
     }
 

@@ -169,15 +169,6 @@
             </li>
         @endcan
 
-        @can('Gestion des Demandes de Prêts')
-            <li @class(['list', 'active' => str_contains($route_name, 'rapport-depart-list')])>
-                <a href="{{ route('rapport-depart-list') }}">
-                    <span class="icon"><ion-icon name="swap-horizontal"></ion-icon></span>
-                    <span class="title">Rapport de Prêts</span>
-                </a>
-            </li>
-        @endcan
-
         @can('Gestion des Demandes de Transferts du MISP')
             <li @class(['list', 'active' => str_contains($route_name, 'all')])>
                 <a href="{{ route('manager.transfert.all') }}">
@@ -207,6 +198,15 @@
                     @if ($centralManagerDPNotifications > 0)
                         <span class="notif-alert">{{ $centralManagerDPNotifications }}</span>
                     @endif
+                </a>
+            </li>
+        @endcan
+
+        @can('Gestion des Demandes de Prêts')
+            <li @class(['list', 'active' => str_contains($route_name, 'rapport-depart-list')])>
+                <a href="{{ route('rapport-depart-list') }}">
+                    <span class="icon"><ion-icon name="swap-horizontal"></ion-icon></span>
+                    <span class="title">Rapport de Prêts</span>
                 </a>
             </li>
         @endcan

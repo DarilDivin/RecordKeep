@@ -43,7 +43,7 @@
                                 <h3>Nouvelle Demande de prêt</h3>
                                 <span>{{ $demande->user->direction->sigle }}</span>
                             </div>
-                            <span>{{ $demande->created_at->translatedFormat('d F Y') }}</span>
+                            <span>{{ $demande->created_at->translatedFormat('d/m/Y') }}</span>
                         </div>
                         <div class="body">
                             <div class="info">
