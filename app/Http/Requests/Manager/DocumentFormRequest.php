@@ -5,6 +5,7 @@ namespace App\Http\Requests\Manager;
 use App\Rules\DocumentBirthdayRule;
 use App\Rules\ForceChoiceDirecteurFonctionRule;
 use App\Rules\ForceChoiceUserDiretionRule;
+use App\Rules\ForceToChoiceAllFunctionsForVisiblesDocuments;
 use Illuminate\Validation\Rule;
 use App\Rules\UniqueAndMaxMotCleRule;
 use Illuminate\Foundation\Http\FormRequest;
@@ -59,7 +60,11 @@ class DocumentFormRequest extends FormRequest
             'service_id' => ['required', 'exists:services,id', 'integer'],
             'direction_id' => ['required', 'exists:directions,id', 'integer', new ForceChoiceUserDiretionRule()],
             'document' => $documentRule,
-            'fonctions' => ['required', 'array', 'exists:fonctions,id', new ForceChoiceDirecteurFonctionRule()],
+            'fonctions' => [
+                'required', 'array', 'exists:fonctions,id',
+                new ForceChoiceDirecteurFonctionRule(),
+                new ForceToChoiceAllFunctionsForVisiblesDocuments()
+            ],
             'motclefs' => ['required', 'array', new UniqueAndMaxMotCleRule()]
         ];
     }

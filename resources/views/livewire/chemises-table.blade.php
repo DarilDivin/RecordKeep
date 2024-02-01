@@ -54,6 +54,7 @@
                     <x-table-header label=" Chemise" :direction="$orderDirection" name="libelle" :field="$orderField"></x-table-header>
                     <x-table-header label="Code" :direction="$orderDirection" name="code" :field="$orderField"></x-table-header>
                     <x-table-header label="Boite" :direction="$orderDirection" name="boite_archive_id" :field="$orderField"></x-table-header>
+                    <td>Nombre de chemises maximal</td>
                     <td>Rayon</td>
                     <td>Actions</td>
                 </tr>
@@ -68,6 +69,7 @@
                         <td>{{ $chemise->libelle }}</td>
                         <td>{{ $chemise->code }}</td>
                         <td>{{ $chemise->boitearchive?->libelle }}</td>
+                        <td>{{ $chemise->boitearchive?->chemises_number_max }}</td>
                         <td>{{ $chemise->boitearchive?->rayonrangement?->libelle }}</td>
                         <td>
                             <button class="edit">

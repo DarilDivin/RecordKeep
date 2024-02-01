@@ -42,7 +42,7 @@ class DocumentDemandeMail extends Mailable
     public function content(): Content
     {
         return new Content(
-            markdown: 'emails.document.demande',
+            markdown: 'emails.demande-prets.demande',
             with: [
                 'demande' => $this->demande,
                 'urlaccept' => $this->routeAccept,

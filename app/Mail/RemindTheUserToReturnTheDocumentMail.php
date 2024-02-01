@@ -9,18 +9,16 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class AcceptDemandeMail extends Mailable
+class RemindTheUserToReturnTheDocumentMail extends Mailable
 {
     use Queueable, SerializesModels;
-
-    public $destination;
 
     /**
      * Create a new message instance.
      */
-    public function __construct(string $destination)
+    public function __construct(public string $userEmail)
     {
-        $this->destination = $destination;
+        //
     }
 
     /**
@@ -29,8 +27,8 @@ class AcceptDemandeMail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            to: $this->destination,
-            subject: 'Demande de Prêt acceptée',
+            to: $this->userEmail,
+            subject: 'Rappel de remise de Document',
         );
     }
 
@@ -40,7 +38,8 @@ class AcceptDemandeMail extends Mailable
     public function content(): Content
     {
         return new Content(
-            markdown: 'emails.demande-prets.acceptDemande',
+            markdown: 'emails.remindTheUserToReturnTheDocument',
+            with: []
         );
     }
 

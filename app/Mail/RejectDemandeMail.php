@@ -38,7 +38,7 @@ class RejectDemandeMail extends Mailable
     public function content(): Content
     {
         return new Content(
-            markdown: 'emails.document.rejectDemande',
+            markdown: 'emails.demande-prets.rejectDemande',
         );
     }
 

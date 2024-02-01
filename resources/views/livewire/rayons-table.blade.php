@@ -40,7 +40,7 @@
                     <x-table-header label="Rayon" :direction="$orderDirection" name="libelle" :field="$orderField"></x-table-header>
                     <x-table-header label="Code" :direction="$orderDirection" name="code" :field="$orderField"></x-table-header>
                     <x-table-header label="Nombre de Boîtes" :direction="$orderDirection" name="" :field="$orderField"></x-table-header>
-                    <x-table-header label="Nombre de Boîtes Maximum" :direction="$orderDirection" name="boites_number_max" :field="$orderField"></x-table-header>
+                    <x-table-header label="Nombre de Boîtes Maximal" :direction="$orderDirection" name="boites_number_max" :field="$orderField"></x-table-header>
                     <td>Actions</td>
                 </tr>
             </thead>

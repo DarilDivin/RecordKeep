@@ -5,13 +5,12 @@ namespace App\Http\Controllers;
 use App\Models\Document;
 use App\Models\DemandePret;
 use App\Jobs\DemandePretJob;
-use App\Mail\AcceptDemandeMail;
-use App\Mail\RejectDemandeMail;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Response;
 use App\Http\Requests\DocumentDemandeRequest;
+use App\Jobs\AcceptDemandePretJob;
+use App\Jobs\RejectDemandePretJob;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 
@@ -67,7 +66,7 @@ class DocumentController extends Controller
             return back()->with('error', 'Le document demandé fait déjà objet de prêt.');
         }else {
             if ($demande->etat === 'Encours')
-            Mail::send(new AcceptDemandeMail($demande->user->email));
+            AcceptDemandePretJob::dispatch($demande->user->email);
             $demande->update(['etat' => 'Validé']);
             $demande->document()->update([
                 'prete' => 1,
@@ -81,7 +80,7 @@ class DocumentController extends Controller
     {
 
         $demande->delete();
-        Mail::send(new RejectDemandeMail($demande->user->email));
+        RejectDemandePretJob::dispatch($demande->user->email);
         $demande->document()->update([
             'prete' => 0,
             'disponibilite' => 1
