@@ -19,7 +19,10 @@ class ChangeDocumentDisponibiliteStatus extends Command
      *
      * @var string
      */
-    protected $description = 'Cette tâche change le statut disponibilite d\'un Document une fois ce dernier devenu communicable';
+    protected $description = "
+        Cette tâche change le statut disponibilite d'un
+        Document une fois ce dernier devenu communicable
+    ";
 
     /**
      * Execute the console command.

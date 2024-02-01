@@ -4,14 +4,14 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 
-class WithdrawDemandeTransfertAfterValidation extends Command
+class WithdrawDemandePretAfterDocumentBack extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'app:delete-demande-transfert-after-validation';
+    protected $signature = 'app:withdraw-demande-pret-after-back';
 
     /**
      * The console command description.
@@ -20,9 +20,9 @@ class WithdrawDemandeTransfertAfterValidation extends Command
      */
     protected $description = "
         Cette Tâche se chargera de retirer(pas de supprimer)
-        du listing des demandes de transferts quelques temps après,
-        une demande de Transfert une fois que celle ci sera validée
-        et que tous les documents seront classés
+        du listing des demandes de prêts quelques temps
+        après, une demande de prêt une fois que  le document
+        par lequel elle est concernée sera de retour.
     ";
 
     /**

@@ -24,8 +24,8 @@ class RapportRetourController extends Controller
             'prete' => 0,
             'disponibilite' => 1
         ]);
-        $rapport->demandePret->document->prete = 0;
-        $rapport->demandePret->document->disponibilite = 1;
+        /* $rapport->demandePret->document->prete = 0;
+        $rapport->demandePret->document->disponibilite = 1; */
         return redirect(route('rapport-show', ['rapport' => $rapport->id]));
     }
 

@@ -20,7 +20,11 @@ class SendDocumentIntoDemandeTransfert extends Command
      *
      * @var string
      */
-    protected $description = "Cette Tâche se chargera d'insérer automatiquement un document dans la Demande de Transfert du Mois une fois sa DUA aux Bureaux écoulée";
+    protected $description = "
+        Cette Tâche se chargera d'insérer automatiquement
+        un document dans la Demande de Transfert du Mois
+        une fois sa DUA aux Bureaux écoulée
+    ";
 
     /**
      * Execute the console command.

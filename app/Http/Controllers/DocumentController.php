@@ -36,12 +36,12 @@ class DocumentController extends Controller
 
     public function download(Document $document)
     {
-        $documentPath = 'public/'. $document->document;
+        $documentPath = 'public/' . $document->document;
         $document->update([
             'nbrdownload' => ++$document->nbrdownload,
         ]);
         $time = time();
-        $documentName = "$time"."$document->name".".pdf";
+        $documentName = "$time" . "$document->name" . ".pdf";
         return Storage::download($documentPath, $documentName);
     }
 
@@ -64,9 +64,9 @@ class DocumentController extends Controller
     {
         if ($demande->document->demandeprets->where('etat', '=', 'Validé')->count() > 0) {
             return back()->with('error', 'Le document demandé fait déjà objet de prêt.');
-        }else {
+        } else {
             if ($demande->etat === 'Encours')
-            AcceptDemandePretJob::dispatch($demande->user->email);
+                AcceptDemandePretJob::dispatch($demande->user->email);
             $demande->update(['etat' => 'Validé']);
             $demande->document()->update([
                 'prete' => 1,
@@ -78,7 +78,6 @@ class DocumentController extends Controller
 
     public function rejectDemande(DemandePret $demande)
     {
-
         $demande->delete();
         RejectDemandePretJob::dispatch($demande->user->email);
         $demande->document()->update([
@@ -87,5 +86,4 @@ class DocumentController extends Controller
         ]);
         return to_route('demande-de-prets')->with('success', 'Le prêteur a bien été notifié que sa Demande de Prêt a été refusée');
     }
-
 }

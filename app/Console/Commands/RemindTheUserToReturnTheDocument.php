@@ -21,7 +21,11 @@ class RemindTheUserToReturnTheDocument extends Command
      *
      * @var string
      */
-    protected $description = 'Cette tâche se chargera via un mail de rappeller à l\'utilisateur qu\'il doit ramener le document une fois la durée du prêt écoulée';
+    protected $description = "
+        Cette tâche se chargera via un mail de rappeller à
+        l'utilisateur qu'il doit ramener le document une
+        fois la durée du prêt écoulée
+    ";
 
     /**
      * Execute the console command.
