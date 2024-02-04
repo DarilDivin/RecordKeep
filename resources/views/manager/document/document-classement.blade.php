@@ -17,7 +17,14 @@
                     <ion-icon name="arrow-back"></ion-icon>
                 </span>
             </a>
-            <h1> Classement du document N°{{ $document->id }}</h1>
+            <h1>
+                @if(!is_null($document->chemisedossier))
+                    Reclassement
+                @else
+                    Classement
+                @endif
+                du document N°{{ $document->id }}
+            </h1>
             <form method="POST" action="{{ route('manager.document.classement', ['document' => $document->id, 'transfert' => $transfert]) }}" enctype="multipart/form-data">
                 @csrf
                 @method('put')

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="">
-    <title>Méthode non supportée|405</title>
+    <title>Session expirée|401</title>
     @vite([
         'resources/css/404.css',
     ])
@@ -12,10 +12,10 @@
 <body>
     <div class="Note404">
         <h1>405</h1>
-        <p>Méthode non supportée.</p>
+        <p>Votre session a expiré, vous devez vous reconnecter.</p>
     </div>
     <div class="Image404">
-   <img src="{{ asset("") }}" alt="Non supportée">
+   <img src="{{ asset("") }}" alt="Session expirée">
 
     </div>
 </body>

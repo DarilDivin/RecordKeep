@@ -35,8 +35,8 @@
             </div> --}}
 
             @if (session('success'))
-                <div class="success">
-                    {{ session('success') }}
+                <div class="message success">
+                    {!! session('success') !!}
                 </div>
             @endif
 
@@ -46,9 +46,9 @@
                         <div class="head">
                             <div class="titleInfos ">
                                 <h3>Rapport de Prêt</h3>
-                                <span>{{ $rapport->observation }}</span>
+                                <span>{{ $rapport->demandePret->user->direction->sigle }}</span>
                             </div>
-                            <span>{{ $rapport->created_at->translatedFormat('d/F/Y') }}</span>
+                            <span>{{ $rapport->created_at->translatedFormat('d/m/Y') }}</span>
                         </div>
                         <div class="body">
                             <div class="info">

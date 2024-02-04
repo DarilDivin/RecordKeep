@@ -40,6 +40,7 @@ class Document extends Model
         'communicable',
         'standardDUAFinished',
         'centralDUAFinished',
+        'archived_at',
         'document',
         'division_id',
         'service_id',

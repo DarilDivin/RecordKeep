@@ -47,6 +47,18 @@ class DocumentController extends Controller
 
     public function demande(Document $document, DocumentDemandeRequest $request)
     {
+        if (
+            Auth::user()->demandeprets
+            ->where('etat', '=', 'Encours')
+            ->where('document_id', $document->id)
+            ->count() > 0
+        ){
+            return back()->with(
+                'error',
+                'Vous avez déjà une demande de prêt pour ce document en cours de traitement, patientez.'
+            );
+        }
+
         $lastCreatedDemande = DemandePret::create(array_merge($request->validated(), [
             'user_id' => Auth::user()->id,
             'document_id' => $document->id,
@@ -65,8 +77,9 @@ class DocumentController extends Controller
         if ($demande->document->demandeprets->where('etat', '=', 'Validé')->count() > 0) {
             return back()->with('error', 'Le document demandé fait déjà objet de prêt.');
         } else {
-            if ($demande->etat === 'Encours')
+            if ($demande->etat === 'Encours') {
                 AcceptDemandePretJob::dispatch($demande->user->email);
+            }
             $demande->update(['etat' => 'Validé']);
             $demande->document()->update([
                 'prete' => 1,
@@ -84,6 +97,8 @@ class DocumentController extends Controller
             'prete' => 0,
             'disponibilite' => 1
         ]);
-        return to_route('demande-de-prets')->with('success', 'Le prêteur a bien été notifié que sa Demande de Prêt a été refusée');
+        return
+            to_route('demande-de-prets')
+            ->with('success', 'Le prêteur a bien été notifié que sa Demande de Prêt a été refusée');
     }
 }

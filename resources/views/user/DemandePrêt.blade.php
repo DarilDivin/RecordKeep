@@ -64,11 +64,18 @@
                 </table>
             </div>
         </section>
+
             @if (session('success'))
                 <div class="message success">
                     {{ session('success') }}
                 </div>
             @endif
+            @if (session('error'))
+                <div class="message error">
+                    {{ session('error') }}
+                </div>
+            @endif
+
             @can('Demander un Prêt')
                 <section class="loanRequest">
                     <div class="formContainer">

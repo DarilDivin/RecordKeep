@@ -44,28 +44,7 @@ Route::group(['middleware' => ['auth', 'permission:Gestion des Natures de Docume
 
 /* ------------------------------------------------------------------------------------------------------------------------------------- */
 
-Route::middleware(['auth', 'permission:Gestion des Classements'])
-    ->get('manager/document/classement', [DocumentClassementController::class, 'index'])
-    ->name('manager.document.classed');
-
-Route::middleware(['auth', 'permission:Gestion des Classements'])
-    ->get('manager/document/{document}/{transfert}/classement', [DocumentClassementController::class, 'showClassementForm'])
-    ->name('manager.document.classement')
-    ->where([
-        'document' => $idRegex,
-        'transfert' => $idRegex
-    ]);
-
-Route::middleware(['auth', 'permission:Gestion des Classements'])
-    ->put('manager/document/{document}/{transfert}/classement', [DocumentClassementController::class, 'doClassement'])
-    ->where([
-        'document' => $idRegex,
-        'transfert' => $idRegex
-    ]);
-
-/* ------------------------------------------------------------------------------------------------------------------------------------- */
-
-/* FOR STANDARDS MANAGER */
+/* FOR STANDARDS MANAGERS */
 
 Route::middleware(['auth', 'permission:Gestion des Demandes de Transferts'])
 ->get('manager/transfert', [DemandeTransfertController::class, 'index'])
@@ -98,7 +77,7 @@ Route::middleware(['auth', 'permission:Gestion des Demandes de Transferts'])
 
 /* ------------------------------------------------------------------------------------------------------------------------------------- */
 
-/* FOR CENTRALES MANAGER */
+/* FOR CENTRAL MANAGER */
 
 Route::middleware(['auth', 'permission:Gestion des Demandes de Transferts du MISP'])
 ->get('manager/all-transferts', [AllTransfertsController::class, 'all'])
@@ -140,6 +119,27 @@ Route::middleware(['auth', 'permission:Gestion des Demandes de Transferts du MIS
     'transfert' => $idRegex
 ]);
 
+
+/* ------------------------------------------------------------------------------------------------------------------------------------- */
+
+Route::middleware(['auth', 'permission:Gestion des Classements'])
+    ->get('manager/document/classement', [DocumentClassementController::class, 'index'])
+    ->name('manager.document.classed');
+
+Route::middleware(['auth', 'permission:Gestion des Classements'])
+    ->get('manager/document/{document}/{transfert}/classement', [DocumentClassementController::class, 'showClassementForm'])
+    ->name('manager.document.classement')
+    ->where([
+        'document' => $idRegex,
+        'transfert' => $idRegex
+    ]);
+
+Route::middleware(['auth', 'permission:Gestion des Classements'])
+    ->put('manager/document/{document}/{transfert}/classement', [DocumentClassementController::class, 'doClassement'])
+    ->where([
+        'document' => $idRegex,
+        'transfert' => $idRegex
+    ]);
 
 /* ------------------------------------------------------------------------------------------------------------------------------------- */
 
@@ -187,5 +187,3 @@ Route::get('manager/rapport-retour/create/{rapportDepart}', [RapportRetourContro
 Route::post('manager/rapport-retour/store/', [RapportRetourController::class, 'store'])
 ->name('rapport-retour-store')
 ->middleware(['auth', 'permission:Gestion des Demandes de Prêts']);
-
-
