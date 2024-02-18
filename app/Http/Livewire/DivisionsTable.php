@@ -66,7 +66,7 @@ class DivisionsTable extends Component
     {
         $this->validate();
 
-        $divisions = division::query()->where('division', '!=', 'Aucune');
+        $divisions = Division::query()->where('division', '!=', 'Aucune');
 
         if(!empty($this->sigle)){
             $divisions = $divisions->where('sigle', 'LIKE', "%{$this->sigle}%");
