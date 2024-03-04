@@ -34,7 +34,7 @@ class RayonsTable extends Component
     {
         RayonRangement::destroy($ids);
         $this->rayonsChecked = [];
-        session()->flash('success', 'Les Rayons de Rangement ont bien été supprimé');
+        session()->flash('success', 'Le(s) Rayon(s) de Rangement(s) ont bien été supprimé');
     }
 
     public function setOrderField(string | int | DateTime  $field)

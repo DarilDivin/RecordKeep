@@ -3,7 +3,6 @@
 use App\Http\Controllers\Admin\AdminRegisteredUserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\Manager\DocumentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,7 +19,7 @@ Route::get('/', function () {
     return view('index');
 })->middleware('guest')->name('Presentation');
 
-Route::get('/home', [HomeController::class, 'index'])->name('home')->middleware(['auth', 'verified', 'permission:Consulter un Document|Rechercher un Document|Télécharger un Document']);
+Route::get('/home', [HomeController::class, 'index'])->name('home')->middleware(['auth', 'verified', 'permission:Consulter un Document|Rechercher un Document|Télécharger un Document|Demander un Prêt']);
 
 Route::post( '/user-register', [AdminRegisteredUserController::class, 'store'])
     ->middleware(['auth', 'permission:Gestion des Utilisateurs'])

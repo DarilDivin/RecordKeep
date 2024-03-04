@@ -26,6 +26,7 @@ class DemandeTransfertPolicy
     public function view(User $user, DemandeTransfert $demandeTransfert): bool
     {
         return $user->can('Gestion des Demandes de Transferts')
+        && $demandeTransfert->sw === 0
         && $demandeTransfert->direction_id === Auth::user()->direction_id;
     }
 
@@ -87,6 +88,7 @@ class DemandeTransfertPolicy
      public function one(User $user, DemandeTransfert $demandeTransfert): bool
      {
         return $user->can('Gestion des Demandes de Transferts du MISP')
+        && $demandeTransfert->cw === 0
         && $demandeTransfert->transfere === 1;
      }
 
@@ -100,6 +102,12 @@ class DemandeTransfertPolicy
      {
         return $user->can('Gestion des Demandes de Transferts du MISP')
          && $demandeTransfert->transfere === 1/*  && $demandeTransfert->documents->count() > 0 */;
+     }
+
+     public function show(User $user, DemandeTransfert $demandeTransfert): bool
+     {
+        return $user->can('Gestion des Demandes de Transferts du MISP')
+        && $demandeTransfert->transfere === 1 && $demandeTransfert->valide === 1;
      }
 
 }

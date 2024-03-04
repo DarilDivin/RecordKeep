@@ -20,14 +20,6 @@
                 @csrf
                 @method($user->exists ? 'put' : 'post')
 
-                 @if ($errors->any())
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                            <li class="error">{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                @endif
-
                 <x-input class="inputContainer" id="matricule" label="Matricule" type="text" name="matricule" placeholder="Matricule"  readonly="" value="{{ $user->matricule }}" />
 
                 <x-input class="inputContainer" id="nom" label="Nom" type="text" name="nom" placeholder="Nom" readonly="" value="{{ $user->nom }}" />
@@ -43,9 +35,9 @@
                 <div class="inputContainer">
                     <label for="sexe">Sexe</label>
                     <select name="sexe" id="sexe">
-                            <option value="masculin">Masculin</option>
-                            <option value="feminin">Féminin</option>
-                            <option value="autre">Autre</option>
+                            <option value="Masculin" @selected(old('sexe', $user->sexe) == 'Masculin')>Masculin</option>
+                            <option value="Féminin" @selected(old('sexe', $user->sexe) == 'Féminin')>Féminin</option>
+                            <option value="Autre" @selected(old('sexe', $user->sexe) == 'Autre')>Autre</option>
                     </select>
                     @error('sexe')
                         <span style="color: red;">{{ $message }}</span>

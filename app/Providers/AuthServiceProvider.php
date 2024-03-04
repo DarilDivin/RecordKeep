@@ -22,13 +22,14 @@ use App\Models\RayonRangement;
 use App\Models\DemandeTransfert;
 use App\Policies\Admin\UserPolicy;
 use App\Policies\Admin\RolePolicy;
+use App\Policies\User\DocumentPolicy as UserDocumentPolicy;
 use App\Policies\Admin\ServicePolicy;
 use App\Policies\Admin\DivisionPolicy;
 use App\Policies\Admin\FonctionPolicy;
 use App\Policies\Admin\TypeRolePolicy;
 use App\Policies\Admin\DirectionPolicy;
 use App\Policies\Admin\PermissionPolicy;
-use App\Policies\Manager\DocumentPolicy;
+use App\Policies\Manager\DocumentPolicy as ManagerDocumentPolicy;
 use App\Policies\Manager\CategoriePolicy;
 use App\Policies\Manager\DemandePretPolicy;
 use App\Policies\Manager\BoiteArchivePolicy;
@@ -50,13 +51,14 @@ class AuthServiceProvider extends ServiceProvider
         Role::class => RolePolicy::class,
         Service::class => ServicePolicy::class,
         Division::class => DivisionPolicy::class,
-        Document::class => DocumentPolicy::class,
         Fonction::class => FonctionPolicy::class,
         TypeRole::class => TypeRolePolicy::class,
         Categorie::class => CategoriePolicy::class,
         Direction::class => DirectionPolicy::class,
         Permission::class => PermissionPolicy::class,
+        Document::class => UserDocumentPolicy::class,
         DemandePret::class => DemandePretPolicy::class,
+        Document::class => ManagerDocumentPolicy::class,
         BoiteArchive::class => BoiteArchivePolicy::class,
         NatureDocument::class => NatureDocumentPolicy::class,
         ChemiseDossier::class => ChemiseDossierPolicy::class,

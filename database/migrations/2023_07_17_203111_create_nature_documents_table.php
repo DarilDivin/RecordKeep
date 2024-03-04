@@ -17,6 +17,7 @@ return new class extends Migration
             $table->integer('duree_communicabilite');
             $table->integer('dua_bureaux');
             $table->integer('dua_service_pre_archivage');
+            $table->boolean('visible')->default(0);
             $table->string('created_by')->nullable();
             $table->string('updated_by')->nullable();
             $table->string('deleted_by')->nullable();

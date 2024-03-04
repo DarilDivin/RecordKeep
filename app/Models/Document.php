@@ -40,6 +40,7 @@ class Document extends Model
         'communicable',
         'standardDUAFinished',
         'centralDUAFinished',
+        'archived_at',
         'document',
         'division_id',
         'service_id',
@@ -50,7 +51,8 @@ class Document extends Model
     ];
 
     protected $casts = [
-        'created_at' => 'datetime'
+        'created_at' => 'datetime',
+        /* 'datecreation' => 'datetime' */
     ];
 
     protected static function boot() {

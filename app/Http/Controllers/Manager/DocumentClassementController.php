@@ -22,7 +22,7 @@ class DocumentClassementController extends Controller
         return view('manager.document.classed-documents');
     }
 
-    public function showClassementForm(Document $document, DemandeTransfert $transfert): View
+    public function showClassementForm(Document $document, DemandeTransfert $transfert): View | RedirectResponse
     {
         $this->authorize('showClassementForm', $document);
         $motclefsArray = explode('#', $document->motclefs);
@@ -30,8 +30,17 @@ class DocumentClassementController extends Controller
         $motclefsString = implode(', ', $motclefsArray);
 
         $rayons = RayonRangement::orderBy('id')->get();
+        if ($rayons->isEmpty()) {
+            return redirect()
+            ->route('manager.transfert.one', ['slug' => $transfert->getSlug(), 'transfert' => $transfert->id])
+            ->with('error', 'Vous devez créer des rayons, des boîtes et des chemises d\'abord.');
+        }
         $boites = $rayons->first()->boitearchives->sortBy('libelle');
-
+        if ($boites->isEmpty()) {
+            return redirect()
+            ->route('manager.transfert.one', ['slug' => $transfert->getSlug(), 'transfert' => $transfert->id])
+            ->with('error', 'Vous devez créer des rayons, des boîtes et des chemises d\'abord.');
+        }
         return view('manager.document.document-classement', [
             'rayons' => $rayons,
             'boites' => $boites,

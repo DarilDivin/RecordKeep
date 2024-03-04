@@ -32,7 +32,7 @@ class CategoriesTable extends Component
     {
         Categorie::destroy($ids);
         $this->categoriesChecked = [];
-        session()->flash('success', 'Les Catégories ont bien été supprimé');
+        session()->flash('success', 'Le(s) Catégorie(s) ont bien été supprimé');
     }
 
     public function setOrderField(string | int | DateTime  $field)

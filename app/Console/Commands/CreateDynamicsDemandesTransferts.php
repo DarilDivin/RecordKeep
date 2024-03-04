@@ -21,7 +21,10 @@ class CreateDynamicsDemandesTransferts extends Command
      *
      * @var string
      */
-    protected $description = 'Cette tâche se charge de créer automatiquement des Demandes de Transferts chaque mois pour chaque Direction';
+    protected $description = "
+        Cette tâche se charge de créer automatiquement des
+        Demandes de Transferts chaque mois pour chaque Direction
+    ";
 
     /**
      * Execute the console command.

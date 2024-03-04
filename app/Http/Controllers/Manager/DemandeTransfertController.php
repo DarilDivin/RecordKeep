@@ -6,7 +6,6 @@ use App\Models\DemandeTransfert;
 use App\Http\Controllers\Controller;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Support\Facades\Auth;
 
 class DemandeTransfertController extends Controller
 {

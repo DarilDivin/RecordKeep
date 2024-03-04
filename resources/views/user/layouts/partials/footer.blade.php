@@ -2,7 +2,7 @@
 <footer >
     <div class="footer-content">
         <div class="infoStructure" data-aos="zoom-out-down" data-aos-delay="500">
-            <img src="storage/images/logo-Misp2.png" alt="Logo-MISP">
+            <img src="{{ asset("storage/images/logo-Misp2.png") }}" alt="Logo-MISP">
         </div>
         <div class="navLinks">
             <ul>

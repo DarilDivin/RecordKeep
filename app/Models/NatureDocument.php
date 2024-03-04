@@ -21,7 +21,8 @@ class NatureDocument extends Model
         'categorie_id',
         'duree_communicabilite',
         'dua_bureaux',
-        'dua_service_pre_archivage'
+        'dua_service_pre_archivage',
+        'visible',
     ];
 
     protected $casts = [

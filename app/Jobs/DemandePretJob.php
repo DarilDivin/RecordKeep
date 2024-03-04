@@ -2,7 +2,6 @@
 
 namespace App\Jobs;
 
-use App\Models\Document;
 use Illuminate\Bus\Queueable;
 use App\Mail\DocumentDemandeMail;
 use App\Models\DemandePret;

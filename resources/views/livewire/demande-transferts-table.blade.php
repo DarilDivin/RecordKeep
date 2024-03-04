@@ -31,7 +31,7 @@
                         <h3 title="{{ $transfert->libelle }}">{{ $transfert->libelle }}</h3>
                         <span>{{ $transfert->direction->sigle }} | {{ $user->prenoms }} {{ strtoupper($user->nom) }}</span>
                     </div>
-                    <span>{{ $transfert->created_at->translatedFormat('d/F/Y') }}</span>
+                    <span>{{ $transfert->created_at->translatedFormat('d/m/Y') }}</span>
                 </div>
                 <div class="body">
                     <div class="info">

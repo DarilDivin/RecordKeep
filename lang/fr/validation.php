@@ -217,6 +217,7 @@ return [
         'direction_id'             => 'Direction',
         'categorie_id'             => 'Catégorie',
         'nature_document_id'       => 'Nature',
+        'visible'                  => 'Accessibilité',
         'boite_archive_id'         => 'Boîte Archive',
         'chemise_dossier_id'       => 'Chemise de Dossier',
         'rayon_rangeement_id'       => 'Rayon de Rangement',
@@ -235,6 +236,8 @@ return [
         'dua_service_pre_archivage'=> 'DUA au Service de Pré-Archivage',
         'boites_number_max'        => 'Nombre de boîtes maximum',
         'chemises_number_max'      => 'Nombre de chemises maximum',
-        'observation'              => 'Observation'
+        'observation'              => 'Observation',
+        'motif'                    => 'Motif',
+        'duree'                    => 'Durée'
     ],
 ];

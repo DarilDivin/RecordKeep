@@ -1,5 +1,10 @@
 @php
+    use App\Models\DemandePret;
+    use App\Models\DemandeTransfert;
     $route_name = request()->route()->getName();
+    $centralManagerDPNotifications = DemandePret::where('etat', 'Encours')->count();
+    $centralManagerDTNotifications = DemandeTransfert::where('transfere', '=', '1')->where('valide', '=', '0')->count();
+    $standardManagerDTNotifications = DemandeTransfert::where('direction_id', '=', Auth::user()->direction_id)->where('transferable', '=', '1')->where('transfere', '=', '0')->count();
 @endphp
 <div class="navigation locked close">
     <div class="sidebar-title">
@@ -157,15 +162,9 @@
                 <a href="{{ route('manager.transfert.index') }}">
                     <span class="icon"><ion-icon name="arrow-redo"></ion-icon></span>
                     <span class="title">Demandes de transferts</span>
-                </a>
-            </li>
-        @endcan
-
-        @can('Gestion des Demandes de Prêts')
-            <li @class(['list', 'active' => str_contains($route_name, 'rapport-depart-list')])>
-                <a href="{{ route('rapport-depart-list') }}">
-                    <span class="icon"><ion-icon name="swap-horizontal"></ion-icon></span>
-                    <span class="title">Rapport de Prêts</span>
+                    @if ($standardManagerDTNotifications > 0)
+                        <span class="notif-alert">{{ $standardManagerDTNotifications }}</span>
+                    @endif
                 </a>
             </li>
         @endcan
@@ -175,6 +174,9 @@
                 <a href="{{ route('manager.transfert.all') }}">
                     <span class="icon"><ion-icon name="send"></ion-icon></span>
                     <span class="title">Transferts du MISP</span>
+                    @if ($centralManagerDTNotifications > 0)
+                        <span class="notif-alert">{{ $centralManagerDTNotifications }}</span>
+                    @endif
                 </a>
             </li>
         @endcan
@@ -188,11 +190,23 @@
             </li>
         @endcan
 
-        @can('Gestion des Classements')
+        @can('Gestion des Demandes de Prêts')
             <li @class(['list', 'active' => str_contains($route_name, 'demande-de-prets')])>
                 <a href="{{ route('demande-de-prets') }}">
                     <span class="icon"><ion-icon name="document-lock-outline"></ion-icon></span>
                     <span class="title">Demandes de Prêts</span>
+                    @if ($centralManagerDPNotifications > 0)
+                        <span class="notif-alert">{{ $centralManagerDPNotifications }}</span>
+                    @endif
+                </a>
+            </li>
+        @endcan
+
+        @can('Gestion des Demandes de Prêts')
+            <li @class(['list', 'active' => str_contains($route_name, 'rapport-depart-list')])>
+                <a href="{{ route('rapport-depart-list') }}">
+                    <span class="icon"><ion-icon name="swap-horizontal"></ion-icon></span>
+                    <span class="title">Rapport de Prêts</span>
                 </a>
             </li>
         @endcan

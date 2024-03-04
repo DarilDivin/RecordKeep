@@ -44,28 +44,7 @@ Route::group(['middleware' => ['auth', 'permission:Gestion des Natures de Docume
 
 /* ------------------------------------------------------------------------------------------------------------------------------------- */
 
-Route::middleware(['auth', 'permission:Gestion des Classements'])
-    ->get('manager/document/classement', [DocumentClassementController::class, 'index'])
-    ->name('manager.document.classed');
-
-Route::middleware(['auth', 'permission:Gestion des Classements'])
-    ->get('manager/document/{document}/{transfert}/classement', [DocumentClassementController::class, 'showClassementForm'])
-    ->name('manager.document.classement')
-    ->where([
-        'document' => $idRegex,
-        'transfert' => $idRegex
-    ]);
-
-Route::middleware(['auth', 'permission:Gestion des Classements'])
-    ->put('manager/document/{document}/{transfert}/classement', [DocumentClassementController::class, 'doClassement'])
-    ->where([
-        'document' => $idRegex,
-        'transfert' => $idRegex
-    ]);
-
-/* ------------------------------------------------------------------------------------------------------------------------------------- */
-
-/* FOR STANDARDS MANAGER */
+/* FOR STANDARDS MANAGERS */
 
 Route::middleware(['auth', 'permission:Gestion des Demandes de Transferts'])
 ->get('manager/transfert', [DemandeTransfertController::class, 'index'])
@@ -83,7 +62,7 @@ Route::middleware(['auth', 'permission:Gestion des Demandes de Transferts'])
 ]);
 
 Route::middleware(['auth', 'permission:Gestion des Demandes de Transferts'])
-->patch('manager/transfert/{transfert}', [DemandeTransfertController::class, 'sending'])
+->patch('manager/{transfert}/transfert', [DemandeTransfertController::class, 'sending'])
 ->name('manager.transfert.sending')
 ->where([
     'transfert' => $idRegex
@@ -98,7 +77,7 @@ Route::middleware(['auth', 'permission:Gestion des Demandes de Transferts'])
 
 /* ------------------------------------------------------------------------------------------------------------------------------------- */
 
-/* FOR CENTRALES MANAGER */
+/* FOR CENTRAL MANAGER */
 
 Route::middleware(['auth', 'permission:Gestion des Demandes de Transferts du MISP'])
 ->get('manager/all-transferts', [AllTransfertsController::class, 'all'])
@@ -126,8 +105,15 @@ Route::middleware(['auth', 'permission:Gestion des Demandes de Transferts du MIS
     'transfert' => $idRegex
 ]);
 
-Route::middleware(['auth', 'permission:Gestion des Demandes de Transferts'])
-->patch('manager/transfert/{transfert}', [AllTransfertsController::class, 'cwithdraw'])
+Route::middleware(['auth', 'permission:Gestion des Demandes de Transferts du MISP'])
+->get('manager/all-transferts/{bordereau}/bordereau-show', [AllTransfertsController::class, 'show'])
+->name('manager.transfert.bordereau-show')
+->where([
+    'transfert' => $idRegex
+]);
+
+Route::middleware(['auth', 'permission:Gestion des Demandes de Transferts du MISP'])
+->patch('manager/all-transfert/{transfert}', [AllTransfertsController::class, 'cwithdraw'])
 ->name('manager.transfert.cwithdraw')
 ->where([
     'transfert' => $idRegex
@@ -136,45 +122,33 @@ Route::middleware(['auth', 'permission:Gestion des Demandes de Transferts'])
 
 /* ------------------------------------------------------------------------------------------------------------------------------------- */
 
+Route::middleware(['auth', 'permission:Gestion des Classements'])
+    ->get('manager/document/classement', [DocumentClassementController::class, 'index'])
+    ->name('manager.document.classed');
 
-// Route::get('manager/rapport-de-depart-de-pret', [RapportDepartController::class, 'index'])->name('rapport-depart-list');
-Route::get('manager/rapport-de-depart-de-pret/create/{demande}', [RapportDepartController::class, 'create'])
-->name('rapport-depart-create')
-->where([
-    'demande' => $idRegex
-]);
-Route::post('manager/rapport-de-depart-de-pret/store/', [RapportDepartController::class, 'store'])
-->name('rapport-depart-store');
+Route::middleware(['auth', 'permission:Gestion des Classements'])
+    ->get('manager/document/{document}/{transfert}/classement', [DocumentClassementController::class, 'showClassementForm'])
+    ->name('manager.document.classement')
+    ->where([
+        'document' => $idRegex,
+        'transfert' => $idRegex
+    ]);
 
-Route::get('manager/rapport-preview/{rapport}', [RapportDepartController::class, 'show'])
-->name('rapport-show')
-->where([
-    'rapport' => $idRegex
-]);
+Route::middleware(['auth', 'permission:Gestion des Classements'])
+    ->put('manager/document/{document}/{transfert}/classement', [DocumentClassementController::class, 'doClassement'])
+    ->where([
+        'document' => $idRegex,
+        'transfert' => $idRegex
+    ]);
 
 /* ------------------------------------------------------------------------------------------------------------------------------------- */
+
+
+Route::get('manager/demandes-de-pret/', [DemandePretController::class, 'index'])->name('demande-de-prets');
 
 Route::get('manager/rapport-pret', [RapportDepartController::class, 'index'])
 ->name('rapport-depart-list')
 ->middleware(['auth', 'permission:Gestion des Demandes de Prêts']);
-
-Route::get('manager/rapport-de-retour-de-pret/create/{rapportDepart}', [RapportRetourController::class, 'create'])
-->name('rapport-retour-create')
-->middleware(['auth', 'permission:Gestion des Demandes de Prêts'])
-->where([
-    'rapportDepart' => $idRegex
-]);
-
-Route::post('manager/rapport-de-retour-de-pret/store/', [RapportRetourController::class, 'store'])
-->name('rapport-retour-store')
-->middleware(['auth', 'permission:Gestion des Demandes de Prêts']);
-
-Route::get('manager/rapport-preview/{rapport}', [RapportDepartController::class, 'show'])
-->name('rapport-show')
-->middleware(['auth', 'permission:Gestion des Demandes de Prêts'])
-->where([
-    'rapport' => $idRegex
-]);
 
 /* ------------------------------------------------------------------------------------------------------------------------------------- */
 
@@ -184,8 +158,32 @@ Route::get('downloadPdf/{rapport}', [RapportDepartController::class, 'pdf'])
 
 /* ------------------------------------------------------------------------------------------------------------------------------------- */
 
-Route::get('manager/demandes-de-pret/', [DemandePretController::class, 'index'])->name('demande-de-prets');
-// Route::get('manager/demandes-de-pret/validé', [DemandePretController::class, 'indexValidé'])->name('demande-de-prets-validé');
+Route::get('manager/rapport-depart/create/{demande}', [RapportDepartController::class, 'create'])
+->name('rapport-depart-create')
+->middleware(['auth', 'permission:Gestion des Demandes de Prêts'])
+->where([
+    'demande' => $idRegex
+]);
+Route::post('manager/rapport-depart/store/', [RapportDepartController::class, 'store'])
+->middleware(['auth', 'permission:Gestion des Demandes de Prêts'])
+->name('rapport-depart-store');
 
+Route::get('manager/rapport-preview/{rapport}', [RapportDepartController::class, 'show'])
+->name('rapport-show')
+->middleware(['auth', 'permission:Gestion des Demandes de Prêts'])
+->where([
+    'rapport' => $idRegex
+]);
 
 /* ------------------------------------------------------------------------------------------------------------------------------------- */
+
+Route::get('manager/rapport-retour/create/{rapportDepart}', [RapportRetourController::class, 'create'])
+->name('rapport-retour-create')
+->middleware(['auth', 'permission:Gestion des Demandes de Prêts'])
+->where([
+    'rapportDepart' => $idRegex
+]);
+
+Route::post('manager/rapport-retour/store/', [RapportRetourController::class, 'store'])
+->name('rapport-retour-store')
+->middleware(['auth', 'permission:Gestion des Demandes de Prêts']);

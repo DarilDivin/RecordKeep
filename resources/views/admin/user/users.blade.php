@@ -4,10 +4,6 @@
     Gestion des Utilisateurs
 @endsection
 
-{{-- @section('style')
-    @vite(['resources/css/Dashboard-User-Document-Management.css', 'resources/js/Dashboard-User-Management.js'])
-@endsection --}}
-
 
 @section('content')
     <div class="container">

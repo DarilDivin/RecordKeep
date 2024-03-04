@@ -20,7 +20,10 @@ class ChangeDocumentCommunicableStatus extends Command
      *
      * @var string
      */
-    protected $description = 'Cette tâche change le statut communicable d\'un Document une fois sa Durée de communicabilité écoulée';
+    protected $description = "
+        Cette tâche change le statut communicable d'un
+        Document une fois sa Durée de communicabilité écoulée
+    ";
 
     /**
      * Execute the console command.

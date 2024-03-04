@@ -1,7 +1,7 @@
 <x-mail::message>
-# Nouvelle de mande de document
+# Nouvelle Demande de Prêt de document
 
-Une nouvelle demande de document à été fait pour le document
+Une nouvelle Demande de Prêt de document à été fait pour le document
 <a href="{{ route('document.show', ['slug' => $demande->document->getSlug(), 'document' => $demande->document]) }}">{{ $demande->document->nom }}</a>
 
 -Prénoms : {{ $demande->user->prenoms }} <br>
@@ -13,16 +13,12 @@ Une nouvelle demande de document à été fait pour le document
 {{ $demande->motif }}
 
 **Durée du prêt** <br>
-{{ $demande->duree }}
+{{ $demande->duree }}jours
 
 
-<x-mail::button :url="$urlaccept">
-Accepter la demande
-</x-mail::button>
+<x-mail::button :url="$urlaccept">Accepter la demande</x-mail::button>
 
-<x-mail::button :url="$urlreject">
-Rejeter la demande
-</x-mail::button>
+<x-mail::button :url="$urlreject">Rejeter la demande</x-mail::button>
 
 Thanks,<br>
 {{ config('app.name') }}

@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Manager;
 
-use App\Models\Document;
 use App\Models\DemandePret;
 use App\Models\RapportPret;
 use Barryvdh\DomPDF\Facade\Pdf;
@@ -14,9 +13,8 @@ class RapportDepartController extends Controller
 {
     public function index() : View
     {
-        // dd(RapportPret::where('type', 'depart')->get());
         return view('manager.rapports.rapport-prets', [
-            'rapports' => RapportPret::where('type', '=', 'depart')->get(),
+            'rapports' => RapportPret::where('type', '=', 'Départ')->orderBy('created_at', 'desc')->get(),
         ]);
     }
 
@@ -30,12 +28,10 @@ class RapportDepartController extends Controller
     public function store(RapportPretFormRequest $request)
     {
         $rapport = RapportPret::create(array_merge($request->validated(), [
-            'type' => 'Depart'
+            'type' => 'Départ'
         ]));
-
-        // return redirect(route('rapport-show', ['rapport' => $rapport->id]));
-
-        return to_route('demande-de-prets')->with('success', 'Votre rapport à été bien créer.  <a target="_blank" href="' . route('rapport-show', ['rapport' => $rapport->id]) . '"> Cliquez ici pour y accéder </a>');
+        $rapport->demandePret()->update(['etat' => 'Terminé']);
+        return to_route('demande-de-prets')->with('success', 'Votre rapport à été bien crée.  <a target="_blank" href="' . route('rapport-show', ['rapport' => $rapport->id]) . '"> Cliquez ici pour y accéder </a>');
     }
 
     public function show(RapportPret $rapport)

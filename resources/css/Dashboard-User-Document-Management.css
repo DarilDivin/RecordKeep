@@ -230,6 +230,22 @@
     white-space: nowrap;
 }
 
+.navigation ul li a .notif-alert {
+    position: absolute;
+    content: "";
+    width: 20px;
+    height: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    font-size: small;
+    top: 3px;
+    right: 2px;
+    border-radius: 50%;
+    background-color: red;
+}
+
 .navigation .user_profil {
     position: absolute;
     bottom: 20px;

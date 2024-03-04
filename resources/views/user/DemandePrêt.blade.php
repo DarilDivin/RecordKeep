@@ -38,7 +38,7 @@
             <div class="infosDoc">
                 <table class="table">
                     <tr>
-                        <td>Signature</td>
+                        <td>Timbre</td>
                         <td>{{ $document->timbre }}</td>
                     </tr>
                     <tr>
@@ -54,8 +54,8 @@
                         <td>{{ $document->emetteur }}</td>
                     </tr>
                     <tr>
-                        <td>Date du courier</td>
-                        <td>{{ $document->datecreation }}</td>
+                        <td>Date de création</td>
+                        <td>{{ $document->getDateCreation()->translatedFormat("d F Y") }}</td>
                     </tr>
                     <tr>
                         <td>Nature</td>
@@ -64,55 +64,89 @@
                 </table>
             </div>
         </section>
+
             @if (session('success'))
                 <div class="message success">
                     {{ session('success') }}
                 </div>
             @endif
-        @can('Demander un Prêt')
-            <section class="loanRequest">
-                <div class="formContainer">
-
-
-
-                    <h1>{{ $document->disponibilite ? "Procéder à une demande pour ce document" : "Impossible de procéder à une demande pour ce document" }}</h1>
-                    <form action="{{ route('document.demande', $document) }}" method="POST" @class(['loanForm', 'disabled' => !$document->disponibilite]) )>
-                        @csrf
-                        <div class="inputs firstname">
-                            <label for="nom">Nom</label>
-                            <input type="text" name="nom" id="" placeholder="Nom" value="{{ Auth::user()->nom }}" readonly>
-                            <small></small>
-                        </div>
-                        <div class="inputs lastname">
-                            <label for="prenoms">Prénoms</label>
-                            <input type="text" name="prenoms" id="" placeholder="Prénoms" value="{{ Auth::user()->prenoms }}" readonly>
-                            <small></small>
-                        </div>
-                        <div class="inputs durée">
-                            <label for="duree">Durée du prêt</label>
-                            <input type="text" name="duree" id="" placeholder="Durée du prêt en jours" value="15">
-                            <small></small>
-                        </div>
-                        <div class="inputs">
-                            <label for="email">Email</label>
-                            <input type="text" name="email" id="" placeholder="Email" value="{{ Auth::user()->email }}" readonly>
-                            <small></small>
-                        </div>
-                        <div class="inputs">
-                            <label for="telephone">Téléphone</label>
-                            <input type="text" name="telephone" id="" placeholder="Téléphone" value="55555555">
-                            <small></small>
-                        </div>
-                        <div class="inputs motif">
-                            <label for="motif">Motif du prêt</label>
-                            <textarea name="motif" id="" cols="30" rows="5" placeholder="Motif du prêt"></textarea>
-                            <small></small>
-                        </div>
-                        <button type="submit">Soumettre</button>
-                    </form>
+            @if (session('error'))
+                <div class="message error">
+                    {{ session('error') }}
                 </div>
-            </section>
-        @endcan
+            @endif
+
+            @can('Demander un Prêt')
+                <section class="loanRequest">
+                    <div class="formContainer">
+                        <h1>
+                            @if ($document->disponibilite && $document->direction_id === auth()->user()->direction_id)
+                                {{ "Procéder à une Demande de Prêt pour ce document." }}
+                            @elseif ($document->disponibilite && $document->direction_id !== auth()->user()->direction_id)
+                                {{ "Le document n'est pas de votre direction, il vous est donc impossible d'éffectuer cette opération." }}
+                            @elseif (!$document->disponibilite && $document->prete)
+                                {{ "Le dit document est actuellement en cours de prêt." }}
+                            @else
+                                {{ "Impossible de procéder à une Demande de Prêt pour ce document" }}
+                            @endif
+                        </h1>
+                        <form action="{{ route('document.demande', $document) }}" method="POST" @class(['loanForm', 'disabled' => !$document->disponibilite || $document->direction_id !== auth()->user()->direction_id]) )>
+                            @csrf
+                            <div class="inputs firstname">
+                                <label for="nom">Nom</label>
+                                <input type="text" name="nom" id="" placeholder="Nom" value="{{ Auth::user()->nom }}" readonly>
+                                @error('nom')
+                                    <span style="color: red; font-size: 0.7rem">
+                                        {{ $message }}
+                                    </span>
+                                @enderror
+                            </div>
+                            <div class="inputs lastname">
+                                <label for="prenoms">Prénoms</label>
+                                <input type="text" name="prenoms" id="" placeholder="Prénoms" value="{{ Auth::user()->prenoms }}" readonly>
+                                <small></small>
+                            </div>
+                            <div class="inputs durée">
+                                <label for="duree">Durée du prêt</label>
+                                <input type="text" name="duree" id="" placeholder="Durée du prêt en jours" value="15">
+                                @error('duree')
+                                    <span style="color: red; font-size: 0.7rem">
+                                        {{ $message }}
+                                    </span>
+                                @enderror
+                            </div>
+                            <div class="inputs">
+                                <label for="email">Email</label>
+                                <input type="text" name="email" id="" placeholder="Email" value="{{ Auth::user()->email }}" readonly>
+                                @error('email')
+                                    <span style="color: red; font-size: 0.7rem">
+                                        {{ $message }}
+                                    </span>
+                                @enderror
+                            </div>
+                            <div class="inputs">
+                                <label for="telephone">Téléphone</label>
+                                <input type="text" name="telephone" id="" placeholder="Téléphone" value="+229 96909016">
+                                @error('telephone')
+                                    <span style="color: red; font-size: 0.7rem">
+                                        {{ $message }}
+                                    </span>
+                                @enderror
+                            </div>
+                            <div class="inputs motif">
+                                <label for="motif">Motif du prêt</label>
+                                <textarea name="motif" id="" cols="30" rows="5" placeholder="Motif du prêt"></textarea>
+                                @error('motif')
+                                    <span style="color: red; font-size: 0.7rem">
+                                        {{ $message }}
+                                    </span>
+                                @enderror
+                            </div>
+                            <button type="submit">Soumettre</button>
+                        </form>
+                    </div>
+                </section>
+            @endcan
 
         {{-- <section
             style="

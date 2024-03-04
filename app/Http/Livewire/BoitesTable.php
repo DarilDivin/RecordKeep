@@ -42,7 +42,7 @@ class BoitesTable extends Component
     {
         BoiteArchive::destroy($ids);
         $this->boitesChecked = [];
-        session()->flash('success', 'Les Boites d\'Archive ont bien été supprimé');
+        session()->flash('success', 'Le(s) Boite(s) d\'Archive(s) ont bien été supprimé');
     }
 
     public function setOrderField(string | int | DateTime  $field)

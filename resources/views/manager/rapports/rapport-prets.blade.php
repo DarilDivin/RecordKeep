@@ -10,8 +10,8 @@
 
         <div class="main">
             <div class="title">
-                <p>Rapports</p>
-                <ion-icon name="document"></ion-icon>
+                <p>Rapports de Prêts</p>
+                <ion-icon name="swap-horizontal"></ion-icon>
             </div>
 
             <div class="sidebarOptions">
@@ -25,101 +25,43 @@
                 </div>
             </div>
 
-            <div class="optional">
-                <div class="buttons">
-                    <button class="filter">
-                        <ion-icon name="filter"></ion-icon>
-                        Filtrer
-                    </button>
-                    <button class="add">
-                        <ion-icon name="add"></ion-icon>
-                        <a href="{{ route('admin.user.create') }}">Add User</a>
-                    </button>
-                </div>
+            {{-- <div class="optional">
                 <form action="">
                     <div class="search-box">
                         <input type="text" name="search">
                         <ion-icon name="search"></ion-icon>
                     </div>
                 </form>
-            </div>
+            </div> --}}
 
             @if (session('success'))
-                <div class="success">
-                    {{ session('success') }}
+                <div class="message success">
+                    {!! session('success') !!}
                 </div>
             @endif
 
-            {{-- <div class="tableau">
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <td>Matricule</td>
-                            <td>Nom</td>
-                            <td>Prénoms</td>
-                            <td>Rôle</td>
-                            <td>Actions</td>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @forelse ($rapports as $rapport)
-                            <tr>
-                                <td>{{ $rapport->type }}</td>
-                                <td>{{ $rapport->nom }}</td>
-                                <td>{{ $rapport->prenoms }}</td>
-                                <td>
-                                    <div class="text-cut">
-                                        {{ $rapport->role }}
-                                    </div>
-                                </td>
-                                <td>
-                                    <button class="edit">
-                                        <a href="{{ route('admin.rapport.edit', ['rapport' => $rapport->id]) }}">
-                                            Editer
-                                        </a>
-                                    </button>
-                                    <button class="delete">
-                                        <a href="{{ route('admin.rapport.destroy', ['rapport' => $rapport->id]) }}"
-                                           onclick="event.preventDefault();
-                                           document.getElementById('deleteForm{{ $rapport->id }}').submit();">
-                                            Supprimer
-                                        </a>
-                                        <form action="{{ route('admin.rapport.destroy', ['rapport' => $rapport->id]) }}" method="POST" style="" id="deleteForm{{ $rapport->id }}">
-                                            @csrf
-                                            @method('delete')
-                                        </form>
-                                    </button>
-                                </td>
-                            </tr>
-                        @empty
-                            Aucun rapport en base de données
-                        @endforelse
-                    </tbody>
-                </table>
-            </div> --}}
-
             <div class="cardContainer">
                 @forelse ($rapports as $rapport)
-                    <div class="card" data-label="{{ $rapport->demandepret->etat }}">
+                    <div class="card" data-label="{{ $rapport->demandePret->etat }}">
                         <div class="head">
                             <div class="titleInfos ">
-                                <h3>Validation de prêt </h3>
-                                <span>{{ $rapport->demandepret->duree }} jours</span>
+                                <h3>Rapport de Prêt</h3>
+                                <span>{{ $rapport->demandePret->user->direction->sigle }}</span>
                             </div>
-                            <span>{{ $rapport->created_at }}</span>
+                            <span>{{ $rapport->created_at->translatedFormat('d/m/Y') }}</span>
                         </div>
                         <div class="body">
                             <div class="info">
-                                <p>Signature du Document</p>
-                                <span>{{ $rapport->demandepret->document->signature }}</span>
+                                <p>Timbre du Document</p>
+                                <span>{{ $rapport->demandePret->document->timbre }}</span>
                             </div>
                             <div class="info">
                                 <p>Nom du Document</p>
-                                <span>{{ $rapport->demandepret->document->nom }}</span>
+                                <span>{{ $rapport->demandePret->document->nom }}</span>
                             </div>
                             <div class="info">
                                 <p>Nom de l'utilisateur</p>
-                                <span>{{ $rapport->demandepret->user->nom }} {{ $rapport->demandepret->user->prenoms }}</span>
+                                <span>{{ $rapport->demandePret->user->nom }} {{ $rapport->demandePret->user->prenoms }}</span>
                             </div>
                         </div>
                         <div class="foot">

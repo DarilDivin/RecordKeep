@@ -3,9 +3,9 @@
 namespace App\Http\Livewire;
 
 use DateTime;
+use App\Models\Role;
 use Livewire\Component;
 use Livewire\WithPagination;
-use Spatie\Permission\Models\Role;
 
 class RolesTable extends Component
 {
@@ -32,7 +32,7 @@ class RolesTable extends Component
     {
         Role::destroy($ids);
         $this->rolesChecked = [];
-        session()->flash('success', 'Les Rôles ont bien été supprimé');
+        session()->flash('success', 'Le(s) Rôle(s) ont bien été supprimé');
     }
 
     public function setOrderField(string | int | DateTime  $field)

@@ -22,7 +22,7 @@
 
                 <x-input class="inputContainer fonction" id="boite" label="Boite Archive(Libellé)" type="text" name="libelle" placeholder="Boite d'Archive"  readonly="" value="{{ $boite->libelle }}" />
 
-                    <x-input class="inputContainer fonction" id="chemises_number_max" label="Nombres de Chemises Maximum" type="number" name="chemises_number_max" placeholder="Nombres de chemises maximum"  readonly="" value="{{ $boite->chemises_numbers }}" />
+                    <x-input class="inputContainer fonction" id="chemises_number_max" label="Nombres de Chemises Maximum" type="number" name="chemises_number_max" placeholder="Nombres de chemises maximum"  readonly="" value="{{ $boite->chemises_number_max }}" />
 
                 <x-select class="inputContainer fonction" id="rayon" label="Rayon de Rangement" name="rayon_rangement_id" :value="$rayons" elementIdOnEntite="{{ $boite->rayon_rangement_id }}" />
 

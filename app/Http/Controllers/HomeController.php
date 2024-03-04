@@ -3,12 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Document;
+use Illuminate\Contracts\View\View;
 
 class HomeController extends Controller
 {
-    public function index()
+    public function index(): View
     {
-        $documents = Document::where('archive', 1)->orderBy('created_at', 'desc')->limit(20)->get();
-        return view('user.home', ['documents' => $documents]);
+        return view('user.home');
     }
 }

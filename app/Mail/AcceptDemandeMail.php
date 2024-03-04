@@ -30,7 +30,7 @@ class AcceptDemandeMail extends Mailable
     {
         return new Envelope(
             to: $this->destination,
-            subject: 'Accept Demande Mail',
+            subject: 'Demande de Prêt acceptée',
         );
     }
 
@@ -40,7 +40,7 @@ class AcceptDemandeMail extends Mailable
     public function content(): Content
     {
         return new Content(
-            markdown: 'emails.document.acceptDemande',
+            markdown: 'emails.demande-prets.acceptDemande',
         );
     }
 

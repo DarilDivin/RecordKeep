@@ -37,7 +37,7 @@ class ContactUsMail extends Mailable
     public function content(): Content
     {
         return new Content(
-            markdown: 'mail.contact-us-mail',
+            markdown: 'emails.contact-us-mail',
             with: [
                 'message' => $this->message,
             ]

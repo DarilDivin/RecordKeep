@@ -61,6 +61,15 @@ class DocumentController extends Controller
      */
     public function store(DocumentFormRequest $request): RedirectResponse
     {
+        /* $functionsIds = [];
+        $functions = Fonction::all()->toArray();
+        array_map(function ($function) use (&$functionsIds) {
+            $functionsIds[] = (string)$function['id'];
+        }, $functions);
+        dump($functionsIds);
+        dump(request()->fonctions);
+        dump(count(array_intersect(request()->fonctions, $functionsIds)));
+        dd(count($functionsIds) === count(array_intersect(request()->fonctions, $functionsIds))); */
         $document = Document::create($this->withDocuments(new Document(), $request));
         $document->fonctions()->sync($request->fonctions);
         return redirect()

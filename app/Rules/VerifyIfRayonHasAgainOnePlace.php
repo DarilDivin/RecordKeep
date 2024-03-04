@@ -15,9 +15,13 @@ class VerifyIfRayonHasAgainOnePlace implements ValidationRule
      */
     public function validate(string $attribute, mixed $value, Closure $fail): void
     {
-        if (
-            RayonRangement::find(request()->rayon_rangement_id)->boitearchives->count() ==
-            RayonRangement::find(request()->rayon_rangement_id)->boites_number_max
-        ) $fail("Le rayon de rangement spécifié a atteint son nombre de boîtes maximum.");
+        $boites = request()->route()->getName() === 'manager.boite.store'
+                ? RayonRangement::find(request()->rayon_rangement_id)->boitearchives->count()
+                : RayonRangement::find(request()->rayon_rangement_id)
+                  ->boitearchives->where('id', '!=', request()->route()->parameter('boite')['id'])
+                  ->count();
+
+        if ($boites == RayonRangement::find(request()->rayon_rangement_id)->boites_number_max)
+        $fail("Le rayon de rangement spécifié a atteint son nombre de boîtes maximum.");
     }
 }

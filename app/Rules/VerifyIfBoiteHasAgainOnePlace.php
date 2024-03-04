@@ -15,9 +15,13 @@ class VerifyIfBoiteHasAgainOnePlace implements ValidationRule
      */
     public function validate(string $attribute, mixed $value, Closure $fail): void
     {
-        if (
-            BoiteArchive::find(request()->boite_archive_id)->chemisedossiers->count() ==
-            BoiteArchive::find(request()->boite_archive_id)->chemises_number_max
-        ) $fail("La Boîte Archive spécifiée a atteint son nombre de chemises maximum.");
+        $chemises = request()->route()->getName() === 'manager.chemise.store'
+                ? BoiteArchive::find(request()->boite_archive_id)->chemisedossiers->count()
+                : BoiteArchive::find(request()->boite_archive_id)
+                  ->chemisedossiers->where('id', '!=', request()->route()->parameter('chemise')['id'])
+                  ->count();
+
+        if ($chemises == BoiteArchive::find(request()->boite_archive_id)->chemises_number_max)
+        $fail("La Boîte Archive spécifiée a atteint son nombre de chemises maximum.");
     }
 }

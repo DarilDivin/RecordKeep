@@ -29,6 +29,17 @@
 
                 <x-select class="inputContainer fonction" id="categories" label="Catégorie de la Nature de Document" name="categorie_id" :value="$categories" elementIdOnEntite="{{ $nature->categorie_id }}" />
 
+                <div class="inputContainer fonction">
+                    <label for="visible">Accessible : </label>
+                    <select name="visible" id="visible">
+                        <option @selected(old('visible', $nature->visible) == 0) value="0">Aux membres de la direction</option>
+                        <option @selected(old('visible', $nature->visible) == 1) value="1">à tout le monde</option>
+                    </select>
+                    @error('visible')
+                        <span style="color: red;">{{ $message }}</span>
+                    @enderror
+                </div>
+
                 <div class="inputContainer button">
                     <button type="submit">
                         {{ $nature->exists ? 'Éditer' : 'Créer' }}

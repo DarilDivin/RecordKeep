@@ -48,8 +48,9 @@
                     <x-table-header label="Boîte" :direction="$orderDirection" name="libelle" :field="$orderField"></x-table-header>
                     <x-table-header label="Code" :direction="$orderDirection" name="code" :field="$orderField"></x-table-header>
                     <x-table-header label="Nombre de Chemises" :direction="$orderDirection" name="" :field="$orderField"></x-table-header>
-                    <x-table-header label="Nombre de Chemises Maximum" :direction="$orderDirection" name="chemises_number_max" :field="$orderField"></x-table-header>
+                    <x-table-header label="Nombre de Chemises Maximal" :direction="$orderDirection" name="chemises_number_max" :field="$orderField"></x-table-header>
                     <x-table-header label="Rayon" :direction="$orderDirection" name="rayon_rangement_id" :field="$orderField"></x-table-header>
+                    <td>Nombre de boîtes maximal</td>
                     <td>Actions</td>
                 </tr>
             </thead>
@@ -65,6 +66,7 @@
                         <td>{{ $boite->chemisedossiers->count() }} chemise(s)</td>
                         <td>{{ $boite->chemises_number_max }} chemise(s)</td>
                         <td>{{ $boite->rayonrangement?->libelle }}</td>
+                        <td>{{ $boite->rayonrangement?->boites_number_max }}</td>
                         <td>
                             <button class="edit">
                                 <a href="{{ route('manager.boite.edit', ['boite' => $boite->id]) }}">
