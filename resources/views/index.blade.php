@@ -41,18 +41,20 @@
                 </p>
             </swiper-slide>
             <swiper-slide>
-                <img src="storage/images/documenthèque.png" alt="">
+                <img src="storage/images/demandepret.png" alt="">
 
                 <p>
-                    L'application propose une puissante fonction de recherche qui vous permet de retrouver des fichiers ou des dossiers par nom, date, ou autres critères.
+                    Une fois les documents disponibles, vous pouvez effectuer des prêts pour certains documents.
                 </p>
 
             </swiper-slide>
             <swiper-slide>
-                <img src="storage/images/documenthèque.png" alt="">
+                <img src="storage/images/paramètre.png" alt="">
 
                 <p>
-                    Une fois les documents disponibles, vous pouvez effectuer des prêts pour certains documents.
+                    {{-- L'application propose une puissante fonction de recherche qui vous permet de retrouver des fichiers ou des dossiers par nom, date, ou autres critères. --}}
+                    L'application vous propose un puissant système d'authentification vous permettant d'effectuer une double authentification afin de protéger plus efficacement vos données.
+                    Veiller activer la double authentification.
                 </p>
 
             </swiper-slide>
