@@ -19,7 +19,7 @@
         'resources/js/Dashboard.js',
         'resources/js/sidebar.js',
         'resources/js/Dashboard-Document-Management.js',
-])
+    ])
 </head>
 <body class="dash">
     <div class="bg_ball_style ball1"></div>

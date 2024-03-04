@@ -9,6 +9,8 @@ $idRegex = '[0-9]+';
 $slugRegex = '[0-9a-z\-]+';
 $mailRegex = '[^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$]';
 
+
+
 Route::get('/changer mot de passe', [UserController::class, 'changePasswordView'])->name('changePasswordView')->middleware('auth');
 Route::post('/changePassword', [UserController::class, 'changePassword'])->name('changePassword')->middleware('auth');
 
