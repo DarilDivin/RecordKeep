@@ -16,8 +16,12 @@ use App\Http\Controllers\HomeController;
 */
 
 Route::get('/', function () {
-    return view('index');
+    return view('loader');
 })->middleware('guest')->name('Presentation');
+
+Route::get('/presentation', function () {
+    return view('index');
+})->middleware('guest')->name('index');
 
 Route::get('/home', [HomeController::class, 'index'])->name('home')->middleware(['auth', 'verified', 'permission:Consulter un Document|Rechercher un Document|Télécharger un Document|Demander un Prêt']);
 

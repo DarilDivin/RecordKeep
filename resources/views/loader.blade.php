@@ -1,80 +1,90 @@
-@extends('user.layouts.template')
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.png') }}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,900&display=swap" rel="stylesheet">
+    <title> Présentation | RecordKeeper</title>
+    @vite([
+        'resources/css/app.css',
+        'resources/js/loader.js',
+    ])
+</head>
+<body class="user">
+    <div class="bg_ball_style ball1"></div>
+    <div class="bg_ball_style ball2"></div>
 
-@section('title')
-    Présentation
-@endsection
+    <style>
+    /* * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    } */
+    .loaderBody {
+        width: 100%;
+        height: 100vh;
+        overflow: hidden;
+    }
+    .container {
+        /* background: #007BFF; */
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
 
+    path {
+        color: var(--color-primary);
+    }
+    g {
+        transition: .4s ease ;
+        transition-delay: 1s;
+        /* animation: fill infinite ease;
+        animation-delay: 2s;
+        animation-duration: 5s;
+        animation-name: fill;
+        animation-timing-function: ease-in;
+        animation-direction: alternate; */
+    }
 
-
-@section('content')
-    @include('user.layouts.partials.navbar')
-
-    {{-- <style>
-        /* * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        } */
-        .loaderBody {
-            width: 100%;
-            height: 100vh;
-            overflow: hidden;
+    @keyframes fill {
+        from {
+            fill: #fff;
         }
-        .container {
-            /* background: #007BFF; */
-            width: 100%;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
+        to {
+            fill: var(--color-primary);
         }
+    }
 
-        path {
-            color: #00b7ff;
-        }
-        g {
-            transition: .4s ease ;
-            transition-delay: 1s;
-            /* animation: fill infinite ease;
-            animation-delay: 2s;
-            animation-duration: 5s;
-            animation-name: fill;
-            animation-timing-function: ease-in;
-            animation-direction: alternate; */
-        }
+    /* Styles pour la barre de chargement */
+    .loader-container {
+        width: 30%;
+        height: 5px; /* Hauteur de la barre de chargement */
+        background-color: #33333315; /* Couleur de fond */
+        position: fixed;
+        top: 75%;
+        /* left: 30%; */
+        z-index: 9999;
+        border-radius: 5px;
+        overflow: hidden;
+    }
 
-        @keyframes fill {
-            from {
-                fill: #fff;
-            }
-            to {
-                fill: #00b7ff;
-            }
-        }
-
-        /* Styles pour la barre de chargement */
-        .loader-container {
-            width: 30%;
-            height: 5px; /* Hauteur de la barre de chargement */
-            background-color: #33333315; /* Couleur de fond */
-            position: fixed;
-            top: 75%;
-            /* left: 30%; */
-            z-index: 9999;
-            border-radius: 5px;
-            overflow: hidden;
-        }
-
-        .loader-bar {
-            width: 0; /* Largeur initiale de la barre de chargement */
-            height: 100%;
-            background-color: #00b7ff; /* Couleur de la barre de chargement */
-            transition: width 0.3s ease-in-out;
-        }
+    .loader-bar {
+        width: 0; /* Largeur initiale de la barre de chargement */
+        height: 100%;
+        background-color: var(--color-primary); /* Couleur de la barre de chargement */
+        transition: width 0.3s ease-in-out;
+    }
     </style>
 
-    <div class="loaderBody" id="loader-wrapper">
+    <div class="loaderBody">
         <div class="container">
             <div id="lineDrawing" style="height: 100vh;">
                 <svg viewBox="-190 -50 800 200" style="height: 100%; width: 100%;">
@@ -99,84 +109,13 @@
                 <div class="loader-bar" id="loader-bar"></div>
             </div>
         </div>
-    </div> --}}
-
-
-
-    <div class="description-container" data-aos="zoom-in-up" data-aos-delay="500">
-        <div class="description_msg" data-aos="fade-right" data-aos-delay="1000">
-            <h2>Accédez aux documents accessibles en un clic</h2>
-            <p>
-                Bienvenu sur Record Keeper, une tenue de régistre facile du Ministère de l'Intérieur et de la Sécurité Publique de la République du Bénin vous permettant de consulter certains documents accessibles en toute facilté, sécurité et simplicité.
-            </p>
-            <button class="btn-signin">
-                <a href="{{ route('login') }}">Se connecter</a>
-            </button>
-        </div>
-        <div class="description_img">
-            <img src="storage/images/Personal files-rafiki.svg" alt="">
-        </div>
     </div>
 
-    <div class="carousel" data-aos="zoom-out-down" data-aos-duration="500" data-aos-delay="200" data-aos-once="true">
-        <swiper-container
-        class="mySwiper"
-        pagination="true"
-        pagination-clickable="true"
-        navigation="true"
-        space-between="30"
-        centered-slides="true"
-        autoplay-delay="10000"
-        autoplay-disable-on-interaction="false">
-            <swiper-slide>
-                <img src="storage/images/documenthèque.png" alt="">
-
-                <p>
-                    Lorsque vous ouvrez l'application, vous êtes accueilli par une page d'accueil propre et conviviale. Cette page peut contenir des informations sur l'application, des raccourcis vers des fonctionnalités clés, et un bouton de connexion.
-                </p>
-            </swiper-slide>
-            <swiper-slide>
-                <img src="storage/images/demandepret.png" alt="">
-
-                <p>
-                    Une fois les documents disponibles, vous pouvez effectuer des prêts pour certains documents.
-                </p>
-
-            </swiper-slide>
-            <swiper-slide>
-                <img src="storage/images/paramètre.png" alt="">
-
-                <p>
-                    {{-- L'application propose une puissante fonction de recherche qui vous permet de retrouver des fichiers ou des dossiers par nom, date, ou autres critères. --}}
-                    L'application vous propose un puissant système d'authentification vous permettant d'effectuer une double authentification afin de protéger plus efficacement vos données.
-                    Veiller activer la double authentification.
-                </p>
-
-            </swiper-slide>
-            <div class="autoplay-progress" slot="container-end">
-            <svg viewBox="0 0 48 48">
-                <circle cx="24" cy="24" r="20"></circle>
-            </svg>
-            <span></span>
-            </div>
-        </swiper-container>
-    </div>
-    <div class="carousel-text" data-aos="fade-up">
-        <h3>Découvrez la facilité d’utilisation</h3>
-        <p>
-            L'objectif principal de cette application est de rendre la gestion des archives aussi simple et intuitive que possible pour les utilisateurs. Elle offre une interface utilisateur conviviale et des fonctionnalités de base pour organiser, stocker et récupérer des documents et des fichiers.
-        </p>
-    </div>
-
-    <div class="advantage">
-        <div class="advantage-img" data-aos="fade-left" data-aos-delay="500">
-            <img src="storage/images/Inbox cleanup-pana.svg" alt="">
-        </div>
-        <div class="advantage-text">
-            <h2 data-aos="fade-right" data-aos-delay="500">Les avantages à utiliser cette application</h2>
-            <p data-aos="fade-down" data-aos-delay="500">
-                Une application de gestion des archives simplifie la gestion, l'organisation et l'accès à d'importants documents et informations. Elle offre un stockage sûr, une recherche rapide et des fonctionnalités de suivi pour garantir que toutes les données essentielles sont à portée de main. Cela améliore l'efficacité opérationnelle, réduit les erreurs liées à la gestion papier, et garantit la conformité aux réglementations en matière d'archivage. En fin de compte, elle permet d'économiser du temps, de l'argent et des ressources, tout en offrant une tranquillité d'esprit grâce à la gestion intelligente des données.
-            </p>
-        </div>
-    </div>
-@endsection
+    <script>
+        setTimeout(function() {
+            const route = "{{ route('index')}}"
+            window.location.href = route; // Rediriger vers la nouvelle page après 10 secondes
+        }, 8000);
+    </script>
+</body>
+</html>

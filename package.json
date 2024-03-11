@@ -11,6 +11,7 @@
         "vite": "^4.0.0"
     },
     "dependencies": {
-        "alpinejs": "^3.12.3"
+        "alpinejs": "^3.12.3",
+        "animejs": "^3.2.2"
     }
 }
