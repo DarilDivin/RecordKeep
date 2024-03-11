@@ -28,9 +28,9 @@ class DocumentDemandeMail extends Mailable
      */
     public function envelope(): Envelope
     {
-        $centralManagerOfApplication = Role::findByName("Gestionnaire-Central")->users->first()->email;
+        $centralManagerOfApplicationEmail = Role::findByName("Gestionnaire-Central")->users->first()->email;
         return new Envelope(
-            to: $centralManagerOfApplication,
+            to: $centralManagerOfApplicationEmail,
             replyTo: $this->demande->user->email,
             subject: 'Demande de Prêt pour un Document spécifque',
         );
