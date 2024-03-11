@@ -11,15 +11,15 @@
 
         @livewire('categories-table')
     </div>
-    <div class="warningMessageContainer">
-        <div class="overlay"></div>
+    <div class="warningMessageContainer" id="one">
+        <div class="overlay one"></div>
         <div class="warning">
             <ion-icon name="alert-circle"></ion-icon>
             <h3>Voulez-vous vraiment supprimer cette catégorie ?</h3>
-            <form action="" class="deleteForm" method="POST">
+            <form action="" class="deleteForm one" method="POST">
                 @csrf
                 @method('delete')
-                <button type="button" class="closeWarning">Annuler</button>
+                <button type="button" class="closeWarning one">Annuler</button>
                 <button type="submit" class="submitdeleteForm">Supprimer</button>
             </form>
         </div>

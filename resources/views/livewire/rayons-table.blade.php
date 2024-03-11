@@ -6,7 +6,7 @@
 
     <div class="optional">
         <div class="buttons">
-            <button class="filter" x-show="rayonsChecked.length > 0" x-on:click="$wire.deletedRayons(rayonsChecked)" x-cloak>
+            <button class="filter" id="massDelete" x-show="rayonsChecked.length > 0" x-cloak>
                 <ion-icon name="trash-outline"></ion-icon>
                 Supprimer
             </button>
@@ -76,5 +76,16 @@
             </tbody>
         </table>
         {{ $rayons->onEachSide(0)->links() }}
+    </div>
+    <div class="warningMessageContainer" id="mass">
+        <div class="overlay mass"></div>
+        <div class="warning">
+            <ion-icon name="alert-circle"></ion-icon>
+            <h3>Voulez-vous supprimer ces utilisateurs ?</h3>
+            <form class="deleteForm">
+                <button type="button" class="closeWarning mass">Annuler</button>
+                <button type="submit" class="submitdeleteForm mass" indexRoute="" x-on:click="$wire.deletedRayons(rayonsChecked)">Supprimer</button>
+            </form>
+        </div>
     </div>
 </div>
