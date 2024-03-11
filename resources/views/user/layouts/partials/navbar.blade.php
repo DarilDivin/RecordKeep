@@ -26,7 +26,10 @@
             @endcanany
 
             @auth
-                <li @class(['nav_links', 'active' => str_contains($route, 'settings')])><a href="{{ route('settings') }}">Paramètres</a></li>
+                <li style="position: relative" @class(['nav_links', 'active' => str_contains($route, 'settings')]) >
+                    <a href="{{ route('settings') }}">Paramètres</a>
+                    <span style="position: absolute; color: white; font-size:12px; width: 15px; height: 15px; background: red; top: -8px; left: -12px; border-radius: 50%; display: flex; align-items: center; justify-content: center;" >0</span>
+                </li>
             @endauth
             <li @class(['nav_links', 'active' => str_contains($route, 'contactUs')])><a href="{{ route('contactUs') }}"> Nous contacter </a></li>
 
