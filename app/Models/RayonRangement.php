@@ -28,7 +28,7 @@ class RayonRangement extends Model
 
         parent::boot();
 
-        if (!app()->runningInConsole()) {
+        if (!app()->runningInConsole() && auth()->check()) {
             $userFullName = Auth::user()->nom . " " . Auth::user()->prenoms;
 
             static::creating(function ($rayon) use ($userFullName) {

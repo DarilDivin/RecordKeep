@@ -3,6 +3,7 @@
 namespace App\Exceptions;
 
 use Throwable;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
@@ -45,7 +46,20 @@ class Handler extends ExceptionHandler
         /* if ($e instanceof HttpException && $this->isHttpException($e))
         return response()->view('errors.500', [], $e->getStatusCode()); */
 
+        if ($this->isSmtpError($e)) {
+            Log::error('SMTP error: ' . $e->getMessage());
+            return response()->view('errors.network', [], 500);
+        }
+
         return parent::render($request, $e);
+    }
+
+    protected function isSmtpError(Throwable $e): bool
+    {
+        // Vérifie si le message d'erreur contient des termes couramment associés aux erreurs SMTP
+        return
+            strpos($e->getMessage(), 'stream_socket_client(): php_network_getaddresses') !== false ||
+            strpos($e->getMessage(), 'Connection could not be established with host') !== false;
     }
 
     /**

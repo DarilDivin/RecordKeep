@@ -68,7 +68,7 @@ class User extends Authenticatable implements MustVerifyEmail
 
         parent::boot();
 
-        if (auth()->check() && !app()->runningInConsole()) {
+        if (!app()->runningInConsole() && auth()->check()) {
             $userFullName = Auth::user()->nom . " " . Auth::user()->prenoms;
 
             static::creating(function ($user) use ($userFullName) {

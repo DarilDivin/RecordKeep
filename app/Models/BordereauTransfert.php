@@ -21,11 +21,11 @@ class BordereauTransfert extends Model
         'created_at' => 'datetime',
     ];
 
-    /* protected static function boot() {
+    protected static function boot() {
 
         parent::boot();
 
-        if (!app()->runningInConsole()) {
+        if (!app()->runningInConsole() && auth()->check()) {
             $userFullName = Auth::user()->nom . " " . Auth::user()->prenoms;
 
             static::creating(function ($bordereau) use ($userFullName) {
@@ -42,7 +42,7 @@ class BordereauTransfert extends Model
             });
         }
 
-    } */
+    }
 
     public function demandetransfert(): BelongsTo
     {
