@@ -56,27 +56,6 @@ class DocumentController extends Controller
         ]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(DocumentFormRequest $request): RedirectResponse
-    {
-        /* $functionsIds = [];
-        $functions = Fonction::all()->toArray();
-        array_map(function ($function) use (&$functionsIds) {
-            $functionsIds[] = (string)$function['id'];
-        }, $functions);
-        dump($functionsIds);
-        dump(request()->fonctions);
-        dump(count(array_intersect(request()->fonctions, $functionsIds)));
-        dd(count($functionsIds) === count(array_intersect(request()->fonctions, $functionsIds))); */
-        $document = Document::create($this->withDocuments(new Document(), $request));
-        $document->fonctions()->sync($request->fonctions);
-        return redirect()
-            ->route('manager.document.index')
-            ->with('success', 'Le Document a bien été crée');
-    }
-
     private function withDocuments(Document $document, DocumentFormRequest $request): array
     {
         $data = $request->validated();
@@ -98,6 +77,27 @@ class DocumentController extends Controller
             if(Storage::exists($documentpath)) Storage::delete('public/' . $document->document);
         }
         return $data;
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function store(DocumentFormRequest $request): RedirectResponse
+    {
+        /* $functionsIds = [];
+        $functions = Fonction::all()->toArray();
+        array_map(function ($function) use (&$functionsIds) {
+            $functionsIds[] = (string)$function['id'];
+        }, $functions);
+        dump($functionsIds);
+        dump(request()->fonctions);
+        dump(count(array_intersect(request()->fonctions, $functionsIds)));
+        dd(count($functionsIds) === count(array_intersect(request()->fonctions, $functionsIds))); */
+        $document = Document::create($this->withDocuments(new Document(), $request));
+        $document->fonctions()->sync($request->fonctions);
+        return redirect()
+            ->route('manager.document.index')
+            ->with('success', 'Le Document a bien été crée');
     }
 
     /**

@@ -47,6 +47,7 @@ class RoleController extends Controller
     {
         $data = $request->validated();
         unset($data['permissions']);
+        dd($request);
         Role::create($data)
             ->givePermissionTo($request->permissions);
         return redirect()
