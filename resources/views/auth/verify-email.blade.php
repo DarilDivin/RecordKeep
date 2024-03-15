@@ -1,6 +1,6 @@
 @extends('auth.layout.template')
 
-@section('title', 'Connexion')
+@section('title', 'Vérification d\'email')
 
 @section('content')
     <div class="container">

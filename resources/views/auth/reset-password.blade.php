@@ -1,6 +1,6 @@
 @extends('auth.layout.template')
 
-@section('title', 'Connexion')
+@section('title', 'Réinitialiser mot de passe')
 
 @section('content')
     <div class="container">
