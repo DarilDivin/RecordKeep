@@ -78,7 +78,7 @@ class DemandeTransfertPolicy
     }
 
 
-     /* FOR CENTRALES MANAGERS */
+     /* FOR CENTRAL MANAGER */
 
      public function all(User $user): bool
      {

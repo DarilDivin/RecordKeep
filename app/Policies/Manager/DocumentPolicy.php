@@ -66,7 +66,9 @@ class DocumentPolicy
      */
     public function forceDelete(User $user, Document $document): bool
     {
-        return $user->can('Gestion des Documents');
+        return $user->can('Gestion des Documents') &&
+        $document->demande_transfert_id === null &&
+        Auth::user()->direction->id === $document->direction_id;
     }
 
 

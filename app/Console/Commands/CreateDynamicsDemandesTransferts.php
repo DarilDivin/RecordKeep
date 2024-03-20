@@ -38,7 +38,8 @@ class CreateDynamicsDemandesTransferts extends Command
                     $demande->update(['transferable' => 1]);
                 }else {
                     $demande->update(['transferable' => 1]);
-                    $demande->delete();
+                    /* $demande->delete(); */
+                    $demande->forceDelete();
                 }
             }
             DemandeTransfert::create([

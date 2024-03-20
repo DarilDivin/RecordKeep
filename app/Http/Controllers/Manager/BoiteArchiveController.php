@@ -28,8 +28,14 @@ class BoiteArchiveController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create(): View
+    public function create(): View | RedirectResponse
     {
+        if (RayonRangement::all()->count() == 0) {
+            return redirect()
+                ->route('manager.boite.index')
+                ->with('error', 'Vous devez disposer de rayon(s) de rangement(s) d\'abord.');
+        }
+
         return view('manager.boite-archive.boite-form', [
             'boite' => new BoiteArchive(),
             'rayons' => RayonRangement::getAllRayons()

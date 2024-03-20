@@ -28,8 +28,14 @@ class ServiceController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create(): View
+    public function create(): View | RedirectResponse
     {
+        if (Direction::all()->count() == 0) {
+            return redirect()
+                ->route('admin.service.index')
+                ->with('error', 'Vous devez disposer de direction(s) d\'abord.');
+        }
+
         return view('admin.service.service-form', [
             'service' => new Service(),
             'directions' => Direction::getAllDirections(),

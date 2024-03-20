@@ -33,6 +33,12 @@
         </div>
     </div>
 
+    @if (session('error'))
+        <div class="message error">
+            {{ session('error') }}
+        </div>
+    @endif
+
     @if (session('success'))
         <div class="message success">
             {{ session('success') }}

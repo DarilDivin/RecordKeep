@@ -28,13 +28,13 @@ class DivisionController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create(): View
+    public function create(): View | RedirectResponse
     {
         $directions = Direction::has('services', '>=', 2)->orderBy('direction', 'ASC')->get();
 
         if ($directions->isEmpty()) {
             return redirect()
-            ->route('manager.division.index')
+            ->route('admin.division.index')
             ->with('error', 'Veuillez disposer d\'une Direction contenant au moins un service d\'abord.');
         }
 
