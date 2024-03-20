@@ -19,7 +19,7 @@
                 @csrf
                 @method($role->exists ? 'put' : 'post')
 
-                <x-input class="inputContainer fonction" id="role" label="Libellé du Rôle" type="text" name="name" placeholder="Rôle"  readonly="" value="{{ $role->name }}" />
+                <x-input class="inputContainer fonction" id="role" label="Libellé du Rôle" type="text" name="name" placeholder="Rôle"  readonly="" value="{!! $role->name !!}" />
 
                 @livewire('role-dynamic-select', [
                     'role' => $role,

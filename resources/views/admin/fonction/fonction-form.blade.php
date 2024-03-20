@@ -19,7 +19,7 @@
             <form method="POST" action="{{ route($fonction->exists ? 'admin.fonction.update' : 'admin.fonction.store', ['fonction' => $fonction->id]) }}">
                 @csrf
                 @method($fonction->exists ? 'put' : 'post')
-                <x-input class="inputContainer fonction" id="fonction" label="Fonction" type="text" name="fonction" placeholder="Fonction"  readonly="" value="{{ $fonction->fonction }}" />
+                <x-input class="inputContainer fonction" id="fonction" label="Fonction" type="text" name="fonction" placeholder="Fonction"  readonly="" value="{!! $fonction->fonction !!}" />
 
                 <div class="inputContainer button">
                     <button type="submit">

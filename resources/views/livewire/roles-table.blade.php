@@ -35,6 +35,8 @@
                     <td></td>
                     <x-table-header label="N°" :direction="$orderDirection" name="id" :field="$orderField"></x-table-header>
                     <x-table-header label="Rôle" :direction="$orderDirection" name="name" :field="$orderField"></x-table-header>
+                    <x-table-header label="Type de rôle" :direction="$orderDirection" name="type_role_id" :field="$orderField"></x-table-header>
+                    <td>Permissions(s)</td>
                     <x-table-header label="Date de Création" :direction="$orderDirection" name="created_at" :field="$orderField"></x-table-header>
                     <td>Actions</td>
                 </tr>
@@ -47,6 +49,15 @@
                         </td>
                         <td>{{ $role->id }}</td>
                         <td>{{ $role->name }}</td>
+                        <td>{{ $role->typerole->libelle }}</td>
+                        <td>
+                            @foreach ($role->permissions as $permission)
+                                {{ $permission->name}}
+                                @if (!$loop->last)
+                                    ,<br>
+                                @endif
+                            @endforeach
+                        </td>
                         <td>{{ $role->created_at->translatedFormat('d F Y') }}</td>
                         <td>
                             <button class="edit">
@@ -74,7 +85,7 @@
         <div class="overlay mass"></div>
         <div class="warning">
             <ion-icon name="alert-circle"></ion-icon>
-            <h3>Voulez-vous supprimer ces utilisateurs ?</h3>
+            <h3>Voulez-vous vraiment éffectuer cette suppression ?</h3>
             <form class="deleteForm">
                 <button type="button" class="closeWarning mass">Annuler</button>
                 <button type="submit" class="submitdeleteForm mass" indexRoute="" x-on:click="$wire.deletedRoles(rolesChecked)">Supprimer</button>

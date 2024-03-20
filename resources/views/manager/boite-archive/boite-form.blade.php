@@ -20,7 +20,7 @@
                 @csrf
                 @method($boite->exists ? 'put' : 'post')
 
-                <x-input class="inputContainer fonction" id="boite" label="Boite Archive(Libellé)" type="text" name="libelle" placeholder="Boite d'Archive"  readonly="" value="{{ $boite->libelle }}" />
+                <x-input class="inputContainer fonction" id="boite" label="Boite Archive(Libellé)" type="text" name="libelle" placeholder="Boite d'Archive"  readonly="" value="{!! $boite->libelle !!}" />
 
                     <x-input class="inputContainer fonction" id="chemises_number_max" label="Nombres de Chemises Maximum" type="number" name="chemises_number_max" placeholder="Nombres de chemises maximum"  readonly="" value="{{ $boite->chemises_number_max }}" />
 

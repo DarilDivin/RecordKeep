@@ -19,7 +19,7 @@
             <form method="POST" action="{{ route($division->exists ? 'admin.division.update' : 'admin.division.store', ['division' => $division->id]) }}">
                 @csrf
                 @method($division->exists ? 'put' : 'post')
-                <x-input class="inputContainer fonction" id="division" label="Division" type="text" name="division" placeholder="Division"  readonly="" value="{{ $division->division }}" />
+                <x-input class="inputContainer fonction" id="division" label="Division" type="text" name="division" placeholder="Division"  readonly="" value="{!! $division->division !!}" />
 
                 <x-input class="inputContainer fonction" id="sigle" label="Sigle" type="text" name="sigle" placeholder="Sigle"  readonly="" value="{{ $division->sigle }}" />
 

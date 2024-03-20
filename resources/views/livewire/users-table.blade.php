@@ -62,7 +62,10 @@
                         <td>{{ $user->fonction?->fonction }}</td>
                         <td>
                             @foreach ($user->roles as $role)
-                                {{ $role->name}} <br>
+                                {{ $role->name}}
+                                @if (!$loop->last)
+                                    ,<br>
+                                @endif
                             @endforeach
                         </td>
                         <td>
@@ -92,7 +95,7 @@
         <div class="overlay mass"></div>
         <div class="warning">
             <ion-icon name="alert-circle"></ion-icon>
-            <h3>Voulez-vous supprimer ces utilisateurs ?</h3>
+            <h3>Voulez-vous vraiment éffectuer cette suppression ?</h3>
             <form class="deleteForm">
                 <button type="button" class="closeWarning mass">Annuler</button>
                 <button type="submit" class="submitdeleteForm mass" indexRoute="" x-on:click="$wire.deletedUsers(usersChecked)">Supprimer</button>

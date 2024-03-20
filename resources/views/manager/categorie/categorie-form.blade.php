@@ -19,7 +19,7 @@
             <form method="POST" action="{{ route($categorie->exists ? 'manager.categorie.update' : 'manager.categorie.store', ['categorie' => $categorie->id]) }}">
                 @csrf
                 @method($categorie->exists ? 'put' : 'post')
-                <x-input class="inputContainer fonction" id="categorie" label="Catégorie" type="text" name="categorie" placeholder="Catégorie"  readonly="" value="{{ $categorie->categorie }}" />
+                <x-input class="inputContainer fonction" id="categorie" label="Catégorie" type="text" name="categorie" placeholder="Catégorie"  readonly="" value="{!! $categorie->categorie !!}" />
 
                 <div class="inputContainer button">
                     <button type="submit">

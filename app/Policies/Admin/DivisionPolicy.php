@@ -2,8 +2,9 @@
 
 namespace App\Policies\Admin;
 
-use App\Models\Division;
 use App\Models\User;
+use App\Models\Division;
+use Illuminate\Support\Str;
 use Illuminate\Auth\Access\Response;
 
 class DivisionPolicy
@@ -21,7 +22,8 @@ class DivisionPolicy
      */
     public function view(User $user, Division $division): bool
     {
-        return $user->can('Gestion des Divisions');
+        return $user->can('Gestion des Divisions')
+            && Str::lower($division->division) !== "aucune";
     }
 
     /**
@@ -37,7 +39,8 @@ class DivisionPolicy
      */
     public function update(User $user, Division $division): bool
     {
-        return $user->can('Gestion des Divisions');
+        return $user->can('Gestion des Divisions')
+            && Str::lower($division->division) !== "aucune";
     }
 
     /**
@@ -45,7 +48,8 @@ class DivisionPolicy
      */
     public function delete(User $user, Division $division): bool
     {
-        return $user->can('Gestion des Divisions');
+        return $user->can('Gestion des Divisions')
+            && Str::lower($division->division) !== "aucune";
     }
 
     /**
@@ -61,6 +65,7 @@ class DivisionPolicy
      */
     public function forceDelete(User $user, Division $division): bool
     {
-        return $user->can('Gestion des Divisions');
+        return $user->can('Gestion des Divisions')
+            && Str::lower($division->division) !== "aucune";
     }
 }

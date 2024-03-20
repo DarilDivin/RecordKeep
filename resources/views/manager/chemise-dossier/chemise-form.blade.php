@@ -19,7 +19,7 @@
             <form method="POST" action="{{ route($chemise->exists ? 'manager.chemise.update' : 'manager.chemise.store', ['chemise' => $chemise->id]) }}">
                 @csrf
                 @method($chemise->exists ? 'put' : 'post')
-                <x-input class="inputContainer fonction" id="chemise" label="Chemise" type="text" name="libelle" placeholder="Chemise"  readonly="" value="{{ $chemise->libelle }}" />
+                <x-input class="inputContainer fonction" id="chemise" label="Chemise" type="text" name="libelle" placeholder="Chemise"  readonly="" value="{!! $chemise->libelle !!}" />
 
                 @livewire('chemise-dynamic-select', [
                     'boites' => $boites,

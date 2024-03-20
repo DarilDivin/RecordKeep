@@ -19,15 +19,15 @@
             <form method="POST" action="{{ route($document->exists ? 'manager.document.update' : 'manager.document.store', ['document' => $document->id]) }}" enctype="multipart/form-data">
                 @csrf
                 @method($document->exists ? 'put' : 'post')
-                <x-input class="inputContainer" id="timbre" label="Timbre" type="text" name="timbre" placeholder="Timbre"  readonly="" value="{{ $document->timbre }}" />
+                <x-input class="inputContainer" id="timbre" label="Timbre" type="text" name="timbre" placeholder="Timbre"  readonly="" value="{!! $document->timbre !!}" />
 
-                <x-input class="inputContainer" id="nom" label="Nom du Document" type="text" name="nom" placeholder="Nom du Document" readonly="" value="{{ $document->nom }}" />
+                <x-input class="inputContainer" id="nom" label="Nom du Document" type="text" name="nom" placeholder="Nom du Document" readonly="" value="{!! $document->nom !!}" />
 
-                <x-input class="inputContainer" id="emetteur" label="Émetteur" type="text" name="emetteur" placeholder="Émetteur"  readonly="" value="{{ $document->emetteur }}" />
+                <x-input class="inputContainer" id="emetteur" label="Émetteur" type="text" name="emetteur" placeholder="Émetteur"  readonly="" value="{!! $document->emetteur !!}" />
 
-                <x-input class="inputContainer objet" id="objet" label="Objet" type="text" name="objet" placeholder="Objet du Document" readonly="" value="{{ $document->objet }}" />
+                <x-input class="inputContainer objet" id="objet" label="Objet" type="text" name="objet" placeholder="Objet du Document" readonly="" value="{!! $document->objet !!}" />
 
-                <x-input class="inputContainer" id="recepteur" label="Récepteur" type="text" name="recepteur" placeholder="Récepeteur"  readonly="" value="{{ $document->recepteur }}" />
+                <x-input class="inputContainer" id="recepteur" label="Récepteur" type="text" name="recepteur" placeholder="Récepeteur"  readonly="" value="{!! $document->recepteur !!}" />
 
                 @include('shared.tom-select')
 

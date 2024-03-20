@@ -19,7 +19,7 @@
             <form method="POST" action="{{ route($nature->exists ? 'manager.nature.update' : 'manager.nature.store', ['nature' => $nature->id]) }}">
                 @csrf
                 @method($nature->exists ? 'put' : 'post')
-                <x-input class="inputContainer fonction" id="nature" label="Nature de Document" type="text" name="nature" placeholder="Nature de Document"  readonly="" value="{{ $nature->nature }}" />
+                <x-input class="inputContainer fonction" id="nature" label="Nature de Document" type="text" name="nature" placeholder="Nature de Document"  readonly="" value="{!! $nature->nature !!}" />
 
                 <x-input class="inputContainer fonction" id="duree_communicabilite" label="DC (Durée de Communicabilité en ans)" type="number" name="duree_communicabilite" placeholder="Durée de Communicabilité"  readonly="" value="{{ $nature->duree_communicabilite }}" />
 

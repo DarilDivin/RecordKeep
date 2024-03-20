@@ -38,10 +38,20 @@ class UserFormRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'matricule' => ['required','integer', 'min:6', Rule::unique('users')->ignore($this->route()->parameter('user'))],
+            'matricule' => [
+                'required','integer', 'min:6',
+                Rule::unique('users')
+                ->ignore($this->route()->parameter('user'))
+                ->withoutTrashed()
+            ],
             'nom' => ['required', 'string', 'max:255'],
             'prenoms' => ['required', 'string'],
-            'email' => ['required', 'email', Rule::unique('users')->ignore($this->route()->parameter('user'))],
+            'email' => [
+                'required', 'email',
+                Rule::unique('users')
+                ->ignore($this->route()->parameter('user'))
+                ->withoutTrashed()
+            ],
             'datenaissance' => ['required', 'date', new UserBirthDayRule()],
             'sexe' => ['required', 'string'],
             'roles' => ['array','exists:roles,id', 'required',

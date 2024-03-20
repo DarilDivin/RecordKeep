@@ -2,8 +2,9 @@
 
 namespace App\Policies\Admin;
 
-use App\Models\Service;
 use App\Models\User;
+use App\Models\Service;
+use Illuminate\Support\Str;
 use Illuminate\Auth\Access\Response;
 
 class ServicePolicy
@@ -21,7 +22,8 @@ class ServicePolicy
      */
     public function view(User $user, Service $service): bool
     {
-        return $user->can('Gestion des Services');
+        return $user->can('Gestion des Services')
+            && Str::lower($service->service) !== "aucun";
     }
 
     /**
@@ -37,7 +39,8 @@ class ServicePolicy
      */
     public function update(User $user, Service $service): bool
     {
-        return $user->can('Gestion des Services');
+        return $user->can('Gestion des Services')
+            && Str::lower($service->service) !== "aucun";
     }
 
     /**
@@ -45,7 +48,8 @@ class ServicePolicy
      */
     public function delete(User $user, Service $service): bool
     {
-        return $user->can('Gestion des Services');
+        return $user->can('Gestion des Services')
+            && Str::lower($service->service) !== "aucun";
     }
 
     /**
@@ -61,6 +65,7 @@ class ServicePolicy
      */
     public function forceDelete(User $user, Service $service): bool
     {
-        return $user->can('Gestion des Services');
+        return $user->can('Gestion des Services')
+            && Str::lower($service->service) !== "aucun";
     }
 }

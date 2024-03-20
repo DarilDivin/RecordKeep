@@ -24,7 +24,7 @@
                 @csrf
                 @method($permission->exists ? 'put' : 'post')
 
-                <x-input class="inputContainer fonction" id="permission" label="Libellé de la Permission" type="text" name="name" placeholder="Permission"  readonly="" value="{{ $permission->name }}" />
+                <x-input class="inputContainer fonction" id="permission" label="Libellé de la Permission" type="text" name="name" placeholder="Permission"  readonly="" value="{!! $permission->name !!}" />
 
                 @livewire('permission-dynamic-select', [
                     'roles' => $roles,

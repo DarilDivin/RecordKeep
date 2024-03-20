@@ -24,7 +24,7 @@
                 @csrf
                 @method($typerole->exists ? 'put' : 'post')
 
-                <x-input class="inputContainer fonction" id="typerole" label="Libellé du Type de Rôle" type="text" name="libelle" placeholder="Type de Rôle"  readonly="" value="{{ $typerole->libelle }}" />
+                <x-input class="inputContainer fonction" id="typerole" label="Libellé du Type de Rôle" type="text" name="libelle" placeholder="Type de Rôle"  readonly="" value="{!! $typerole->libelle !!}" />
 
                 <div class="inputContainer TomSelect" style="grid-column: 1 / span 3;">
                     <label for="roles">Rôles</label>

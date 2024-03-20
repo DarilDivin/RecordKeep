@@ -19,7 +19,7 @@
             <form method="POST" action="{{ route($service->exists ? 'admin.service.update' : 'admin.service.store', ['service' => $service->id]) }}">
                 @csrf
                 @method($service->exists ? 'put' : 'post')
-                <x-input class="inputContainer fonction" id="service" label="Service" type="text" name="service" placeholder="Service"  readonly="" value="{{ $service->service }}" />
+                <x-input class="inputContainer fonction" id="service" label="Service" type="text" name="service" placeholder="Service"  readonly="" value="{!! $service->service !!}" />
 
                 <x-input class="inputContainer fonction" id="sigle" label="Sigle" type="text" name="sigle" placeholder="Sigle"  readonly="" value="{{ $service->sigle }}" />
 

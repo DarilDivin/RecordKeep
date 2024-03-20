@@ -31,7 +31,11 @@ class ChangeDocumentCommunicableStatus extends Command
     public function handle()
     {
         foreach (Document::all() as $document) {
-            if (Carbon::now()->addYears($document->naturedocument->duree_communicabilte)->isPast()) {
+            if (
+                Carbon::parse($document->date_creation)
+                ->addYears($document->naturedocument->duree_communicabilte)
+                ->isPast()
+            ) {
                 $document->update(['communicable' => 1]);
             }
         }

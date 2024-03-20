@@ -31,9 +31,9 @@ class NatureDocumentFormRequest extends FormRequest
                 ->ignore($this->route()->parameter('nature'))
                 ->withoutTrashed()
             ],
-            'duree_communicabilite' => ['required', 'integer', new DCRule()],
-            'dua_bureaux' => ['required', 'integer', new DUAAtDesksRule()],
-            'dua_service_pre_archivage' => ['required', 'integer', new DUAAtSPARRule()],
+            'duree_communicabilite' => ['required', 'integer', 'numeric', new DCRule()],
+            'dua_bureaux' => ['required', 'integer', 'numeric', new DUAAtDesksRule()],
+            'dua_service_pre_archivage' => ['required', 'integer', 'numeric', new DUAAtSPARRule()],
             'categorie_id' => ['required', 'exists:categories,id', 'integer'],
             'visible' => ['required', 'boolean'],
         ];

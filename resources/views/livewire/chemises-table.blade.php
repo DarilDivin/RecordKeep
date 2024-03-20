@@ -97,7 +97,7 @@
         <div class="overlay mass"></div>
         <div class="warning">
             <ion-icon name="alert-circle"></ion-icon>
-            <h3>Voulez-vous supprimer ces utilisateurs ?</h3>
+            <h3>Voulez-vous vraiment éffectuer cette suppression ?</h3>
             <form class="deleteForm">
                 <button type="button" class="closeWarning mass">Annuler</button>
                 <button type="submit" class="submitdeleteForm mass" indexRoute="" x-on:click="$wire.deletedChemises(chemisesChecked)">Supprimer</button>

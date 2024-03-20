@@ -20,13 +20,13 @@
                 @csrf
                 @method($user->exists ? 'put' : 'post')
 
-                <x-input class="inputContainer" id="matricule" label="Matricule" type="text" name="matricule" placeholder="Matricule"  readonly="" value="{{ $user->matricule }}" />
+                <x-input class="inputContainer" id="matricule" label="Matricule" type="text" name="matricule" placeholder="Matricule"  readonly="" value="{!! $user->matricule !!}" />
 
-                <x-input class="inputContainer" id="nom" label="Nom" type="text" name="nom" placeholder="Nom" readonly="" value="{{ $user->nom }}" />
+                <x-input class="inputContainer" id="nom" label="Nom" type="text" name="nom" placeholder="Nom" readonly="" value="{!! $user->nom !!}" />
 
-                <x-input class="inputContainer" id="prenoms" label="Prénom(s)" type="text" name="prenoms" placeholder="Prénom(s)" readonly="" value="{{ $user->prenoms }}" />
+                <x-input class="inputContainer" id="prenoms" label="Prénom(s)" type="text" name="prenoms" placeholder="Prénom(s)" readonly="" value="{!!  $user->prenoms !!}" />
 
-                <x-input class="inputContainer" id="email" label="Email" type="email" name="email" placeholder="jonhdoe@gouv.bj"  readonly="" value="{{ $user->email }}" />
+                <x-input class="inputContainer" id="email" label="Email" type="email" name="email" placeholder="jonhdoe@gouv.bj"  readonly="" value="{!! $user->email !!}" />
 
                 <x-input class="inputContainer" id="password" label="Mot de passe" type="password" name="password" placeholder="Mot de passe"  readonly="" value="" />
 

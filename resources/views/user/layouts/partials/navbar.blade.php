@@ -1,5 +1,5 @@
 @php
-    $route = request()->route()->getName();
+    $routeName = request()->route()->getName();
 @endphp
 <nav id="navbar" class="" x-data="{ isNavDropdownContainerOpen: false }">
     <div class="logo">
@@ -13,25 +13,25 @@
     </div>
     <div class="nav_menu">
         <ul>
-            @if ($route == 'Presentation' || ($route === 'contactUs' && !auth()->check()))
-                <li @class(['nav_links', 'active' => str_contains($route, 'home')])><a href="{{ route('home') }}">Accueil</a></li>
-                <li @class(['nav_links', 'active' => str_contains($route, 'document.index')])><a href="{{ route('document.index') }}">Documenthèque</a></li>
+            @if ($routeName === 'index' || ($routeName === 'contactUs' && !auth()->check()))
+                <li @class(['nav_links', 'active' => str_contains($routeName, 'home')])><a href="{{ route('home') }}">Accueil</a></li>
+                <li @class(['nav_links', 'active' => str_contains($routeName, 'document.index')])><a href="{{ route('document.index') }}">Documenthèque</a></li>
             @endif
             @canany(['Consulter un Document', 'Télécharger un Document', 'Rechercher un Document', 'Demander un Prêt'])
-                <li @class(['nav_links', 'active' => str_contains($route, 'home')])><a href="{{ route('home') }}">Accueil</a></li>
+                <li @class(['nav_links', 'active' => str_contains($routeName, 'home')])><a href="{{ route('home') }}">Accueil</a></li>
             @endcanany
 
             @canany(['Consulter un Document', 'Télécharger un Document', 'Rechercher un Document', 'Demander un Prêt'])
-                <li @class(['nav_links', 'active' => str_contains($route, 'document.index')])><a href="{{ route('document.index') }}">Documenthèque</a></li>
+                <li @class(['nav_links', 'active' => str_contains($routeName, 'document.index')])><a href="{{ route('document.index') }}">Documenthèque</a></li>
             @endcanany
 
             @auth
-                <li style="position: relative" @class(['nav_links', 'active' => str_contains($route, 'settings')]) >
+                <li style="position: relative" @class(['nav_links', 'active' => str_contains($routeName, 'settings')]) >
                     <a href="{{ route('settings') }}">Paramètres</a>
                     <span style="position: absolute; color: white; font-size:12px; width: 15px; height: 15px; background: red; top: -8px; left: -12px; border-radius: 50%; display: flex; align-items: center; justify-content: center;" >0</span>
                 </li>
             @endauth
-            <li @class(['nav_links', 'active' => str_contains($route, 'contactUs')])><a href="{{ route('contactUs') }}"> Nous contacter </a></li>
+            <li @class(['nav_links', 'active' => str_contains($routeName, 'contactUs')])><a href="{{ route('contactUs') }}"> Nous contacter </a></li>
 
             @auth
                 <form action="{{ route('logout') }}" method="post" id="logout-form" style="display: none">
