@@ -120,9 +120,17 @@ class UserController extends Controller
             }
         */
         $user->roles()->sync($request['roles']);
-        foreach($request['roles'] as $role){
-            $user->permissions()->sync(Role::find($role)->permissions);
+        foreach ($user->permissions as $permission) {
+            $user->revokePermissionTo($permission);
         }
+        foreach($request['roles'] as $role){
+            foreach (Role::find($role)->permissions as $permission) {
+                $user->givePermissionTo($permission->name);
+            }
+        }
+        /* foreach($request['roles'] as $role){
+            $user->permissions()->sync(Role::find($role)->permissions);
+        } */
         /* array_map(function ($role) use($user) {
             $user->permissions()->sync(Role::find($role)->permissions);
         }, $request['roles']); */

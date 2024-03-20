@@ -1,0 +1,5 @@
+-La Pagination rate parfois;
+-Après une recherche le bouton supprimer n'affiche plus la modale et il faut recharger la page d'abord;
+-Message de confirmation n'apparaissant pas après une suppression multiple;
+
+-Jobs avec Fortify pour ne pas faire attendre l'utilisateur.

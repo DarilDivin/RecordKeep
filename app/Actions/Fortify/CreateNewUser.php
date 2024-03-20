@@ -83,9 +83,14 @@ class CreateNewUser implements CreatesNewUsers
             'direction_id' => $input['direction_id']
         ]);
         $user->roles()->sync($input['roles']);
-        foreach($input['roles'] as $role){
-            $user->permissions()->sync(Role::find($role)->permissions);
+        foreach ($input['roles'] as $role) {
+            foreach (Role::find($role)->permissions as $permission) {
+                $user->givePermissionTo($permission->name);
+            }
         }
+        /* foreach($input['roles'] as $role){
+            $user->permissions()->sync(Role::find($role)->permissions);
+        } */
         /* array_map(function ($role) use($user) {
             $user->permissions()->sync(Role::find($role)->permissions);
         }, $input['roles']); */
