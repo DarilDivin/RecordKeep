@@ -18,7 +18,7 @@ class ChemisesTable extends Component
 
     public $selectedBoite;
 
-    public $orderField = 'libelle';
+    public $orderField = 'code';
 
     public $orderDirection = 'ASC';
 

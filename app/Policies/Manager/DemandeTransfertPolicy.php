@@ -95,7 +95,8 @@ class DemandeTransfertPolicy
      public function showBordereauForm(User $user, DemandeTransfert $demandeTransfert): bool
      {
         return $user->can('Gestion des Demandes de Transferts du MISP')
-            && $demandeTransfert->transfere === 1/*  && $demandeTransfert->documents->count() > 0 */;
+            && $demandeTransfert->transfere === 1/*  && $demandeTransfert->documents->count() > 0 */
+            /* && $demandeTransfert->bordereautransfert->count() < 1 */;
      }
 
      public function accept(User $user, DemandeTransfert $demandeTransfert): bool

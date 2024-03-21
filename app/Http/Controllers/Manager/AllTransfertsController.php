@@ -19,6 +19,11 @@ class AllTransfertsController extends Controller
     public function one(string $slug, DemandeTransfert $transfert): View | RedirectResponse
     {
         $this->authorize('one', $transfert);
+        if($transfert->documents->where('archive', 0)->count() == 0){
+            return redirect()
+            ->route('manager.transfert.all')
+            ->with('error', 'La Demande de Transfert ne contient plus aucun document non archivé');
+        }
         if($slug !== $transfert->getSlug()){
             return to_route('manager.transfert.show', [
                 'slug' => $transfert->getSlug(),
@@ -28,16 +33,14 @@ class AllTransfertsController extends Controller
         return view('manager.all-demande-transfert.transfert-show', [
             'transfert' => $transfert
         ]);
-        if($transfert->documents->count() == 0){
-            return redirect()
-            ->route('manager.transfert.all')
-            ->with('error', 'La Demande de Transfert ne contient plus aucun document non archivé');
-        }
     }
 
-    public function showBordereauForm(DemandeTransfert $transfert)
+    public function showBordereauForm(DemandeTransfert $transfert) : RedirectResponse | View
     {
         $this->authorize('showBordereauForm', $transfert);
+        if ($transfert->has('bordereautransfert', '>=', 1)->count() > 0) {
+            return back()->with('error', 'La demande possède déjà un bordereau de transfert.');
+        }
         if($transfert->documents->count() > 0){
             return view('manager.all-demande-transfert.bordereau-form', [
                 'transfert' => $transfert
@@ -48,7 +51,7 @@ class AllTransfertsController extends Controller
             ->with('error', 'La Demande de Transfert ne contient aucun document');
     }
 
-    public function accept(DemandeTransfert $transfert)
+    public function accept(DemandeTransfert $transfert) : RedirectResponse
     {
         $this->authorize('accept', $transfert);
         if($transfert->documents->count() > 0){
@@ -67,7 +70,7 @@ class AllTransfertsController extends Controller
             ->with('error', 'La Demande de Transfert ne contient aucun document');
     }
 
-    public function show(BordereauTransfert $bordereau)
+    public function show(BordereauTransfert $bordereau) : View | RedirectResponse
     {
         $this->authorize('show', $bordereau->demandetransfert);
         return view('manager.all-demande-transfert.bordereau-preview', [
@@ -75,7 +78,7 @@ class AllTransfertsController extends Controller
         ]);
     }
 
-    public function cwithdraw (DemandeTransfert $transfert) {
+    public function cwithdraw (DemandeTransfert $transfert) : RedirectResponse {
         $transfert->update(['cw' => 1]);
         return redirect()
             ->route('manager.transfert.all')

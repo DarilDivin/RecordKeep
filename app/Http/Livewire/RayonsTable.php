@@ -15,7 +15,7 @@ class RayonsTable extends Component
 
     public $code = '';
 
-    public $orderField = 'libelle';
+    public $orderField = 'code';
 
     public $orderDirection = 'ASC';
 

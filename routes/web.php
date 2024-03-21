@@ -26,5 +26,5 @@ Route::get('/presentation', function () {
 Route::get('/home', [HomeController::class, 'index'])->name('home')->middleware(['auth', 'verified', 'permission:Consulter un Document|Rechercher un Document|Télécharger un Document|Demander un Prêt']);
 
 Route::post( '/user-register', [AdminRegisteredUserController::class, 'store'])
-    ->middleware(['auth', 'permission:Gestion des Utilisateurs'])
+    ->middleware(['auth', 'verified', 'permission:Gestion des Utilisateurs'])
     ->name('user.register');

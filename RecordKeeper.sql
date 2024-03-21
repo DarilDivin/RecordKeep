@@ -16,11 +16,6 @@
 
 -- Listage des données de la table recordkeeper.boite_archives : ~0 rows (environ)
 
--- Listage des données de la table recordkeeper.bordereau_transferts : ~2 rows (environ)
-INSERT INTO `bordereau_transferts` (`id`, `observation`, `demande_transfert_id`, `created_by`, `updated_by`, `deleted_by`, `created_at`, `updated_at`, `deleted_at`) VALUES
-	(1, 'Les documents dont au complet et donc la Demande de Transfert est validée.', 2, NULL, NULL, NULL, '2024-01-20 16:07:45', '2024-01-20 16:07:45', NULL),
-	(2, 'Regénération du Bordeareau de Transfert de cette Demande', 2, NULL, NULL, NULL, '2024-01-20 16:18:10', '2024-01-20 16:18:10', NULL);
-
 -- Listage des données de la table recordkeeper.categories : ~3 rows (environ)
 INSERT INTO `categories` (`id`, `categorie`, `created_by`, `updated_by`, `deleted_by`, `created_at`, `updated_at`, `deleted_at`) VALUES
 	(1, 'Administrative', NULL, NULL, NULL, '2023-09-10 18:31:51', '2023-09-18 00:18:02', NULL),

@@ -18,7 +18,7 @@ class BoitesTable extends Component
 
     public $selectedRayon;
 
-    public $orderField = 'libelle';
+    public $orderField = 'code';
 
     public $orderDirection = 'ASC';
 

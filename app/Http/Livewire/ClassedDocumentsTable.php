@@ -16,7 +16,7 @@ class ClassedDocumentsTable extends Component
 
     public $code = '';
 
-    public $orderField = 'nom';
+    public $orderField = 'code';
 
     public $orderDirection = 'ASC';
 

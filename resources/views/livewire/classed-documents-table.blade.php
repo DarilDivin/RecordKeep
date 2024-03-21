@@ -38,7 +38,7 @@
             <thead>
                 <tr>
                     <x-table-header label="N°" :direction="$orderDirection" name="id" :field="$orderField"></x-table-header>
-                    <x-table-header label="Signature" :direction="$orderDirection" name="signature" :field="$orderField"></x-table-header>
+                    <x-table-header label="Timbre" :direction="$orderDirection" name="timbre" :field="$orderField"></x-table-header>
                     <x-table-header label="Nom du Document" :direction="$orderDirection" name="nom" :field="$orderField"></x-table-header>
                     <x-table-header label="Code du Document" :direction="$orderDirection" name="code" :field="$orderField"></x-table-header>
                     <x-table-header label="Nature du Document" :direction="$orderDirection" name="nature" :field="$orderField"></x-table-header>
@@ -52,7 +52,7 @@
                 @forelse ($documents as $document)
                 <tr>
                     <td>{{ $document->id }}</td>
-                    <td>{{ $document->signature }}</td>
+                    <td>{{ $document->timbre }}</td>
                     <td>{{ $document->nom }}</td>
                     <td>{{ $document->code }}</td>
                     <td>{{ $document->naturedocument->nature }}</td>

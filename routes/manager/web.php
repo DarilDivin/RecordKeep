@@ -164,7 +164,7 @@ Route::get('downloadPdf/{rapport}', [RapportDepartController::class, 'pdf'])
 
 Route::get('manager/rapport-depart/create/{demande}', [RapportDepartController::class, 'create'])
 ->name('rapport-depart-create')
-->middleware(['auth', 'permission:Gestion des Demandes de Prêts'])
+->middleware(['auth', 'verified', 'permission:Gestion des Demandes de Prêts'])
 ->where([
     'demande' => $idRegex
 ]);

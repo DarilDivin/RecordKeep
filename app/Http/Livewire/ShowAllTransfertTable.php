@@ -32,9 +32,10 @@ class ShowAllTransfertTable extends Component
 
     public function showBordereauForm()
     {
-        return redirect()
-            /* ->route('manager.transfert.bordereau-form', ['transfert' => $this->transfert->id]); */
-            ->route('manager.transfert.bordereau-show', ['bordereau' => $this->transfert->bordereautransfert]);
+        if (!$this->transfert->valide) {
+            return redirect()->route('manager.transfert.bordereau-form', ['transfert' => $this->transfert->id]);
+        }
+        return redirect()->route('manager.transfert.bordereau-show', ['bordereau' => $this->transfert->bordereautransfert]);
     }
 
     public function setOrderField(string | int | DateTime  $field)
