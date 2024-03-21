@@ -1,7 +1,9 @@
 <x-mail::message>
-# Reponse à votre demande
+# Reponse à votre demande de prêt
 
-Votre demande de prêt de document à été rejetée.
+Votre demande de prêt pour le document
+<a href="{{ route('document.show', ['slug' => $demandePret->document->getSlug(), 'document' => $demandePret->document->id]) }}"></a>
+a été rejetée.
 
 {{-- <x-mail::button :url="''">
 Button Text

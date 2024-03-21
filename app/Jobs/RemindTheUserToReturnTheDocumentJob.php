@@ -3,6 +3,7 @@
 namespace App\Jobs;
 
 use App\Mail\RemindTheUserToReturnTheDocumentMail;
+use App\Models\DemandePret;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -18,8 +19,9 @@ class RemindTheUserToReturnTheDocumentJob implements ShouldQueue
     /**
      * Create a new job instance.
      */
-    public function __construct(public string $userEmail)
-    {
+    public function __construct(
+        public DemandePret $demandePret
+    ) {
         //
     }
 
@@ -28,6 +30,6 @@ class RemindTheUserToReturnTheDocumentJob implements ShouldQueue
      */
     public function handle(): void
     {
-        Mail::send(new RemindTheUserToReturnTheDocumentMail($this->userEmail));
+        Mail::send(new RemindTheUserToReturnTheDocumentMail($this->demandePret));
     }
 }

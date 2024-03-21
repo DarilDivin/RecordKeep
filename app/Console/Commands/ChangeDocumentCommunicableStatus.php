@@ -32,6 +32,7 @@ class ChangeDocumentCommunicableStatus extends Command
     {
         foreach (Document::all() as $document) {
             if (
+                !$document->communicable && 
                 Carbon::parse($document->date_creation)
                 ->addYears($document->naturedocument->duree_communicabilte)
                 ->isPast()

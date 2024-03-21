@@ -2,6 +2,7 @@
 
 namespace App\Mail;
 
+use App\Models\DemandePret;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
@@ -18,9 +19,10 @@ class AcceptDemandeMail extends Mailable
     /**
      * Create a new message instance.
      */
-    public function __construct(string $destination)
-    {
-        $this->destination = $destination;
+    public function __construct(
+        public DemandePret $demandePret
+    ) {
+
     }
 
     /**
@@ -29,8 +31,8 @@ class AcceptDemandeMail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            to: $this->destination,
-            subject: 'Demande de Prêt acceptée',
+            to: $this->demandePret->user->email,
+            subject: 'Demande de prêt de document acceptée',
         );
     }
 
@@ -41,6 +43,7 @@ class AcceptDemandeMail extends Mailable
     {
         return new Content(
             markdown: 'emails.demande-prets.acceptDemande',
+            with: ['demandePret' => $this->demandePret]
         );
     }
 

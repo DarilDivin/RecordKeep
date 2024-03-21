@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('etat')->nullable();
             $table->foreignIdFor(User::class)->constrained()->cascadeOnDelete();
             $table->foreignIdFor(Document::class)->constrained()->cascadeOnDelete();
+            $table->date('date_acceptation')->nullable();
             $table->string('created_by')->nullable();
             $table->string('updated_by')->nullable();
             $table->string('deleted_by')->nullable();

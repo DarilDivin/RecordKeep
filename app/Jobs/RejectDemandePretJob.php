@@ -2,6 +2,7 @@
 
 namespace App\Jobs;
 
+use App\Models\DemandePret;
 use Illuminate\Bus\Queueable;
 use App\Mail\RejectDemandeMail;
 use Illuminate\Support\Facades\Mail;
@@ -18,8 +19,9 @@ class RejectDemandePretJob implements ShouldQueue
     /**
      * Create a new job instance.
      */
-    public function __construct(public string $destination)
-    {
+    public function __construct(
+        public DemandePret $demandePret
+    ) {
         //
     }
 
@@ -28,6 +30,6 @@ class RejectDemandePretJob implements ShouldQueue
      */
     public function handle(): void
     {
-        Mail::send(new RejectDemandeMail($this->destination));
+        Mail::send(new RejectDemandeMail($this->demandePret));
     }
 }

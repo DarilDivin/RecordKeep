@@ -33,8 +33,8 @@ class RemindTheUserToReturnTheDocument extends Command
     public function handle()
     {
         foreach (DemandePret::where('etat', 'Terminé')->get() as $demande) {
-            if (Carbon::now()->addDays($demande->duree)->isPast())
-            RemindTheUserToReturnTheDocumentJob::dispatch($demande->user->email);
+            if (Carbon::parse('date_acceptation')->addDays($demande->duree)->isPast())
+            RemindTheUserToReturnTheDocumentJob::dispatch($demande);
         }
     }
 }

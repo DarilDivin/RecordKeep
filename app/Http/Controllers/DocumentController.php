@@ -41,7 +41,7 @@ class DocumentController extends Controller
             'nbrdownload' => ++$document->nbrdownload,
         ]);
         $time = time();
-        $documentName = "$time" . "$document->name" . ".pdf";
+        $documentName = "$document->nom" . " $time" . ".pdf";
         return Storage::download($documentPath, $documentName);
     }
 
@@ -78,7 +78,7 @@ class DocumentController extends Controller
             return back()->with('error', 'Le document demandé fait déjà objet de prêt.');
         } else {
             if ($demande->etat === 'Encours') {
-                AcceptDemandePretJob::dispatch($demande->user->email);
+                AcceptDemandePretJob::dispatch($demande);
             }
             $demande->update(['etat' => 'Validé']);
             $demande->document()->update([
@@ -92,7 +92,7 @@ class DocumentController extends Controller
     public function rejectDemande(DemandePret $demande)
     {
         $demande->delete();
-        RejectDemandePretJob::dispatch($demande->user->email);
+        RejectDemandePretJob::dispatch($demande);
         $demande->document()->update([
             'prete' => 0,
             'disponibilite' => 1

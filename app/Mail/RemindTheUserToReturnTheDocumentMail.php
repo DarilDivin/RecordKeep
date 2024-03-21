@@ -2,6 +2,7 @@
 
 namespace App\Mail;
 
+use App\Models\DemandePret;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
@@ -16,8 +17,9 @@ class RemindTheUserToReturnTheDocumentMail extends Mailable
     /**
      * Create a new message instance.
      */
-    public function __construct(public string $userEmail)
-    {
+    public function __construct(
+        public DemandePret $demandePret
+    ) {
         //
     }
 
@@ -27,7 +29,7 @@ class RemindTheUserToReturnTheDocumentMail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            to: $this->userEmail,
+            to: $this->demandePret->user->email,
             subject: 'Rappel de remise de Document',
         );
     }
@@ -39,7 +41,7 @@ class RemindTheUserToReturnTheDocumentMail extends Mailable
     {
         return new Content(
             markdown: 'emails.remindTheUserToReturnTheDocument',
-            with: []
+            with: ['demandePret' => $this->demandePret]
         );
     }
 

@@ -1,7 +1,9 @@
 <x-mail::message>
-# Reponse à votre demande
+# Reponse à votre demande de prêt
 
-Votre Demande de Prêt de document à été acceptée, vous pouvez passer chercher le document.
+Votre Demande de prêt pour le document
+<a href="{{ route('document.show', ['slug' => $demandePret->document->getSlug(), 'document' => $demandePret->document->id]) }}"></a>
+a été acceptée, vous pouvez passer chercher le document à la DSI.
 
 {{-- <x-mail::button :url="''">
 Button Text

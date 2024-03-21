@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers\Manager;
 
+use Carbon\Carbon;
 use App\Models\DemandePret;
 use App\Models\RapportPret;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Contracts\View\View;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Manager\RapportPretFormRequest;
 use Illuminate\Http\RedirectResponse;
+use App\Http\Requests\Manager\RapportPretFormRequest;
 
 class RapportDepartController extends Controller
 {
@@ -32,7 +33,10 @@ class RapportDepartController extends Controller
             'type' => 'Départ',
             'demande_pret_id' => $demande->id
         ]));
-        $rapport->demandePret()->update(['etat' => 'Terminé']);
+        $rapport->demandePret()->update([
+            'etat' => 'Terminé',
+            'date_acceptation' => Carbon::now()->date()
+        ]);
         return to_route('demande-de-prets')->with('success', 'Votre rapport à été bien crée.  <a target="_blank" href="' . route('rapport-show', ['rapport' => $rapport->id]) . '"> Cliquez ici pour y accéder </a>');
     }
 
