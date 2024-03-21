@@ -19,8 +19,11 @@ class DemandePretJob implements ShouldQueue
     /**
      * Create a new job instance.
      */
-    public function __construct(public DemandePret $demande, public string $routeAccept, public string $routeReject)
-    {
+    public function __construct(
+        public DemandePret $demande,
+        public string $routeAccept,
+        public string $routeReject
+    ) {
         //
     }
 

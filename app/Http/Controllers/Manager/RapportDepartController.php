@@ -8,6 +8,7 @@ use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Contracts\View\View;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Manager\RapportPretFormRequest;
+use Illuminate\Http\RedirectResponse;
 
 class RapportDepartController extends Controller
 {
@@ -18,17 +19,18 @@ class RapportDepartController extends Controller
         ]);
     }
 
-    public function create(DemandePret $demande)
+    public function create(DemandePret $demande) : View
     {
         return view('manager.rapports.depart-de-pret', [
             'demande' => $demande
         ]);
     }
 
-    public function store(RapportPretFormRequest $request)
+    public function store(RapportPretFormRequest $request, DemandePret $demande) : RedirectResponse
     {
         $rapport = RapportPret::create(array_merge($request->validated(), [
-            'type' => 'Départ'
+            'type' => 'Départ',
+            'demande_pret_id' => $demande->id
         ]));
         $rapport->demandePret()->update(['etat' => 'Terminé']);
         return to_route('demande-de-prets')->with('success', 'Votre rapport à été bien crée.  <a target="_blank" href="' . route('rapport-show', ['rapport' => $rapport->id]) . '"> Cliquez ici pour y accéder </a>');

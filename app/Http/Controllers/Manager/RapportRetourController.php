@@ -16,10 +16,11 @@ class RapportRetourController extends Controller
         ]);
     }
 
-    public function store(RapportPretFormRequest $request)
+    public function store(RapportPretFormRequest $request, RapportPret $rapportDepart)
     {
         $rapport = RapportPret::create(array_merge($request->validated(), [
-            'type' => 'Retour'
+            'type' => 'Retour',
+            'demande_pret_id' => $rapportDepart->demandePret->id
         ]));
         Document::find($rapport->demandePret->document->id)->update([
             'prete' => 0,

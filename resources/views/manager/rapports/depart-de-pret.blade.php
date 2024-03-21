@@ -16,7 +16,7 @@
             </a>
             <h1> Rédiger un rapport de départ de prêt </h1>
 
-            <form method="POST" action="{{ route('rapport-depart-store') }}" enctype="multipart/form-data" class="rapport">
+            <form method="POST" action="{{ route('rapport-depart-store', ['demande' => $demande->id]) }}" enctype="multipart/form-data" class="rapport">
                 @csrf
                 @method('post')
                 <x-input class="inputContainer DebMoit" id="nomDoc" label="Nom du Document" type="text" name="nomDoc" placeholder=""  readonly="readonly" value="{{ $demande->document->nom }}" />
@@ -31,7 +31,7 @@
 
                 <x-input class="inputContainer DebMoit" id="etat_doc" label="Etat du document" type="text" name="etat_doc" placeholder="Détruit"  readonly="" value="" />
 
-                <x-input class="" id="nomDoc" label="" type="hidden" name="demande_pret_id" placeholder=""  readonly="readonly" value="{{ $demande->id }}" />
+                {{-- <x-input class="" id="nomDoc" label="" type="hidden" name="demande_pret_id" placeholder=""  readonly="readonly" value="{{ $demande->id }}" /> --}}
 
 
                 <div class="inputContainer button">

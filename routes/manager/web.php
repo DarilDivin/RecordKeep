@@ -168,7 +168,7 @@ Route::get('manager/rapport-depart/create/{demande}', [RapportDepartController::
 ->where([
     'demande' => $idRegex
 ]);
-Route::post('manager/rapport-depart/store/', [RapportDepartController::class, 'store'])
+Route::post('manager/rapport-depart/store/{demande}', [RapportDepartController::class, 'store'])
 ->middleware(['auth', 'verified', 'permission:Gestion des Demandes de Prêts'])
 ->name('rapport-depart-store');
 
@@ -188,6 +188,6 @@ Route::get('manager/rapport-retour/create/{rapportDepart}', [RapportRetourContro
     'rapportDepart' => $idRegex
 ]);
 
-Route::post('manager/rapport-retour/store/', [RapportRetourController::class, 'store'])
+Route::post('manager/rapport-retour/store/{rapportDepart}', [RapportRetourController::class, 'store'])
 ->name('rapport-retour-store')
 ->middleware(['auth', 'verified', 'permission:Gestion des Demandes de Prêts']);

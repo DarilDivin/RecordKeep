@@ -33,14 +33,19 @@ class AllTransfertsController extends Controller
         return view('manager.all-demande-transfert.transfert-show', [
             'transfert' => $transfert
         ]);
+        if($transfert->documents->where('archive', 0)->count() == 0){
+            return redirect()
+            ->route('manager.transfert.all')
+            ->with('error', 'La Demande de Transfert ne contient plus aucun document non archivé');
+        }
     }
 
     public function showBordereauForm(DemandeTransfert $transfert) : RedirectResponse | View
     {
         $this->authorize('showBordereauForm', $transfert);
-        if ($transfert->has('bordereautransfert', '>=', 1)->count() > 0) {
+        /* if ($transfert->bordereautransfert->count() > 0) {
             return back()->with('error', 'La demande possède déjà un bordereau de transfert.');
-        }
+        } */
         if($transfert->documents->count() > 0){
             return view('manager.all-demande-transfert.bordereau-form', [
                 'transfert' => $transfert

@@ -96,7 +96,7 @@ class DemandeTransfertPolicy
      {
         return $user->can('Gestion des Demandes de Transferts du MISP')
             && $demandeTransfert->transfere === 1/*  && $demandeTransfert->documents->count() > 0 */
-            /* && $demandeTransfert->bordereautransfert->count() < 1 */;
+            && $demandeTransfert->valide === 0;
      }
 
      public function accept(User $user, DemandeTransfert $demandeTransfert): bool
@@ -108,7 +108,9 @@ class DemandeTransfertPolicy
      public function show(User $user, DemandeTransfert $demandeTransfert): bool
      {
         return $user->can('Gestion des Demandes de Transferts du MISP')
-        && $demandeTransfert->transfere === 1 && $demandeTransfert->valide === 1;
+            && $demandeTransfert->transfere === 1
+            && $demandeTransfert->valide === 1
+            && $demandeTransfert->cw === 0;
      }
 
 }

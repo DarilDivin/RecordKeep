@@ -374,8 +374,7 @@ INSERT INTO `users` (`id`, `matricule`, `nom`, `prenoms`, `email`, `datenaissanc
 	(6, 1315556, 'GBESSOU', 'David', 'david@gmail.com', '2023-09-07', 'Masculin', '2023-09-17 01:28:23', '$2y$10$N/pSV9n1trRHU70rqQN/Lu2HQG9Qk3QrgdExiXVm4ACz/.DuUFdSW', NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, '2023-09-17 01:25:27', '2023-09-17 01:28:23', NULL, 66, 22, 5, 1),
 	(7, 31511200, 'Kama', 'Kama', 'kama@kama.fr', '2023-02-06', 'Masculin', '2024-01-16 16:11:23', '$2y$10$QW5DlEei2pZuPV45.lUyLu2MSfKdWfafEUKFl7gBA/pGfeHXV9lUu', NULL, NULL, NULL, 0, NULL, 'Lawson Tony', 'Lawson Tony', NULL, '2024-01-16 16:06:28', '2024-03-20 14:15:25', NULL, 49, 16, 4, 4),
 	(8, 121315006, 'CAPO CHICHI', 'Euvincia', 'euvincia2003@gmail.com', '2010-01-07', 'Féminin', '2023-09-10 16:55:59', '$2y$10$2apVG1XmN.nBrpcdu735QeaDeUKWN4WK9f0WbEWQJFbdXrV4PmnvS', NULL, NULL, NULL, 0, NULL, 'Lawson Tony', NULL, NULL, '2024-03-20 14:13:55', '2024-03-20 14:13:55', NULL, 31, 7, 2, 4),
-	(9, 121315444, 'GBISSE', 'Darkan', 'darkan@gmail.com', '2022-11-28', 'Masculin', '2023-09-10 16:55:59', '$2y$10$VhSTReb4yDg/.Vvf32zGJ.EOqQDeEhzFNw4V9YTjK0KdYtxu5zr2q', NULL, NULL, NULL, 0, NULL, 'Lawson Tony', NULL, NULL, '2024-03-20 14:20:11', '2024-03-20 14:20:11', NULL, 63, 21, 5, 3),
-	(12, 121315, 'NOUVEL ADMIN', 'Nouvel admin', 'gerard@codjo.com', '2023-07-31', 'Masculin', '2023-09-10 16:55:59', '$2y$10$Wwq.mqtx8xmMSBJqqGP4wOkFJVCXSyOlwTTM5ccVHrcgmaaFwKM7i', NULL, NULL, NULL, 0, NULL, 'Lawson Tony', 'Lawson Tony', NULL, '2024-03-20 14:31:17', '2024-03-20 14:34:44', NULL, 23, 10, 2, 3);
+	(9, 121315444, 'GBISSE', 'Darkan', 'darkan@gmail.com', '2022-11-28', 'Masculin', '2023-09-10 16:55:59', '$2y$10$VhSTReb4yDg/.Vvf32zGJ.EOqQDeEhzFNw4V9YTjK0KdYtxu5zr2q', NULL, NULL, NULL, 0, NULL, 'Lawson Tony', NULL, NULL, '2024-03-20 14:20:11', '2024-03-20 14:20:11', NULL, 63, 21, 5, 3);
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

@@ -18,8 +18,11 @@ class DocumentDemandeMail extends Mailable
     /**
      * Create a new message instance.
      */
-    public function __construct(public DemandePret $demande, public string $routeAccept, public string $routeReject)
-    {
+    public function __construct(
+        public DemandePret $demande,
+        public string $routeAccept,
+        public string $routeReject
+    ) {
         //
     }
 

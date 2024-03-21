@@ -5,6 +5,7 @@ namespace App\Http\Livewire;
 use App\Models\BoiteArchive;
 use App\Models\ChemiseDossier;
 use App\Models\RayonRangement;
+use Illuminate\Contracts\View\View;
 use Livewire\Component;
 
 class ClassementDynamicSelect extends Component
@@ -24,13 +25,13 @@ class ClassementDynamicSelect extends Component
 
     public $selectedChemise;
 
-    public function mount()
+    public function mount() : void
     {
-        /* if(!is_null($this->document->chemisedossier)){
+        if(!is_null($this->document->chemisedossier)){
             $this->selectedChemise = $this->document->chemise_dossier_id;
             $this->selectedBoite = $this->document->chemisedossier->boite_archive_id;
             $this->selectedRayon = $this->document->chemisedossier->boitearchive->rayon_rangement_id;
-        } */
+        }
 
         if(old('chemise_dossier_id')) {
             $this->selectedChemise = old('chemise_dossier_id');
@@ -49,7 +50,7 @@ class ClassementDynamicSelect extends Component
 
     }
 
-    public function updatedSelectedRayon($rayon_id)
+    public function updatedSelectedRayon($rayon_id) : void
     {
         $this->boites = BoiteArchive::where('rayon_rangement_id', $rayon_id)->orderBy('libelle', 'ASC')->get();
         if($this->boites->isNotEmpty()) {
@@ -60,19 +61,19 @@ class ClassementDynamicSelect extends Component
         }
     }
 
-    public function updatedSelectedBoite($boite_id)
+    public function updatedSelectedBoite($boite_id) : void
     {
         $this->chemises = ChemiseDossier::where('boite_archive_id', $boite_id)->orderBy('libelle', 'ASC')->get();
         $this->selectedRayon = BoiteArchive::find($boite_id)->rayon_rangement_id;
     }
 
-    public function updatedSelectedChemise($chemise_id)
+    public function updatedSelectedChemise($chemise_id) : void
     {
         $this->selectedBoite = ChemiseDossier::find($chemise_id)->boite_archive_id;
         $this->selectedRayon = BoiteArchive::find($this->selectedBoite)->rayon_rangement_id;
     }
 
-    public function render()
+    public function render() : View
     {
         return view('livewire.classement-dynamic-select');
     }
