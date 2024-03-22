@@ -20,8 +20,9 @@ class RapportDepartController extends Controller
         ]);
     }
 
-    public function create(DemandePret $demande) : View
+    public function create(DemandePret $demande) : View | RedirectResponse
     {
+        if ($demande->etat === 'Terminé') return back();
         return view('manager.rapports.depart-de-pret', [
             'demande' => $demande
         ]);
@@ -35,7 +36,7 @@ class RapportDepartController extends Controller
         ]));
         $rapport->demandePret()->update([
             'etat' => 'Terminé',
-            'date_acceptation' => Carbon::now()->date()
+            /* 'date_acceptation' => Carbon::now()->date */
         ]);
         return to_route('demande-de-prets')->with('success', 'Votre rapport à été bien crée.  <a target="_blank" href="' . route('rapport-show', ['rapport' => $rapport->id]) . '"> Cliquez ici pour y accéder </a>');
     }

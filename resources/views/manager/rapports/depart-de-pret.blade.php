@@ -19,6 +19,7 @@
             <form method="POST" action="{{ route('rapport-depart-store', ['demande' => $demande->id]) }}" enctype="multipart/form-data" class="rapport">
                 @csrf
                 @method('post')
+
                 <x-input class="inputContainer DebMoit" id="nomDoc" label="Nom du Document" type="text" name="nomDoc" placeholder=""  readonly="readonly" value="{{ $demande->document->nom }}" />
 
                 <x-input class="inputContainer MoitFin" id="sigDoc" label="Timbre du Document" type="text" name="sig" placeholder="" readonly="readonly" value="{{ $demande->document->timbre }}" />

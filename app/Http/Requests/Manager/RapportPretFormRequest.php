@@ -22,7 +22,7 @@ class RapportPretFormRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'demande_pret_id' => ['required', 'exists:demande_prets,id'],
+            /* 'demande_pret_id' => ['required', 'exists:demande_prets,id'], */
             'observation' => ['required'],
             'etat_doc' => ['required']
         ];

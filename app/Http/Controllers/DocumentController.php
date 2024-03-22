@@ -45,7 +45,7 @@ class DocumentController extends Controller
         return Storage::download($documentPath, $documentName);
     }
 
-    public function demande(Document $document, DocumentDemandeRequest $request)
+    public function demande(Document $document, DocumentDemandeRequest $request) : RedirectResponse
     {
         if (
             Auth::user()->demandeprets
@@ -72,7 +72,7 @@ class DocumentController extends Controller
         return back()->with('success', 'Votre demande de prêt a bien été envoyée');
     }
 
-    public function acceptDemande(DemandePret $demande)
+    public function acceptDemande(DemandePret $demande) : RedirectResponse
     {
         if ($demande->document->demandeprets->where('etat', '=', 'Validé')->count() > 0) {
             return back()->with('error', 'Le document demandé fait déjà objet de prêt.');
@@ -89,8 +89,14 @@ class DocumentController extends Controller
         }
     }
 
-    public function rejectDemande(DemandePret $demande)
+    public function rejectDemande(DemandePret $demande) : RedirectResponse
     {
+        if ($demande->etat === 'Validé') {
+            return
+                to_route('demande-de-prets')
+                ->with('error', 'La demande de prêt est déjà acceptée.');
+        }
+
         $demande->delete();
         RejectDemandePretJob::dispatch($demande);
         $demande->document()->update([

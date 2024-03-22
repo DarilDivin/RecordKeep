@@ -1,6 +1,16 @@
 -La Pagination rate parfois;
 -Après une recherche le bouton supprimer n'affiche plus la modale et il faut recharger la page d'abord;
 -Message de confirmation n'apparaissant pas après une suppression multiple;
--La requête d'affichage
 
+-------------------------------------------------------------------------------------------------------------
+
+-La requête d'affichage
+-Consulter marche pas sur l'acceuil
+-La Lecture des PDFs bugg pour certains
+-Les mails niasent (Je vais essayer avec url() plutôt que route())
 -Jobs avec Fortify pour ne pas faire attendre l'utilisateur.
+
+
+-Listing avec recherche pour 2 les prêts et les rapports
+
+-------------------------------------------------------------------------------------------------------------

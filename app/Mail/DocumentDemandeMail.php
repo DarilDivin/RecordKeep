@@ -3,7 +3,7 @@
 namespace App\Mail;
 
 use App\Models\DemandePret;
-use App\Models\Role;
+use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
@@ -31,7 +31,11 @@ class DocumentDemandeMail extends Mailable
      */
     public function envelope(): Envelope
     {
-        $centralManagerOfApplicationEmail = Role::findByName("Gestionnaire-Central")->users->first()->email;
+        $centralManagerOfApplicationEmail = User::query()
+        ->whereHas('roles', function ($query) {
+            $query->where('name', 'Gestionnaire-Central');
+        })
+        ->get()->first()->email;
         return new Envelope(
             to: $centralManagerOfApplicationEmail,
             replyTo: $this->demande->user->email,

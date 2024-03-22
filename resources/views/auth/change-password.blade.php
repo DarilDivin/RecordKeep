@@ -17,7 +17,6 @@
 
             <input type="password" name="password" id="" placeholder="Nouveau mot de passe" class="input">
             <input type="password" name="password_confirmation" id="" placeholder="Confirmer le mot de passe" class="input">
-
             <button type="submit">Confirmer</button>
         </form>
     </div>
