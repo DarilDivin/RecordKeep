@@ -10,6 +10,7 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Support\Facades\URL;
 
 class DocumentDemandeMail extends Mailable
 {
@@ -54,6 +55,7 @@ class DocumentDemandeMail extends Mailable
                 'demande' => $this->demande,
                 'urlaccept' => $this->routeAccept,
                 'urlreject' => $this->routeReject,
+                'docUrl' => URL::route('document.show', ['slug' => $this->demande->document->getSlug(), 'document' => $this->demande->document->id])
             ],
         );
     }

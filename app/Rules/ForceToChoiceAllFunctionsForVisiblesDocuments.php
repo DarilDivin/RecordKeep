@@ -18,9 +18,11 @@ class ForceToChoiceAllFunctionsForVisiblesDocuments implements ValidationRule
     {
         $functionsIds = [];
         $functions = Fonction::all()->toArray();
-        array_map(function ($function) use (&$functionsIds) {
+        array_map(function (Fonction $function) use (&$functionsIds) {
             $functionsIds[] = $function['id'];
         }, $functions);
+
+        /* array_map (fn (Fonction $function) => $functionsIds[] = $function['id'], $functions); */
 
         if (NatureDocument::find(request()->nature_document_id)->visible === 1) {
             if (

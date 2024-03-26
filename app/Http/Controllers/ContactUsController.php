@@ -15,6 +15,6 @@ class ContactUsController extends Controller
 
         ContactUsJob::dispatch($request->validated());
 
-        return back()->with('success', 'Votre message a bien été envoyée');
+        return back()->with('success', 'Votre message a bien été envoyé');
     }
 }

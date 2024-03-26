@@ -1,8 +1,8 @@
 <x-mail::message>
 # Nouvelle Demande de Prêt de document
 
-Une nouvelle Demande de Prêt de document à été fait pour le document <a href="{{ route('document.show', ['slug' => $demande->document->getSlug(), 'document' => $demande->document]) }}">{{ $demande->document->nom }}</a>
-
+Une nouvelle Demande de Prêt de document à été fait pour le document
+<a href="{{ route('document.show', ['slug' => $demande->document->getSlug(), 'document' => $demande->document]) }}">{{ $demande->document->nom }}</a>
 -Prénoms : {{ $demande->user->prenoms }} <br>
 -Noms : {{ $demande->user->nom }} <br>
 -Téléphone : - <br>
