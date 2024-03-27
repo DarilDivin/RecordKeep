@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Models\DemandeTransfert;
+use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -11,9 +12,16 @@ class DemandeTransfertsTable extends Component
 {
     use WithPagination;
 
-    public $libelle;
+    public string $libelle;
 
-    public function updatedLibelle()
+    public string $direction;
+
+    public function updatedLibelle() : void
+    {
+        $this->resetPage();
+    }
+
+    public function updatedDirection() : void
     {
         $this->resetPage();
     }
@@ -23,12 +31,25 @@ class DemandeTransfertsTable extends Component
         return 'shared.pagination';
     }
 
-    public function render()
+    public function render() :View
     {
         $transferts = DemandeTransfert::query();
 
-        if(!empty($this->libelle)){
+        if(!empty($this->libelle)) {
             $transferts = $transferts->where('libelle', 'LIKE', "%{$this->libelle}%");
+        }
+
+        /* if (!empty($this->direction)) {
+            $transferts = DemandeTransfert::whereHas('direction', function ($query) {
+                $query->where('direction', 'LIKE', "%{$this->direction}%");
+            });
+        } */
+
+        if (!empty($this->direction)) {
+            $transferts = DemandeTransfert::whereHas(
+                'direction',
+                fn ($query) => $query->where('direction', 'LIKE', "%{$this->direction}%")
+            );
         }
 
         return view('livewire.demande-transferts-table', [

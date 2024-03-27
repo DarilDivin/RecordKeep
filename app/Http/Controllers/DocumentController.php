@@ -74,8 +74,10 @@ class DocumentController extends Controller
 
     public function acceptDemande(DemandePret $demande) : RedirectResponse
     {
-        if ($demande->document->demandeprets->where('etat', '=', 'Validé')->count() > 0) {
-            return back()->with('error', 'Le document demandé fait déjà objet de prêt.');
+        if ($demande->document->demandeprets->where('etat', '=', 'Validé')->count() > 0 ||
+            $demande->document->demandeprets->where('etat', '=', 'Terminé')->count() > 0
+        ) {
+            return to_route('demande-de-prets')->with('error', 'Le document demandé fait déjà objet de prêt.');
         } else {
             if ($demande->etat === 'Encours') {
                 AcceptDemandePretJob::dispatch($demande);
@@ -91,7 +93,7 @@ class DocumentController extends Controller
 
     public function rejectDemande(DemandePret $demande) : RedirectResponse
     {
-        if ($demande->etat === 'Validé') {
+        if ($demande->etat === 'Validé' || $demande->etat === 'Terminé') {
             return
                 to_route('demande-de-prets')
                 ->with('error', 'La demande de prêt est déjà acceptée.');

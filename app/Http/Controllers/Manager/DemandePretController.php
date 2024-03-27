@@ -9,8 +9,6 @@ class DemandePretController extends Controller
 {
     public function index()
     {
-        return view('manager.demande-pret.demandes-encours', [
-            'demandes' => DemandePret::all(),
-        ]);
+        return view('manager.demande-pret.demandes-encours');
     }
 }

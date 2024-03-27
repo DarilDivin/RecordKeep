@@ -9,6 +9,10 @@
             <input type="text" name="libelle" wire:model="libelle" placeholder="Libellé de la Demande">
             <ion-icon name="search"></ion-icon>
         </div>
+        <div class="search-box" style="margin-right: 17px;width: 22%;">
+            <input type="text" name="direction" wire:model="direction" placeholder="Direction propriétaire">
+            <ion-icon name="search"></ion-icon>
+        </div>
     </div>
 
     @if (session('success'))

@@ -18,7 +18,7 @@ class ForceToChoiceAllFunctionsForVisiblesDocuments implements ValidationRule
     {
         $functionsIds = [];
         $functions = Fonction::all()->toArray();
-        array_map(function (Fonction $function) use (&$functionsIds) {
+        array_map(function ($function) use (&$functionsIds) {
             $functionsIds[] = $function['id'];
         }, $functions);
 

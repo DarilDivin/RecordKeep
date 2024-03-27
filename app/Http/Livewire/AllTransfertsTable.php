@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Models\DemandeTransfert;
+use Illuminate\Contracts\View\View;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -12,7 +13,7 @@ class AllTransfertsTable extends Component
 
     public $libelle;
 
-    public function updatedLibelle()
+    public function updatedLibelle() : void
     {
         $this->resetPage();
     }
@@ -22,7 +23,7 @@ class AllTransfertsTable extends Component
         return 'shared.pagination';
     }
 
-    public function render()
+    public function render() : View
     {
         $transferts = DemandeTransfert::query();
 

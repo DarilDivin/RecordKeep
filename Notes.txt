@@ -10,6 +10,4 @@
 -Confirmations modales (Retirer de listing, Accepter et Rejeter)
 -Jobs avec Fortify pour ne pas faire attendre l'utilisateur.
 
--Listing avec recherche pour 2 les prêts et les rapports
-
 -------------------------------------------------------------------------------------------------------------

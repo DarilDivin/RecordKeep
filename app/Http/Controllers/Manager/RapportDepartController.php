@@ -15,9 +15,7 @@ class RapportDepartController extends Controller
 {
     public function index() : View
     {
-        return view('manager.rapports.rapport-prets', [
-            'rapports' => RapportPret::where('type', '=', 'Départ')->orderBy('created_at', 'desc')->get(),
-        ]);
+        return view('manager.rapports.rapport-prets');
     }
 
     public function create(DemandePret $demande) : View | RedirectResponse
@@ -36,7 +34,7 @@ class RapportDepartController extends Controller
         ]));
         $rapport->demandePret()->update([
             'etat' => 'Terminé',
-            /* 'date_acceptation' => Carbon::now()->date */
+            'date_acceptation' => Carbon::now()->toDateString()
         ]);
         return to_route('demande-de-prets')->with('success', 'Votre rapport à été bien crée.  <a target="_blank" href="' . route('rapport-show', ['rapport' => $rapport->id]) . '"> Cliquez ici pour y accéder </a>');
     }

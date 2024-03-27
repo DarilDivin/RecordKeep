@@ -2,7 +2,7 @@
 # Reponse à votre demande de prêt
 
 Votre demande de prêt pour le document
-<a href="{{ route('document.show', ['slug' => $demandePret->document->getSlug(), 'document' => $demandePret->document->id]) }}"></a>
+<a href="{{ route('document.show', ['slug' => $demandePret->document->getSlug(), 'document' => $demandePret->document->id]) }}">{{ $demandePret->document->nom }}</a>
 a été rejetée.
 
 {{-- <x-mail::button :url="''">
