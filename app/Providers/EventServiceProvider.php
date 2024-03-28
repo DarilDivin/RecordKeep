@@ -10,6 +10,7 @@ use App\Listeners\DemandePretListener;
 use Illuminate\Auth\Events\Registered;
 use App\Listeners\AcceptDemandeListener;
 use App\Listeners\RejectDemandeListener;
+use App\Listeners\SendEmailVerificationListener;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 
@@ -22,7 +23,8 @@ class EventServiceProvider extends ServiceProvider
      */
     protected $listen = [
         Registered::class => [
-            SendEmailVerificationNotification::class,
+            /* SendEmailVerificationNotification::class, */
+            SendEmailVerificationListener::class
         ],
         DemandePretEvent::class => [DemandePretListener::class],
         AcceptDemandeEvent::class => [AcceptDemandeListener::class],
