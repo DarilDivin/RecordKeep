@@ -21,8 +21,8 @@ class UserController extends Controller
 
         $user->update([
             'password' => $password,
-            'haschangedpwd' => 1,
+            'haschangedpwd' => true,
         ]);
-        return redirect()->route('home');
+        return redirect()->intended(route('home'));
     }
 }

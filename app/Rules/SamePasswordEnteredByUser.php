@@ -17,8 +17,7 @@ class SamePasswordEnteredByUser implements ValidationRule
      */
     public function validate(string $attribute, mixed $value, Closure $fail): void
     {
-        if (Hash::check(Auth::user()->password, request()->password))
-        dd(Hash::check(Auth::user()->password, request()->password));
-        /* $fail('Le mot de passe doit être différent du précédent'); */
+        if (Hash::check(request()->password, Auth::user()->password))
+        $fail('Le mot de passe doit être différent du précédent');
     }
 }

@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use App\Rules\SamePasswordEnteredByUser;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Request;
 
 class ChangePasswordRequest extends FormRequest
 {
@@ -23,7 +24,7 @@ class ChangePasswordRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'password' => ['required','string', 'min:8', 'confirmed'/* , new SamePasswordEnteredByUser() */],
+            'password' => ['required','string', 'min:8', 'confirmed', new SamePasswordEnteredByUser()],
             'password_confirmation' => ['required', 'min:8']
         ];
     }
