@@ -11,10 +11,10 @@ $mailRegex = '[^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$]';
 
 
 
-Route::get('/changer mot de passe', [UserController::class, 'changePasswordView'])->name('changePasswordView')->middleware('auth');
+Route::get('/changer mot de passe', [UserController::class, 'changePasswordView'])->name('changePasswordView')->middleware('auth', 'verified');
 Route::post('/changePassword', [UserController::class, 'changePassword'])->name('changePassword')->middleware('auth');
 
-Route::get('/documents', [DocumentController::class, 'index'])->name('document.index')->middleware(['auth', 'verified', 'role:Utilisateur', 'hasConfirmedPwd']);
+Route::get('/documents', [DocumentController::class, 'index'])->name('document.index')->middleware(['auth', 'verified', 'hasConfirmedPwd', 'role:Utilisateur']);
 
 Route::get('/documents/{slug}-{document}', [DocumentController::class, 'show'])->name('document.show')->where([
     'document' => $idRegex,

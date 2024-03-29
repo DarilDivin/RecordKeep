@@ -34,8 +34,8 @@ class DocumentFormRequest extends FormRequest
         }
 
         return [
-            'nom' => ['required', 'string'],
-            'timbre' => [
+            /* 'nom' => ['required', 'string'], */
+            'reference' => [
                 'nullable', 'string',
                 Rule::unique('documents')
                 ->where(function ($query){
@@ -49,8 +49,8 @@ class DocumentFormRequest extends FormRequest
                     return $query->whereNull('deleted_at');
                 })->ignore($this->route()->parameter('document'))],
             'objet' => ['required', 'string'],
-            'emetteur' => ['required', 'string'],
-            'recepteur' => ['required', 'string'],
+            'expediteur' => ['nullable', 'string'],
+            'destinataire' => ['nullable', 'string'],
             'datecreation' => ['required', 'date', new DocumentBirthdayRule()],
             'disponibilite' => ['nullable', 'boolean'],
             'archive' => ['nullable', 'boolean'],
@@ -65,7 +65,7 @@ class DocumentFormRequest extends FormRequest
                 new ForceChoiceDirecteurFonctionRule(),
                 new ForceToChoiceAllFunctionsForVisiblesDocuments()
             ],
-            'motclefs' => ['required', 'array', new UniqueAndMaxMotCleRule()]
+            'motclefs' => ['nullable', 'array', new UniqueAndMaxMotCleRule()]
         ];
     }
 }

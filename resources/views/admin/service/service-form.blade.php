@@ -21,7 +21,7 @@
                 @method($service->exists ? 'put' : 'post')
                 <x-input class="inputContainer fonction" id="service" label="Service" type="text" name="service" placeholder="Service"  readonly="" value="{!! $service->service !!}" />
 
-                <x-input class="inputContainer fonction" id="sigle" label="Sigle" type="text" name="sigle" placeholder="Sigle"  readonly="" value="{{ $service->sigle }}" />
+                <x-input class="inputContainer fonction" id="sigle" label="Sigle" type="text" name="sigle" placeholder="Sigle"  readonly="" value="{!! $service->sigle !!}" />
 
                 <x-select class="inputContainer fonction" id="direction_id" label="Direction" name="direction_id" :value="$directions" elementIdOnEntite="{{ $service->direction_id }}"/>
 

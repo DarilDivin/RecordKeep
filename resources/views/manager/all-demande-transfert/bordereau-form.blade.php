@@ -34,7 +34,7 @@
 
                 <x-input class="inputContainer DebMoit" id="transfertName" label="Libellé de la Demande de Transfert" type="text" name="transfertName" placeholder=""  readonly="readonly" value="{!! $transfert->libelle !!}" />
 
-                <x-input class="inputContainer MoitFin" id="direction" label="Direction de Provenance" type="text" name="username" placeholder=""  readonly="readonly" value="{{ $transfert->direction->sigle }}" />
+                <x-input class="inputContainer MoitFin" id="direction" label="Direction de Provenance" type="text" name="username" placeholder=""  readonly="readonly" value="{!! $transfert->direction->sigle !!}" />
 
                 <x-input class="inputContainer DebMoit" id="username" label="Nom et prénoms du transféreur" type="text" name="username" placeholder=""  readonly="readonly" value="{!! $standardManager[0]->prenoms !!} {!! $standardManager[0]->nom !!}" />
 

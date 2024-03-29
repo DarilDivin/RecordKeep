@@ -19,21 +19,21 @@
             <form method="POST" action="{{ route($document->exists ? 'manager.document.update' : 'manager.document.store', ['document' => $document->id]) }}" enctype="multipart/form-data">
                 @csrf
                 @method($document->exists ? 'put' : 'post')
-                <x-input class="inputContainer" id="timbre" label="Timbre" type="text" name="timbre" placeholder="Timbre"  readonly="" value="{!! $document->timbre !!}" />
+                <x-input class="inputContainer" id="reference" label="Référence du document" type="text" name="reference" placeholder="Référence du document"  readonly="" value="{!! $document->reference !!}" />
 
-                <x-input class="inputContainer" id="nom" label="Nom du Document" type="text" name="nom" placeholder="Nom du Document" readonly="" value="{!! $document->nom !!}" />
+                {{-- <x-input class="inputContainer" id="nom" label="Nom du Document" type="text" name="nom" placeholder="Nom du Document" readonly="" value="{!! $document->nom !!}" /> --}}
 
-                <x-input class="inputContainer" id="emetteur" label="Émetteur" type="text" name="emetteur" placeholder="Émetteur"  readonly="" value="{!! $document->emetteur !!}" />
+                <x-input class="inputContainer" id="expediteur" label="Expéditeur du document" type="text" name="expediteur" placeholder="Expéditeur du document"  readonly="" value="{!! $document->expediteur !!}" />
 
-                <x-input class="inputContainer objet" id="objet" label="Objet" type="text" name="objet" placeholder="Objet du Document" readonly="" value="{!! $document->objet !!}" />
+                <x-input class="inputContainer objet" id="objet" label="Objet du document" type="text" name="objet" placeholder="Objet du document" readonly="" value="{!! $document->objet !!}" />
 
-                <x-input class="inputContainer" id="recepteur" label="Récepteur" type="text" name="recepteur" placeholder="Récepeteur"  readonly="" value="{!! $document->recepteur !!}" />
+                <x-input class="inputContainer" id="destinataire" label="Destinataire du document" type="text" name="destinataire" placeholder="Destinataire du document"  readonly="" value="{!! $document->destinataire !!}" />
 
                 @include('shared.tom-select')
 
-                <x-select class="inputContainer" id="nature" label="Nature du Document" name="nature_document_id" :value="$natures" elementIdOnEntite="{{ $document->nature_document_id }}" />
+                <x-select class="inputContainer" id="nature" label="Nature du document" name="nature_document_id" :value="$natures" elementIdOnEntite="{{ $document->nature_document_id }}" />
 
-                <x-input class="inputContainer" id="datecreation" label="Date de Création" type="date" name="datecreation" placeholder=""  readonly="" value="{{ $document->datecreation }}" />
+                <x-input class="inputContainer" id="datecreation" label="Date de création du document" type="date" name="datecreation" placeholder=""  readonly="" value="{{ $document->datecreation }}" />
 
                 @livewire('document-dynamic-select', [
                     'directions' => $directions,
@@ -56,7 +56,7 @@
                 </div>
 
                 <div class="inputContainer button">
-                    <button type="submit">{{ $document->exits ? 'Éditer' : 'Créer' }}</button>
+                    <button type="submit">{{ $document->exists ? 'Éditer' : 'Créer' }}</button>
                 </div>
             </form>
         </div>

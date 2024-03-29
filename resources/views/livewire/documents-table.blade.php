@@ -14,7 +14,7 @@
             </button>
         </div>
         <div class="search-box" style="margin-right: 17px; width: 22%;">
-            <input type="text" name="nom" placeholder="Nom du document" wire:model="nom">
+            <input type="text" name="nom" placeholder="Objet du document" wire:model="nom">
             <ion-icon name="search"></ion-icon>
         </div>
         {{-- <div class="search-box">
@@ -41,11 +41,11 @@
                 <tr>
                     <td></td>
                     <x-table-header label="N°" :direction="$orderDirection" name="id" :field="$orderField"></x-table-header>
-                    <x-table-header label="Timbre" :direction="$orderDirection" name="timbre" :field="$orderField"></x-table-header>
-                    <x-table-header label="Nom du Document" :direction="$orderDirection" name="nom" :field="$orderField"></x-table-header>
-                    <x-table-header label="Nature du Document" :direction="$orderDirection" name="nature_document_id" :field="$orderField"></x-table-header>
+                    <x-table-header label="Référence" :direction="$orderDirection" name="timbre" :field="$orderField"></x-table-header>
+                    <x-table-header label="Objet" :direction="$orderDirection" name="objet" :field="$orderField"></x-table-header>
+                    <x-table-header label="Nature" :direction="$orderDirection" name="nature_document_id" :field="$orderField"></x-table-header>
                     <td>DUA aux bureaux</td>
-                    <x-table-header label="Communicable" :direction="$orderDirection" name="communicable" :field="$orderField"></x-table-header>
+                    <x-table-header label="Communicable ?" :direction="$orderDirection" name="communicable" :field="$orderField"></x-table-header>
                     <x-table-header label="Date de Création" :direction="$orderDirection" name="datecreation" :field="$orderField"></x-table-header>
                     <td>Actions</td>
                 </tr>
@@ -57,8 +57,8 @@
                         <input type="checkbox" x-model="documentsChecked" value="{{ $document->id }}">
                     </td>
                     <td>{{ $document->id }}</td>
-                    <td>{{ $document->timbre }}</td>
-                    <td>{{ $document->nom }}</td>
+                    <td>{{ $document->reference }}</td>
+                    <td>{{ Str::limit($document->objet, 50, '...') }}</td>
                     <td>{{ $document->naturedocument->nature }}</td>
                     <td>{{ $document->naturedocument->dua_bureaux }}ans</td>
                     <td>{{ $document->communicable ? "Oui" : "Non" }}</td>

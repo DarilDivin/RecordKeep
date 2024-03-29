@@ -226,7 +226,6 @@ return [
         'motclefs'                 => 'Mots Clés',
         'datecreation'             => 'Date de création',
         'libelle'                  => 'Libellé',
-        'libelle'                  => 'Libellé',
         'permissions'              => 'Permissions',
         'roles'                    => 'Rôles',
         'permission_id'            => 'Permission',
@@ -238,6 +237,9 @@ return [
         'chemises_number_max'      => 'Nombre de chemises maximum',
         'observation'              => 'Observation',
         'motif'                    => 'Motif',
-        'duree'                    => 'Durée'
+        'duree'                    => 'Durée',
+        'expediteur'               => 'Expéditeur',
+        'destinataire'             => 'Destinataire',
+        'reference'                => 'Référence',
     ],
 ];

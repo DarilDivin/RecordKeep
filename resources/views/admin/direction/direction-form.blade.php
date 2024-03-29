@@ -21,7 +21,7 @@
                 @method($direction->exists ? 'put' : 'post')
                 <x-input class="inputContainer fonction" id="direction" label="Direction" type="text" name="direction" placeholder="Direction"  readonly="" value="{!! $direction->direction !!}" />
 
-                <x-input class="inputContainer fonction" id="sigle" label="Sigle" type="text" name="sigle" placeholder="Sigle"  readonly="" value="{{ $direction->sigle }}" />
+                <x-input class="inputContainer fonction" id="sigle" label="Sigle" type="text" name="sigle" placeholder="Sigle"  readonly="" value="{!! $direction->sigle !!}" />
 
                 <div class="inputContainer button">
                     <button type="submit">
