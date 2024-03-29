@@ -6,7 +6,7 @@
 
 @section('content')
 
-    <div class="container">
+    <div class="container develop">
         @include('admin.layouts.partials.sidebar')
 
         <div class="main">
@@ -38,7 +38,7 @@
             <span class="closeDocumentForm">
                 <ion-icon name="close-outline"></ion-icon>
             </span>
-            <h1>Informations</h1>
+            <h1 id="infoTitle" style="font-weight: 400; margin-bottom: 25px"></h1>
             {{-- <div class="infosDoc">
                 <div class="infoContent">
                     <h5>Signature:</h5>
@@ -126,7 +126,7 @@
                 <div class="sectionGeneral content">
                     <h3>Informations Générales</h3>
                     <div class="info">
-                        <h5>Signature :</h5>
+                        <h5>Timbre :</h5>
                         <p id="signature"></p>
                     </div>
                     <div class="info">
@@ -137,16 +137,16 @@
                         <h5>Objet :</h5>
                         <p id="objet"></p>
                     </div>
+{{--                    <div class="info">--}}
+{{--                        <h5>Source :</h5>--}}
+{{--                        <p id="source"></p>--}}
+{{--                    </div>--}}
                     <div class="info">
-                        <h5>Source :</h5>
-                        <p id="source"></p>
-                    </div>
-                    <div class="info">
-                        <h5>Emetteur :</h5>
+                        <h5>Destinataire :</h5>
                         <p id="emetteur"></p>
                     </div>
                     <div class="info">
-                        <h5>Récepteur :</h5>
+                        <h5>Expéditeur :</h5>
                         <p id="recepteur"></p>
                     </div>
                     <div class="info">
@@ -185,26 +185,26 @@
                         <p id="archived"></p>
                     </div>
                     <div class="info">
-                        <h5>Disponible :</h5>
+                        <h5>Disponibilité :</h5>
                         <p id="disponible"></p>
                     </div>
 
                 </div>
-                <div class="sectionClassement content">
-                    <h3>Classement</h3>
-                    <div class="info">
-                        <h5>Chemise:</h5>
-                        <p id="chemise"></p>
-                    </div>
-                    <div class="info">
-                        <h5>Boite :</h5>
-                        <p id="boite"></p>
-                    </div>
-                    <div class="info">
-                        <h5>Rayon :</h5>
-                        <p id="rayon"></p>
-                    </div>
-                </div>
+{{--                <div class="sectionClassement content">--}}
+{{--                    <h3>Classement</h3>--}}
+{{--                    <div class="info">--}}
+{{--                        <h5>Chemise:</h5>--}}
+{{--                        <p id="chemise"></p>--}}
+{{--                    </div>--}}
+{{--                    <div class="info">--}}
+{{--                        <h5>Boite :</h5>--}}
+{{--                        <p id="boite"></p>--}}
+{{--                    </div>--}}
+{{--                    <div class="info">--}}
+{{--                        <h5>Rayon :</h5>--}}
+{{--                        <p id="rayon"></p>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
                 <div class="sectionStructure content">
                     <h3>Structure d'appartenance</h3>
                     <div class="info">

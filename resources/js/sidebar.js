@@ -64,8 +64,8 @@ const closeMoreOptions = () => {
     sidebarOptions.classList.remove('show');
 }
 
-moreOptionsbtn.addEventListener('click', () => {
-    sidebarOptions.classList.toggle('show');
-})
-
-sidebarOptionContainerOverlay.addEventListener('click', closeMoreOptions);
+// moreOptionsbtn.addEventListener('click', () => {
+//     sidebarOptions.classList.toggle('show');
+// })
+//
+// sidebarOptionContainerOverlay.addEventListener('click', closeMoreOptions);

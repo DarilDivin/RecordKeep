@@ -6,7 +6,7 @@
     $centralManagerDTNotifications = DemandeTransfert::where('transfere', '=', '1')->where('valide', '=', '0')->count();
     $standardManagerDTNotifications = DemandeTransfert::where('direction_id', '=', Auth::user()->direction_id)->where('transferable', '=', '1')->where('transfere', '=', '0')->count();
 @endphp
-<div class="navigation locked close">
+<div class="navigation locked ">
     <div class="sidebar-title">
         <div class="lock_container">
             <span class="lock close"><ion-icon name="lock-closed-outline"></ion-icon></span>

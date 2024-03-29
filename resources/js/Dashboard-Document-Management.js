@@ -6,10 +6,11 @@ const overlay = document.querySelector('.overlayInfos');
 const documentFormContainer = document.querySelector('.addDocumentFormContainer');
 const closeDocumentForm = document.querySelector('.closeDocumentForm');
 
+const infoTitle = document.getElementById('infoTitle');
 const signature = document.getElementById('signature');
 const nom = document.getElementById('nom');
 const objet = document.getElementById('objet');
-const source = document.getElementById('source');
+// const source = document.getElementById('source');
 const emetteur = document.getElementById('emetteur');
 const recepteur = document.getElementById('recepteur');
 const dua = document.getElementById('dua');
@@ -33,15 +34,17 @@ addBtn.forEach((element) =>
 element.addEventListener('click', () => {
     const document = JSON.parse(element.getAttribute('data-document'));
     console.log(document);
-    signature.innerText = document.signature;
+    infoTitle.innerText = document.nom
+    signature.innerText = document.signature ? document.signature : 'Pas de signature';
     nom.innerText = document.nom;
     objet.innerText = document.objet;
-    source.innerText = document.source;
+    // source.innerText = document.source ? document.source : 'Pas de source';
     emetteur.innerText = document.emetteur;
     recepteur.innerText = document.recepteur;
-    dua.innerText = document.dua + ' ans';
+    // dua.innerText = document.dua + ' ans';
     date.innerText = JSON.parse(element.getAttribute('data-document-date'));
     nature.innerText = JSON.parse(element.getAttribute('data-document-nature'));
+    dua.innerText = JSON.parse(element.getAttribute('data-document-dua')) + ' ans';
     categorie.innerText = JSON.parse(element.getAttribute('data-document-categorie'));
     consult.innerText = document.nbrconsult;
     download.innerText = document.nbrdownload;
@@ -51,9 +54,9 @@ element.addEventListener('click', () => {
     direction.innerText = JSON.parse(element.getAttribute('data-document-direction'));
     service.innerText = JSON.parse(element.getAttribute('data-document-service'));
     division.innerText = JSON.parse(element.getAttribute('data-document-division'));
-    chemise.innerText = JSON.parse(element.getAttribute('data-document-chemise')) === null ? 'Non classé' : JSON.parse(element.getAttribute('data-document-chemise'));
-    boite.innerText = JSON.parse(element.getAttribute('data-document-boite')) === null ? 'Non classé' : JSON.parse(element.getAttribute('data-document-boite'));
-    rayon.innerText = JSON.parse(element.getAttribute('data-document-rayon')) === null ? 'Non classé' : JSON.parse(element.getAttribute('data-document-rayon'));
+    // chemise.innerText = JSON.parse(element.getAttribute('data-document-chemise')) === null ? 'Non classé' : JSON.parse(element.getAttribute('data-document-chemise'));
+    // boite.innerText = JSON.parse(element.getAttribute('data-document-boite')) === null ? 'Non classé' : JSON.parse(element.getAttribute('data-document-boite'));
+    // rayon.innerText = JSON.parse(element.getAttribute('data-document-rayon')) === null ? 'Non classé' : JSON.parse(element.getAttribute('data-document-rayon'));
 
     documentFormContainer.classList.add('showForm')
 
