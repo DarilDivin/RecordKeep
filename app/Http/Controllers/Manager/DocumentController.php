@@ -93,7 +93,11 @@ class DocumentController extends Controller
         dump(request()->fonctions);
         dump(count(array_intersect(request()->fonctions, $functionsIds)));
         dd(count($functionsIds) === count(array_intersect(request()->fonctions, $functionsIds))); */
-        $document = Document::create($this->withDocuments(new Document(), $request));
+        $document = Document::create(array_merge(
+            $this->withDocuments(new Document(), $request), [
+                'nom' => $request->objet
+            ]
+        ));
         $document->fonctions()->sync($request->fonctions);
         return redirect()
             ->route('manager.document.index')
@@ -120,7 +124,11 @@ class DocumentController extends Controller
      */
     public function update(DocumentFormRequest $request, Document $document): RedirectResponse
     {
-        $document->update($this->withDocuments($document, $request));
+        $document->update(array_merge(
+            $this->withDocuments($document, $request), [
+                'nom' => $request->objet
+            ]
+        ));
         $document->fonctions()->sync($request->fonctions);
         return redirect()
             ->route('manager.document.index')

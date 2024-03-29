@@ -14,6 +14,7 @@ class DUAAtDesksRule implements ValidationRule
      */
     public function validate(string $attribute, mixed $value, Closure $fail): void
     {
-        if (request()->dua_bureaux < 7) $fail("La DUA aux bureaux doit être supérieure ou égale à 7ans");
+        /* if (request()->dua_bureaux < 7) $fail("La DUA aux bureaux doit être supérieure ou égale à 7ans"); */
+        if (request()->dua_bureaux < 0) $fail("La DUA aux bureaux ne peut pas être négative");
     }
 }

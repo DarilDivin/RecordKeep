@@ -5,7 +5,7 @@
             <div class="search-form">
                 <div class="inputcontainer">
                     <label for="">Nom</label>
-                    <input type="text" wire:model="nom"  class="search-bar" placeholder="Nom du document" minlength="1">
+                    <input type="text" wire:model="nom"  class="search-bar" placeholder="Objet du document" minlength="1">
                 </div>
                 <div class="inputcontainer">
                     <label for="">Du</label>

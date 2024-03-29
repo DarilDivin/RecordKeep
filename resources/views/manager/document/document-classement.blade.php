@@ -23,7 +23,7 @@
                 @else
                     Classement
                 @endif
-                du document N°{{ $document->id }} ({{ $document->chemisedossier !== null ? "$document->code" : "" }})
+                du document {{Str::limit( $document->objet, 35, '...') }} {{ $document->chemisedossier !== null ? "($document->code)" : "" }}
             </h1>
             <form method="POST" action="{{ route('manager.document.classement', ['document' => $document->id, 'transfert' => $transfert]) }}" enctype="multipart/form-data">
                 @csrf

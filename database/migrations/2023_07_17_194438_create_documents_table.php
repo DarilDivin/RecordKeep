@@ -14,11 +14,11 @@ return new class extends Migration
         Schema::create('documents', function (Blueprint $table) {
             $table->id();
             $table->string('nom');
-            $table->string('timbre')->nullable();
+            $table->string('reference')->nullable();
             $table->string('code')->nullable();
             $table->string('objet');
-            $table->string('emetteur');
-            $table->string('recepteur');
+            $table->string('expediteur');
+            $table->string('destinataire');
             $table->string('motclefs');
             $table->date('datecreation');
             $table->boolean('disponibilite')->default(0);
