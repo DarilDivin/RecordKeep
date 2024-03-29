@@ -21,7 +21,7 @@
                 @method($division->exists ? 'put' : 'post')
                 <x-input class="inputContainer fonction" id="division" label="Division" type="text" name="division" placeholder="Division"  readonly="" value="{!! $division->division !!}" />
 
-                <x-input class="inputContainer fonction" id="sigle" label="Sigle" type="text" name="sigle" placeholder="Sigle"  readonly="" value="{{ $division->sigle }}" />
+                <x-input class="inputContainer fonction" id="sigle" label="Sigle" type="text" name="sigle" placeholder="Sigle"  readonly="" value="{!! $division->sigle !!}" />
 
                 @livewire('division-dynamic-select', [
                     'division' => $division,

@@ -56,7 +56,7 @@
                 </div>
 
                 <div class="inputContainer button">
-                    <button type="submit">{{ $document->exits ? 'Éditer' : 'Créer' }}</button>
+                    <button type="submit">{{ $document->exists ? 'Éditer' : 'Créer' }}</button>
                 </div>
             </form>
         </div>

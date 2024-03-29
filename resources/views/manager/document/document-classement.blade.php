@@ -29,17 +29,17 @@
                 @csrf
                 @method('put')
 
-                <x-input class="inputContainer" id="timbre" label="Timbre" type="text" name="timbre" placeholder="Timbre"  readonly="readonly" value="{!! $document->timbre !!}" />
+                <x-input class="inputContainer" id="timbre" label="Timbre" type="text" name="timbre" placeholder="Timbre"  readonly="readonly" value="{!! $document->reference !!}" />
 
                 <x-input class="inputContainer" id="nom" label="Nom du Document" type="text" name="nom" placeholder="Nom du Document" readonly="readonly" value="{!! $document->nom !!}" />
 
-                <x-input class="inputContainer readonly" id="motclef" label="Mot-Clefs" type="textarea" name="motclefs" placeholder=""  readonly="readonly" value="{{ $motclefs ?: 'Le document n\'a pas de mots clés facilitant sa recherche' }} " />
+                <x-input class="inputContainer readonly" id="motclef" label="Mot-Clefs" type="textarea" name="motclefs" placeholder=""  readonly="readonly" value="{!! $motclefs ?: 'Le document n\'a pas de mots clés facilitant sa recherche' !!} " />
 
                 <x-input class="inputContainer objet" id="objet" label="Objet" type="text" name="objet" placeholder="Objet du Document" readonly="readonly" value="{!! $document->objet !!}" />
 
-                <x-input class="inputContainer" id="emetteur" label="Émetteur" type="text" name="emetteur" placeholder="Émetteur"  readonly="readonly" value="{!! $document->emetteur !!}" />
+                <x-input class="inputContainer" id="emetteur" label="Émetteur" type="text" name="emetteur" placeholder="Émetteur"  readonly="readonly" value="{!! $document->expediteur !!}" />
 
-                <x-input class="inputContainer" id="recepteur" label="Récepteur" type="text" name="recepteur" placeholder="Récepeteur"  readonly="readonly" value="{!! $document->recepteur !!}" />
+                <x-input class="inputContainer" id="recepteur" label="Récepteur" type="text" name="recepteur" placeholder="Récepeteur"  readonly="readonly" value="{!! $document->destinataire !!}" />
 
                 @livewire('classement-dynamic-select', [
                     'chemises' => $chemises,
