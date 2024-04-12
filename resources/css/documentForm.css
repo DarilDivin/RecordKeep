@@ -36,7 +36,7 @@
 .addDocumentForm {
     opacity: 0;
     position: relative;
-    width: 90%;
+    width: 1220px;
     padding: 20px 30px;
     height: 0;
     background: var(--bg-color);
@@ -81,7 +81,6 @@
 .addDocumentForm form.rapport {
     grid-template-columns: repeat(4, 1fr);
 }
-
 
 label {
     color: var(--color-primary);
@@ -508,7 +507,8 @@ h3 {
     height: 100%;
     padding: 5px 20px;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(2, 270px);
     /* grid-template-rows: 80px; */
     align-items: flex-start;
     gap: 5px;
@@ -549,18 +549,24 @@ h3 {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 5px;
+    width: 570px;
 }
 
 .addDocumentForm .infosDoc .sectionStructure {
-    grid-column: 2 / span 3;
+    grid-column: 3 / span 4;
     display: flex;
     flex-direction: column;
 }
 
 .addDocumentForm .infosDoc .sectionClassement {
-    grid-column: 1 / span 1;
+    grid-column: 1 / span 2;
+    grid-row: 2 / span 2;
     display: flex;
     flex-direction: column;
+}
+
+.addDocumentForm .infosDoc .sectionPlus {
+    grid-column: 3/ span 4;
 }
 
 
@@ -580,6 +586,17 @@ h3 {
     justify-content: flex-start;
     gap: 15px;
     margin-bottom: 10px;
+}
+
+.addDocumentForm .infosDoc .content .info p {
+    width: 150px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.addDocumentForm .infosDoc .content.sectionStructure .info p {
+    width: 360px;
 }
 
 .addDocumentForm .infosDoc .content .info h5 {

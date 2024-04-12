@@ -37,7 +37,9 @@ element.addEventListener('click', () => {
     infoTitle.innerText = document.nom
     signature.innerText = document.signature ? document.signature : 'Pas de signature';
     nom.innerText = document.nom;
+    nom.setAttribute('title', document.nom)
     objet.innerText = document.objet;
+    objet.setAttribute('title', document.objet)
     // source.innerText = document.source ? document.source : 'Pas de source';
     emetteur.innerText = document.emetteur;
     recepteur.innerText = document.recepteur;
