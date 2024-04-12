@@ -57,7 +57,7 @@ class DemandeTransfertsTable extends Component
                 ->where('direction_id', Auth::user()->direction_id)
                 ->where('sw', 0)
                 ->latest()
-                ->paginate(18),
+                ->paginate(15),
             'user' => Auth::user()
         ]);
     }
