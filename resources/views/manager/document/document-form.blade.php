@@ -23,17 +23,20 @@
 
                 {{-- <x-input class="inputContainer" id="nom" label="Nom du Document" type="text" name="nom" placeholder="Nom du Document" readonly="" value="{!! $document->nom !!}" /> --}}
 
-                <x-input class="inputContainer" id="expediteur" label="Expéditeur du document" type="text" name="expediteur" placeholder="Expéditeur du document"  readonly="" value="{!! $document->expediteur !!}" />
-
                 <x-input class="inputContainer objet" id="objet" label="Objet du document" type="text" name="objet" placeholder="Objet du document" readonly="" value="{!! $document->objet !!}" />
+
+                <x-input class="inputContainer" id="expediteur" label="Expéditeur du document" type="text" name="expediteur" placeholder="Expéditeur du document"  readonly="" value="{!! $document->expediteur !!}" />
 
                 <x-input class="inputContainer" id="destinataire" label="Destinataire du document" type="text" name="destinataire" placeholder="Destinataire du document"  readonly="" value="{!! $document->destinataire !!}" />
 
+                <x-select class="inputContainer" id="nature" label="Nature du document" name="nature_document_id" :value="$natures" elementIdOnEntite="{{ $document->nature_document_id }}" />
+                
                 @include('shared.tom-select')
 
-                <x-select class="inputContainer" id="nature" label="Nature du document" name="nature_document_id" :value="$natures" elementIdOnEntite="{{ $document->nature_document_id }}" />
 
                 <x-input class="inputContainer" id="datecreation" label="Date de création du document" type="date" name="datecreation" placeholder=""  readonly="" value="{{ $document->datecreation }}" />
+
+                <x-input class="inputContainer" id="document" label="Document" type="file" name="document" placeholder=""  readonly="" value="" />
 
                 @livewire('document-dynamic-select', [
                     'directions' => $directions,
@@ -42,7 +45,6 @@
                     'services' => $services,
                 ])
 
-                <x-input class="inputContainer" id="document" label="Document" type="file" name="document" placeholder=""  readonly="" value="" />
 
                 <div class="inputContainer autorisation">
                     <h4>Acorder l'accès à :</h4>
