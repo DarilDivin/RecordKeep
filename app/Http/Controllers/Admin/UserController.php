@@ -98,7 +98,6 @@ class UserController extends Controller
      */
     public function update(UserFormRequest $request, User $user): RedirectResponse
     {
-        dd($request->all());
         $user->update([
             'matricule' => $request['matricule'],
             'nom' => $request['nom'],
@@ -136,7 +135,10 @@ class UserController extends Controller
         } */
         /* array_map(function ($role) use($user) {
             $user->permissions()->sync(Role::find($role)->permissions);
-        }, $request['roles']); */
+        }, $request['roles']);
+        array_map(
+            fn ($role) =>  $user->permissions()->sync(Role::find($role)->permissions),$request['roles']
+        ); */
         return redirect()
             ->route('admin.user.index')
             ->with('success', 'L\' utilisateur a bien été modifié');

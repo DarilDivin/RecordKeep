@@ -104,7 +104,7 @@
             <div class="userInfosContainer">
 
                 <div class="profileImgContainer">
-                    <img src="storage/images/{{ Auth::user()->sexe == 'Masculin' ? 'profileM' : 'profileF' }}.png" alt="">
+                    <img src="storage/images/{{ Auth::user()->sexe == 'Masculin' || Auth::user()->sexe == 'Autre' ? 'profileM' : 'profileF' }}.png" alt="">
                 </div>
 
 
