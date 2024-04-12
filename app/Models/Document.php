@@ -27,11 +27,11 @@ class Document extends Model
 
     protected $fillable = [
         'nom',
-        'timbre',
+        'reference',
         'code',
         'objet',
-        'emetteur',
-        'recepteur',
+        'expediteur',
+        'destinataire',
         'motclefs',
         'datecreation',
         'disponibilite',

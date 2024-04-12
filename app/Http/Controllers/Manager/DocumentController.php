@@ -37,11 +37,10 @@ class DocumentController extends Controller
     {
         $document =  new Document();
         $document->fill([
-            'nom' => 'Autorisation de stage',
-            'timbre' => 'N°564/DPAF/MISP/SGHTE/DPRF/SA',
+            'reference' => 'N°564/DPAF/MISP/SGHTE/DPRF/SA',
             'objet' => 'Autorisation de stage',
-            'emetteur' => 'DPAF',
-            'recepteur' => 'Daniel'
+            'expediteur' => 'DPAF',
+            'destinataire' => 'Daniel'
         ]);
 
         $directions = Direction::orderBy('id')->get();
