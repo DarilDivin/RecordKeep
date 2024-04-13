@@ -6,7 +6,7 @@
 
 
 @section('content')
-    <div class="container develop>
+    <div class="container develop">
         @include('admin.layouts.partials.sidebar')
 
         @livewire('categories-table')

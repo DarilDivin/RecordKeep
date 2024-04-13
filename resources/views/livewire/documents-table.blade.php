@@ -67,6 +67,7 @@
                         <button class="viewInfo"
                                 data-document="{{ json_encode($document) }}"
                                 data-document-nature="{{ json_encode($document->naturedocument->nature) }}"
+                                data-document-categorie="{{ json_encode($document->naturedocument->categorie->categorie) }}"
                                 data-document-dua="{{ json_encode($document->naturedocument->dua_bureaux + $document->naturedocument->dua_service_pre_archivage) }}"
                                 data-document-direction="{{ json_encode(Str::limit($document->direction->direction, 200, '...')) }}"
                                 data-document-division="{{ json_encode(Str::limit($document?->division?->division, 200, '...')) }}"

@@ -41,8 +41,8 @@ element.addEventListener('click', () => {
     objet.innerText = document.objet;
     objet.setAttribute('title', document.objet)
     // source.innerText = document.source ? document.source : 'Pas de source';
-    emetteur.innerText = document.emetteur;
-    recepteur.innerText = document.recepteur;
+    emetteur.innerText = document.expediteur;
+    recepteur.innerText = document.destinataire;
     // dua.innerText = document.dua + ' ans';
     date.innerText = JSON.parse(element.getAttribute('data-document-date'));
     nature.innerText = JSON.parse(element.getAttribute('data-document-nature'));

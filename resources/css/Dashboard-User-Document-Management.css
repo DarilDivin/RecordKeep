@@ -445,6 +445,10 @@
     transition: all 0.3s ease;
 }
 
+.optional .buttons button#massDelete {
+    background: #ff0000;
+}
+
 .optional form {
     display: flex;
     justify-content: space-between;
@@ -466,6 +470,12 @@
     background: #fff;
     color: var(--color-primary);
     border: .5px solid var(--color-primary);
+}
+
+.optional .buttons button#massDelete:hover {
+    background: #fff;
+    color: #ff0000;
+    border: .5px solid #ff0000;
 }
 
 .optional .search-box {
