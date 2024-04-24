@@ -1,4 +1,4 @@
-<td wire:click="setOrderField('{{ $name }}')">
+<td wire:click="setOrderField('{{ $name }}')" style="cursor: pointer;">
     {{ $label }}
     @if ($visible)
         @if ($direction === 'ASC')

@@ -41,7 +41,7 @@
                 <tr>
                     <td></td>
                     <x-table-header label="N°" :direction="$orderDirection" name="id" :field="$orderField"></x-table-header>
-                    <x-table-header label="Référence" :direction="$orderDirection" name="timbre" :field="$orderField"></x-table-header>
+                    <x-table-header label="Référence" :direction="$orderDirection" name="reference" :field="$orderField"></x-table-header>
                     <x-table-header label="Objet" :direction="$orderDirection" name="objet" :field="$orderField"></x-table-header>
                     <x-table-header label="Nature" :direction="$orderDirection" name="nature_document_id" :field="$orderField"></x-table-header>
                     <td>DUA aux bureaux</td>

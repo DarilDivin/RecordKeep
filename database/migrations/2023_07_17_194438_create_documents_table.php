@@ -17,9 +17,9 @@ return new class extends Migration
             $table->string('reference')->nullable();
             $table->string('code')->nullable();
             $table->string('objet');
-            $table->string('expediteur');
-            $table->string('destinataire');
-            $table->string('motclefs');
+            $table->string('expediteur')->nullable();
+            $table->string('destinataire')->nullable();
+            $table->string('motclefs')->nullable();
             $table->date('datecreation');
             $table->boolean('disponibilite')->default(0);
             $table->boolean('archive')->default(0);

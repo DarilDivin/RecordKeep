@@ -5,6 +5,7 @@ namespace App\Http\Requests\Admin;
 use App\Rules\SameTypeRoleRule;
 use App\Rules\UserBirthDayRule;
 use Illuminate\Validation\Rule;
+use Laravel\Fortify\Rules\Password;
 use App\Rules\NoneServiceForDirector;
 use App\Rules\NoneDivisionForDirector;
 use App\Rules\OneServiceForChiefService;
@@ -13,9 +14,9 @@ use App\Rules\NoneDivisionForChiefService;
 use App\Rules\OneDivisionForChiefDivision;
 use App\Rules\ForceCentralManagerToBeAtDSI;
 use Illuminate\Foundation\Http\FormRequest;
+use App\Rules\OneStandardManagerForDirection;
 use App\Rules\OneCentralManagerForApplication;
 use App\Actions\Fortify\PasswordValidationRules;
-use App\Rules\OneStandardManagerForDirection;
 
 class UserFormRequest extends FormRequest
 {
@@ -37,6 +38,7 @@ class UserFormRequest extends FormRequest
      */
     public function rules(): array
     {
+
         return [
             'matricule' => [
                 'required','integer', 'min:6',
@@ -54,12 +56,12 @@ class UserFormRequest extends FormRequest
             ],
             'datenaissance' => ['required', 'date', new UserBirthDayRule()],
             'sexe' => ['required', 'string'],
-            'roles' => ['array','exists:roles,id', 'required',
+            'roles' => ['sometimes', 'array','exists:roles,id', 'required',
                 new SameTypeRoleRule(), new ForceCentralManagerToBeAtDSI(),
                 new OneStandardManagerForDirection(),
                 new OneCentralManagerForApplication(),
             ],
-            'password' => $this->passwordRules(),
+            'password' => ['sometimes',/*  'string', */ new Password(), 'confirmed'],
             'fonction_id' => ['integer','exists:fonctions,id', 'required'],
             'division_id' => [
                 'integer','exists:divisions,id', 'required',

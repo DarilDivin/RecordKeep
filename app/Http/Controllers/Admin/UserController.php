@@ -119,13 +119,15 @@ class UserController extends Controller
                 $request['division_id'] = null;
             }
         */
-        $user->roles()->sync($request['roles']);
-        foreach ($user->permissions as $permission) {
-            $user->revokePermissionTo($permission);
-        }
-        foreach($request['roles'] as $role){
-            foreach (Role::find($role)->permissions as $permission) {
-                $user->givePermissionTo($permission->name);
+        if (array_key_exists('roles', $request->validated())) {
+            $user->roles()->sync($request['roles']);
+            foreach ($user->permissions as $permission) {
+                $user->revokePermissionTo($permission);
+            }
+            foreach($request['roles'] as $role){
+                foreach (Role::find($role)->permissions as $permission) {
+                    $user->givePermissionTo($permission->name);
+                }
             }
         }
         /* foreach($request['roles'] as $role){
@@ -133,7 +135,10 @@ class UserController extends Controller
         } */
         /* array_map(function ($role) use($user) {
             $user->permissions()->sync(Role::find($role)->permissions);
-        }, $request['roles']); */
+        }, $request['roles']);
+        array_map(
+            fn ($role) =>  $user->permissions()->sync(Role::find($role)->permissions),$request['roles']
+        ); */
         return redirect()
             ->route('admin.user.index')
             ->with('success', 'L\' utilisateur a bien été modifié');
