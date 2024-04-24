@@ -23,8 +23,8 @@ Route::get('/presentation', function () {
     return view('index');
 })->middleware('guest')->name('index');
 
-Route::get('/home', [HomeController::class, 'index'])->name('home')->middleware(['auth','hasConfirmedPwd', 'verified', 'permission:Consulter un Document|Rechercher un Document|Télécharger un Document|Demander un Prêt']);
+/* Route::get('/home', [HomeController::class, 'index'])->name('home')->middleware(['auth','hasConfirmedPwd', 'verified', 'permission:Consulter un Document|Rechercher un Document|Télécharger un Document|Demander un Prêt']); */
 
 Route::post( '/user-register', [AdminRegisteredUserController::class, 'store'])
-    ->middleware(['auth', 'verified', 'permission:Gestion des Utilisateurs'])
+    ->middleware(['auth', 'verified', 'hasConfirmedPwd', 'permission:Gestion des Utilisateurs'])
     ->name('user.register');

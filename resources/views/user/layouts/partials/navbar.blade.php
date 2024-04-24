@@ -14,11 +14,11 @@
     <div class="nav_menu">
         <ul>
             @if ($routeName === 'index' || ($routeName === 'contactUs' && !auth()->check()))
-                <li @class(['nav_links', 'active' => str_contains($routeName, 'home')])><a href="{{ route('home') }}">Accueil</a></li>
+                {{-- <li @class(['nav_links', 'active' => str_contains($routeName, 'home')])><a href="{{ route('home') }}">Accueil</a></li> --}}
                 <li @class(['nav_links', 'active' => str_contains($routeName, 'document.index')])><a href="{{ route('document.index') }}">Documenthèque</a></li>
             @endif
             @canany(['Consulter un Document', 'Télécharger un Document', 'Rechercher un Document', 'Demander un Prêt'])
-                <li @class(['nav_links', 'active' => str_contains($routeName, 'home')])><a href="{{ route('home') }}">Accueil</a></li>
+                {{-- <li @class(['nav_links', 'active' => str_contains($routeName, 'home')])><a href="{{ route('home') }}">Accueil</a></li> --}}
             @endcanany
 
             @canany(['Consulter un Document', 'Télécharger un Document', 'Rechercher un Document', 'Demander un Prêt'])

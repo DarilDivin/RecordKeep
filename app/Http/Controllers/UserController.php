@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Hash;
 class UserController extends Controller
 {
     public function changePasswordView() {
+        if ( Auth::user()->haschangedpwd) return back();
         return view('auth.change-password');
     }
 
@@ -23,6 +24,6 @@ class UserController extends Controller
             'password' => $password,
             'haschangedpwd' => true,
         ]);
-        return redirect()->intended(route('home'));
+        return redirect()->intended(route('document.index'));
     }
 }

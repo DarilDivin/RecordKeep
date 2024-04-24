@@ -6,7 +6,7 @@
         </div>
         <div class="navLinks">
             <ul>
-                <li class="nav_links" data-aos="fade-left" data-aos-delay="500"><a href="{{ route('home') }}">Accueil</a></li>
+                {{-- <li class="nav_links" data-aos="fade-left" data-aos-delay="500"><a href="{{ route('home') }}">Accueil</a></li> --}}
                 <li class="nav_links" data-aos="fade-left" data-aos-delay="600"><a href="{{ route('document.index') }}">Documenthèque</a></li>
                 <li class="nav_links" data-aos="fade-left" data-aos-delay="700"><a href="{{ route('contactUs') }}">Nous Contacter</a></li>
                 <li class="nav_links" data-aos="fade-left" data-aos-delay="800"><a href="{{ route('settings') }}">Paramètres</a></li>
