@@ -61,7 +61,8 @@ class UserFormRequest extends FormRequest
                 new OneStandardManagerForDirection(),
                 new OneCentralManagerForApplication(),
             ],
-            'password' => ['sometimes',/*  'string', */ new Password(), 'confirmed'],
+            /* 'password' => ['sometimes', 'string', new Password(), 'confirmed'], */
+            'password' => $this->passwordRules(),
             'fonction_id' => ['integer','exists:fonctions,id', 'required'],
             'division_id' => [
                 'integer','exists:divisions,id', 'required',
