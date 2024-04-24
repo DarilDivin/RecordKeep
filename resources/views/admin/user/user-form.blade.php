@@ -1,5 +1,9 @@
 @extends('admin.layouts.template')
 
+    @php
+        $routeName = request()->route()->getName()
+    @endphp
+
     @section('title')
         {{ $user->exists ? 'Éditer un Utilisateur' : 'Ajouter un Utilisateur' }}
     @endsection
@@ -28,9 +32,9 @@
 
                 <x-input class="inputContainer requiredStar" id="email" label="Email" type="email" name="email" placeholder="jonhdoe@gouv.bj"  readonly="" value="{!! $user->email !!}" />
 
-                <x-input class="inputContainer requiredStar" id="password" label="Mot de passe" type="password" name="password" placeholder="Mot de passe"  readonly="" value="{!! $user->password !!}" />
+                <x-input class="inputContainer requiredStar" id="password" label="Mot de passe" type="password" name="password" placeholder="Mot de passe"  readonly="{{ $routeName === 'admin.user.edit' ? 'readonly' : '' }}" value="{!! $user->password !!}"  />
 
-                <x-input class="inputContainer requiredStar" id="password_confirmation" label="Confirmer Mot de passe" type="password" name="password_confirmation" placeholder="Confirmer Mot de passe"  readonly="" value="{!! $user->password !!}" />
+                <x-input class="inputContainer requiredStar" id="password_confirmation" label="Confirmer Mot de passe" type="password" name="password_confirmation" placeholder="Confirmer Mot de passe"  readonly="{{ $routeName === 'admin.user.edit' ? 'readonly' : '' }}" value="{!! $user->password !!}" />
 
                 <div class="inputContainer requiredStar">
                     <label for="sexe">Sexe</label>
@@ -44,7 +48,7 @@
                     @enderror
                 </div>
 
-                <x-input class="inputContainer requiredStar" id="datenaissance" label="Date de naissance" type="date" name="datenaissance" placeholder="Date de naissance"  readonly="" value="{{ $user->datenaissance }}" />
+                <x-input class="inputContainer requiredStar" id="datenaissance" label="Date de naissance" type="date" name="datenaissance" placeholder="Date de naissance"  readonly="" max="9999-04-30"  value="{{ $user->datenaissance }}" />
 
                 <x-select class="inputContainer requiredStar" id="fonction" label="Fonction" name="fonction_id" :value="$fonctions" elementIdOnEntite="{{ $user->fonction_id }}"/>
 

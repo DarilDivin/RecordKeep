@@ -18,19 +18,19 @@ $idRegex = '[0-9]+';
 $slugRegex = '[0-9a-z\-]+';
 $mailRegex = '[^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$]';
 
-Route::group(['middleware' => ['auth', 'verified', 'permission:Gestion des Documents'], 'prefix' => 'manager', 'as' => 'manager.'], function () {
+Route::group(['middleware' => ['auth', 'verified', 'hasConfirmedPwd', 'permission:Gestion des Documents'], 'prefix' => 'manager', 'as' => 'manager.'], function () {
     Route::resource('document', DocumentController::class)->except(['show']);
 });
 
-Route::group(['middleware' => ['auth', 'verified', 'permission:Gestion des Catégories'], 'prefix' => 'manager', 'as' => 'manager.'], function () {
+Route::group(['middleware' => ['auth', 'verified', 'hasConfirmedPwd', 'permission:Gestion des Catégories'], 'prefix' => 'manager', 'as' => 'manager.'], function () {
     Route::resource('categorie', CategorieController::class)->except(['show']);
 });
 
-Route::group(['middleware' => ['auth', 'verified', 'permission:Gestion des Boîtes Archives'], 'prefix' => 'manager', 'as' => 'manager.'], function () {
+Route::group(['middleware' => ['auth', 'verified', 'hasConfirmedPwd', 'permission:Gestion des Boîtes Archives'], 'prefix' => 'manager', 'as' => 'manager.'], function () {
     Route::resource('boite', BoiteArchiveController::class)->except(['show']);
 });
 
-Route::group(['middleware' => ['auth', 'verified', 'permission:Gestion des Rayons Rangements'], 'prefix' => 'manager', 'as' => 'manager.'], function () {
+Route::group(['middleware' => ['auth', 'verified', 'hasConfirmedPwd', 'permission:Gestion des Rayons Rangements'], 'prefix' => 'manager', 'as' => 'manager.'], function () {
     Route::resource('rayon', RayonRangementController::class)->except(['show']);
 });
 

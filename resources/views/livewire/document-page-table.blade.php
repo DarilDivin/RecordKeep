@@ -45,9 +45,9 @@
                             <a href="{{ route('document.show', ['slug' => $document->getSlug(), 'document' => $document]) }}">{{ $document->nom }}</a>
                         </p>
                     </div>
-                    <div class="docInfosItem">
+                    {{-- <div class="docInfosItem">
                         <p><span>{{ number_format((filesize(public_path('storage/' . $document->document )) / 1024), 2, ',', '') }} ko</span></p>
-                    </div>
+                    </div> --}}
                     <div class="docInfosItem">
                         <p><span>{{ $document->nbrconsult }}</span> Consultations </p>
                     </div>
