@@ -16,6 +16,8 @@ use Illuminate\Support\Facades\Validator;
 use App\Rules\NoneDivisionForChiefService;
 use App\Rules\NoneDivisionForDirector;
 use App\Rules\OneCentralManagerForApplication;
+use App\Rules\OneChiefServiceForOneService;
+use App\Rules\OneDirectorForOneDirection;
 use App\Rules\OneDivisionForChiefDivision;
 use App\Rules\OneServiceForChiefDivision;
 use App\Rules\OneServiceForChiefService;
@@ -35,34 +37,36 @@ class CreateNewUser implements CreatesNewUsers
     {
         Validator::make($input, [
             'matricule' => [
-                'required','integer', 'min:6',
+                /* 'required', */'integer', 'min:6',
                 Rule::unique('users')
                 ->withoutTrashed()
             ],
-            'nom' => ['required', 'string', 'max:255'],
-            'prenoms' => ['required', 'string'],
+            'nom' => [/* 'required', */ 'string', 'max:255'],
+            'prenoms' => [/* 'required', */ 'string'],
             'email' => [
-                'required','string',
+                /* 'required', */'string',
                 'email','max:255',
                 Rule::unique(User::class)
                 ->withoutTrashed()
             ],
-            'datenaissance' => ['required', 'date', new UserBirthDayRule()],
-            'sexe' => ['required', 'string'],
+            'datenaissance' => [/* 'required', */ 'date', new UserBirthDayRule()],
+            'sexe' => [/* 'required', */ 'string'],
             'password' => $this->passwordRules(),
-            'fonction_id' => ['integer','exists:fonctions,id', 'required'],
+            'fonction_id' => ['integer','exists:fonctions,id', /* 'required', */
+                new OneDirectorForOneDirection(), new OneChiefServiceForOneService()
+            ],
             'division_id' => [
-                'integer','exists:divisions,id', 'required',
+                'integer','exists:divisions,id', /* 'required', */
                 new NoneDivisionForDirector(),new NoneDivisionForChiefService(),
                 new OneDivisionForChiefDivision()
             ],
             'service_id' => [
-                'integer','exists:services,id', 'required',
+                'integer','exists:services,id', /* 'required', */
                 new NoneServiceForDirector(), new OneServiceForChiefService(),
                 new OneServiceForChiefDivision()
             ],
             'direction_id' => ['integer','exists:directions,id', 'required'],
-            'roles' => ['array','exists:roles,id', 'required',
+            'roles' => ['array','exists:roles,id', /* 'required', */
                 new SameTypeRoleRule(), new ForceCentralManagerToBeAtDSI(),
                 new OneStandardManagerForDirection(),
                 new OneCentralManagerForApplication()

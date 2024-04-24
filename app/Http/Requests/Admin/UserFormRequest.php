@@ -9,10 +9,12 @@ use Laravel\Fortify\Rules\Password;
 use App\Rules\NoneServiceForDirector;
 use App\Rules\NoneDivisionForDirector;
 use App\Rules\OneServiceForChiefService;
+use App\Rules\OneDirectorForOneDirection;
 use App\Rules\OneServiceForChiefDivision;
 use App\Rules\NoneDivisionForChiefService;
 use App\Rules\OneDivisionForChiefDivision;
 use App\Rules\ForceCentralManagerToBeAtDSI;
+use App\Rules\OneChiefServiceForOneService;
 use Illuminate\Foundation\Http\FormRequest;
 use App\Rules\OneStandardManagerForDirection;
 use App\Rules\OneCentralManagerForApplication;
@@ -63,7 +65,9 @@ class UserFormRequest extends FormRequest
             ],
             /* 'password' => ['sometimes', 'string', new Password(), 'confirmed'], */
             'password' => $this->passwordRules(),
-            'fonction_id' => ['integer','exists:fonctions,id', 'required'],
+            'fonction_id' => ['integer','exists:fonctions,id', 'required',
+                new OneDirectorForOneDirection(), new OneChiefServiceForOneService()
+            ],
             'division_id' => [
                 'integer','exists:divisions,id', 'required',
                 new NoneDivisionForDirector(),new NoneDivisionForChiefService(),
