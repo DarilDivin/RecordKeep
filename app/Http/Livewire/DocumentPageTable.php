@@ -107,17 +107,60 @@ class DocumentPageTable extends Component
 
     public function render()
     {
-        $documents =
-        Document::whereHas('direction')
-        ->where('communicable', 1)
-        ->whereHas('naturedocument', function ($query) {
-            $query->where('visible', 1);
-        })
-        ->whereHas('fonctions', function ($query) {
-            $query->whereHas('users', function ($query) {
-                $query->where('id', Auth::user()->id);
+        $visiblesDocuments = Document::query()
+            ->where('communicable', 1)
+            ->whereHas('naturedocument', function ($query) {
+                $query->where('visible', 1);
+            })
+            ->get()
+        ;
+        /* dump($visiblesDocuments->toArray()); */
+
+        $notVisiblesDocuments = Document::query()
+            ->where('communicable', 1)
+            ->whereHas('naturedocument', function ($query) {
+                $query->where('visible', 0);
+            })
+            ->whereHas('direction', function ($query) {
+                $query->where('id', Auth::user()->direction_id);
+            })
+            ->whereHas('fonctions', function ($query) {
+                $query->whereHas('users', function ($query) {
+                    $query->where('id', Auth::user()->id);
+                });
+            })
+            ->get()
+        ;
+        /* dump($notVisiblesDocuments->toArray()); */
+
+        /* dump($notVisiblesDocuments->merge($visiblesDocuments)->toArray()); */
+
+        /*
+            $tab1 = ['Euvince', 'Daniel'];
+            $tab2 = ['Euvincia', 'Daniellia', 'Euvince'];
+            dd(array_unique(array_merge($tab1,$tab2)));
+            dd(Document::all()->merge(Document::take(2)->get())->toArray());
+        */
+
+        /* Première requête n'ayant pas abouti
+            $documents =
+            Document::where('communicable', 1)
+            ->whereHas('direction', function ($query) {
+                $query->where('id', Auth::user()->direction_id);
+            })
+            ->whereHas('naturedocument', function ($query) {
+                $query->where('visible', 1);
+            })
+            ->whereHas('fonctions', function ($query) {
+                $query->whereHas('users', function ($query) {
+                    $query->where('id', Auth::user()->id);
+                });
             });
-        });
+
+            dd($documents->get());
+        */
+
+        $documents = $notVisiblesDocuments->merge($visiblesDocuments);
 
         if(!empty($this->nom)){
             $documents = $documents->where('nom', 'LIKE', "%{$this->nom}%");
@@ -137,8 +180,8 @@ class DocumentPageTable extends Component
 
         return view('livewire.document-page-table', [
             'documents' => $documents
-                ->orderBy('created_at', 'desc')
-                ->paginate(20)
+                /* ->orderBy('created_at', 'desc')
+                ->paginate(20) */
         ]);
     }
 }
