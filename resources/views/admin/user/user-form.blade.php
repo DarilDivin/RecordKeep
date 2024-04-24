@@ -20,19 +20,19 @@
                 @csrf
                 @method($user->exists ? 'put' : 'post')
 
-                <x-input class="inputContainer" id="matricule" label="Matricule" type="text" name="matricule" placeholder="Matricule"  readonly="" value="{!! $user->matricule !!}" />
+                <x-input class="inputContainer requiredStar" id="matricule" label="Matricule" type="text" name="matricule" placeholder="Matricule"  readonly="" value="{!! $user->matricule !!}" />
 
-                <x-input class="inputContainer" id="nom" label="Nom" type="text" name="nom" placeholder="Nom" readonly="" value="{!! $user->nom !!}" />
+                <x-input class="inputContainer requiredStar" id="nom" label="Nom" type="text" name="nom" placeholder="Nom" readonly="" value="{!! $user->nom !!}" />
 
-                <x-input class="inputContainer" id="prenoms" label="Prénom(s)" type="text" name="prenoms" placeholder="Prénom(s)" readonly="" value="{!!  $user->prenoms !!}" />
+                <x-input class="inputContainer requiredStar" id="prenoms" label="Prénom(s)" type="text" name="prenoms" placeholder="Prénom(s)" readonly="" value="{!!  $user->prenoms !!}" />
 
-                <x-input class="inputContainer" id="email" label="Email" type="email" name="email" placeholder="jonhdoe@gouv.bj"  readonly="" value="{!! $user->email !!}" />
+                <x-input class="inputContainer requiredStar" id="email" label="Email" type="email" name="email" placeholder="jonhdoe@gouv.bj"  readonly="" value="{!! $user->email !!}" />
 
-                <x-input class="inputContainer" id="password" label="Mot de passe" type="password" name="password" placeholder="Mot de passe"  readonly="" value="{!! $user->password !!}" />
+                <x-input class="inputContainer requiredStar" id="password" label="Mot de passe" type="password" name="password" placeholder="Mot de passe"  readonly="" value="{!! $user->password !!}" />
 
-                <x-input class="inputContainer" id="password_confirmation" label="Confirmer Mot de passe" type="password" name="password_confirmation" placeholder="Confirmer Mot de passe"  readonly="" value="{!! $user->password !!}" />
+                <x-input class="inputContainer requiredStar" id="password_confirmation" label="Confirmer Mot de passe" type="password" name="password_confirmation" placeholder="Confirmer Mot de passe"  readonly="" value="{!! $user->password !!}" />
 
-                <div class="inputContainer">
+                <div class="inputContainer requiredStar">
                     <label for="sexe">Sexe</label>
                     <select name="sexe" id="sexe">
                             <option value="Masculin" @selected(old('sexe', $user->sexe) == 'Masculin')>Masculin</option>
@@ -44,9 +44,9 @@
                     @enderror
                 </div>
 
-                <x-input class="inputContainer" id="datenaissance" label="Date de naissance" type="date" name="datenaissance" placeholder="Date de naissance"  readonly="" value="{{ $user->datenaissance }}" />
+                <x-input class="inputContainer requiredStar" id="datenaissance" label="Date de naissance" type="date" name="datenaissance" placeholder="Date de naissance"  readonly="" value="{{ $user->datenaissance }}" />
 
-                <x-select class="inputContainer" id="fonction" label="Fonction" name="fonction_id" :value="$fonctions" elementIdOnEntite="{{ $user->fonction_id }}"/>
+                <x-select class="inputContainer requiredStar" id="fonction" label="Fonction" name="fonction_id" :value="$fonctions" elementIdOnEntite="{{ $user->fonction_id }}"/>
 
                 @livewire('document-dynamic-select', [
                     'user' => $user,

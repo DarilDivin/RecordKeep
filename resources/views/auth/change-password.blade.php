@@ -3,6 +3,9 @@
 @section('title', 'Changement de mot de passe')
 
 @section('content')
+
+    @include('user.layouts.partials.navbar')
+
     <div class="container">
         <h3>Veillez changer votre mot de passe</h3>
             @if ($errors->any())

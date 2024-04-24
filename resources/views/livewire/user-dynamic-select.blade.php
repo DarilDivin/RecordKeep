@@ -5,7 +5,7 @@
     @endphp
 
 
-    <div class="inputContainer TomSelect role" wire:ignore>
+    <div class="inputContainer requiredStar TomSelect role" wire:ignore>
         @if ($routeName === 'admin.user.edit')
             <div>
                 <label>

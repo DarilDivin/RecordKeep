@@ -102,6 +102,12 @@ label {
     color: var(--text-color-danger);
 }
 
+.addUserForm form .inputContainer.requiredStar label::after,
+.addDocumentForm form .inputContainer.requiredStar label::after {
+    content: ' *';
+    color: red;
+}
+
 .addUserForm form .inputContainer input,
 .addUserForm form .inputContainer select,
 .addDocumentForm form .inputContainer input,

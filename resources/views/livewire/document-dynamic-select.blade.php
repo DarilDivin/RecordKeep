@@ -1,5 +1,5 @@
 <div class="structure">
-    <div class="inputContainer">
+    <div class="inputContainer requiredStar">
         <label for="direction">Direction</label>
         <select class="inputContainer" id="direction" wire:model="selectedDirection" name="direction_id">
             @foreach ($directions as $direction)
@@ -11,7 +11,7 @@
         @enderror
     </div>
 
-    <div class="inputContainer">
+    <div class="inputContainer requiredStar">
         <label for="service">Service</label>
         <select class="inputContainer" id="service" wire:model="selectedService" name="service_id">
             @foreach ($services as $service)
@@ -23,7 +23,7 @@
         @enderror
     </div>
 
-    <div class="inputContainer">
+    <div class="inputContainer requiredStar">
         <label for="division">Division</label>
         <select class="inputContainer" id="division" wire:model="selectedDivision" name="division_id">
             @foreach ($divisions as $division)
