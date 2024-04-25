@@ -3,12 +3,9 @@
 namespace App\Rules;
 
 use Closure;
-use App\Models\User;
-use App\Models\Fonction;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Contracts\Validation\ValidationRule;
 
-class OneChiefServiceForOneService implements ValidationRule
+class OneChiefDivisionForOneDivision implements ValidationRule
 {
     /**
      * Run the validation rule.
