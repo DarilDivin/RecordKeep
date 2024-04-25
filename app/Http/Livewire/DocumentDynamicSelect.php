@@ -6,6 +6,7 @@ use App\Models\Service;
 use Livewire\Component;
 use App\Models\Division;
 use App\Models\Direction;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 
 class DocumentDynamicSelect extends Component
@@ -34,7 +35,8 @@ class DocumentDynamicSelect extends Component
         if(Str::contains($route, 'document')){
             $this->selectedService = $this->document->service_id;
             $this->selectedDivision = $this->document->division_id;
-            $this->selectedDirection = $this->document->direction_id;
+            /* $this->selectedDirection = $this->document->direction_id; */
+            $this->selectedDirection = Auth::user()->direction_id;
         }
         elseif(Str::contains($route, 'user')) {
             $this->selectedService = $this->user->service_id;

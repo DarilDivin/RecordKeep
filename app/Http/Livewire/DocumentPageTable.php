@@ -135,13 +135,6 @@ class DocumentPageTable extends Component
 
         /* dump($notVisiblesDocuments->merge($visiblesDocuments)->toArray()); */
 
-        /*
-            $tab1 = ['Euvince', 'Daniel'];
-            $tab2 = ['Euvincia', 'Daniellia', 'Euvince'];
-            dd(array_unique(array_merge($tab1,$tab2)));
-            dd(Document::all()->merge(Document::take(2)->get())->toArray());
-        */
-
         /* Première requête n'ayant pas abouti
             $documents =
             Document::where('communicable', 1)

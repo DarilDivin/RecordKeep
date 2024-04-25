@@ -96,6 +96,5 @@
             @if ($documents->count() > 20)
                 {{ $documents->onEachSide(0)->links() }}
             @endif
-
     </section>
 </section>

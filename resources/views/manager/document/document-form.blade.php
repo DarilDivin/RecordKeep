@@ -30,13 +30,13 @@
                 <x-input class="inputContainer" id="destinataire" label="Destinataire du document" type="text" name="destinataire" placeholder="Destinataire du document"  readonly="" value="{!! $document->destinataire !!}" />
 
                 <x-select class="inputContainer requiredStar" id="nature" label="Nature du document" name="nature_document_id" :value="$natures" elementIdOnEntite="{{ $document->nature_document_id }}" />
-                
+
                 @include('shared.tom-select')
 
 
                 <x-input class="inputContainer requiredStar" id="datecreation" label="Date de création du document" type="date" name="datecreation" placeholder=""  readonly="" value="{{ $document->datecreation }}" />
 
-                <x-input class="inputContainer requiredStar" id="document" label="Document" type="file" name="document" placeholder=""  readonly="" value="" />
+                <x-input class="inputContainer {{ request()->route()->getName() === 'manager.document.edit' ? '' : 'requiredStar' }}" id="document" label="Document" type="file" name="document" placeholder=""  readonly="" value="" />
 
                 @livewire('document-dynamic-select', [
                     'directions' => $directions,

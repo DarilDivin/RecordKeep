@@ -13,6 +13,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\Manager\DocumentFormRequest;
+use Illuminate\Support\Facades\Auth;
 
 class DocumentController extends Controller
 {
@@ -44,7 +45,8 @@ class DocumentController extends Controller
         ]);
 
         $directions = Direction::orderBy('id')->get();
-        $services = $directions->first()->services->sortBy('service');
+        /* $services = $directions->first()->services->sortBy('service'); */
+        $services = Auth::user()->direction->services->sortBy('service');
         return view('manager.document.document-form',[
             'document' => $document,
             'services' => $services,

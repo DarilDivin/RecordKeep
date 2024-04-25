@@ -1,12 +1,6 @@
 -La Pagination rate parfois;
 -Après une recherche le bouton supprimer n'affiche plus la modale et il faut recharger la page d'abord;
 -Message de confirmation n'apparaissant pas après une suppression multiple;
-
--------------------------------------------------------------------------------------------------------------
-
--La requête d'affichage
--Consulter marche pas sur l'acceuil
--La Lecture des PDFs bugg pour certains
--Confirmations modales (Retirer de listing, Accepter et Rejeter)
+-Confirmations modales (Retirer de listing, Accepter et Rejeter);
 
 -------------------------------------------------------------------------------------------------------------

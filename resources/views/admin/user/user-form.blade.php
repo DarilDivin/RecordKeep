@@ -32,9 +32,9 @@
 
                 <x-input class="inputContainer requiredStar" id="email" label="Email" type="email" name="email" placeholder="jonhdoe@gouv.bj"  readonly="" value="{!! $user->email !!}" />
 
-                <x-input class="inputContainer requiredStar" id="password" label="Mot de passe" type="password" name="password" placeholder="Mot de passe"  readonly="{{ $routeName === 'admin.user.edit' ? 'readonly' : '' }}" value="{!! $user->password !!}"  />
+                <x-input class="inputContainer {{ $routeName === 'admin.user.edit' ? '' : 'requiredStar' }}" id="password" label="Mot de passe" type="password" name="password" placeholder="Mot de passe"  readonly="{{ $routeName === 'admin.user.edit' ? 'readonly' : '' }}" value="{!! $user->password !!}"  />
 
-                <x-input class="inputContainer requiredStar" id="password_confirmation" label="Confirmer Mot de passe" type="password" name="password_confirmation" placeholder="Confirmer Mot de passe"  readonly="{{ $routeName === 'admin.user.edit' ? 'readonly' : '' }}" value="{!! $user->password !!}" />
+                <x-input class="inputContainer {{ $routeName === 'admin.user.edit' ? '' : 'requiredStar' }}" id="password_confirmation" label="Confirmer Mot de passe" type="password" name="password_confirmation" placeholder="Confirmer Mot de passe"  readonly="{{ $routeName === 'admin.user.edit' ? 'readonly' : '' }}" value="{!! $user->password !!}" />
 
                 <div class="inputContainer requiredStar">
                     <label for="sexe">Sexe</label>

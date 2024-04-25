@@ -241,5 +241,6 @@ return [
         'expediteur'               => 'Expéditeur',
         'destinataire'             => 'Destinataire',
         'reference'                => 'Référence',
+        'datenaissance'            => 'Date de naissance'
     ],
 ];

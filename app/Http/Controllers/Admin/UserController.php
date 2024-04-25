@@ -105,7 +105,7 @@ class UserController extends Controller
             'email' => $request['email'],
             'datenaissance' => $request['datenaissance'],
             'sexe' => $request['sexe'],
-            'password' => Hash::make($request['password']),
+            /* 'password' => Hash::make($request['password']), */
             'fonction_id' => $request['fonction_id'],
             'division_id' => $request['division_id'],
             'service_id' => $request['service_id'],

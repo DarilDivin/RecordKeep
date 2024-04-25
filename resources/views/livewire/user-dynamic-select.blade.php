@@ -5,15 +5,15 @@
     @endphp
 
 
-    <div class="inputContainer requiredStar TomSelect role" wire:ignore>
+    <div class="inputContainer {{ $routeName === 'admin.user.edit' ? '' : 'requiredStar' }} TomSelect role" wire:ignore>
         @if ($routeName === 'admin.user.edit')
             <div>
-                <label>
+                <div style="color: #6363ff">
                     Rôle(s) actuel(s) de l'utilisateur :
                     @foreach ($user->roles as $role)
                         {{ $role->name }} {{ $loop->last ? '.' : ',' }}
                     @endforeach
-                </label>
+                </div>
             </div>
         @endif
         <label for="role">Rôle(s)</label>
