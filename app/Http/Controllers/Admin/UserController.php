@@ -36,12 +36,12 @@ class UserController extends Controller
     public function create(): View
     {
         $user =  new User();
-        $user->fill([
+        /* $user->fill([
             'matricule' => '121315',
             'nom' => 'CODJO',
             'prenoms' => 'Gérard',
             'email' => 'gerard@codjo.com',
-        ]);
+        ]); */
         $directions = Direction::orderBy('id')->get();
         $services = $directions->first()->services->sortBy('service');
         return view('admin.user.user-form', [

@@ -11,9 +11,18 @@ class DateInput extends Component
     /**
      * Create a new component instance.
      */
-    public function __construct()
+    public function __construct(
+        public $class,
+        public $id,
+        public $label,
+        public $type,
+        public $name,
+        public $placeholder,
+        public $readonly,
+        public $value,
+        public String $max
+    )
     {
-        //
     }
 
     /**

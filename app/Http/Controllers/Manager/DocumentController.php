@@ -37,12 +37,12 @@ class DocumentController extends Controller
     public function create(): View
     {
         $document =  new Document();
-        $document->fill([
+        /* $document->fill([
             'reference' => 'N°564/DPAF/MISP/SGHTE/DPRF/SA',
             'objet' => 'Autorisation de stage',
             'expediteur' => 'DPAF',
             'destinataire' => 'Daniel'
-        ]);
+        ]); */
 
         $directions = Direction::orderBy('id')->get();
         /* $services = $directions->first()->services->sortBy('service'); */

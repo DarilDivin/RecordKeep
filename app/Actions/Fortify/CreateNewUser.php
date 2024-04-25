@@ -50,7 +50,7 @@ class CreateNewUser implements CreatesNewUsers
                 Rule::unique(User::class)
                 ->withoutTrashed()
             ],
-            'datenaissance' => ['required', 'date', new UserBirthDayRule()],
+            'datenaissance' => ['required', 'date', 'date_format:Y-m-d', /* 'before_or_equal:today', */ new UserBirthDayRule()],
             'sexe' => ['required', 'string'],
             'password' => $this->passwordRules(),
             'fonction_id' => ['integer','exists:fonctions,id', 'required', new OneDirectorForOneDirection(),

@@ -51,7 +51,7 @@ class DocumentFormRequest extends FormRequest
             'objet' => ['required', 'string'],
             'expediteur' => ['nullable', 'string'],
             'destinataire' => ['nullable', 'string'],
-            'datecreation' => ['required', 'date', new DocumentBirthdayRule()],
+            'datecreation' => ['required', 'date', 'date_format:Y-m-d', /* 'before_or_equal:today', */ new DocumentBirthdayRule()],
             'disponibilite' => ['nullable', 'boolean'],
             'archive' => ['nullable', 'boolean'],
             'nature_document_id' => ['required', 'exists:nature_documents,id'],

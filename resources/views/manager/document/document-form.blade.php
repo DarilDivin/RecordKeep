@@ -34,7 +34,7 @@
                 @include('shared.tom-select')
 
 
-                <x-input class="inputContainer requiredStar" id="datecreation" label="Date de création du document" type="date" name="datecreation" placeholder=""  readonly="" value="{{ $document->datecreation }}" />
+                <x-date-input class="inputContainer requiredStar" id="datecreation" label="Date de création du document" type="date" name="datecreation" placeholder=""  readonly="" max="9999-04-30" value="{{ $document->datecreation }}" />
 
                 <x-input class="inputContainer {{ request()->route()->getName() === 'manager.document.edit' ? '' : 'requiredStar' }}" id="document" label="Document" type="file" name="document" placeholder=""  readonly="" value="" />
 

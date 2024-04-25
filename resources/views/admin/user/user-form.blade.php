@@ -48,7 +48,7 @@
                     @enderror
                 </div>
 
-                <x-input class="inputContainer requiredStar" id="datenaissance" label="Date de naissance" type="date" name="datenaissance" placeholder="Date de naissance"  readonly="" max="9999-04-30"  value="{{ $user->datenaissance }}" />
+                <x-date-input class="inputContainer requiredStar" id="datenaissance" label="Date de naissance" type="date" name="datenaissance" placeholder="Date de naissance"  readonly="" max="9999-04-30"  value="{{ $user->datenaissance }}" />
 
                 <x-select class="inputContainer requiredStar" id="fonction" label="Fonction" name="fonction_id" :value="$fonctions" elementIdOnEntite="{{ $user->fonction_id }}"/>
 

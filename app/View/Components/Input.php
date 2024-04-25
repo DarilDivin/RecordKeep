@@ -23,7 +23,6 @@ class Input extends Component
         public $value
     )
     {
-
     }
 
     /**

@@ -57,7 +57,7 @@ class UserFormRequest extends FormRequest
                 ->ignore($this->route()->parameter('user'))
                 ->withoutTrashed()
             ],
-            'datenaissance' => ['required', 'date', new UserBirthDayRule()],
+            'datenaissance' => ['required', 'date', 'date_format:Y-m-d', /* 'before_or_equal:today', */ new UserBirthDayRule()],
             'sexe' => ['required', 'string'],
             'roles' => ['sometimes', 'array','exists:roles,id', 'required',
                 new SameTypeRoleRule(), new ForceCentralManagerToBeAtDSI(),
