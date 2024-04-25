@@ -19,6 +19,7 @@ use Illuminate\Foundation\Http\FormRequest;
 use App\Rules\OneStandardManagerForDirection;
 use App\Rules\OneCentralManagerForApplication;
 use App\Actions\Fortify\PasswordValidationRules;
+use App\Rules\OneChiefDivisionForOneDivision;
 
 class UserFormRequest extends FormRequest
 {
@@ -65,8 +66,8 @@ class UserFormRequest extends FormRequest
             ],
             /* 'password' => ['sometimes', 'string', new Password(), 'confirmed'], */
             'password' => $this->passwordRules(),
-            'fonction_id' => ['integer','exists:fonctions,id', 'required',
-                new OneDirectorForOneDirection(), new OneChiefServiceForOneService()
+            'fonction_id' => ['integer','exists:fonctions,id', 'required', new OneDirectorForOneDirection(),
+                new OneChiefServiceForOneService(), new OneChiefDivisionForOneDivision()
             ],
             'division_id' => [
                 'integer','exists:divisions,id', 'required',

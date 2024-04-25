@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Validator;
 use App\Rules\NoneDivisionForChiefService;
 use App\Rules\NoneDivisionForDirector;
 use App\Rules\OneCentralManagerForApplication;
+use App\Rules\OneChiefDivisionForOneDivision;
 use App\Rules\OneChiefServiceForOneService;
 use App\Rules\OneDirectorForOneDirection;
 use App\Rules\OneDivisionForChiefDivision;
@@ -52,8 +53,8 @@ class CreateNewUser implements CreatesNewUsers
             'datenaissance' => ['required', 'date', new UserBirthDayRule()],
             'sexe' => ['required', 'string'],
             'password' => $this->passwordRules(),
-            'fonction_id' => ['integer','exists:fonctions,id', 'required',
-                new OneDirectorForOneDirection(), new OneChiefServiceForOneService()
+            'fonction_id' => ['integer','exists:fonctions,id', 'required', new OneDirectorForOneDirection(),
+                new OneChiefServiceForOneService(), new OneChiefDivisionForOneDivision()
             ],
             'division_id' => [
                 'integer','exists:divisions,id', 'required',

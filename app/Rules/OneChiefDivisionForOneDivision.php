@@ -3,6 +3,9 @@
 namespace App\Rules;
 
 use Closure;
+use App\Models\User;
+use App\Models\Fonction;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Contracts\Validation\ValidationRule;
 
 class OneChiefDivisionForOneDivision implements ValidationRule
@@ -15,27 +18,27 @@ class OneChiefDivisionForOneDivision implements ValidationRule
     public function validate(string $attribute, mixed $value, Closure $fail): void
     {
         $routeName = request()->route()->getName();
-        $chiefsServiceNumber = User::whereHas('service',
-            fn (Builder $query) => $query->where('id', request()->service_id)
-        )->whereHas('fonction', fn ($query) => $query->where('fonction', 'Chef Service'))
+        $chiefsDivisionsNumber = User::whereHas('division',
+            fn (Builder $query) => $query->where('id', request()->division_id)
+        )->whereHas('fonction', fn ($query) => $query->where('fonction', 'Chef Division'))
         ->count();
         if (
             $routeName === 'user.register'
-            && $chiefsServiceNumber > 0
-            && (int)request()->fonction_id === Fonction::where('fonction', 'Chef Service')->first()->id
+            && $chiefsDivisionsNumber > 0
+            && (int)request()->fonction_id === Fonction::where('fonction', 'Chef Division')->first()->id
         )
-        $fail('Il existe déjà un chef service dans le service spécifié');
+        $fail('Il existe déjà un chef division dans la division spécifiée');
 
         elseif (
             $routeName === 'admin.user.update'
-            && $chiefsServiceNumber > 0
-            && (int)request()->fonction_id === Fonction::where('fonction', 'Chef Service')->first()->id
+            && $chiefsDivisionsNumber > 0
+            && (int)request()->fonction_id === Fonction::where('fonction', 'Chef Division')->first()->id
             &&
             (
-                request()->route()->parameter('user')->fonction_id !== Fonction::where('fonction', 'Chef Service')->first()->id
-                || (int)request()->service_id !== request()->route()->parameter('user')->service_id
+                request()->route()->parameter('user')->fonction_id !== Fonction::where('fonction', 'Chef Division')->first()->id
+                || (int)request()->division_id !== request()->route()->parameter('user')->division_id
             )
         )
-        $fail('Il existe déjà un chef service dans le service spécifié');
+        $fail('Il existe déjà un chef division dans la division spécifiée');
     }
 }
