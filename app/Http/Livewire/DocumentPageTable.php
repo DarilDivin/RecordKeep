@@ -108,14 +108,33 @@ class DocumentPageTable extends Component
 
     public function render()
     {
+
+        /*
+            Première requête n'ayant pas abouti
+            $documents =
+            Document::where('communicable', 1)
+            ->whereHas('direction',
+                fn (Builder $query) => $query->where('id', Auth::user()->direction_id)
+            )
+            ->whereHas('naturedocument',
+                fn (Builder $query) => $query->where('visible', 1)
+            )
+            ->whereHas('fonctions',
+                fn (Builder $query) => $query->whereHas('users',
+                    fn (Builder $query) => $query->where('id', Auth::user()->id)
+                )
+            );
+            Enchâiner des wheres de recherches
+            dd($documents->orderBy('created_at', 'desc')->get());
+        */
+
         $visiblesDocuments = Document::query()
             ->where('communicable', 1)
             ->whereHas('naturedocument',
                 fn (Builder $query) => $query->where('visible', 1)
             )
-            ->get()
         ;
-        /* dump($visiblesDocuments->toArray()); */
+        /* dump($visiblesDocuments->orderBy('created_at', 'desc')->get()->toArray()); */
 
         $notVisiblesDocuments = Document::query()
             ->where('communicable', 1)
@@ -130,50 +149,37 @@ class DocumentPageTable extends Component
                     fn (Builder $query) => $query->where('id', Auth::user()->id)
                 )
             )
-            ->get()
         ;
-        /* dump($notVisiblesDocuments->toArray()); */
+        /* dump($notVisiblesDocuments->orderBy('created_at', 'desc')->get()->toArray()); */
 
-        /* dump($notVisiblesDocuments->merge($visiblesDocuments)->toArray()); */
-
-        /* Première requête n'ayant pas abouti
-            $documents =
-            Document::where('communicable', 1)
-            ->whereHas('direction',
-                fn (Builder $query) => $query->where('id', Auth::user()->direction_id)
-            )
-            ->whereHas('naturedocument',
-                fn (Builder $query) => $query->where('visible', 1)
-            )
-            ->whereHas('fonctions',
-                fn (Builder $query) => $query->whereHas('users',
-                    fn (Builder $query) => $query->where('id', Auth::user()->id)
-                )
-            );
-            dd($documents->get()); */
-
-        $documents = $notVisiblesDocuments->merge($visiblesDocuments);
+        /* dump($notVisiblesDocuments->union($visiblesDocuments)->orderBy('created_at', 'desc')->get()->toArray());
+        die(); */
 
         if(!empty($this->nom)){
-            $documents = $documents->where('nom', 'LIKE', "%{$this->nom}%");
+            $visiblesDocuments = $visiblesDocuments->where('nom', 'LIKE', "%{$this->nom}%");
+            $notVisiblesDocuments = $notVisiblesDocuments->where('nom', 'LIKE', "%{$this->nom}%");
         }
 
         if(!empty($this->dateDeb)){
-            $documents = $documents->where('datecreation', '>=', $this->dateDeb);
+            $visiblesDocuments = $visiblesDocuments->where('datecreation', '>=', $this->dateDeb);
+            $notVisiblesDocuments = $notVisiblesDocuments->where('datecreation', '>=', $this->dateDeb);
         }
 
         if(!empty($this->dateFin)){
-            $documents = $documents->where('datecreation', '<=', $this->dateFin);
+            $visiblesDocuments = $visiblesDocuments->where('datecreation', '<=', $this->dateFin);
+            $notVisiblesDocuments = $notVisiblesDocuments->where('datecreation', '<=', $this->dateFin);
         }
 
         if(!empty($this->motclefs)){
-            $documents = $documents->where('motclefs', 'LIKE', "%{$this->motclefs}%");
+            $visiblesDocuments = $visiblesDocuments->where('motclefs', 'LIKE', "%{$this->motclefs}%");
+            $notVisiblesDocuments = $notVisiblesDocuments->where('motclefs', 'LIKE', "%{$this->motclefs}%");
         }
 
         return view('livewire.document-page-table', [
-            'documents' => $documents
-                /* ->orderBy('created_at', 'desc')
-                ->paginate(20) */
+            'documents' => $notVisiblesDocuments->union($visiblesDocuments)
+                ->orderBy('created_at', 'desc')
+                ->paginate(20)
+                /* ->sortByDesc('created_at') */
         ]);
     }
 }

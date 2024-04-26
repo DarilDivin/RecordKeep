@@ -38,27 +38,23 @@
             <div class="infosDoc">
                 <table class="table">
                     <tr>
-                        <td>Timbre</td>
-                        <td>{{ $document->timbre }}</td>
+                        <td>Référence du document</td>
+                        <td>{{ $document->reference }}</td>
                     </tr>
                     <tr>
-                        <td>Nom</td>
-                        <td>{{ $document->nom }}</td>
-                    </tr>
-                    <tr>
-                        <td>Objet</td>
+                        <td>Objet du document</td>
                         <td>{{ $document->objet }}</td>
                     </tr>
                     <tr>
-                        <td>Source</td>
-                        <td>{{ $document->emetteur }}</td>
+                        <td>Expéditeur du document</td>
+                        <td>{{ $document->expediteur }}</td>
                     </tr>
                     <tr>
-                        <td>Date de création</td>
+                        <td>Date de création du document</td>
                         <td>{{ $document->getDateCreation()->translatedFormat("d F Y") }}</td>
                     </tr>
                     <tr>
-                        <td>Nature</td>
+                        <td>Nature du document</td>
                         <td>{{ $document->naturedocument?->nature }}</td>
                     </tr>
                 </table>
