@@ -16,7 +16,6 @@
         "spatie/laravel-permission": "^5.10"
     },
     "require-dev": {
-        "barryvdh/laravel-debugbar": "^3.13",
         "barryvdh/laravel-ide-helper": "^2.13",
         "fakerphp/faker": "^1.9.1",
         "laravel-lang/common": "^3.1",
