@@ -60,7 +60,7 @@
             onclick="event.preventDefault();
             document.getElementById('logout-form').submit();">
                 <ion-icon name="log-out-outline"></ion-icon>
-                <p>Logout</p>
+                <p>Déconnexion</p>
             </a>
         </div>
 

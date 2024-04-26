@@ -17,6 +17,11 @@ use Illuminate\Http\RedirectResponse;
 class DocumentController extends Controller
 {
 
+    /* function __construct()
+    {
+        $this->authorizeResource(Document::class, 'document');
+    } */
+
     public function index(): View
     {
         return view('user.DocumentPage');
@@ -24,14 +29,30 @@ class DocumentController extends Controller
 
     public function show(string $slug, Document $document): View | RedirectResponse
     {
-        $expectedSlug = $document->getSlug();
-        if ($slug != $expectedSlug) {
-            return to_route('document.show', ['slug' => $expectedSlug, 'document' => $document]);
+        /**
+         * @var User $user
+         */
+        $user = Auth::user();
+        if (
+            ($document->communicable && $document->naturedocument->visible) ||
+            (
+                $document->communicable && !$document->naturedocument->visible && $document->direction_id === $user->direction_id
+                && in_array($user->fonction->fonction, $document->fonctions->pluck('fonction', 'id')->toArray())
+            )
+        ){
+            $expectedSlug = $document->getSlug();
+            if ($slug != $expectedSlug) {
+                return to_route('document.show', ['slug' => $expectedSlug, 'document' => $document]);
+            }
+
+            return view('user.DemandePrêt', [
+                'document' => $document
+            ]);
+        }
+        else {
+            return to_route('document.index');
         }
 
-        return view('user.DemandePrêt', [
-            'document' => $document
-        ]);
     }
 
     public function download(Document $document)

@@ -29,7 +29,6 @@ class DocumentPolicy
      */
     public function viewAny(User $user): void
     {
-        //
     }
 
     /**
@@ -37,7 +36,6 @@ class DocumentPolicy
      */
     public function view(User $user, Document $document): void
     {
-        //
     }
 
     /**
@@ -45,7 +43,7 @@ class DocumentPolicy
      */
     public function create(User $user): void
     {
-        //
+
     }
 
     /**

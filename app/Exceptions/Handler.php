@@ -93,7 +93,7 @@ class Handler extends ExceptionHandler
                 return to_route('admin.statistique');
             }
             else{
-                return to_route('home');
+                return to_route('document.index');
             }
         });
     }

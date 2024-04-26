@@ -56,7 +56,7 @@ class AuthServiceProvider extends ServiceProvider
         Categorie::class => CategoriePolicy::class,
         Direction::class => DirectionPolicy::class,
         Permission::class => PermissionPolicy::class,
-        Document::class => UserDocumentPolicy::class,
+        /* Document::class => UserDocumentPolicy::class, */
         DemandePret::class => DemandePretPolicy::class,
         Document::class => ManagerDocumentPolicy::class,
         BoiteArchive::class => BoiteArchivePolicy::class,

@@ -1,5 +1,7 @@
--La Pagination rate parfois;
--Après une recherche le bouton supprimer n'affiche plus la modale et il faut recharger la page d'abord;
+-Les buggs JS(Livewire) :
+    *La Pagination rate parfois;
+    *Après une recherche le bouton consulter ne marche plus parfois et il faut recharger la page d'abord;
+    *Après une recherche le bouton supprimer n'affiche plus la modale et il faut recharger la page d'abord;
 -Message de confirmation n'apparaissant pas après une suppression multiple;
 -Confirmations modales (Retirer de listing, Accepter et Rejeter);
 
