@@ -38,6 +38,10 @@
             <div class="infosDoc">
                 <table class="table">
                     <tr>
+                        <td>Direction du document</td>
+                        <td>{{ $document->direction->direction }}</td>
+                    </tr>
+                    <tr>
                         <td>Référence du document</td>
                         <td>{{ $document->reference }}</td>
                     </tr>
@@ -80,8 +84,10 @@
                                 {{ "Procéder à une Demande de Prêt pour ce document." }}
                             @elseif ($document->disponibilite && $document->direction_id !== auth()->user()->direction_id)
                                 {{ "Le document n'est pas de votre direction, il vous est donc impossible d'éffectuer cette opération." }}
-                            @elseif (!$document->disponibilite && $document->prete)
-                                {{ "Le dit document est actuellement en cours de prêt." }}
+                            @elseif (!$document->disponibilite && $document->prete && $document->direction_id === auth()->user()->direction_id)
+                                {{ "Ce doument est actuellement en cours de prêt." }}
+                            @elseif (!$document->disponibilite && $document->prete && $document->direction_id !== auth()->user()->direction_id)
+                                {{ "Le document n'est pas de votre direction, il vous est donc impossible d'éffectuer cette opération." }}
                             @else
                                 {{ "Impossible de procéder à une Demande de Prêt pour ce document" }}
                             @endif

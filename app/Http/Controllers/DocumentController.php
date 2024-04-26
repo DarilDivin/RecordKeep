@@ -69,28 +69,35 @@ class DocumentController extends Controller
     public function demande(Document $document, DocumentDemandeRequest $request) : RedirectResponse
     {
         if (
-            Auth::user()->demandeprets
-            ->where('etat', '=', 'Encours')
-            ->where('document_id', $document->id)
-            ->count() > 0
-        ){
-            return back()->with(
-                'error',
-                'Vous avez déjà une demande de prêt pour ce document en cours de traitement, patientez.'
-            );
+            $document->communicable &&
+            $document->disponibilite &&
+            $document->direction_id === Auth::user()->direction_id
+        )
+        {
+            if (
+                Auth::user()->demandeprets
+                ->where('etat', '=', 'Encours')
+                ->where('document_id', $document->id)
+                ->count() > 0
+            ){
+                return back()->with(
+                    'error',
+                    'Vous avez déjà une demande de prêt pour ce document en cours de traitement, patientez.'
+                );
+            }
+
+            $lastCreatedDemande = DemandePret::create(array_merge($request->validated(), [
+                'user_id' => Auth::user()->id,
+                'document_id' => $document->id,
+                'etat' => 'Encours'
+            ]));
+            $routeAccept = route('document.demande.accept', ['demande' => $lastCreatedDemande]);
+            $routeReject = route('document.demande.reject', ['demande' => $lastCreatedDemande]);
+            DemandePretJob::dispatch($lastCreatedDemande, $routeAccept, $routeReject);
+            return back()->with('success', 'Votre demande de prêt a bien été envoyée');
         }
-
-        $lastCreatedDemande = DemandePret::create(array_merge($request->validated(), [
-            'user_id' => Auth::user()->id,
-            'document_id' => $document->id,
-            'etat' => 'Encours'
-        ]));
-
-        $routeAccept = route('document.demande.accept', ['demande' => $lastCreatedDemande]);
-        $routeReject = route('document.demande.reject', ['demande' => $lastCreatedDemande]);
-        DemandePretJob::dispatch($lastCreatedDemande, $routeAccept, $routeReject);
-
-        return back()->with('success', 'Votre demande de prêt a bien été envoyée');
+        else
+            return back()->with('error', 'Le document ne respecte pas toutes les règles de prêts.');
     }
 
     public function acceptDemande(DemandePret $demande) : RedirectResponse
