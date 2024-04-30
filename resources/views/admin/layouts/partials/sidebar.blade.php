@@ -213,7 +213,7 @@
 
         @canany(['Consulter un Document', 'Télécharger un Document', 'Rechercher un Document', 'Demander un Prêt'])
             <li class="list">
-                <a href="{{ route('home') }}">
+                <a href="{{ route('document.index') }}">
                     <span class="icon"><ion-icon name="laptop-outline"></ion-icon></span>
                     <span class="title">Page d'accueil Utilisateur</span>
                 </a>

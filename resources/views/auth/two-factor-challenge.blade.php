@@ -16,6 +16,17 @@
             @csrf
             <input type="text" name="code" id="" placeholder="Code" class="input">
 
+            {{-- <input type="text" name="recovery_code" id="" placeholder="Code" class="input"> --}}
+
+            <button type="submit">Se connecter</button>
+        </form>
+
+        <form action="{{ url('/two-factor-challenge') }}" class="connexion connexion-form" method="POST">
+            @csrf
+            {{-- <input type="text" name="code" id="" placeholder="Code" class="input"> --}}
+
+            <input type="text" name="recovery_code" id="" placeholder="Code de recupération" class="input">
+
             <button type="submit">Se connecter</button>
         </form>
     </div>
