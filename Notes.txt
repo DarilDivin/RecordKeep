@@ -4,5 +4,6 @@
     *Après une recherche le bouton supprimer n'affiche plus la modale et il faut recharger la page d'abord;
 -Message de confirmation n'apparaissant pas après une suppression multiple;
 -Confirmations modales (Retirer de listing, Accepter et Rejeter);
+adysfvy
 
 -------------------------------------------------------------------------------------------------------------
