@@ -28,9 +28,9 @@ class DocumentFormRequest extends FormRequest
     public function rules(): array
     {
         if(request()->routeIs('manager.document.store')){
-            $documentRule = 'required|mimes:pdf|max:500000';
+            $documentRules = 'required|mimes:pdf|max:500000';
         }elseif(request()->routeIs('manager.document.update')){
-            $documentRule = 'sometimes|mimes:pdf|max:500000';
+            $documentRules = 'sometimes|mimes:pdf|max:500000';
         }
 
         return [
@@ -59,7 +59,7 @@ class DocumentFormRequest extends FormRequest
             'division_id' => ['required', 'exists:divisions,id', 'integer'],
             'service_id' => ['required', 'exists:services,id', 'integer'],
             'direction_id' => ['required', 'exists:directions,id', 'integer', new ForceChoiceUserDiretionRule()],
-            'document' => $documentRule,
+            'document' => $documentRules,
             'fonctions' => [
                 'required', 'array', 'exists:fonctions,id',
                 new ForceChoiceDirecteurFonctionRule(),
