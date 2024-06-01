@@ -19,7 +19,7 @@ class SameServiceForDirection implements ValidationRule
                 ? Direction::find(request()->direction_id)->services
                 : Direction::find(request()->direction_id)->services->where('id', '!=', request()->route()->parameter('service')['id']);
         $services->each(function ($service) use ($fail) {
-            if (strtolower($service->service) === strtolower(request()->service)) {
+            if (mb_strtolower($service->service) === mb_strtolower(request()->service)) {
                 $fail('Ce Service existe déjà pour la direction spécifiée.');
             }
         });

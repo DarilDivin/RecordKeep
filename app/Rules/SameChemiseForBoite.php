@@ -19,7 +19,7 @@ class SameChemiseForBoite implements ValidationRule
                 ? BoiteArchive::find(request()->boite_archive_id)->chemisedossiers
                 : BoiteArchive::find(request()->boite_archive_id)->chemisedossiers->where('id', '!=', request()->route()->parameter('chemise')['id']);
         $chemises->each(function ($chemise) use ($fail) {
-            if (strtolower($chemise->libelle) === strtolower(request()->libelle)) {
+            if (mb_strtolower($chemise->libelle) === mb_strtolower(request()->libelle)) {
                 $fail('Cette Chemise existe déjà pour cette Boîte archive.');
             }
         });

@@ -19,7 +19,7 @@ class SameBoiteForRayon implements ValidationRule
                 ? RayonRangement::find(request()->rayon_rangement_id)->boitearchives
                 : RayonRangement::find(request()->rayon_rangement_id)->boitearchives->where('id', '!=', request()->route()->parameter('boite')['id']);
         $boites->each(function ($boite) use ($fail) {
-            if (strtolower($boite->libelle) === strtolower(request()->libelle)) {
+            if (mb_strtolower($boite->libelle) === mb_strtolower(request()->libelle)) {
                 $fail('Cette Boîte existe déjà pour ce Rayon de rangement.');
             }
         });

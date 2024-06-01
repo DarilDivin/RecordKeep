@@ -19,7 +19,7 @@ class SameDivisionForService implements ValidationRule
                 ? Service::find(request()->service_id)->divisions
                 : Service::find(request()->service_id)->divisions->where('id', '!=', request()->route()->parameter('division')['id']);
         $divisions->each(function ($division) use ($fail) {
-            if (strtolower($division->division) === strtolower(request()->division)) {
+            if (mb_strtolower($division->division) === mb_strtolower(request()->division)) {
                 $fail('Cette Division existe déjà pour le service spécifié.');
             }
         });
