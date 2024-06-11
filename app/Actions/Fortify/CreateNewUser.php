@@ -97,6 +97,9 @@ class CreateNewUser implements CreatesNewUsers
             'direction_id' => $input['direction_id']
         ]);
         $user->roles()->sync($input['roles']);
+        /**
+         * @var array $input
+         */
         foreach ($input['roles'] as $role) {
             foreach (Role::find($role)->permissions as $permission) {
                 $user->givePermissionTo($permission->name);
