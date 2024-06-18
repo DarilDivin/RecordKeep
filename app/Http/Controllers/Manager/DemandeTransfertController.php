@@ -9,15 +9,15 @@ use Illuminate\Http\RedirectResponse;
 
 class DemandeTransfertController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
 
     public function __construct()
     {
         $this->authorizeResource(DemandeTransfert::class, 'transfert');
     }
 
+    /**
+     * Display a listing of the resource.
+     */
     public function index(): View
     {
         return view('manager.demande-transfert.transferts');

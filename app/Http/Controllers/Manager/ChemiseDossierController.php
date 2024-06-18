@@ -11,15 +11,15 @@ use App\Http\Requests\Manager\ChemiseDossierFormRequest;
 
 class ChemiseDossierController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
 
     public function __construct()
     {
         $this->authorizeResource(ChemiseDossier::class, 'chemise');
     }
 
+    /**
+     * Display a listing of the resource.
+     */
     public function index(): View
     {
         return view('manager.chemise-dossier.chemises');

@@ -12,15 +12,15 @@ use App\Http\Requests\Admin\TypeRoleFormRequest;
 
 class TypeRoleController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
 
     public function __construct()
     {
         $this->authorizeResource(TypeRole::class);
     }
 
+    /**
+     * Display a listing of the resource.
+     */
     public function index(): View
     {
         return view('admin.type-role.typeroles');

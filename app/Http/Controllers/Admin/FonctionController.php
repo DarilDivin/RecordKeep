@@ -10,15 +10,15 @@ use App\Http\Requests\Admin\FonctionFormRequest;
 
 class FonctionController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
 
     public function __construct()
     {
         $this->authorizeResource(Fonction::class, 'fonction');
     }
 
+    /**
+     * Display a listing of the resource.
+     */
     public function index(): View | RedirectResponse
     {
         return view('admin.fonction.fonctions');

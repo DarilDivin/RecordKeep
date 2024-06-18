@@ -12,15 +12,15 @@ use Illuminate\Http\RedirectResponse;
 
 class RoleController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
 
     public function __construct()
     {
         $this->authorizeResource(Role::class, 'role');
     }
 
+    /**
+     * Display a listing of the resource.
+     */
     public function index(): View
     {
         return view('admin.role.roles');

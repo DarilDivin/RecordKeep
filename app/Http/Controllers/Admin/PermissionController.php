@@ -12,15 +12,15 @@ use Illuminate\Http\RedirectResponse;
 
 class PermissionController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
 
     public function __construct()
     {
         $this->authorizeResource(Permission::class, 'permission');
     }
 
+    /**
+     * Display a listing of the resource.
+     */
     public function index(): View
     {
         return view('admin.permission.permissions');

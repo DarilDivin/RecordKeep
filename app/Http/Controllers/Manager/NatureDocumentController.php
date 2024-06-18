@@ -11,15 +11,15 @@ use App\Http\Requests\Manager\NatureDocumentFormRequest;
 
 class NatureDocumentController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
 
     public function __construct()
     {
         $this->authorizeResource(NatureDocument::class, 'nature');
     }
 
+    /**
+     * Display a listing of the resource.
+     */
     public function index(): View
     {
         return view('manager.nature-document.natures');

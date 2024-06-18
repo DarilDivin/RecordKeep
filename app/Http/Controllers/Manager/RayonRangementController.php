@@ -10,15 +10,15 @@ use App\Http\Requests\Manager\RayonRangementFormRequest;
 
 class RayonRangementController extends Controller
 {
-    /**
+
+    public function __construct()
+    {
+    $this->authorizeResource(RayonRangement::class, 'rayon');
+    }
+
+     /**
      * Display a listing of the resource.
      */
-
-     public function __construct()
-     {
-        $this->authorizeResource(RayonRangement::class, 'rayon');
-     }
-
     public function index(): View
     {
         return view('manager.rayon-rangement.rayons');

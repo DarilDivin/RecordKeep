@@ -16,15 +16,15 @@ use App\Http\Requests\Admin\UserFormRequest;
 
 class UserController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
 
     public function __construct()
     {
         $this->authorizeResource(User::class, 'user');
     }
 
+    /**
+     * Display a listing of the resource.
+     */
     public function index(): View
     {
         return view('admin.user.users');

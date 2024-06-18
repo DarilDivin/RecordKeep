@@ -10,15 +10,15 @@ use App\Http\Requests\Manager\CategorieFormRequest;
 
 class CategorieController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
 
     public function __construct()
     {
         $this->authorizeResource(Categorie::class, 'categorie');
     }
 
+    /**
+     * Display a listing of the resource.
+     */
     public function index(): View
     {
         return view('manager.categorie.categories');

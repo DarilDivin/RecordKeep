@@ -11,15 +11,15 @@ use App\Http\Requests\Manager\BoiteArchiveFormRequest;
 
 class BoiteArchiveController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
 
     public function __construct()
     {
         $this->authorizeResource(BoiteArchive::class, 'boite');
     }
 
+    /**
+     * Display a listing of the resource.
+     */
     public function index(): View
     {
         return view('manager.boite-archive.boites');
