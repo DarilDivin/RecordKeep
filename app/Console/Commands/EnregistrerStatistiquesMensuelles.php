@@ -33,13 +33,13 @@ class EnregistrerStatistiquesMensuelles extends Command
     {
         $valeurMensuelle = $this->calculerValeurMensuelle();
 
-        $statistique = new Statistique([
+        $statistiques = new Statistique([
             'nbrDocArchived' => $valeurMensuelle['nbrDocumentArchivé'],
             'nbrDocCreated' => $valeurMensuelle['nbrDocumentCréé'],
             'date' => now(),
         ]);
 
-        $statistique->save();
+        $statistiques->save();
         $this->info('Statistiques mensuelles enregistrées avec succès.');
     }
 
