@@ -43,7 +43,7 @@ class EnregistrerStatistiquesMensuelles extends Command
         $this->info('Statistiques mensuelles enregistrées avec succès.');
     }
 
-    private function calculerValeurMensuelle()
+    private function calculerValeurMensuelle() : array
     {
         $anneeActuelle = Carbon::now()->year;
         $moisActuelle = Carbon::now()->month;
