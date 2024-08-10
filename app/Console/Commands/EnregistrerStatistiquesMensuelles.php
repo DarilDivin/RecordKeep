@@ -45,19 +45,14 @@ class EnregistrerStatistiquesMensuelles extends Command
 
     private function calculerValeurMensuelle() : array
     {
-        $anneeActuelle = Carbon::now()->year;
-        $moisActuelle = Carbon::now()->month;
-        $createdDocumentPerMonth = Document::whereYear('created_at', $anneeActuelle)->whereMonth('created_at', $moisActuelle)->get();
-        $archivedDocumentsPerMonth = Document::whereYear('archived_at', $anneeActuelle)->whereMonth('archived_at', $moisActuelle)->get();
-
-        $nbrCreatedDocumentPerMonth = count($createdDocumentPerMonth);
-        $nbrArchivedDocumentsPerMonth = count($archivedDocumentsPerMonth);
+        $createdDocumentPerMonth = Document::whereYear('created_at', Carbon::now()->year)->whereMonth('created_at', Carbon::now()->month)->get();
+        $archivedDocumentsPerMonth = Document::whereYear('archived_at', Carbon::now()->year)->whereMonth('archived_at', Carbon::now()->month)->get();
 
         // Ici je dois retourner un tableau en clé => valeur dans lequel il y aura toutes mes données mensuelles
         // Pour l'instant il n'y a que le nombre de document archivé dans le mois.
         return [
-            'nbrDocumentCréé' => $nbrCreatedDocumentPerMonth,
-            'nbrDocumentArchivé' => $nbrArchivedDocumentsPerMonth,
+            'nbrDocumentCréé' => count($createdDocumentPerMonth),
+            'nbrDocumentArchivé' => count($archivedDocumentsPerMonth),
         ];
     }
 }
