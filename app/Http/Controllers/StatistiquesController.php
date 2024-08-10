@@ -6,12 +6,13 @@ use Carbon\Carbon;
 use App\Models\User;
 use App\Models\Document;
 use App\Models\Statistique;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class StatistiquesController extends Controller
 {
-    public function stat()
+    public function stat() : View
     {
         $utilisateurs = User::with('roles')->get()->toArray();
 
@@ -60,10 +61,6 @@ class StatistiquesController extends Controller
                 'nbrDocCreated' => $entry->nbrDocCreated,
             ];
         }
-
-
-
-
 
         return view('admin.Dashboard-Statistiques', [
             'nbrdocument' => $nbrDocument,
