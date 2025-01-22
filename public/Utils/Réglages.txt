@@ -1,0 +1,28 @@
+-Page Show(Logo du MISP);
+
+-Pagination(Bugg ou Étendue);
+
+
+
+
+*******************************************************************************************************************
+
+
+-FINIR LES MIDDLEWARES ET POLITIQUES(POLICIES)
+
+-CONDTIONS BLADES
+
+-RECHERCHE DYNAMIQUE USERS PAGE ET RÈGLAGLES AVEC LE SOUCI MOTS CLÉS
+
+-FINIR TRANSFERTS
+
+
+*******************************************************************************************************************
+
+-DivisionDynamicSelectFront(Daril)
+
+-ChemiseDynamicSelectFront(Daril)
+
+-Revoir DemandeTransfert
+
+-UpdateUser
